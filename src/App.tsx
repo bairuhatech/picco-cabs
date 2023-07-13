@@ -2,7 +2,7 @@ import React from "react";
 import logo from "./logo.svg";
 import "./config/styleVariables.scss";
 import FirstStep from "./components/bookings/bookingForms/bookingFirstStep/firstStep";
-import Footer from "./screens/footer/footer";
+import Footer from "./components/footer/footer";
 
 function App() {
 	return (
