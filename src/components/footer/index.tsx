@@ -1,7 +1,7 @@
 import { Col, Row, Container } from "react-bootstrap";
 
 const Footer = () => (
-  <footer className="bg-light text-center text-md-left md-0 mt-5" id="footer">
+  <footer className="bg-light text-center text-md-left md-0 mt-5" id="contact-us">
     <Container className="text-center">
       <Row className="justify-content-center py-4 ">
         <h4 id="contact">All Over South India</h4>

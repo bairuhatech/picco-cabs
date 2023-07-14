@@ -20,9 +20,9 @@ const FirstStep = () => {
   const radioBtn4ClickHandler = () => {
     setFormType("rentals");
   };
-
+  const baseUrl=document.baseURI.includes('booking');
   return (
-    <Container className="pb-5 pt-4 shadow mt-4 rounded-3">
+    <Container className={`pb-5 pt-4 mt-4 rounded-3 ${!baseUrl?'shadow':''}`}>
       <div className="d-flex justify-content-center">
         <div
           className="btn-group"

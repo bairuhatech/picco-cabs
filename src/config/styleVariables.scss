@@ -4,7 +4,16 @@ $primary: #68af44;
 
 
 
-
+html{
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+@media (max-width:768px){
+  html{
+    scroll-behavior: smooth;
+    scroll-padding-top: 40px;
+  }
+}
 $font-family-base:'Ubuntu', sans-serif;
 
 @import "../../node_modules/bootstrap/scss/bootstrap.scss";

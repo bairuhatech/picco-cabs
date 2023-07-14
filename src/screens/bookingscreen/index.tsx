@@ -1,7 +1,11 @@
-import React from 'react'
+import React from "react";
+import FirstStep from "../../components/bookingFirstStep";
+import { Fragment } from "react";
 
 export default function BookingScreen() {
   return (
-    <div>index</div>
-  )
+    <Fragment>
+      <FirstStep />
+    </Fragment>
+  );
 }

@@ -12,23 +12,21 @@ import NavBar from "../../components/navBar";
 import OfferSections from "../../components/offerSections";
 import PopularDestination from "../../components/popularDestinationss";
 import OurExpertise from "../../components/ourExpertise";
+import NavigationBar from "../../components/navBar";
 
 function HomeScreen() {
   return (
     <Fragment>
-      <NavBar></NavBar>
-      <HomeBanner></HomeBanner>
-      <FirstStep></FirstStep>
-      <BookingBanner></BookingBanner>
-      <OfferSections></OfferSections>
-      <WhyChooseSection></WhyChooseSection>
-      <OurExpertise></OurExpertise>
-      <PopularDestination></PopularDestination>
-      <AboutUs></AboutUs>
-      <TestimonalSection></TestimonalSection>
-      <HomeFooter></HomeFooter>
-      <Footer />
-      <FloateringButton></FloateringButton>
+      <FirstStep />
+      <HomeBanner />
+      <BookingBanner />
+      <OfferSections />
+      <WhyChooseSection />
+      <OurExpertise />
+      <PopularDestination />
+      <AboutUs />
+      <TestimonalSection />
+      <HomeFooter />
     </Fragment>
   );
 }

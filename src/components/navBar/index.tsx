@@ -1,11 +1,11 @@
 
 import './index.scss';
 import PiccoLogo from '../../assets/images/logo.png';
-const NavBar=()=>{
+const NavigationBar=()=>{
     return (
         <nav className="navbar navbar-expand-md bg-body-tertiary sticky-top bg-light  shadow border-bottom-rounded py-0">
         <div className="container-fluid">
-          <a className="navbar-brand" href="#"><img src={PiccoLogo} className='picco-logo ps-3'></img></a>
+          <a className="navbar-brand" href="/"><img src={PiccoLogo} className='picco-logo ps-3'></img></a>
           <button className="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
@@ -17,16 +17,16 @@ const NavBar=()=>{
             <div className="offcanvas-body px-0">
               <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
                 <li className="nav-item border-bottom-md-none py-2">
-                  <a className="nav-link px-3 fw-bold" href="#">About Us</a>
+                  <a className="nav-link px-3 fw-bold" href="/#about-us">About Us</a>
                 </li>
                 <li className="nav-item border-bottom-md-none py-2">
-                  <a className="nav-link px-3 fw-bold" href="#">Book</a>
+                  <a className="nav-link px-3 fw-bold" href="./booking">Book</a>
                 </li>
                 <li className="nav-item border-bottom-md-none py-2">
-                  <a className="nav-link px-3 fw-bold" href="#">Offers</a>
+                  <a className="nav-link px-3 fw-bold" href="/#offer-section">Offers</a>
                 </li>
                 <li className="nav-item border-bottom-md-none py-2">
-                  <a className="nav-link px-3 fw-bold" href="#">Contact</a>
+                  <a className="nav-link px-3 fw-bold" href="/#contact-us">Contact</a>
                 </li>
                 <li className="nav-item border-bottom-md-none py-2">
                   <a className="nav-link px-3 fw-bold" href="#">Login</a>
@@ -44,4 +44,4 @@ const NavBar=()=>{
     )
 }
 
-export default NavBar;
+export default NavigationBar;

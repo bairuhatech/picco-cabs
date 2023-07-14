@@ -2,7 +2,7 @@ import { Col ,Row} from 'react-bootstrap';
 // import classes from './index.module.scss';
 
 const AboutUs = () => (
-    <div className="container my-3 py-5" id="aboutus">
+    <div className="container my-3 py-5" id="about-us">
         <Row>
             <Col lg={12}>
                 <div className="center-heading">
