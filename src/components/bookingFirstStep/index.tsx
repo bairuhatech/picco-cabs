@@ -20,8 +20,9 @@ const FirstStep = () => {
   const radioBtn4ClickHandler = () => {
     setFormType("rentals");
   };
+
   return (
-    <Container className="pb-5 pt-4 shadow mt-4">
+    <Container className="pb-5 pt-4 shadow mt-4 rounded-3">
       <div className="d-flex justify-content-center">
         <div
           className="btn-group"
@@ -38,7 +39,7 @@ const FirstStep = () => {
             onClick={radioBtn1ClickHandler}
           />
           <label
-            className={`btn btn-outline-primary px-4 border-secondary fw-bold fs-8 fs-9 `}
+            className={`btn btn-outline-primary px-4 border border-2 border-primary fw-bold fs-8 fs-9 `}
             htmlFor="btnradio1"
           >
             ONE WAY
@@ -53,7 +54,7 @@ const FirstStep = () => {
             onClick={radioBtn2ClickHandler}
           />
           <label
-            className="btn btn-outline-primary px-4 border-secondary fw-bold fs-8 fs-9 d-none d-md-block"
+            className="btn btn-outline-primary px-4 border border-2 border-primary fw-bold fs-8 fs-9 d-none d-md-block"
             htmlFor="btnradio2"
           >
             ROUND TRIP
@@ -68,7 +69,7 @@ const FirstStep = () => {
             onClick={radioBtn3ClickHandler}
           />
           <label
-            className="btn btn-outline-primary px-4 border-secondary fw-bold fs-8 fs-9 "
+            className="btn btn-outline-primary px-4 border border-2 border-primary fw-bold fs-8 fs-9 d-none d-md-block"
             htmlFor="btnradio3"
           >
             OUTSTATIONS
@@ -82,7 +83,7 @@ const FirstStep = () => {
             onClick={radioBtn4ClickHandler}
           />
           <label
-            className="btn btn-outline-primary px-4 border-secondary fw-bold fs-8  fs-9"
+            className="btn btn-outline-primary px-4 border border-2 border-primary fw-bold fs-8  fs-9"
             htmlFor="btnradio4"
           >
             RENTALS
