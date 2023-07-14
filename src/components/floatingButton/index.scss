@@ -1,0 +1,55 @@
+.flootCircle {
+    position: fixed;
+    background-color: #6bb546;
+    z-index: 4;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 60px;
+    font-size: 2rem;
+    color: #fff;
+    box-shadow: 2px 2px 3px #999;
+    width: 60px;
+    height: 60px;
+    bottom: 5%;
+    right: 40px;
+}
+
+.flootCircle a {
+    color: white;
+}
+
+.flootCircle.first {
+    bottom: 15%;
+}
+
+.flootCircle.second {
+    bottom: 25%;
+}
+
+.flootCircle.third {
+    bottom: 35%;
+}
+
+.hide {
+    display: none;
+    pointer-events: none;
+}
+
+.show {
+    display: block;
+    pointer-events: unset;
+}
+
+@media (max-width:576px) {
+    .flootCircle.first {
+        bottom: 17%;
+    }
+
+    .flootCircle.second {
+        bottom: 29%;
+    }
+
+    .flootCircle.third {
+        bottom: 41%;
+    }
+}

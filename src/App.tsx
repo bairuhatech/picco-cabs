@@ -1,7 +1,8 @@
 import React from "react";
 import logo from "./logo.svg";
 import "./config/styleVariables.scss";
-import HomeScreen from "./screens/homescreen";
+import "bootstrap/dist/js/bootstrap.min.js";
+import HomeScreen from "./screens/homeScreen";
 
 function App() {
 	return (

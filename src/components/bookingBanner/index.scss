@@ -1,0 +1,25 @@
+.centerFlex {
+    display: flex;
+    justify-content: center;
+}
+
+.bookContainer {
+    /* flex-direction: column; */
+    border: 0;
+    outline: none;
+    border-radius: 1%;
+    /* margin: 43px 57px 0px 100px; */
+    padding: 18px;
+    width: 370px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: rgb(0 0 0 / 15%) 0px 2px 8px;
+}
+
+.socialIcons {
+    color: #6bb546;
+    font-size: 32px;
+}
+
+.socialIcons:hover {
+    color: #3f3f3f;
+}

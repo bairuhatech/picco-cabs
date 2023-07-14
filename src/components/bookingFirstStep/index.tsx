@@ -21,7 +21,7 @@ const FirstStep = () => {
     setFormType("rentals");
   };
   return (
-    <Container className="pb-5 pt-4 shadow mt-3">
+    <Container className="pb-5 pt-4 shadow mt-4">
       <div className="d-flex justify-content-center">
         <div
           className="btn-group"

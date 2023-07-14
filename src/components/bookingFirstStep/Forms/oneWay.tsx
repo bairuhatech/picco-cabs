@@ -1,4 +1,4 @@
-import classes from "../firstStep.module.scss";
+import classes from '../index.module.scss';
 
 export default function OneWay() {
   const currTime = new Date();
