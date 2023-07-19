@@ -10,3 +10,16 @@
     height: unset!important;
     text-align: center;
 }
+.margin-top-big{
+    margin-top: 150px;
+}
+@media (max-width:768px){
+    .margin-top-big{
+        margin-top: 250px;
+    }
+}
+@media (max-width:568px){
+    .margin-top-big{
+        margin-top: 350px;
+    }
+}

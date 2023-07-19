@@ -32,3 +32,18 @@
    transform: translateX(-50%);
   }
 }
+
+.bg-picco-banner{
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url('../../assets/images/banner_desktop3.webp');
+  height: 230px;
+}
+.banner-position-absolute{
+  position: absolute;
+  top: 140px;
+}
+
+@media(min-width:768px){
+
+}

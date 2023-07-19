@@ -17,7 +17,7 @@ import B3 from '../../assets/images/banner_desktop3.webp';
 export default function HomeBanner() {
     const isSmall = useMediaQuery('(min-width: 600px)');
     return (
-        <div className={"carousel slide mt-5"}>
+        <div className={"carousel slide margin-top-big"}>
             <Slider arrows={false} speed={750} autoplay fade>
                 <div className="carouselItem">
                     <img className="carouselImg" src={isSmall ? B1 : SB1} alt="PiccoCabs" />
