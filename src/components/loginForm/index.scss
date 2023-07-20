@@ -1,0 +1,27 @@
+@use "../../config/styleVariables.scss" as vars;
+
+.piccocabsimg-Div {
+  height: 160px;
+  display: flex;
+  justify-content: center;
+}
+.login-with-otp {
+  color: rgb(107, 181, 70);
+  font-size: 30px;
+  font-weight: 700;
+}
+.piccocab-text-loginwithotp-Div {
+  display: flex;
+  justify-content: center;
+}
+.piccocab-inputfield-Div {
+  display: flex;
+  justify-content: center;
+}
+// .{
+//     width: 100%;
+//     display: flex;
+//     justify-content: center;
+//     flex-direction: column;
+
+// }

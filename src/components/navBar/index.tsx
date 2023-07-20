@@ -1,6 +1,7 @@
 
 import './index.scss';
 import PiccoLogo from '../../assets/images/logo.png';
+import CustomModal from '../loginForm/index'
 const NavigationBar=()=>{
     return (
         <nav className="navbar navbar-expand-md bg-body-tertiary sticky-top bg-light  shadow border-bottom-rounded py-0">
@@ -31,6 +32,8 @@ const NavigationBar=()=>{
                 <li className="nav-item border-bottom-md-none py-2">
                   <a className="nav-link px-3 fw-bold" href="#">Login</a>
                 </li>
+                <CustomModal/>
+
               </ul>
             </div>
           </div>
