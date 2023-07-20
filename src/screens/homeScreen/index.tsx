@@ -17,6 +17,7 @@ import NavigationBar from "../../components/navBar";
 function HomeScreen() {
   return (
     <Fragment>
+    <NavigationBar/>
       <FirstStep />
       <HomeBanner />
       <BookingBanner />
@@ -27,6 +28,7 @@ function HomeScreen() {
       <AboutUs />
       <TestimonalSection />
       <HomeFooter />
+      <Footer/>
     </Fragment>
   );
 }

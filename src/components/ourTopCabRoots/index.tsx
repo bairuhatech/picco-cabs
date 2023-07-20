@@ -8,7 +8,7 @@ const HomeFooter = () => {
   return (
     <div>
       <Container className="toRouteContainer">
-        <Row className="headingRow bg-primary ">
+        <Row className="headingRow bg-success ">
           <Col lg={12} sm={12} className="headeing text-light text-center py-2 ">
             OUR TOP CAB ROUTES
           </Col>

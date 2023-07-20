@@ -20,7 +20,7 @@ const NavigationBar=()=>{
                   <a className="nav-link px-3 fw-bold" href="/#about-us">About Us</a>
                 </li>
                 <li className="nav-item border-bottom-md-none py-2">
-                  <a className="nav-link px-3 fw-bold" href="./booking">Book</a>
+                  <a className="nav-link px-3 fw-bold" href="booking">Book</a>
                 </li>
                 <li className="nav-item border-bottom-md-none py-2">
                   <a className="nav-link px-3 fw-bold" href="/#offer-section">Offers</a>
