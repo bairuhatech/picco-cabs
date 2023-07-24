@@ -1,0 +1,40 @@
+@use "../../config/styleVariables.scss" as vars;
+
+.piccocabsaboutuscontainer-Div {
+  margin: 30px 0px;
+}
+.piccocabsaboutustext-divm {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  // height: 93%;
+  height: 89%;
+  align-items: center;
+}
+.piccocabsaboutusdivtxt {
+  display: flex;
+  justify-content: center;
+  color: rgb(107, 181, 70);
+  align-items: center;
+  height: 95px;
+}
+.piccocabsaboutustext-div {
+  text-align: justify;
+}
+.piccocabsaboutustext {
+  font-family: vars.$regular;
+  font-size: 18px;
+}
+.aboutustablet-img {
+  width: 100%;
+  border-radius: 10px;
+  height: 83%;
+  box-shadow: #92ca92 0px 0px 10px 0px;
+  border: 1px solid #92ca92;
+}
+.piccocabsaboutus-button {
+  width: 50%;
+}
+.piccocabsaboutus-Row {
+  padding-left: 25px;
+}

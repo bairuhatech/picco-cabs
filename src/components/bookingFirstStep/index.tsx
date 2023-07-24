@@ -22,11 +22,14 @@ const FirstStep = () => {
   };
   const baseUrl = document.baseURI.includes("booking");
   return (
-    <Container fluid className={` ${classes['bg-picco-banner']} position-relative d-flex justify-content-center `}>
+    <Container
+      fluid
+      className={` ${classes["bg-picco-banner"]} position-relative d-flex justify-content-center `}
+    >
       <Container
-        className={`pb-5 pt-4  rounded-3 bg-light ${classes['banner-position-absolute']} ${
-          !baseUrl ? "shadow" : ""
-        }`}
+        className={`pb-5 pt-4  rounded-3 bg-light ${
+          classes["banner-position-absolute"]
+        } ${!baseUrl ? "shadow" : ""}`}
       >
         <div className="d-flex justify-content-center">
           <div

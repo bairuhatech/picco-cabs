@@ -1,23 +1,11 @@
 import React, { useState } from "react";
-import { Button, Modal, Input } from "antd";
+import { Modal, Input } from "antd";
 import piccocabsimg from "../../assets/images/logo.png";
 import { InputGroup, Form } from "react-bootstrap";
 import "./index.scss";
+import Button from "./components/button";
 
-const CustomModal = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const showModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleOk = () => {
-    setIsModalOpen(false);
-  };
-
-  const handleCancel = () => {
-    setIsModalOpen(false);
-  };
+const CustomModal = (props: any) => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [error, setError] = useState(false);
   const [otpInput, setOtpInput] = useState(false);
@@ -38,13 +26,7 @@ const CustomModal = () => {
   };
   return (
     <>
-      <Button onClick={showModal}>Open Modal</Button>
-      <Modal
-        title="Basic Modal"
-        open={isModalOpen}
-        onOk={handleOk}
-        onCancel={handleCancel}
-      >
+      <Modal open={props.isModalOpen} onCancel={props.handleCancel}>
         <div>
           <div className="piccocabsmodal_Maindiv">
             <div className="piccocabsmodal_Maindiv2">
@@ -61,25 +43,22 @@ const CustomModal = () => {
                 <h1 className="login-with-otp">Login with OTP</h1>
               </div>
               <br />
-              <div className="piccocab-inputfield-Div">
-                <InputGroup style={{ width: "70%" }}>
-                  <InputGroup.Text className="piccocabsinputfield">
-                    +91
-                  </InputGroup.Text>
-
-                  <Input
-                    className="form-control"
-                    type="number"
-                    defaultValue={phoneNumber}
-                    placeholder="Enter your mobile number"
-                    onChange={handlePhoneChange}
-                  />
-                </InputGroup>
-              </div>
-              <br />
-              {otpInput && (
+              {otpInput ? (
                 <div className="piccocabsotpinputfield-Div">
-                  <InputGroup>
+                  <div
+                    style={{
+                      width: "70%",
+                      height: "30px",
+                    }}
+                  >
+                    <p
+                      style={{ cursor: "pointer" }}
+                      onClick={() => setOtpInput(false)}
+                    >
+                      wrong phone number ?
+                    </p>
+                  </div>
+                  <InputGroup style={{ width: "70%" }}>
                     <InputGroup.Text className="piccocabsinputfield">
                       OTP
                     </InputGroup.Text>
@@ -87,70 +66,56 @@ const CustomModal = () => {
                       className="input-otpfield"
                       placeholder="Enter OTP"
                       type="number"
+                      style={{ backgroundColor: "#e9ecef" }}
                     />
                   </InputGroup>
+                  <br />
+
                   <Button
-                    className="piccocabssendotp-Button"
-                    onClick={handleNumberSubmit}
-                  >
-                    Submit
-                  </Button>{" "}
+                    text="Submit"
+                    onClick={() => setOtpInput(!otpInput)}
+                  />
+                </div>
+              ) : (
+                <div className="piccocab-inputfield-Div">
+                  <InputGroup style={{ width: "70%" }}>
+                    <InputGroup.Text className="piccocabsinputfield">
+                      +91
+                    </InputGroup.Text>
+
+                    <Input
+                      className="form-control"
+                      type="number"
+                      defaultValue={phoneNumber}
+                      placeholder="Enter your mobile number"
+                      style={{ backgroundColor: "#e9ecef" }}
+                      onChange={handlePhoneChange}
+                    />
+                  </InputGroup>
                 </div>
               )}
 
               <br />
-              <div
-                style={{
-                  width: "100%",
-                  display: "flex",
-                  justifyContent: "center",
-                  flexDirection: "column",
-                  alignItems: "center",
-                }}
-              >
-                <Button
-                  type="primary"
-                  style={{
-                    width: "70%",
-                    backgroundColor: "rgb(107, 181, 70)",
-                    display: "flex",
-                    height: 45,
-                    justifyContent: "center",
-                    alignItems: "center",
-                    color: "white",
-                    fontSize: 16,
-                    fontWeight: "600",
-                  }}
-                  onClick={handleNumberSubmit}
-                >
-                  Send OTP
-                </Button>{" "}
-                {error && (
-                  <p style={{ color: "red", marginTop: "10px" }}>
-                    Please enter your mobile number
-                  </p>
-                )}
-              </div>
+              {!otpInput && (
+                <div className="piccocabssendotp-input">
+                  <Button
+                    className="piccocabssendotp-button"
+                    text="Send OTP"
+                    onClick={handleNumberSubmit}
+                  />
+                  {error && (
+                    <p className="piccocabserrornotification">
+                      Please enter your mobile number
+                    </p>
+                  )}
+                </div>
+              )}
               <br />
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  width: "100%",
-                }}
-              >
-                <div
-                  style={{
-                    width: "72%",
-                    display: "flex",
-                    justifyContent: "center",
-                    textAlign: "center",
-                  }}
-                >
+              <div className="piccocabsfootertxt-Div">
+                <div className="piccocabsfootertxt">
                   <p>
                     We will send you a One Time Password (OTP) on your
-                    registered mobile number to reset.
+                    registered mobile number to login.
                   </p>
                 </div>
               </div>

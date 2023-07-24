@@ -15,6 +15,7 @@ import Footer from "./components/footer";
 import NavigationBar from "./components/navBar";
 import FloateringButton from "./components/floatingButton";
 import PageNotFound from "./screens/errorPage";
+// import Modal from "../src/components/loginForm/index";
 
 const routes = createBrowserRouter([
   {
@@ -26,17 +27,21 @@ const routes = createBrowserRouter([
     element: <BookingScreen />,
   },
   {
-    path: "/login",
+    path: "/index",
     element: <LoginScreen />,
   },
+  // {
+  //   path: "/loginForm",
+  //   element: <Modal />,
+  // },
   {
-	path:"/404",
-	element:<PageNotFound/>
+    path: "/404",
+    element: <PageNotFound />,
   },
   {
-	path:"*",
-	element:<PageNotFound/>
-  }
+    path: "*",
+    element: <PageNotFound />,
+  },
 ]);
 
 function App() {
@@ -45,7 +50,7 @@ function App() {
       <NavigationBar />
       <RouterProvider router={routes} />
       <Footer></Footer>
-	  <FloateringButton/>
+      <FloateringButton />
     </Fragment>
   );
 }
