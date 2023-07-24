@@ -71,7 +71,7 @@ export default function RoundTrip() {
           </div>
           <div className="d-flex justify-content-center position-relative">
           <button
-            className={`text-uppercase btn btn-primary px-5 fw-bold position-absolute ${classes["btn-explore-cabs"]} ${classes["btn-primary"]}`}
+            className={`text-uppercase btn btn-success px-5 fw-bold position-absolute ${classes["btn-explore-cabs"]} `}
           >
               Explore Cabs
             </button>

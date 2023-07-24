@@ -47,7 +47,7 @@ const FirstStep = () => {
               onClick={radioBtn1ClickHandler}
             />
             <label
-              className={`btn btn-outline-primary px-4 border border-2 border-primary fw-bold fs-8 fs-9 `}
+              className={`btn btn-outline-success px-4 border border-2 border-success fw-bold fs-8 fs-9 `}
               htmlFor="btnradio1"
             >
               ONE WAY
@@ -62,7 +62,7 @@ const FirstStep = () => {
               onClick={radioBtn2ClickHandler}
             />
             <label
-              className="btn btn-outline-primary px-4 border border-2 border-primary fw-bold fs-8 fs-9 d-none d-md-block"
+              className="btn btn-outline-success px-4 border border-2 border-success fw-bold fs-8 fs-9 d-none d-md-block"
               htmlFor="btnradio2"
             >
               ROUND TRIP
@@ -77,7 +77,7 @@ const FirstStep = () => {
               onClick={radioBtn3ClickHandler}
             />
             <label
-              className="btn btn-outline-primary px-4 border border-2 border-primary fw-bold fs-8 fs-9 d-none d-md-block"
+              className="btn btn-outline-success px-4 border border-2 border-success fw-bold fs-8 fs-9 d-none d-md-block"
               htmlFor="btnradio3"
             >
               OUTSTATIONS
@@ -91,7 +91,7 @@ const FirstStep = () => {
               onClick={radioBtn4ClickHandler}
             />
             <label
-              className="btn btn-outline-primary px-4 border border-2 border-primary fw-bold fs-8  fs-9"
+              className="btn btn-outline-success px-4 border border-2 border-success fw-bold fs-8  fs-9"
               htmlFor="btnradio4"
             >
               RENTALS
