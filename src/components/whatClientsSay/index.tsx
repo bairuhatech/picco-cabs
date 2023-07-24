@@ -1,7 +1,8 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faQuoteRight } from "@fortawesome/free-solid-svg-icons";
-import ManImg from "../../assets/images/man.svg";
-import WomenImg from '../../assets/images/designer.svg';
+import ManImg from "../../assets/images/men5.jpg";
+// import Man1img from "../../assets/images/";
+import WomenImg from "../../assets/images/women2.png";
 
 const TestimonalSection = () => (
   <div className="container my-3" id="testimonial">
@@ -33,15 +34,17 @@ const TestimonalSection = () => (
               style={{
                 backgroundColor: "#6bb546",
                 width: "60px",
-                height: "60px",
+                backgroundSize: "cover",
+                // height: "60px",
+                backgroundImage: `url(${ManImg})`,
               }}
             >
               <img
-                className="rounded-circle"
+                className="rounded-circle smooth-image"
                 src={ManImg}
                 alt="Man"
                 height="55px"
-                width="55px"
+                width="80px"
               />
             </div>
             <div className="text-center">

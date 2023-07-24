@@ -12,9 +12,11 @@ import LoginScreen from "./screens/loginScreen";
 import { Fragment } from "react";
 import { Navbar } from "react-bootstrap";
 import Footer from "./components/footer";
+import FareDetails from "./components/fareDetails/index";
 import NavigationBar from "./components/navBar";
 import FloateringButton from "./components/floatingButton";
 import PageNotFound from "./screens/errorPage";
+import BookingSecondStep from "./components/bookingSecondStep";
 
 const routes = createBrowserRouter([
   {
@@ -25,18 +27,26 @@ const routes = createBrowserRouter([
     path: "/booking",
     element: <BookingScreen />,
   },
+  // {
+  //   path: "/fareDetails",
+  //   element: <FareDetails />,
+  // },
   {
     path: "/login",
     element: <LoginScreen />,
   },
   {
-	path:"/404",
-	element:<PageNotFound/>
+    path: "/bookingSecondStep",
+    element: <BookingSecondStep />,
   },
   {
-	path:"*",
-	element:<PageNotFound/>
-  }
+    path: "/404",
+    element: <PageNotFound />,
+  },
+  {
+    path: "*",
+    element: <PageNotFound />,
+  },
 ]);
 
 function App() {
@@ -45,7 +55,7 @@ function App() {
       <NavigationBar />
       <RouterProvider router={routes} />
       <Footer></Footer>
-	  <FloateringButton/>
+      <FloateringButton />
     </Fragment>
   );
 }
