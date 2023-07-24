@@ -1,4 +1,3 @@
-
 import "./config/styleVariables.scss";
 import HomeScreen from "./screens/homeScreen";
 import { RouterProvider } from "react-router";
@@ -43,19 +42,17 @@ const routes = createBrowserRouter([
 // import Footer from "./components/footer";
 // import { createBrowserRouter } from "react-router-dom";
 
+function App() {
+  return (
+    <Fragment>
+      {/* <NavigationBar /> */}
+      <RouterProvider router={routes} />
+      <Footer></Footer>
+      <FloateringButton />
+      {/* <Footer></Footer> */}
+      <FloateringButton />
+    </Fragment>
+  );
+}
 
-
-// function App() {
-//   return (
-//     <Fragment>
-//       {/* <NavigationBar /> */}
-//       <RouterProvider router={routes} />
-//       <Footer></Footer>
-//       <FloateringButton />
-//       {/* <Footer></Footer> */}
-// 	  <FloateringButton/>
-//     </Fragment>
-//   );
-// }
-
-// export default App;
+export default App;

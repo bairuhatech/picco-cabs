@@ -47,7 +47,8 @@ const routes = createBrowserRouter([
     path: "/adminpanel/login",
     element: <Login />,
   },
-  {//admin panel protected section starts here
+  {
+    //admin panel protected section starts here
     path: "/adminpanel",
     element: <ProtectedRoute />,
     children: [

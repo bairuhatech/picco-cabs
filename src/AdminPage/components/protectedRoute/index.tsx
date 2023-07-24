@@ -8,9 +8,9 @@ import { useSelector } from "react-redux";
 const ProtectedRoute = () => {
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-   const loginStatus = useSelector((state: any) => {
-      return state.login.auth;
-    });
+  const loginStatus = useSelector((state: any) => {
+    return state.login.auth;
+  });
   useEffect(() => {
     if (!loginStatus) {
       setIsLoggedIn(false);
