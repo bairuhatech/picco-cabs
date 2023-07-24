@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { faLocationDot } from '@fortawesome/free-solid-svg-icons/faLocationDot';
+import { faLocationDot } from "@fortawesome/free-solid-svg-icons/faLocationDot";
 import {
   CDBSidebar,
   CDBSidebarContent,
@@ -16,34 +16,33 @@ import { useDispatch } from "react-redux";
 import { navigationActions } from "../../../../store/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-
 const SidebarNavigation = () => {
-  const dispatch =useDispatch();
-  const nav_status=useSelector((state:any)=>{
+  const dispatch = useDispatch();
+  const nav_status = useSelector((state: any) => {
     return state.navigation;
   });
 
-  const setNavUsers=()=>{
+  const setNavUsers = () => {
     dispatch(navigationActions.setNavUsers());
-  }
-  const setNavLocations=()=>{
+  };
+  const setNavLocations = () => {
     dispatch(navigationActions.setNavLocation());
-  }
-  const setNavHome=()=>{
+  };
+  const setNavHome = () => {
     dispatch(navigationActions.setNavHome());
-  }
-  const setNavBooking=()=>{
+  };
+  const setNavBooking = () => {
     dispatch(navigationActions.setNavBooking());
-  }
-  const setNavOffers=()=>{
-    dispatch(navigationActions.setNavOffers())
-  }
-  const setNavBookingAttempt=()=>{
-    dispatch(navigationActions.setNavBookingAttempts())
-  }
-  const setNavLoginAttempts=()=>{
-    dispatch(navigationActions.setNavLoginAttempts())
-  }
+  };
+  const setNavOffers = () => {
+    dispatch(navigationActions.setNavOffers());
+  };
+  const setNavBookingAttempt = () => {
+    dispatch(navigationActions.setNavBookingAttempts());
+  };
+  const setNavLoginAttempts = () => {
+    dispatch(navigationActions.setNavLoginAttempts());
+  };
 
   return (
     <div>
@@ -56,7 +55,10 @@ const SidebarNavigation = () => {
         breakpoint={768}
         toggled
       >
-        <CDBSidebarHeader prefix={<i className="fa fa-bars" />} className="border-bottom">
+        <CDBSidebarHeader
+          prefix={<i className="fa fa-bars" />}
+          className="border-bottom"
+        >
           <div
             className="container"
             style={{ display: "flex", alignItems: "center" }}
@@ -67,12 +69,36 @@ const SidebarNavigation = () => {
 
         <CDBSidebarContent className="sidebar-content mx-0">
           <CDBSidebarMenu>
-          <NavLink to="" end  style={({isActive})=>isActive?{fontWeight:'bolder',color:'#FFFF99'}:undefined} onClick={setNavHome}>
-              <CDBSidebarMenuItem icon="home" iconSize="lg" className="nav-link">Dashboard</CDBSidebarMenuItem>
-            </NavLink>
-            <NavLink to="bookings" style={({isActive})=>isActive?{fontWeight:'bolder',color:'#FFFF99'}:undefined} onClick={setNavBooking}>
+            <NavLink
+              to=""
+              end
+              style={({ isActive }) =>
+                isActive
+                  ? { fontWeight: "bolder", color: "#FFFF99" }
+                  : undefined
+              }
+              onClick={setNavHome}
+            >
               <CDBSidebarMenuItem
-                icon="table" iconSize="lg"
+                icon="home"
+                iconSize="lg"
+                className="nav-link"
+              >
+                Dashboard
+              </CDBSidebarMenuItem>
+            </NavLink>
+            <NavLink
+              to="bookings"
+              style={({ isActive }) =>
+                isActive
+                  ? { fontWeight: "bolder", color: "#FFFF99" }
+                  : undefined
+              }
+              onClick={setNavBooking}
+            >
+              <CDBSidebarMenuItem
+                icon="table"
+                iconSize="lg"
                 className="nav-link nav-link-hover"
                 suffix={
                   <CDBBadge className="rounded-pill p-0 m-0 px-3 bg-light text-dark fw-bold">
@@ -83,21 +109,70 @@ const SidebarNavigation = () => {
                 Bookings
               </CDBSidebarMenuItem>
             </NavLink>
-            <NavLink to="users"  style={({isActive})=>isActive?{fontWeight:'bolder',color:'#FFFF99'}:undefined} onClick={setNavUsers}>
-              <CDBSidebarMenuItem icon="user" iconSize="lg" className="nav-link">Users</CDBSidebarMenuItem>
+            <NavLink
+              to="users"
+              style={({ isActive }) =>
+                isActive
+                  ? { fontWeight: "bolder", color: "#FFFF99" }
+                  : undefined
+              }
+              onClick={setNavUsers}
+            >
+              <CDBSidebarMenuItem
+                icon="user"
+                iconSize="lg"
+                className="nav-link"
+              >
+                Users
+              </CDBSidebarMenuItem>
             </NavLink>
-            <NavLink to="locations" style={({isActive})=>isActive?{fontWeight:'bolder',color:'#FFFF99'}:undefined} onClick={setNavLocations}>
-             
-              <CDBSidebarMenuItem icon="table" className="nav-link" iconSize="lg"> 
+            <NavLink
+              to="locations"
+              style={({ isActive }) =>
+                isActive
+                  ? { fontWeight: "bolder", color: "#FFFF99" }
+                  : undefined
+              }
+              onClick={setNavLocations}
+            >
+              <CDBSidebarMenuItem
+                icon="table"
+                className="nav-link"
+                iconSize="lg"
+              >
                 Locations
               </CDBSidebarMenuItem>
             </NavLink>
-            <NavLink to="offers" style={({isActive})=>isActive?{fontWeight:'bolder',color:'#FFFF99'}:undefined} onClick={setNavOffers}>
-              <CDBSidebarMenuItem icon="shopping-bag" iconSize="lg" className="nav-link">Offers</CDBSidebarMenuItem>
-            </NavLink>
-            <NavLink to="booking-attempts"style={({isActive})=>isActive?{fontWeight:'bolder',color:'#FFFF99'}:undefined} onClick={setNavBookingAttempt}>
+            <NavLink
+              to="offers"
+              style={({ isActive }) =>
+                isActive
+                  ? { fontWeight: "bolder", color: "#FFFF99" }
+                  : undefined
+              }
+              onClick={setNavOffers}
+            >
               <CDBSidebarMenuItem
-                icon="chart-line" className="nav-link" iconSize="lg"
+                icon="shopping-bag"
+                iconSize="lg"
+                className="nav-link"
+              >
+                Offers
+              </CDBSidebarMenuItem>
+            </NavLink>
+            <NavLink
+              to="booking-attempts"
+              style={({ isActive }) =>
+                isActive
+                  ? { fontWeight: "bolder", color: "#FFFF99" }
+                  : undefined
+              }
+              onClick={setNavBookingAttempt}
+            >
+              <CDBSidebarMenuItem
+                icon="chart-line"
+                className="nav-link"
+                iconSize="lg"
                 suffix={
                   <CDBBadge className="rounded-pill p-0 m-0 px-3 bg-light text-dark fw-bold">
                     4
@@ -107,11 +182,21 @@ const SidebarNavigation = () => {
                 Booking Attempts
               </CDBSidebarMenuItem>
             </NavLink>
-            <NavLink to="login-attempts" style={({isActive})=>isActive?{fontWeight:'bolder',color:'#FFFF99' }:undefined} onClick={setNavLoginAttempts}>
+            <NavLink
+              to="login-attempts"
+              style={({ isActive }) =>
+                isActive
+                  ? { fontWeight: "bolder", color: "#FFFF99" }
+                  : undefined
+              }
+              onClick={setNavLoginAttempts}
+            >
               <CDBSidebarMenuItem
-                icon="user" className="nav-link" iconSize="lg"
+                icon="user"
+                className="nav-link"
+                iconSize="lg"
                 suffix={
-                  <CDBBadge  className="rounded-pill p-0 m-0 px-3 bg-light text-dark fw-bold">
+                  <CDBBadge className="rounded-pill p-0 m-0 px-3 bg-light text-dark fw-bold">
                     2
                   </CDBBadge>
                 }
@@ -127,11 +212,8 @@ const SidebarNavigation = () => {
             Sidebar Footer
           </div>
         </CDBSidebarFooter> */}
-        <CDBSidebarHeader >
-          <div
-            className="container align-items-end "
-            
-          >
+        <CDBSidebarHeader>
+          <div className="container align-items-end ">
             <p className="text-wrap fw-normal" style={{ fontSize: "12px" }}>
               {" "}
               Copyright © Picco Cabs. All rights reserved.

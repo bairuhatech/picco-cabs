@@ -32,6 +32,10 @@ const routes = createBrowserRouter([
     element: <BookingScreen />,
   },
   {
+    path: "/index",
+    element: <LoginScreen />,
+  },
+  {
     path: "login",
     element: <LoginScreen />,
   },

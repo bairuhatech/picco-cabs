@@ -11,33 +11,39 @@ import { createBrowserRouter } from "react-router-dom";
 import BookingScreen from "./screens/bookingscreen";
 import LoginScreen from "./screens/loginScreen";
 // import Modal from "../src/components/loginForm/index";
+import Login from "./AdminPage/components/loginPage";
+import routes from "./routes";
 
-const routes = createBrowserRouter([
-  {
-    path: "/",
-    element: <HomeScreen />,
-  },
-  {
-    path: "/booking",
-    element: <BookingScreen />,
-  },
-  {
-    path: "/index",
-    element: <LoginScreen />,
-  },
-  // {
-  //   path: "/loginForm",
-  //   element: <Modal />,
-  // },
-  {
-    path: "/404",
-    element: <PageNotFound />,
-  },
-  {
-    path: "*",
-    element: <PageNotFound />,
-  },
-]);
+// const routes = createBrowserRouter([
+//   {
+//     path: "/",
+//     element: <HomeScreen />,
+//   },
+//   {
+//     path: "/booking",
+//     element: <BookingScreen />,
+//   },
+//   {
+//     path: "/index",
+//     element: <LoginScreen />,
+//   },
+//   {
+//     path: "/adminpanel/login",
+//     element: <Login />,
+//   },
+//   // {
+//   //   path: "/loginForm",
+//   //   element: <Modal />,
+//   // },
+//   {
+//     path: "/404",
+//     element: <PageNotFound />,
+//   },
+//   {
+//     path: "*",
+//     element: <PageNotFound />,
+//   },
+// ]);
 // import routes from "./routes";
 // import Footer from "./components/footer";
 // import { createBrowserRouter } from "react-router-dom";

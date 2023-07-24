@@ -15,13 +15,13 @@ function AppHeader() {
   const nav_status = useSelector((state: any) => {
     return state.navigation;
   });
-  const [showModal,setShowModal]=useState(false);
-  const showModalHandler=()=>{
+  const [showModal, setShowModal] = useState(false);
+  const showModalHandler = () => {
     setShowModal(!showModal);
-  }
-  const closeModal=()=>{
+  };
+  const closeModal = () => {
     setShowModal(false);
-  }
+  };
   return (
     <>
       <nav className="navbar navbar-expand bg-body-tertiary pt-3 pb-2">
@@ -31,14 +31,19 @@ function AppHeader() {
           </a>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <div className="ms-auto">
-              <button className={`btn btn-secondary circular-button ${showModal?'bg-dark-300':''}`} onClick={showModalHandler}>
+              <button
+                className={`btn btn-secondary circular-button ${
+                  showModal ? "bg-dark-300" : ""
+                }`}
+                onClick={showModalHandler}
+              >
                 <FontAwesomeIcon icon={faRightToBracket} />
               </button>
             </div>
           </div>
         </div>
       </nav>
-      <UserLogoutSection status={showModal} closeModal={closeModal}/>
+      <UserLogoutSection status={showModal} closeModal={closeModal} />
     </>
   );
 }

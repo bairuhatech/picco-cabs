@@ -52,7 +52,6 @@ const FirstStep = () => {
             >
               ONE WAY
             </label>
-
             <input
               type="radio"
               className="btn-check"
@@ -67,7 +66,6 @@ const FirstStep = () => {
             >
               ROUND TRIP
             </label>
-
             <input
               type="radio"
               className="btn-check"
