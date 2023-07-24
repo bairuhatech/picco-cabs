@@ -17,6 +17,7 @@ import Form from "../../components/bookingSecondStep";
 function HomeScreen() {
   return (
     <Fragment>
+    <NavigationBar/>
       <FirstStep />
 
       <HomeBanner />
@@ -29,6 +30,7 @@ function HomeScreen() {
       <AboutUs />
       <TestimonalSection />
       <HomeFooter />
+      <Footer/>
     </Fragment>
   );
 }

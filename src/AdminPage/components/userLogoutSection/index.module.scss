@@ -1,0 +1,33 @@
+
+.user-logo-container {
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  & img {
+    width: 100%;
+    background-color: rgb(180, 180, 180);
+    border-radius: 50%;
+    border: 2px solid white;
+  }
+}
+.hover-color {
+  color: rgb(118, 39, 39);
+  &:hover {
+    color: rgb(167, 0, 0);
+  }
+}
+.bg-white {
+  background-color: white;
+}
+.modal {
+  --bs-modal-margin: 0;
+  --bs-modal-border-width: 0;
+  top: 70px;
+  right: 40px;
+  width: 300px;
+  height: auto;
+  left: auto;
+}
+.modal-backdrop {
+  --bs-backdrop-opacity: 0;
+}

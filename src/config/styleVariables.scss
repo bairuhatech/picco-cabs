@@ -1,34 +1,27 @@
 $primary: #68af44;
+// Success color
+$success: #68af44;
 
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap');
+$bold: "Poppins-Bold";
+$semibold: "Poppins-SemiBold";
+$medium: "Poppins-Medium";
+$regular: "Poppins-Regular";
 
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap");
 
-
-html{
+html {
   scroll-behavior: smooth;
   scroll-padding-top: 80px;
 }
-@media (max-width:768px){
-  html{
+@media (max-width: 768px) {
+  html {
     scroll-behavior: smooth;
     scroll-padding-top: 40px;
   }
 }
-$font-family-base:'Ubuntu', sans-serif;
+$font-family-base: "Ubuntu", sans-serif;
 
 @import "../../node_modules/bootstrap/scss/bootstrap.scss";
-
-
-
-
-
-
-
-
-
-
-
-
 
 .btn-outline-primary {
   --bs-btn-active-color: white;

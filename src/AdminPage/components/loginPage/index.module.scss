@@ -1,0 +1,25 @@
+$primary_clr:#68af44;
+$primary_clr_hover:#518a37;
+
+.bg-picco{
+    background-color: $primary_clr;
+}
+.btn-picco{
+    background-color:$primary_clr ;
+    border: none;
+    &:hover{
+        background-color: $primary_clr_hover;
+    }
+    &:active{
+        background-color: $primary_clr_hover;
+    }
+}
+.text-picco{
+    color: $primary_clr;
+}
+.picco-logo{
+    width: 140px;
+   
+    height: 140px;
+    object-fit: contain;
+}
