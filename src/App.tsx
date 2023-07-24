@@ -55,8 +55,6 @@ function App() {
       <RouterProvider router={routes} />
       <Footer></Footer>
       <FloateringButton />
-      {/* <Footer></Footer> */}
-      <FloateringButton />
     </Fragment>
   );
 }

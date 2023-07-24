@@ -1,15 +1,21 @@
 import { Col, Row, Container } from "react-bootstrap";
-import './index.scss';
+import "./index.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMapMarker } from "@fortawesome/free-solid-svg-icons";
+import { FaLocationDot } from "react-icons/fa6";
+// import Button from "react-bootstrap";
 
 const HomeFooter = () => {
   // useStyles(s);
   return (
     <div>
       <Container className="toRouteContainer">
-        <Row className="headingRow bg-success ">
-          <Col lg={12} sm={12} className="headeing text-light text-center py-2 ">
+        <Row className="headingRow bg-primary ">
+          <Col
+            lg={12}
+            sm={12}
+            className="headeing text-light text-center py-2 "
+          >
             OUR TOP CAB ROUTES
           </Col>
         </Row>
@@ -18,7 +24,7 @@ const HomeFooter = () => {
             <Row className="innerDiv">
               <Col lg={4} md={6} sm={6} xs={12} className="routeDiv">
                 <span>
-                  <FontAwesomeIcon icon={faMapMarker} />
+                  <FaLocationDot style={{ color: "#6bb644" }} />
                 </span>
                 <a href={`/book?from=Chennai&to=Madurai`}>
                   {" "}
@@ -27,7 +33,7 @@ const HomeFooter = () => {
               </Col>
               <Col lg={4} md={6} sm={6} xs={12} className="routeDiv">
                 <span>
-                  <FontAwesomeIcon icon={faMapMarker} />
+                  <FaLocationDot style={{ color: "#6bb644" }} />
                 </span>
                 <a href={`/book?from=Chennai&to=Bangalore`}>
                   {" "}
@@ -36,7 +42,7 @@ const HomeFooter = () => {
               </Col>
               <Col lg={4} md={6} sm={6} xs={12} className="routeDiv">
                 <span>
-                  <FontAwesomeIcon icon={faMapMarker} />
+                  <FaLocationDot style={{ color: "#6bb644" }} />
                 </span>
                 <a href={`/book?from=Chennai&to=Pondicherry`}>
                   {" "}
@@ -45,7 +51,7 @@ const HomeFooter = () => {
               </Col>
               <Col lg={4} md={6} sm={6} xs={12} className="routeDiv">
                 <span>
-                  <FontAwesomeIcon icon={faMapMarker} />
+                  <FaLocationDot style={{ color: "#6bb644" }} />
                 </span>
                 <a href={`/book?from=Chennai&to=Coimbatore`}>
                   {" "}
@@ -54,7 +60,7 @@ const HomeFooter = () => {
               </Col>
               <Col lg={4} md={6} sm={6} xs={12} className="routeDiv">
                 <span>
-                  <FontAwesomeIcon icon={faMapMarker} />
+                  <FaLocationDot style={{ color: "#6bb644" }} />
                 </span>
                 <a href={`/book?from=Chennai&to=Tirunelveli`}>
                   {" "}
@@ -64,7 +70,7 @@ const HomeFooter = () => {
 
               <Col lg={4} md={6} sm={6} xs={12} className="routeDiv">
                 <span>
-                  <FontAwesomeIcon icon={faMapMarker} />
+                  <FaLocationDot style={{ color: "#6bb644" }} />
                 </span>
                 <a href={`/book?from=Madurai&to=Chennai`}>
                   {" "}
@@ -73,7 +79,7 @@ const HomeFooter = () => {
               </Col>
               <Col lg={4} md={6} sm={6} xs={12} className="routeDiv">
                 <span>
-                  <FontAwesomeIcon icon={faMapMarker} />
+                  <FaLocationDot style={{ color: "#6bb644" }} />
                 </span>
                 <a href={`/book?from=Madurai&to=Bangalore`}>
                   {" "}
@@ -82,7 +88,7 @@ const HomeFooter = () => {
               </Col>
               <Col lg={4} md={6} sm={6} xs={12} className="routeDiv">
                 <span>
-                  <FontAwesomeIcon icon={faMapMarker} />
+                  <FaLocationDot style={{ color: "#6bb644" }} />
                 </span>
                 <a href={`/book?from=Madurai&to=Pondicherry`}>
                   {" "}
@@ -91,7 +97,7 @@ const HomeFooter = () => {
               </Col>
               <Col lg={4} md={6} sm={6} xs={12} className="routeDiv">
                 <span>
-                  <FontAwesomeIcon icon={faMapMarker} />
+                  <FaLocationDot style={{ color: "#6bb644" }} />
                 </span>
                 <a href={`/book?from=Madurai&to=Coimbatore`}>
                   {" "}
@@ -100,7 +106,7 @@ const HomeFooter = () => {
               </Col>
               <Col lg={4} md={6} sm={6} xs={12} className="routeDiv">
                 <span>
-                  <FontAwesomeIcon icon={faMapMarker} />
+                  <FaLocationDot style={{ color: "#6bb644" }} />
                 </span>
                 <a href={`/book?from=Madurai&to=Tirunelveli`}>
                   {" "}
@@ -110,7 +116,7 @@ const HomeFooter = () => {
 
               <Col lg={4} md={6} sm={6} xs={12} className="routeDiv">
                 <span>
-                  <FontAwesomeIcon icon={faMapMarker} />
+                  <FaLocationDot style={{ color: "#6bb644" }} />
                 </span>
                 <a href={`/book?from=Bangalore&to=Chennai`}>
                   {" "}
@@ -119,16 +125,19 @@ const HomeFooter = () => {
               </Col>
               <Col lg={4} md={6} sm={6} xs={12} className="routeDiv">
                 <span>
-                  <FontAwesomeIcon icon={faMapMarker} />
+                  <FaLocationDot style={{ color: "#6bb644" }} />
                 </span>
                 <a href={`/book?from=Bangalore&to=Madurai`}>
                   {" "}
                   Bangalore to Madurai cab{" "}
                 </a>
+                {/* <button>view more</button> */}
               </Col>
+
               <Col lg={4} md={6} sm={6} xs={12} className="routeDiv">
                 <span>
-                  <FontAwesomeIcon icon={faMapMarker} />
+                  {" "}
+                  <FaLocationDot style={{ color: "#6bb644" }} />
                 </span>
                 <a href={`/book?from=Bangalore&to=Pondicherry`}>
                   {" "}
@@ -137,7 +146,8 @@ const HomeFooter = () => {
               </Col>
               <Col lg={4} md={6} sm={6} xs={12} className="routeDiv">
                 <span>
-                  <FontAwesomeIcon icon={faMapMarker} />
+                  {" "}
+                  <FaLocationDot style={{ color: "#6bb644" }} />
                 </span>
                 <a href={`/book?from=Bangalore&to=Coimbatore`}>
                   {" "}
@@ -146,7 +156,8 @@ const HomeFooter = () => {
               </Col>
               <Col lg={4} md={6} sm={6} xs={12} className="routeDiv">
                 <span>
-                  <FontAwesomeIcon icon={faMapMarker} />
+                  {" "}
+                  <FaLocationDot style={{ color: "#6bb644" }} />
                 </span>
                 <a href={`/book?from=Bangalore&to=Tirunelveli`}>
                   {" "}
@@ -156,7 +167,8 @@ const HomeFooter = () => {
 
               <Col lg={4} md={6} sm={6} xs={12} className="routeDiv">
                 <span>
-                  <FontAwesomeIcon icon={faMapMarker} />
+                  {" "}
+                  <FaLocationDot style={{ color: "#6bb644" }} />
                 </span>
                 <a href={`/book?from=Pondicherry&to=Chennai`}>
                   {" "}
@@ -165,7 +177,8 @@ const HomeFooter = () => {
               </Col>
               <Col lg={4} md={6} sm={6} xs={12} className="routeDiv">
                 <span>
-                  <FontAwesomeIcon icon={faMapMarker} />
+                  {" "}
+                  <FaLocationDot style={{ color: "#6bb644" }} />
                 </span>
                 <a href={`/book?from=Pondicherry&to=Bangalore`}>
                   {" "}
@@ -174,7 +187,8 @@ const HomeFooter = () => {
               </Col>
               <Col lg={4} md={6} sm={6} xs={12} className="routeDiv">
                 <span>
-                  <FontAwesomeIcon icon={faMapMarker} />
+                  {" "}
+                  <FaLocationDot style={{ color: "#6bb644" }} />
                 </span>
                 <a href={`/book?from=Pondicherry&to=Madurai`}>
                   {" "}
@@ -183,7 +197,8 @@ const HomeFooter = () => {
               </Col>
               <Col lg={4} md={6} sm={6} xs={12} className="routeDiv">
                 <span>
-                  <FontAwesomeIcon icon={faMapMarker} />
+                  {" "}
+                  <FaLocationDot style={{ color: "#6bb644" }} />
                 </span>
                 <a href={`/book?from=Pondicherry&to=Coimbatore`}>
                   {" "}
@@ -192,7 +207,8 @@ const HomeFooter = () => {
               </Col>
               <Col lg={4} md={6} sm={6} xs={12} className="routeDiv">
                 <span>
-                  <FontAwesomeIcon icon={faMapMarker} />
+                  {" "}
+                  <FaLocationDot style={{ color: "#6bb644" }} />
                 </span>
                 <a href={`/book?from=Pondicherry&to=Tirunelveli`}>
                   {" "}
@@ -202,7 +218,8 @@ const HomeFooter = () => {
 
               <Col lg={4} md={6} sm={6} xs={12} className="routeDiv">
                 <span>
-                  <FontAwesomeIcon icon={faMapMarker} />
+                  {" "}
+                  <FaLocationDot style={{ color: "#6bb644" }} />
                 </span>
                 <a href={`/book?from=Coimbatore&to=Chennai`}>
                   {" "}
@@ -211,7 +228,8 @@ const HomeFooter = () => {
               </Col>
               <Col lg={4} md={6} sm={6} xs={12} className="routeDiv">
                 <span>
-                  <FontAwesomeIcon icon={faMapMarker} />
+                  {" "}
+                  <FaLocationDot style={{ color: "#6bb644" }} />
                 </span>
                 <a href={`/book?from=Coimbatore&to=Bangalore`}>
                   {" "}
@@ -220,7 +238,8 @@ const HomeFooter = () => {
               </Col>
               <Col lg={4} md={6} sm={6} xs={12} className="routeDiv">
                 <span>
-                  <FontAwesomeIcon icon={faMapMarker} />
+                  {" "}
+                  <FaLocationDot style={{ color: "#6bb644" }} />
                 </span>
                 <a href={`/book?from=Coimbatore&to=Pondicherry`}>
                   {" "}
@@ -229,7 +248,8 @@ const HomeFooter = () => {
               </Col>
               <Col lg={4} md={6} sm={6} xs={12} className="routeDiv">
                 <span>
-                  <FontAwesomeIcon icon={faMapMarker} />
+                  {" "}
+                  <FaLocationDot style={{ color: "#6bb644" }} />
                 </span>
                 <a href={`/book?from=Coimbatore&to=Madurai`}>
                   {" "}
@@ -238,7 +258,8 @@ const HomeFooter = () => {
               </Col>
               <Col lg={4} md={6} sm={6} xs={12} className="routeDiv">
                 <span>
-                  <FontAwesomeIcon icon={faMapMarker} />
+                  {" "}
+                  <FaLocationDot style={{ color: "#6bb644" }} />
                 </span>
                 <a href={`/book?from=Coimbatore&to=Tirunelveli`}>
                   {" "}
@@ -248,7 +269,8 @@ const HomeFooter = () => {
 
               <Col lg={4} md={6} sm={6} xs={12} className="routeDiv">
                 <span>
-                  <FontAwesomeIcon icon={faMapMarker} />
+                  {" "}
+                  <FaLocationDot style={{ color: "#6bb644" }} />
                 </span>
                 <a href={`/book?from=Tirunelveli&to=Chennai`}>
                   {" "}
@@ -257,7 +279,8 @@ const HomeFooter = () => {
               </Col>
               <Col lg={4} md={6} sm={6} xs={12} className="routeDiv">
                 <span>
-                  <FontAwesomeIcon icon={faMapMarker} />
+                  {" "}
+                  <FaLocationDot style={{ color: "#6bb644" }} />
                 </span>
                 <a href={`/book?from=Tirunelveli&to=Bangalore`}>
                   {" "}
@@ -266,7 +289,8 @@ const HomeFooter = () => {
               </Col>
               <Col lg={4} md={6} sm={6} xs={12} className="routeDiv">
                 <span>
-                  <FontAwesomeIcon icon={faMapMarker} />
+                  {" "}
+                  <FaLocationDot style={{ color: "#6bb644" }} />
                 </span>
                 <a href={`/book?from=Tirunelveli&to=Pondicherry`}>
                   {" "}
@@ -275,7 +299,8 @@ const HomeFooter = () => {
               </Col>
               <Col lg={4} md={6} sm={6} xs={12} className="routeDiv">
                 <span>
-                  <FontAwesomeIcon icon={faMapMarker} />
+                  {" "}
+                  <FaLocationDot style={{ color: "#6bb644" }} />
                 </span>
                 <a href={`/book?from=Tirunelveli&to=Coimbatore`}>
                   {" "}
@@ -284,7 +309,8 @@ const HomeFooter = () => {
               </Col>
               <Col lg={4} md={6} sm={6} xs={12} className="routeDiv">
                 <span>
-                  <FontAwesomeIcon icon={faMapMarker} />
+                  {" "}
+                  <FaLocationDot style={{ color: "#6bb644" }} />
                 </span>
                 <a href={`/book?from=Tirunelveli&to=Madurai`}>
                   {" "}
@@ -294,7 +320,8 @@ const HomeFooter = () => {
 
               <Col lg={4} md={6} sm={6} xs={12} className="routeDiv">
                 <span>
-                  <FontAwesomeIcon icon={faMapMarker} />
+                  {" "}
+                  <FaLocationDot style={{ color: "#6bb644" }} />
                 </span>
                 <a href={`/book?from=Madurai&to=kodai`}>
                   {" "}
@@ -303,7 +330,8 @@ const HomeFooter = () => {
               </Col>
               <Col lg={4} md={6} sm={6} xs={12} className="routeDiv">
                 <span>
-                  <FontAwesomeIcon icon={faMapMarker} />
+                  {" "}
+                  <FaLocationDot style={{ color: "#6bb644" }} />
                 </span>
                 <a href={`/book?from=Chennai&to=kodai`}>
                   {" "}
@@ -312,7 +340,8 @@ const HomeFooter = () => {
               </Col>
               <Col lg={4} md={6} sm={6} xs={12} className="routeDiv">
                 <span>
-                  <FontAwesomeIcon icon={faMapMarker} />
+                  {" "}
+                  <FaLocationDot style={{ color: "#6bb644" }} />
                 </span>
                 <a href={`/book?from=Madurai&to=tenkasi`}>
                   {" "}

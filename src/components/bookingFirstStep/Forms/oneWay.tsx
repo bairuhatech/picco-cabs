@@ -1,6 +1,9 @@
-import classes from '../index.module.scss';
+import React from "react";
+import classes from "../index.module.scss";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function OneWay() {
+  const navigate = useNavigate();
   const currTime = new Date();
   currTime.setDate(currTime.getDate());
   var date = currTime.toISOString().substring(0, 10);
@@ -63,13 +66,15 @@ export default function OneWay() {
         </div>
         <div className="d-flex justify-content-center position-relative">
           <button
-            className={`text-uppercase btn btn-success px-5 fw-bold position-absolute ${classes["btn-explore-cabs"]}`}
+            onClick={() => navigate("bookingSecondStep")}
+            className={`text-uppercase btn btn-primary px-5 fw-bold position-absolute ${classes["btn-explore-cabs"]} ${classes["btn-primary"]}`}
           >
             Explore Cabs
           </button>
         </div>
-
       </form>
     </div>
+
+    //<Form />//
   );
 }
