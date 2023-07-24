@@ -49,8 +49,7 @@ function BookingForm() {
       <div className="cardMain-div">
         <div className="card-Div">
           <div style={{ fontSize: "20px" }} className="selectcar-Div">
-            <IoMdArrowRoundBack style={{ width: "9%", height: "5%" }} /> select
-            a car
+            <IoMdArrowRoundBack className="Back-arrow" /> select a car
           </div>
 
           <div className="card">
