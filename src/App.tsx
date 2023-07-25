@@ -3,9 +3,9 @@ import HomeScreen from "./screens/homeScreen";
 import { RouterProvider } from "react-router";
 import { Fragment } from "react";
 import { Navbar } from "react-bootstrap";
-import NavigationBar from "./components/navBar";
+// import NavigationBar from "./components/navBar";
 import FloateringButton from "./components/floatingButton";
-import PageNotFound from "./screens/errorPage";
+// import PageNotFound from "./screens/errorPage";
 import Footer from "./components/footer";
 import { createBrowserRouter } from "react-router-dom";
 import BookingScreen from "./screens/bookingscreen";
@@ -53,7 +53,6 @@ function App() {
     <Fragment>
       {/* <NavigationBar /> */}
       <RouterProvider router={routes} />
-      <Footer></Footer>
       <FloateringButton />
     </Fragment>
   );

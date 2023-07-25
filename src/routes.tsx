@@ -21,6 +21,7 @@ import LoginAttempts from "./AdminPage/components/loginAttempts";
 import OfferSectionManagement from "./AdminPage/components/offerSectionManagement";
 import Users from "./AdminPage/components/users";
 import LocationsTable from "./AdminPage/components/locations";
+import BookingSecondStep from "./components/bookingSecondStep";
 
 const routes = createBrowserRouter([
   {
@@ -50,6 +51,10 @@ const routes = createBrowserRouter([
   {
     path: "/adminpanel/login",
     element: <Login />,
+  },
+  {
+    path: "bookingSecondStep",
+    element: <BookingSecondStep />,
   },
   {
     //admin panel protected section starts here

@@ -33,13 +33,18 @@
   border: 1px solid #92ca92;
 }
 .piccocabsaboutus-button {
-  width: 50%;
+  width: 100%;
   // background-color: rgb(107, 181, 70);
 }
-.piccocabsaboutus-Row {
-  padding-left: 25px;
-}
+// .piccocabsaboutus-Row {
+//   padding-left: 25px;
+// }
 .piccocabsaboutus-button {
   background-color: rgb(107, 181, 70) !important;
   border: none !important;
+}
+.container,
+.container-md,
+.container-sm {
+  max-width: 843px;
 }

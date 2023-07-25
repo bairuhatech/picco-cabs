@@ -1,4 +1,3 @@
-// http://localhost:5500
 import React from "react";
 import { Col, Row, Button, Container } from "react-bootstrap";
 import "./intex.scss";
@@ -29,11 +28,11 @@ const AboutUs = () => (
                 reliable travel companion.
               </p>
             </div>
-            {/* <a href=""> */}
-            <Button className="piccocabsaboutus-button" type="button">
-              Book Cab
-            </Button>
-            {/* </a> */}
+            <a href="" style={{ width: "50%" }}>
+              <Button className="piccocabsaboutus-button" type="button">
+                Book Cab
+              </Button>
+            </a>
             {/* <a href=''><button type="button" className="btn btn-light">Book A Cab</button></a> */}
           </div>
         </Col>
