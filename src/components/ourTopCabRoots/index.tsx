@@ -3,6 +3,8 @@ import "./index.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMapMarker } from "@fortawesome/free-solid-svg-icons";
 import { FaLocationDot } from "react-icons/fa6";
+import { left } from "@popperjs/core";
+import { AiOutlineRadiusBottomleft } from "react-icons/ai";
 // import Button from "react-bootstrap";
 
 const HomeFooter = () => {
@@ -15,6 +17,11 @@ const HomeFooter = () => {
             lg={12}
             sm={12}
             className="headeing text-light text-center py-2 "
+            style={{
+              backgroundColor: " #6bb644",
+              borderTopLeftRadius: "20px",
+              borderStartEndRadius: "20px",
+            }}
           >
             OUR TOP CAB ROUTES
           </Col>
