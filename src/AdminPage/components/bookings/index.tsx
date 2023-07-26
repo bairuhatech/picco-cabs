@@ -4,10 +4,11 @@ const BookingTableData = [
   {
     id: 1,
     book_type: "OneWay",
-    status:'done',
+    status: "done",
     book_category: "Roundtrip",
     pickup: "pickupLocation",
     drop: "dropingLoc",
+    Driver: "Driver",
     hrs: "12:00",
     kms: "300",
     amount: "2000",
@@ -20,10 +21,11 @@ const BookingTableData = [
   {
     id: 2,
     book_type: "OneWay",
-    status:'done',
+    status: "done",
     book_category: "Roundtrip",
     pickup: "pickupLocation",
     drop: "dropingLoc",
+    Driver: "Driver",
     hrs: "6:00",
     kms: "500",
     amount: "5000",
@@ -48,6 +50,7 @@ const Bookings = () => {
             <th scope="col">One Way/RoundTrip</th>
             <th scope="col">Pickup</th>
             <th scope="col">Drop</th>
+            <th scope="Col">Driver</th>
             <th scope="col">Hrs</th>
             <th scope="col">Kms</th>
             <th scope="col">Estimated Amount</th>
@@ -63,11 +66,12 @@ const Bookings = () => {
             return (
               <tr>
                 <th scope="row">{item.id}</th>
-                <td >{item.status}</td>
+                <td>{item.status}</td>
                 <td>{item.book_type}</td>
                 <td>{item.book_category}</td>
                 <td>{item.pickup}</td>
                 <td>{item.drop}</td>
+                <td>{item.Driver}</td>
                 <td>{item.hrs}</td>
                 <td>{item.kms}</td>
                 <td>{item.amount}</td>

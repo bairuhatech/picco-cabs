@@ -6,10 +6,10 @@ import "./index.scss";
 import { SampleNextArrow, SamplePrevArrow } from "../arrowLeftRight";
 import Chennai from "../../assets/images/chennai.jpg";
 import Banglore from "../../assets/images/banglore.jpg";
-import Kodaikanal from "../../assets/images/kodaikannal.webp";
+import Kodaikanal from "../../assets/images/kodaikannal.jpg";
 import Pondicheri from "../../assets/images/pondicherry.jpg";
 import Rameswaram from "../../assets/images/ramanathapuram.jpg";
-import Courtallam from "../../assets/images/Courtallam2.webp";
+import Courtallam from "../../assets/images/Courtallam2.jpg";
 
 const click = () => {
   window.alert("working");
