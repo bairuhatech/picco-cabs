@@ -1,13 +1,16 @@
 import { Col, Row, Container } from "react-bootstrap";
 
 const Footer = () => (
-  <footer className="bg-light text-center text-md-left md-0 mt-5" id="contact-us">
+  <footer
+    className="bg-light text-center text-md-left md-0 mt-5"
+    id="contact-us"
+  >
     <Container className="text-center">
       <Row className="justify-content-center py-4 ">
         <h4 id="contact">All Over South India</h4>
       </Row>
       <Row className="justify-content-center mx-2 py-3 text-start">
-        <Col lg={4} md={8}  className="mx-auto pb-4 ">
+        <Col lg={4} md={8} className="mx-auto pb-4 ">
           <h4 className="my-4 ">Our best routes</h4>
           <Row>
             <Col sm={6}>
@@ -25,7 +28,7 @@ const Footer = () => (
                 <li className={"pr-2"}>Erode</li>
               </ul>
             </Col>
-            <Col sm={6} >
+            <Col sm={6}>
               <ul className="list-unstyled ">
                 <li className={"pl-2"}>Mysore</li>
                 <li className={"pl-2"}>Tirupathi</li>
@@ -41,7 +44,7 @@ const Footer = () => (
             </Col>
           </Row>
         </Col>
-        <Col lg={3} md={4} sm={6}  className="pb-4">
+        <Col lg={3} md={4} sm={6} className="pb-4">
           <h4 className="my-4 ">Our Services</h4>
           <ul className="list-unstyled ">
             <li>Local Booking</li>
@@ -87,7 +90,11 @@ const Footer = () => (
       <p className="text-center text-secondary border-top border-secondary py-4 ">
         Picco Cabs © 2020 || Powered By NoNo Design
         <br />
-        <a href="/pages/t&c.html " style={{ color: "#000" }} className="text-decoration-none">
+        <a
+          href="/pages/t&c.html "
+          style={{ color: "#000" }}
+          className="text-decoration-none"
+        >
           Terms & Conditions Applied
         </a>
       </p>
