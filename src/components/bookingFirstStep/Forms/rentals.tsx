@@ -1,4 +1,4 @@
-import classes from '../index.module.scss';
+import classes from "../index.module.scss";
 
 export default function Rentals() {
   function onChangeHandler() {
@@ -40,7 +40,7 @@ export default function Rentals() {
           </div>
         </div>
         <div className="d-flex justify-content-center position-relative">
-        <button
+          <button
             className={`text-uppercase btn btn-success px-5 fw-bold position-absolute ${classes["btn-explore-cabs"]} `}
           >
             Explore Cabs

@@ -6,12 +6,12 @@ import sedanimg from "../../assets/images/car_sedan_small.png";
 import suvimage from "../../assets/images/car_suv_small.png";
 import { Row, Col, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 import FareModal from "../fareDetails";
 import CustomModal from "../loginForm/index";
 
 function BookingForm() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-
   const showModal = () => {
     setIsModalOpen(true);
   };
@@ -34,7 +34,11 @@ function BookingForm() {
       <div className="cardMain-div">
         <div className="card-Div">
           <div style={{ fontSize: "20px" }} className="selectcar-Div">
-            <IoMdArrowRoundBack className="Back-arrow" /> select a car
+            <IoMdArrowRoundBack
+              onClick={() => window.history.back()}
+              className="Back-arrow"
+            />
+            select a car
           </div>
 
           <div className="card">
