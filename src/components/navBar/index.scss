@@ -1,42 +1,46 @@
-.border-bottom-rounded{
-    $border_radius:50px;
-    border-bottom-right-radius: $border_radius;
-    border-bottom-left-radius: $border_radius;
+.border-bottom-rounded {
+  $border_radius: 50px;
+  border-bottom-right-radius: $border_radius;
+  border-bottom-left-radius: $border_radius;
 }
-.picco-logo{
-    $length:80px;
-    width: auto;
-    height: $length;
-    scale: 1.2;
+.picco-logo {
+  $length: 80px;
+  width: auto;
+  height: $length;
+  scale: 1.2;
 }
 .mobile {
-    display: flex;
-    position: absolute;
-    left: 50%;
-    top: 0;
-    transform: translate(-35%);
-    /* border-bottom: 4px solid #6bb546; */
-    padding: 2px 10px 5px 10px;
-    /* border-right: 4px solid #6bb546; */
-    /* border-left: 4px solid #6bb546; */
-    border-radius: 0 0px 20px 20px;
-    align-items: center;
-    gap: 10px;
-    background: #bfbfbf;
-    font-size: 14px;
+  display: flex;
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translate(-35%);
+  /* border-bottom: 4px solid #6bb546; */
+  padding: 2px 10px 5px 10px;
+  /* border-right: 4px solid #6bb546; */
+  /* border-left: 4px solid #6bb546; */
+  border-radius: 0 0px 20px 20px;
+  align-items: center;
+  gap: 10px;
+  background: #bfbfbf;
+  font-size: 14px;
 }
-
-@media (max-width:767px) {
-    .picco-logo{
-        $length:60px;
-        height: $length;
-    } 
-    .border-bottom-rounded{
-        $border_radius:40px;
-        border-bottom-right-radius: $border_radius;
-        border-bottom-left-radius: $border_radius;
-    }
-    .border-bottom-md-none{
-        border-bottom: 1px solid rgb(170, 170, 170);
-    }
+.nav-link:hover {
+  border-radius: 8px;
+  background-color: rgb(107, 181, 70) !important;
+  color: white !important;
+}
+@media (max-width: 767px) {
+  .picco-logo {
+    $length: 60px;
+    height: $length;
+  }
+  .border-bottom-rounded {
+    $border_radius: 40px;
+    border-bottom-right-radius: $border_radius;
+    border-bottom-left-radius: $border_radius;
+  }
+  .border-bottom-md-none {
+    border-bottom: 1px solid rgb(170, 170, 170);
+  }
 }

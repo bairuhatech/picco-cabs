@@ -55,7 +55,7 @@ const CustomModal = (props: any) => {
                       style={{ cursor: "pointer" }}
                       onClick={() => setOtpInput(false)}
                     >
-                      wrong phone number ?
+                      OPT send to {phoneNumber}
                     </p>
                   </div>
                   <InputGroup style={{ width: "70%" }}>
@@ -75,6 +75,7 @@ const CustomModal = (props: any) => {
                     text="Submit"
                     onClick={() => setOtpInput(!otpInput)}
                   />
+                  <span>Resend</span>
                 </div>
               ) : (
                 <div className="piccocab-inputfield-Div">
