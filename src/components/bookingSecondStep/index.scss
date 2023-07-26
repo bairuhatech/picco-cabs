@@ -5,7 +5,8 @@
   justify-content: end;
   padding: 15px;
   background-size: cover;
-  background-image: url(../../assets/images/book_bg.webp);
+
+  background-image: url("../../assets/images/book_bg.jpg");
 }
 .card-Div {
   width: 33%;
@@ -17,15 +18,13 @@
 }
 .card {
   width: 100%;
-  height: 38%;
+  height: 100%;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px;
-  // background-color: lightgray;
   padding: 15px;
 }
 .picco-mini {
   width: 100%;
   height: 20%;
-  // border-bottom: 1px solid #c8c8c8;
 }
 .piccoimg-Div {
   width: 100%;
@@ -74,7 +73,6 @@
   font-family: "Montserrat", "Poppins", sans-serif;
 
   align-items: center;
-  // background-color: red;
 }
 .button-Div {
   height: 100%;
@@ -82,14 +80,13 @@
   display: flex;
   justify-content: end;
   border-radius: 8px;
-  // background-color: ;
-  // background-color: cadetblue;
 }
 .button {
   height: 75%;
   width: 34%;
   border: none;
   border-radius: 5px;
+  color: #fff;
   background-color: rgb(107, 181, 70);
 }
 .selectcar-Div {
@@ -121,8 +118,8 @@
     justify-content: end;
   }
   .button {
-    width: 54%;
-    height: 62%;
+    height: 90%;
+    width: 50%;
   }
   .piccoImg {
     width: 35%;
