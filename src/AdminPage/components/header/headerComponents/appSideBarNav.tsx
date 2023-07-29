@@ -100,11 +100,11 @@ const SidebarNavigation = () => {
                 icon="table"
                 iconSize="lg"
                 className="nav-link nav-link-hover"
-                suffix={
-                  <CDBBadge className="rounded-pill p-0 m-0 px-3 bg-light text-dark fw-bold">
-                    6
-                  </CDBBadge>
-                }
+                // suffix={
+                //   <CDBBadge className="rounded-pill p-0 m-0 px-3 bg-light text-dark fw-bold">
+                //     6
+                //   </CDBBadge>
+                // }
               >
                 Bookings
               </CDBSidebarMenuItem>
@@ -173,11 +173,11 @@ const SidebarNavigation = () => {
                 icon="chart-line"
                 className="nav-link"
                 iconSize="lg"
-                suffix={
-                  <CDBBadge className="rounded-pill p-0 m-0 px-3 bg-light text-dark fw-bold">
-                    4
-                  </CDBBadge>
-                }
+                // suffix={
+                //   <CDBBadge className="rounded-pill p-0 m-0 px-3 bg-light text-dark fw-bold">
+                //     4
+                //   </CDBBadge>
+                // }
               >
                 Booking Attempts
               </CDBSidebarMenuItem>
@@ -195,11 +195,11 @@ const SidebarNavigation = () => {
                 icon="user"
                 className="nav-link"
                 iconSize="lg"
-                suffix={
-                  <CDBBadge className="rounded-pill p-0 m-0 px-3 bg-light text-dark fw-bold">
-                    2
-                  </CDBBadge>
-                }
+                // suffix={
+                //   <CDBBadge className="rounded-pill p-0 m-0 px-3 bg-light text-dark fw-bold">
+                //     2
+                //   </CDBBadge>
+                // }
               >
                 Login Attempts
               </CDBSidebarMenuItem>

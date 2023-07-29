@@ -27,6 +27,7 @@ const FirstStep = () => {
       className={` ${classes["bg-picco-banner"]} position-relative d-flex justify-content-center `}
     >
       <Container
+        style={{ height: "82%" }}
         className={`pb-5 pt-4  rounded-3 bg-light ${
           classes["banner-position-absolute"]
         } ${!baseUrl ? "shadow" : ""}`}

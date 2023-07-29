@@ -1,17 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./index.scss";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import smallcarimg from "../../assets/images/car_mini_small.png";
 import sedanimg from "../../assets/images/car_sedan_small.png";
 import suvimage from "../../assets/images/car_suv_small.png";
 import { Row, Col, Container } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import FareModal from "../fareDetails";
 import CustomModal from "../loginForm/index";
 
 function BookingForm() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const { state } = useLocation();
   const showModal = () => {
     setIsModalOpen(true);
   };
@@ -36,9 +37,12 @@ function BookingForm() {
           <div style={{ fontSize: "20px" }} className="selectcar-Div">
             <IoMdArrowRoundBack className="Back-arrow" /> select a car
           </div>
-
+          <p>
+            {state.data.from} to {state.data.to}
+          </p>
+          <p>Pickup: || {state.data.pickupat}</p>
           <div className="card">
-            <div className="picco-mini">Picco mini</div>
+            <div className="picco-mini"></div>
             <div className="piccoimg-Div">
               <img
                 className="piccominiImg"

@@ -15,8 +15,8 @@ function DashbordMain() {
         <SidebarNavigation />
         <div className="w-100">
           <AppHeader />
-          <div className="px-3 py-3">
-            <div className="border rounded">
+          <div className="px-3 py-3" style={{ height: "88vh" }}>
+            <div className="border rounded" style={{ height: "100%" }}>
               <Outlet />
             </div>
           </div>
