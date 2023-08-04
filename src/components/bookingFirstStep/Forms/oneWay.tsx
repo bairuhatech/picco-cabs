@@ -18,17 +18,19 @@ export default function OneWay() {
 
   const onFinish = async (val: any) => {
     console.log("====================", val);
-    const { user_from, user_to, dateRange, return_date } = val;
+    const { user_from, user_to, dateRange, timeRange } = val;
 
     const pickUpLoc = user_from;
     const dropOffLoc = user_to;
     const pickUpDate = dateRange.toISOString();
     const dropOffDate = dateRange.toISOString();
+    const timeOfPickup = timeRange;
     // const pickUpTime = return_date.split(":")[0];
     console.log("pickUpLoc:", pickUpLoc);
     console.log("dropOffLoc:", dropOffLoc);
     console.log("pickUpDate:", pickUpDate);
     console.log("dropOffDate:", dropOffDate);
+    console.log("timeOfPickup:", timeOfPickup);
     // console.log("pickUpTime:", pickUpTime);
     navigate("/bookingSecondStep", {
       state: {
@@ -36,6 +38,7 @@ export default function OneWay() {
         dropOffLoc,
         pickUpDate,
         dropOffDate,
+        timeOfPickup,
         // pickUpTime,
       },
     });
@@ -92,7 +95,7 @@ export default function OneWay() {
             <label htmlFor="inputEmail4" className="form-label fw-bold">
               PICK UP AT
             </label>
-            <Form.Item name="return_date">
+            <Form.Item name="timeRange">
               <Input
                 className="form-control border-0  border-bottom rounded-0"
                 defaultValue={`${time}:${minute}`}

@@ -10,6 +10,8 @@ import FareModal from "../fareDetails";
 import CustomModal from "../loginForm/index";
 import { useSelector } from "react-redux";
 import BookingThird from "../BookingThirdStep";
+import moment from 'moment';
+
 
 function BookingForm(props: any) {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -18,7 +20,8 @@ function BookingForm(props: any) {
   const location = useLocation();
   const isLoggedIn = useSelector((state: any) => state.User.auth);
 
-  const { pickUpLoc, dropOffLoc, pickUpDate, dropOffDate, pickUpTime } =
+
+  const { pickUpLoc, dropOffLoc, pickUpDate, dropOffDate, timeOfPickup } =
     location.state;
   console.log(isLoggedIn);
   // const formData = location.state && location.state.formData;
@@ -26,7 +29,7 @@ function BookingForm(props: any) {
   console.log(">>>>>>>>>>>>>>>>>>>>>", pickUpDate);
   console.log(">>>>>>>>>>>>>>>>>>>>>", pickUpLoc);
   console.log(">>>>>>>>>>>>>>>>>>>>>", dropOffDate);
-  console.log(">>>>>>>>>>>>>>>>>>>>>", pickUpTime);
+  console.log(">>>>>>>>>>TIMeeeeeeeeeee>>>>>>>>>>>", timeOfPickup);
 
   // const { state } = useLocation();
   const showModal = () => {
@@ -45,6 +48,7 @@ function BookingForm(props: any) {
   const Cancel = () => {
     setFormModal(false);
   };
+  const formattedDate = moment(pickUpDate).format('MMMM Do, YYYY');
 
   return (
     <div>
@@ -65,7 +69,7 @@ function BookingForm(props: any) {
               &nbsp;<b>to</b> &nbsp;
               {dropOffLoc}
               <br />
-              <b>Pickup:</b> {pickUpDate} ||
+              <b>Pickup:</b> {formattedDate} <b>Time:</b> {timeOfPickup}
             </p>
             <p></p>
             <div className="card">

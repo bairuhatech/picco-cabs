@@ -86,7 +86,7 @@ const Bookings = () => {
             </tr>
           </thead>
           <tbody>
-            {bookingData?.map((item: any) => {
+            {bookingData?.reverse().map((item: any) => {
               console.log("=========ooooooooooooo", bookingData);
               return (
                 <tr key={item.id}>
