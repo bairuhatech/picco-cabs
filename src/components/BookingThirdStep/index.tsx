@@ -74,17 +74,19 @@ const BookingThird = () => {
       {show ? (
         <Form onFinish={onFinish}>
           <div className="booking-Div">
-            <IoMdArrowRoundBack
-              onClick={() => setShow(show)}
-              size={25}
-              className="Back-arrow mb-3"
-            />
-            <Form.Item name="pickuploc">
-              <div>{pickUpLoc}</div>
-            </Form.Item>
-            <Form.Item name="dropdownloc">
-              <div>{pickUpLoc}</div>
-            </Form.Item>
+            <div style={{ display: "flex" }}>
+              {/* <div> */}
+              <IoMdArrowRoundBack
+                onClick={() => setShow(show)}
+                size={25}
+                className="Back-arrow mb-3"
+              />
+              {/* </div> */}
+              <div style={{ marginTop: "19px", marginLeft: "12px" }}>
+                {pickUpLoc}&nbsp; <b>to</b>&nbsp;
+                {dropOffLoc}
+              </div>
+            </div>
             <div className="card">
               <div className="picco-mini">Picco mini</div>
               <div className="piccoimg-Div">
