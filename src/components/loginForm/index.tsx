@@ -241,7 +241,6 @@ const CustomModal = (props: any) => {
         phoneNumber,
         recaptchaVerifier
       );
-      dispatch(bookingLogin(confirmation.user));
       console.log(confirmation);
       setOtpInput(true);
       setUser(confirmation);
