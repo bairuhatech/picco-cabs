@@ -1,0 +1,115 @@
+.booking-Div {
+  width: 450px;
+  height: 90%;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  margin: 20px;
+  box-shadow: rgba(160, 160, 189, 0.25) 0px 2px 5px -1px;
+}
+.booking-sub {
+  width: 100%;
+  height: 90%;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  margin: 20px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px;
+}
+.card {
+  width: 100%;
+  height: 31%;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px;
+  padding: 15px;
+}
+.picco-mini {
+  width: 100%;
+  height: 20%;
+}
+.piccoimg-Div {
+  width: 100%;
+  height: 55%;
+  display: flex;
+  font-family: "Montserrat", "Poppins", sans-serif;
+
+  justify-content: end;
+}
+.bookingbutton-Div {
+  width: 68%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.faredetail-Div {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  font-family: "Montserrat", "Poppins", sans-serif;
+
+  align-items: center;
+}
+.button-Div {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  border-radius: 8px;
+}
+.button {
+  height: 75%;
+  width: 34%;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  background-color: rgb(107, 181, 70);
+}
+.seats-Div {
+  width: 100%;
+  height: 25%;
+  display: flex;
+  justify-content: end;
+  border-top: solid 1px #c8c8c8;
+}
+.seatcontent-Div {
+  height: 100%;
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.price-Div {
+  height: 100%;
+  width: 50%;
+}
+.price-Div {
+  height: 100%;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.TravallersDetail-Div {
+  width: 100%;
+  height: 15%;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  //   background-color: lightgray;
+}
+.input-Div {
+  width: 100%;
+  height: 57%;
+  padding: 10px;
+  display: flex;
+
+  justify-content: space-between;
+  flex-direction: column;
+  //   background-color: cadetblue;
+}
+
+@media screen and (max-width: 576px) {
+  .booking-Div {
+    width: 100%;
+  }
+}

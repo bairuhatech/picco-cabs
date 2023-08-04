@@ -4,19 +4,19 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons/faXmark";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { LoginActions } from "../../../store/loginSlice";
+import { userLogout } from "../../../store/loginSlice";
 import { useSelector } from "react-redux";
 import { faRightToBracket } from "@fortawesome/free-solid-svg-icons/faRightToBracket";
 import { Modal, Button } from "react-bootstrap";
 const UserLogoutSection = (props: any) => {
   const navigate = useNavigate();
   const logoutHandler = () => {
-    dispatch(LoginActions.userLogout());
+    dispatch(userLogout());
 
     navigate("/adminpanel/login");
   };
   const userName = useSelector((state: any) => {
-    return state.login.user.user_name;
+    return state.User.user.user_name;
   });
   const dispatch = useDispatch();
   return (

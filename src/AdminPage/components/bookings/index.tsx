@@ -14,20 +14,22 @@ const Bookings = () => {
     setIsLoading(true);
     let url = API.BASE_URL + API.GET_ALL_BOOKINGS;
     const options = {
-      method: "POST",
+      method: "GET",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({}),
     };
     try {
       const response = await fetch(url, options);
-
+      console.log(
+        "==============data ethiiii========================",
+        response
+      );
       if (response.status === 200) {
         const data = await response.json();
         setIsLoading(false);
         console.log("Data ---> ", data);
-        setBookingData(data.results);
+        setBookingData(data);
         message.success("Success");
       } else {
         setIsLoading(false);
@@ -84,7 +86,8 @@ const Bookings = () => {
             </tr>
           </thead>
           <tbody>
-            {bookingData.map((item: any) => {
+            {bookingData?.map((item: any) => {
+              console.log("=========ooooooooooooo", bookingData);
               return (
                 <tr key={item.id}>
                   <th scope="row">{item.id}</th>

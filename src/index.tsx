@@ -5,16 +5,11 @@ import reportWebVitals from "./reportWebVitals";
 // import "./index.css";
 import "./index.css";
 import { Provider } from "react-redux";
-import { mainStore } from "./store";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
-root.render(
-  <Provider store={mainStore}>
-    <App />
-  </Provider>
-);
+root.render(<App />);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

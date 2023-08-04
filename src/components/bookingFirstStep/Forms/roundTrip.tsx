@@ -81,7 +81,7 @@ export default function RoundTrip() {
           <a href="../../bookingSecondStep/index">
             <button
               className={`text-uppercase btn btn-success px-5 fw-bold position-absolute ${classes["btn-explore-cabs"]} `}
-              // onClick={() => navigate("/bookingSecondStep")}
+              onClick={() => navigate("/bookingSecondStep")}
             >
               Explore Cabs
             </button>

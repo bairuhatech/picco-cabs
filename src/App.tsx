@@ -13,6 +13,9 @@ import LoginScreen from "./screens/loginScreen";
 // import Modal from "../src/components/loginForm/index";
 import Login from "./AdminPage/components/loginPage";
 import routes from "./routes";
+import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
+import { Store, PersistedStore } from "./store/index";
 
 // const routes = createBrowserRouter([
 //   {
@@ -52,8 +55,13 @@ function App() {
   return (
     <Fragment>
       {/* <NavigationBar /> */}
-      <RouterProvider router={routes} />
-      <FloateringButton />
+      <Provider store={Store}>
+        <PersistGate loading={null} persistor={PersistedStore}>
+          <RouterProvider router={routes} />
+          <FloateringButton />
+        </PersistGate>
+      </Provider>
+      ,
     </Fragment>
   );
 }

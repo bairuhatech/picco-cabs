@@ -4,29 +4,36 @@ const navSelected = createSlice({
   name: "navigation",
   initialState: "",
   reducers: {
-    setNavHome(prevState) {
-      return (prevState = "Home");
+    setNavHome: (prevState) => {
+      prevState = "Home";
     },
-    setNavLocation(prevState) {
+    setNavLocation: (prevState) => {
       return (prevState = "Location");
     },
-    setNavUsers(prevState) {
+    setNavUsers: (prevState) => {
       return (prevState = "Users");
     },
-    setNavBooking(prevState) {
+    setNavBooking: (prevState) => {
       return (prevState = "Booking");
     },
-    setNavOffers(prevState) {
+    setNavOffers: (prevState) => {
       return (prevState = "Offers");
     },
-    setNavBookingAttempts(prevState) {
+    setNavBookingAttempts: (prevState) => {
       return (prevState = "Booking Attempts");
     },
-    setNavLoginAttempts(prevState) {
+    setNavLoginAttempts: (prevState) => {
       return (prevState = "Login Attempts");
     },
   },
 });
-const navReducer = navSelected.reducer;
-export default navReducer;
-export const navigationActions = navSelected.actions;
+export default navSelected.reducer;
+export const {
+  setNavLoginAttempts,
+  setNavBookingAttempts,
+  setNavOffers,
+  setNavHome,
+  setNavLocation,
+  setNavUsers,
+  setNavBooking,
+} = navSelected.actions;

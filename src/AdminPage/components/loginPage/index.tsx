@@ -20,7 +20,7 @@ import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import { useDispatch } from "react-redux/es/exports";
-import { LoginActions } from "../../../store/loginSlice";
+import { userLogin } from "../../../store/loginSlice";
 import { useEffect } from "react";
 
 const Login = () => {
@@ -38,7 +38,7 @@ const Login = () => {
     if (!formData.user_name || !formData.password) {
       alert("please enter valid input");
     } else if (formData.user_name && formData.password === "12345") {
-      dispatch(LoginActions.userLogin(formData));
+      dispatch(userLogin(formData));
       navigate("/adminpanel");
       setFormData({ user_name: "", password: "" });
     } else {
@@ -49,16 +49,10 @@ const Login = () => {
   const passwordToggler = () => {
     setShowPassword(!showPassword);
   };
-  const isLoggedIn = useSelector((state: any) => {
-    //getting the status of user login from redux
-    return state.login.auth;
-  });
-  useEffect(() => {
-    //redirecting to homepage if the user is alread logged in
-    if (isLoggedIn) {
-      navigate("/adminpanel");
-    }
-  }, [isLoggedIn]);
+  const isLoggedIn = useSelector((state: any) => state.User.auth);
+  console.log("================isLoggedIn=========================");
+  console.log(isLoggedIn);
+  console.log("==================isLoggedIn=======================");
 
   //remove this section
   const showStatus = () => {

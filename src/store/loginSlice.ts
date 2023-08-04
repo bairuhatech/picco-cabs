@@ -1,17 +1,27 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const loginSlice = createSlice({
+const LoginSlice = createSlice({
   name: "login",
-  initialState: { user: { user_name: "", password: "" }, auth: false },
+  initialState: {
+    user: { user_name: "", password: "" },
+    auth: false,
+    bookinguser: {},
+  },
   reducers: {
-    userLogin(prevState,actions) {
-      return { user: { ...actions.payload}, auth: true };
+    userLogin: (prevState, actions) => {
+      prevState.user = actions.payload;
+      prevState.auth = true;
     },
-    userLogout(prevState) {
-      return { user: { user_name: "", password: "" }, auth: false };
+    userLogout: (prevState) => {
+      prevState.user = { user_name: "", password: "" };
+      prevState.auth = false;
+    },
+    bookingLogin: (prevState, actions) => {
+      prevState.bookinguser = actions.payload;
+      prevState.auth = true;
     },
   },
 });
-const loginReducer=loginSlice.reducer;
-export default loginReducer;
-export const LoginActions=loginSlice.actions;
+
+export const { userLogin, userLogout, bookingLogin } = LoginSlice.actions;
+export default LoginSlice.reducer;

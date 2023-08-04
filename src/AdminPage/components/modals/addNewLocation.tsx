@@ -2,25 +2,25 @@ import { Modal, Button } from "react-bootstrap";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { locationModalActions } from "../../../store/locationModal";
+import { toggleModal } from "../../../store/locationModal";
 import Form from "react-bootstrap/Form";
 import "./index.scss";
 
 function AddLocationModal(props: any) {
-  const [dataValid, setDataValid] = useState('null');
+  const [dataValid, setDataValid] = useState("null");
   const toggleModal = useSelector((state: any) => {
-    return state.locationModal.toggle;
+    return state.toggle.toggle;
   });
   const editModal = useSelector((state: any) => {
-    return state.locationModal.edit;
+    return state.toggle.edit;
   });
   const table_data = useSelector((state: any) => {
-    return state.locationModal.data;
+    return state.toggle.data;
   });
   const dispatch = useDispatch();
   const toggleLocationModal = () => {
-    dispatch(locationModalActions.toggleModal());
-    setFormData({from:'',to:'',price:null});
+    dispatch(toggleModal());
+    setFormData({ from: "", to: "", price: null });
   };
   const [formData, setFormData] = useState({ from: "", to: "", price: null });
   const fromChangeHanlder = (event: any) => {
@@ -32,14 +32,13 @@ function AddLocationModal(props: any) {
   const priceChangeHandler = (event: any) => {
     setFormData({ ...formData, price: event.target.value });
   };
-  
 
   const formSubmitHandler = (event: any) => {
     event.preventDefault();
     if ((!formData.from || !formData.to || !formData.price) && !editModal) {
-      setDataValid('false');
+      setDataValid("false");
     } else {
-      setDataValid('true');
+      setDataValid("true");
       //handle the form submitting action.
     }
   };
@@ -83,14 +82,16 @@ function AddLocationModal(props: any) {
                 onChange={priceChangeHandler}
               />
             </Form.Group>
-            {dataValid==='false'&&!editModal&&<p className="text-danger">please enter all values</p>}
+            {dataValid === "false" && !editModal && (
+              <p className="text-danger">please enter all values</p>
+            )}
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={toggleLocationModal}>
               Close
             </Button>
             <Button variant="success" type="submit" onClick={formSubmitHandler}>
-             {!editModal?'Create':'Update'}
+              {!editModal ? "Create" : "Update"}
             </Button>
           </Modal.Footer>
         </Form>

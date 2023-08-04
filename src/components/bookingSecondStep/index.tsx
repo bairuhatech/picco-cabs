@@ -8,9 +8,25 @@ import { Row, Col, Container } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
 import FareModal from "../fareDetails";
 import CustomModal from "../loginForm/index";
+import { useSelector } from "react-redux";
+import BookingThird from "../BookingThirdStep";
 
-function BookingForm() {
+function BookingForm(props: any) {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [showBooking, setShowBooking] = useState(false);
+  const [shows, setShows] = useState(showBooking === true);
+  const location = useLocation();
+  const isLoggedIn = useSelector((state: any) => state.User.auth);
+
+  const { pickUpLoc, dropOffLoc, pickUpDate, dropOffDate, pickUpTime } =
+    location.state;
+
+  // const formData = location.state && location.state.formData;
+  console.log(">>>>>>>>>>>>>>>>>>>>>", dropOffLoc);
+  console.log(">>>>>>>>>>>>>>>>>>>>>", pickUpDate);
+  console.log(">>>>>>>>>>>>>>>>>>>>>", pickUpLoc);
+  console.log(">>>>>>>>>>>>>>>>>>>>>", dropOffDate);
+  console.log(">>>>>>>>>>>>>>>>>>>>>", pickUpTime);
 
   const { state } = useLocation();
   const showModal = () => {
@@ -33,132 +49,154 @@ function BookingForm() {
   return (
     <div>
       <div className="cardMain-div">
-        <div className="card-Div">
-          <div style={{ fontSize: "20px" }} className="selectcar-Div">
-            <IoMdArrowRoundBack className="Back-arrow" /> select a car
-          </div>
-          <p>
-            {state.data.from} to {state.data.to}
-          </p>
-          <p>Pickup: || {state.data.pickupat}</p>
-          <div className="card">
-            <div className="picco-mini"></div>
-            <div className="piccoimg-Div">
-              <img
-                className="piccominiImg"
-                style={{ width: "33%", height: "100%" }}
-                src={smallcarimg}
-                alt="Picco Mini"
+        {/* {isLoggedIn ? ( */}
+        {showBooking != true ? (
+          <div className="card-Div">
+            <div style={{ fontSize: "20px" }} className="selectcar-Div">
+              <IoMdArrowRoundBack
+                onClick={() => window.history.back()}
+                className="Back-arrow"
               />
+              select a car
+            </div>
+            <p>
+              {/* {state.data.from} to {state.data.to} */}
+              {pickUpLoc}
+              &nbsp;<b>to</b> &nbsp;
+              {dropOffLoc}
+              <br />
+              <b>Pickup:</b> {pickUpDate} ||
+            </p>
+            <p></p>
+            <div className="card">
+              <div className="picco-mini"></div>
+              <div className="piccoimg-Div">
+                <img
+                  className="piccominiImg"
+                  style={{ width: "33%", height: "100%" }}
+                  src={smallcarimg}
+                  alt="Picco Mini"
+                />
 
-              <div className="bookingbutton-Div">
-                <div className="faredetail-Div">
-                  <p
-                    style={{ cursor: "pointer", color: "#0056b3" }}
-                    onClick={() => setIsModalOpen(!isModalOpen)}
-                  >
-                    Fare details
-                  </p>
-                </div>
-                <div className="button-Div">
-                  <button onClick={() => setFormModal(true)} className="button">
-                    Book now
-                  </button>
+                <div className="bookingbutton-Div">
+                  <div className="faredetail-Div">
+                    <p
+                      style={{ cursor: "pointer", color: "#0056b3" }}
+                      onClick={() => setIsModalOpen(!isModalOpen)}
+                    >
+                      Fare details
+                    </p>
+                  </div>
+                  <div className="button-Div">
+                    <button
+                      onClick={() =>
+                        isLoggedIn ? setShowBooking(true) : setFormModal(true)
+                      }
+                      className="button"
+                    >
+                      Book now
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="seats-Div">
-              <div className="seatcontent-Div">
-                <span>Ac</span>
-                <span>6 seat</span>
-                <span>3 bag</span>
+              <div className="seats-Div">
+                <div className="seatcontent-Div">
+                  <span>Ac</span>
+                  <span>6 seat</span>
+                  <span>3 bag</span>
+                </div>
+                <div className="price-Div">₹ 23180</div>
               </div>
-              <div className="price-Div">₹ 23180</div>
             </div>
-          </div>
-          <br />
-          <div className="card">
-            <div className="picco-mini">Picco suv</div>
-            <div className="piccoimg-Div">
-              <img
-                className="piccosuvImg"
-                style={{ width: "30%", height: "100%" }}
-                src={suvimage}
-                alt="Picco SUV"
-              />
+            <br />
+            <div className="card">
+              <div className="picco-mini">Picco suv</div>
+              <div className="piccoimg-Div">
+                <img
+                  className="piccosuvImg"
+                  style={{ width: "30%", height: "100%" }}
+                  src={suvimage}
+                  alt="Picco SUV"
+                />
 
-              <div className="bookingbutton-Div">
-                <div className="faredetail-Div">
-                  <p
-                    style={{ color: "#0056b3" }}
-                    onClick={() => setIsModalOpen(!isModalOpen)}
-                  >
-                    Fare details
-                  </p>
+                <div className="bookingbutton-Div">
+                  <div className="faredetail-Div">
+                    <p
+                      style={{ color: "#0056b3" }}
+                      onClick={() => setIsModalOpen(!isModalOpen)}
+                    >
+                      Fare details
+                    </p>
+                  </div>
+                  <div className="button-Div">
+                    <button
+                      onClick={() => setFormModal(true)}
+                      className="button"
+                    >
+                      Book now
+                    </button>
+                  </div>
+                  {/* )} */}
                 </div>
-                <div className="button-Div">
-                  <button onClick={() => setFormModal(true)} className="button">
-                    Book now
-                  </button>
+              </div>
+              <div className="seats-Div">
+                <div className="seatcontent-Div">
+                  <span>Ac</span>
+                  <span>4 seat</span>
+                  <span>2 bag</span>
                 </div>
-                {/* )} */}
+                <div className="price-Div">₹ 23180</div>
               </div>
             </div>
-            <div className="seats-Div">
-              <div className="seatcontent-Div">
-                <span>Ac</span>
-                <span>4 seat</span>
-                <span>2 bag</span>
+            <br />
+            <div className="card">
+              <div className="picco-mini">Picco sedan</div>
+              <div className="piccoimg-Div">
+                <img
+                  className="piccosedanImg"
+                  style={{ width: "30%", height: "100%" }}
+                  src={sedanimg}
+                  alt="Picco Sedan"
+                />
+                {isModalOpen && (
+                  <FareModal open={showModal} close={handleCancel} />
+                )}
+
+                <div className="bookingbutton-Div">
+                  <div className="faredetail-Div">
+                    <p
+                      style={{ cursor: "pointer", color: "#0056b3" }}
+                      onClick={() => setIsModalOpen(!isModalOpen)}
+                    >
+                      Fare details
+                    </p>
+                  </div>
+                  <div className="button-Div">
+                    <button onClick={show} className="button">
+                      Book now
+                    </button>
+                  </div>
+                </div>
               </div>
-              <div className="price-Div">₹ 23180</div>
-            </div>
-          </div>
-          <br />
-          <div className="card">
-            <div className="picco-mini">Picco sedan</div>
-            <div className="piccoimg-Div">
-              <img
-                className="piccosedanImg"
-                style={{ width: "30%", height: "100%" }}
-                src={sedanimg}
-                alt="Picco Sedan"
-              />
-              {isModalOpen && (
-                <FareModal open={showModal} close={handleCancel} />
+              {formModal && (
+                <CustomModal isModalOpen={show} handleCancel={Cancel} />
               )}
 
-              <div className="bookingbutton-Div">
-                <div className="faredetail-Div">
-                  <p
-                    style={{ cursor: "pointer", color: "#0056b3" }}
-                    onClick={() => setIsModalOpen(!isModalOpen)}
-                  >
-                    Fare details
-                  </p>
+              <div className="seats-Div">
+                <div className="seatcontent-Div">
+                  <span>Ac</span>
+                  <span>4 seat</span>
+                  <span>1 bag</span>
                 </div>
-                <div className="button-Div">
-                  <button
-                    onClick={() => setFormModal(!formModal)}
-                    className="button"
-                  >
-                    Book now
-                  </button>
-                </div>
+                <div className="price-Div">₹ 23180</div>
               </div>
-              {formModal && <CustomModal open={show} Cancel={Cancel} />}
-            </div>
-
-            <div className="seats-Div">
-              <div className="seatcontent-Div">
-                <span>Ac</span>
-                <span>4 seat</span>
-                <span>1 bag</span>
-              </div>
-              <div className="price-Div">₹ 23180</div>
             </div>
           </div>
-        </div>
+        ) : (
+          <>{showBooking && <BookingThird />}</>
+        )}
       </div>
+      ;
     </div>
   );
 }

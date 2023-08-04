@@ -13,8 +13,17 @@ import { NavLink } from "react-router-dom";
 import "./navbar.scss";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { navigationActions } from "../../../../store/navigation";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  setNavBooking,
+  setNavBookingAttempts,
+  setNavHome,
+  setNavLocation,
+  setNavLoginAttempts,
+  setNavOffers,
+  setNavUsers,
+} from "../../../../store/navigation";
 
 const SidebarNavigation = () => {
   const dispatch = useDispatch();
@@ -22,26 +31,26 @@ const SidebarNavigation = () => {
     return state.navigation;
   });
 
-  const setNavUsers = () => {
-    dispatch(navigationActions.setNavUsers());
+  const setNavUser = () => {
+    dispatch(setNavUsers());
   };
   const setNavLocations = () => {
-    dispatch(navigationActions.setNavLocation());
+    dispatch(setNavLocation());
   };
-  const setNavHome = () => {
-    dispatch(navigationActions.setNavHome());
+  const setNavHomes = () => {
+    dispatch(setNavHome());
   };
-  const setNavBooking = () => {
-    dispatch(navigationActions.setNavBooking());
+  const setNavBookings = () => {
+    dispatch(setNavBooking());
   };
-  const setNavOffers = () => {
-    dispatch(navigationActions.setNavOffers());
+  const setNavOffer = () => {
+    dispatch(setNavOffers());
   };
   const setNavBookingAttempt = () => {
-    dispatch(navigationActions.setNavBookingAttempts());
+    dispatch(setNavBookingAttempts());
   };
-  const setNavLoginAttempts = () => {
-    dispatch(navigationActions.setNavLoginAttempts());
+  const setNavLoginAttempt = () => {
+    dispatch(setNavLoginAttempts());
   };
 
   return (
@@ -77,7 +86,7 @@ const SidebarNavigation = () => {
                   ? { fontWeight: "bolder", color: "#FFFF99" }
                   : undefined
               }
-              onClick={setNavHome}
+              onClick={setNavHomes}
             >
               <CDBSidebarMenuItem
                 icon="home"
@@ -94,7 +103,7 @@ const SidebarNavigation = () => {
                   ? { fontWeight: "bolder", color: "#FFFF99" }
                   : undefined
               }
-              onClick={setNavBooking}
+              onClick={setNavBookings}
             >
               <CDBSidebarMenuItem
                 icon="table"
@@ -116,7 +125,7 @@ const SidebarNavigation = () => {
                   ? { fontWeight: "bolder", color: "#FFFF99" }
                   : undefined
               }
-              onClick={setNavUsers}
+              onClick={setNavUser}
             >
               <CDBSidebarMenuItem
                 icon="user"
@@ -150,7 +159,7 @@ const SidebarNavigation = () => {
                   ? { fontWeight: "bolder", color: "#FFFF99" }
                   : undefined
               }
-              onClick={setNavOffers}
+              onClick={setNavOffer}
             >
               <CDBSidebarMenuItem
                 icon="shopping-bag"
@@ -189,7 +198,7 @@ const SidebarNavigation = () => {
                   ? { fontWeight: "bolder", color: "#FFFF99" }
                   : undefined
               }
-              onClick={setNavLoginAttempts}
+              onClick={setNavLoginAttempt}
             >
               <CDBSidebarMenuItem
                 icon="user"

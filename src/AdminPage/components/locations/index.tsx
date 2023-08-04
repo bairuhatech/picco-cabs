@@ -4,7 +4,7 @@ import { faTrash } from "@fortawesome/free-solid-svg-icons/faTrash";
 
 import { FaEdit, FaFileArchive, FaPlus } from "react-icons/fa";
 import { useDispatch } from "react-redux";
-import { locationModalActions } from "../../../store/locationModal";
+import { editLocations, toggleModal } from "../../../store/locationModal";
 import { useSelector } from "react-redux";
 import DeleteLocationModal from "../modals/deleteLocation";
 import { useState } from "react";
@@ -40,11 +40,11 @@ const LocationsTable = () => {
   const [selected, setSelected] = useState({});
 
   const dispatch = useDispatch();
-  const toggleModal = () => {
-    dispatch(locationModalActions.toggleModal());
+  const toggleModals = () => {
+    dispatch(toggleModal());
   };
   const editLocation = (data: any, event: any) => {
-    dispatch(locationModalActions.editLocations(data));
+    dispatch(editLocations(data));
   };
   const [delte, setDelete] = useState(false);
   const deleteLocation = (data: any, event: any) => {
@@ -61,7 +61,7 @@ const LocationsTable = () => {
         <h2 className="py-3 ps-2">Locations</h2>
         <button
           className="btn btn-picco align-self-center me-3 text-light"
-          onClick={toggleModal}
+          onClick={toggleModals}
         >
           <FaPlus className="text-light" />
           Add Route

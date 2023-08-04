@@ -4,7 +4,6 @@ import PiccoImg from "../../../assets/images/logo.png";
 import { CHeaderNav } from "@coreui/react";
 import AppHeaderDropdown from "../../appHeaderDropdown";
 import { useSelector } from "react-redux";
-import { locationModalActions } from "../../../../store/locationModal";
 import { useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRightToBracket } from "@fortawesome/free-solid-svg-icons/faRightToBracket";
