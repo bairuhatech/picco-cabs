@@ -20,7 +20,7 @@ function BookingForm(props: any) {
 
   const { pickUpLoc, dropOffLoc, pickUpDate, dropOffDate, pickUpTime } =
     location.state;
-
+  console.log(isLoggedIn);
   // const formData = location.state && location.state.formData;
   console.log(">>>>>>>>>>>>>>>>>>>>>", dropOffLoc);
   console.log(">>>>>>>>>>>>>>>>>>>>>", pickUpDate);
@@ -28,7 +28,7 @@ function BookingForm(props: any) {
   console.log(">>>>>>>>>>>>>>>>>>>>>", dropOffDate);
   console.log(">>>>>>>>>>>>>>>>>>>>>", pickUpTime);
 
-  const { state } = useLocation();
+  // const { state } = useLocation();
   const showModal = () => {
     setIsModalOpen(true);
   };
