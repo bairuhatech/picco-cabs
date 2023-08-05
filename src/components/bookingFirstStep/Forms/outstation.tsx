@@ -35,6 +35,7 @@ export default function OutStation(props: any) {
     const dropOffDate = dateRange.toISOString();
     const timeOfPickup = timeRange;
     const modes = props.types;
+    console.log("modeeeeeeeeeeeeeeeeee", modes);
 
     navigate("/bookingSecondStep", {
       state: {
@@ -55,9 +56,11 @@ export default function OutStation(props: any) {
   async function fetchData() {
     try {
       const response = await axios.get(
-        "http://localhost:8080/Pickuplocation/location"
+        "https://piccocabs-server-46642b82a774.herokuapp.com/Pickuplocation/location"
       );
       setData(response.data);
+      let listingData = filterUniqueNames(response.data);
+      setFilteredOptions(listingData);
       console.log(response.data);
     } catch (error) {
       console.error("Error:", error);
@@ -71,20 +74,24 @@ export default function OutStation(props: any) {
     .getMinutes()
     .toLocaleString("en-US", { minimumIntegerDigits: 2, useGrouping: false });
   const handleSearch = (newValue: string) => {
-    const filteredData = data.filter((d: any) =>
+    let filteredData = filteredOptions.filter((d: any) =>
       d.place.toLowerCase().includes(newValue.toLowerCase())
     );
-    console.log("=============>", filteredData);
-    console.log("=============>", filteredData);
-
-    // setFilteredOptions(filteredData);
+    setFilteredOptions(filteredData);
+  };
+  const filterUniqueNames = (arr: any) => {
+    const uniqueNames: any = {};
+    return arr.filter((item: any) => {
+      if (!uniqueNames[item.place]) {
+        uniqueNames[item.place] = true;
+        return true;
+      }
+      return false;
+    });
   };
   const handleFromChange = (newValue: any) => {
-    console.log("====", newValue);
     let toPlaces = data.filter((item: any) => item.place === newValue);
-    console.log("===toPlaces====");
-    console.log(toPlaces);
-    console.log("===toPlaces====");
+
     setToPlace(toPlaces);
   };
   const handleToChange = (id: any) => {
@@ -133,10 +140,7 @@ export default function OutStation(props: any) {
                 onSearch={handleSearch}
                 onChange={handleFromChange}
                 notFoundContent={null}
-                options={(filteredOptions.length > 0
-                  ? filteredOptions
-                  : data
-                ).map((d: any) => ({
+                options={filteredOptions.map((d: any) => ({
                   value: d.place,
                   label: d.place,
                 }))}
@@ -218,12 +222,7 @@ export default function OutStation(props: any) {
           <Form.Item
             style={{ width: "100%", display: "flex", justifyContent: "center" }}
           >
-            <Button
-              // onClick={() => navigate("/bookingSecondStep")}
-              htmlType={"submit"}
-            >
-              Explore Cabs
-            </Button>
+            <Button htmlType="submit">Explore Cabs</Button>
           </Form.Item>
         </div>
       </Form>

@@ -6,14 +6,14 @@ import Container from "react-bootstrap/esm/Container";
 import "./index.module.scss";
 
 const FirstStep = () => {
-  const [formType, setFormType] = useState("OUTSTATION");
+  const [formType, setFormType] = useState("outstations");
 
   const radioBtn1ClickHandler = () => {
-    setFormType("OUTSTATION");
+    setFormType("outstations");
   };
 
   const radioBtn2ClickHandler = () => {
-    setFormType("RENTALS");
+    setFormType("rentals");
   };
 
   const baseUrl = document.baseURI.includes("booking");
@@ -73,10 +73,10 @@ const FirstStep = () => {
             india's premier intercity cabs
           </h6>
         </div>
-        {formType === "OUTSTATION" ? (
+        {formType === "outstations" ? (
           <OneWay types={formType} />
-        ) : formType === "RENTALS" ? (
-          <RoundTrip />
+        ) : formType === "rentals" ? (
+          <RoundTrip types={formType} />
         ) : null}
       </Container>
     </Container>

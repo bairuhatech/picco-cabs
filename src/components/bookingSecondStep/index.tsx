@@ -18,10 +18,17 @@ function BookingForm(props: any) {
   const location = useLocation();
   const isLoggedIn = useSelector((state: any) => state.User.auth);
 
-  const { selectedRoute, pickUpDate, dropOffDate, timeOfPickup, tripType } =
-    location.state;
+  const {
+    selectedRoute,
+    pickUpDate,
+    dropOffDate,
+    timeOfPickup,
+    tripType,
+    Package,
+    RentPlace,
+  } = location.state;
 
-  console.log(">>>>>>>>>>>>>>>>", tripType);
+  console.log(">>>>>>>>>>>>>>>>", Package);
 
   const showModal = () => {
     setIsModalOpen(true);
@@ -55,11 +62,14 @@ function BookingForm(props: any) {
               select a car
             </div>
             <p>
-              {selectedRoute?.place}
-              &nbsp;<b>to</b> &nbsp;
-              {selectedRoute?.location}
+              {RentPlace || selectedRoute?.place}
+              &nbsp;<b>{RentPlace ? "" : "to"}</b> &nbsp;
+              {RentPlace ? "" : selectedRoute?.location}
               <br />
-              <b>Pickup:</b> {formattedDate} <b>Time:</b> {timeOfPickup}
+              <b>{Package?.label ? "Package: " : "Pickup: "}</b>
+              {Package?.label || formattedDate}
+              <b>{Package?.label ? "" : "Time:"}</b>
+              {timeOfPickup || ""}
             </p>
             <p></p>
             <div className="card">
@@ -99,7 +109,7 @@ function BookingForm(props: any) {
                   <span>6 seat</span>
                   <span>3 bag</span>
                 </div>
-                <div className="price-Div">₹ {selectedRoute.rate}</div>
+                <div className="price-Div">₹ {selectedRoute?.rate + 50}</div>
               </div>
             </div>
             <br />
@@ -140,7 +150,7 @@ function BookingForm(props: any) {
                   <span>4 seat</span>
                   <span>2 bag</span>
                 </div>
-                <div className="price-Div">₹ 23180</div>
+                <div className="price-Div">₹ {selectedRoute?.rate + 200}</div>
               </div>
             </div>
             <br />
@@ -188,7 +198,7 @@ function BookingForm(props: any) {
                   <span>4 seat</span>
                   <span>1 bag</span>
                 </div>
-                <div className="price-Div">₹ 23180</div>
+                <div className="price-Div">₹ {selectedRoute?.rate + 100}</div>
               </div>
             </div>
           </div>

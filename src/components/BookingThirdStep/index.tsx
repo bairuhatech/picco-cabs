@@ -20,6 +20,10 @@ const BookingThird = () => {
     timeOfPickup,
     tripType,
     selectedRoute,
+    Package,
+    RentPlace,
+    modes,
+    modesecond,
   } = location.state;
 
   const formattedDate = moment(pickUpDate).format("MMMM Do, YYYY");
@@ -29,20 +33,20 @@ const BookingThird = () => {
       setLoading(true);
       const requestBody = {
         userId: 1,
-        bookType: "outstations",
-        tripStatus: tripType,
+        bookType: modes || modesecond,
+        tripStatus: tripType || "oneWay",
         pickUpDate: "2023-08-01T12:00:00Z",
         dropOffDate: "2023-08-02T12:00:00Z",
         pickUpLat: 37.7749,
         pickUpLng: -122.4194,
-        pickUpLoc: pickUpLoc,
+        pickUpLoc: selectedRoute?.place || RentPlace || "",
         dropOffLat: 37.7749,
         dropOffLng: -122.4194,
-        dropOffLoc: dropOffLoc,
+        dropOffLoc: selectedRoute?.location || "",
         pickUpTime: 12,
-        hours: 5,
-        kms: 100,
-        estimatedAmt: 50.5,
+        hours: Package?.hours,
+        kms: Package?.kms,
+        estimatedAmt: selectedRoute?.rate || 0,
         rentallPack: 1,
         car: 1,
         comments: values.Comments,
@@ -50,7 +54,10 @@ const BookingThird = () => {
         status: "pending",
       };
 
-      console.log(">>>>>>>>>>>>>>>>>>>??????????????????", requestBody);
+      console.log(
+        ">>>>>>>>>>>>>>>>>>>??????????????????",
+        selectedRoute?.location
+      );
 
       const response = await fetch(
         "https://piccocabs-server-46642b82a774.herokuapp.com/Booking",
@@ -88,11 +95,14 @@ const BookingThird = () => {
               {/* </div> */}
               <div style={{ marginTop: "19px", marginLeft: "12px" }}>
                 <p>
-                  {selectedRoute?.place}
-                  &nbsp;<b>to</b> &nbsp;
-                  {selectedRoute?.location}
+                  {RentPlace || selectedRoute?.place}
+                  &nbsp;<b>{RentPlace ? "" : "to"}</b> &nbsp;
+                  {RentPlace ? "" : selectedRoute?.location}
                   <br />
-                  <b>Pickup:</b> {formattedDate} <b>Time:</b> {timeOfPickup}
+                  <b>{Package?.label ? "Package: " : "Pickup: "}</b>
+                  {Package?.label || formattedDate}
+                  <b>{Package?.label ? "" : "Time:"}</b>
+                  {timeOfPickup || ""}
                 </p>
               </div>
             </div>
