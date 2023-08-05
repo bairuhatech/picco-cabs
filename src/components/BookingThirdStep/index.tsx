@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, Input, Button, message } from "antd";
+import { Form, Input, Button, message, Spin } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import smallcarimg from "../../assets/images/car_mini_small.png";
 import "./index.scss";
@@ -10,6 +10,7 @@ import moment from "moment";
 
 const BookingThird = () => {
   const [show, setShow] = useState(true);
+  const [loading, setLoading] = useState(false);
   const location = useLocation();
   const {
     pickUpLoc,
@@ -25,6 +26,7 @@ const BookingThird = () => {
 
   const onFinish = async (values: any) => {
     try {
+      setLoading(true);
       const requestBody = {
         userId: 1,
         bookType: "outstations",
@@ -50,21 +52,25 @@ const BookingThird = () => {
 
       console.log(">>>>>>>>>>>>>>>>>>>??????????????????", requestBody);
 
-      const response = await fetch("http://localhost:8080/Booking", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(requestBody),
-      });
+      const response = await fetch(
+        "https://piccocabs-server-46642b82a774.herokuapp.com/Booking",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(requestBody),
+        }
+      );
 
       const data = await response.json();
       console.log(">>>>>>>>>>>>>>>>>>>>>{{{{{{{{{{{{{{{{{{{{{{{", data);
-
+      setLoading(false);
       console.log("API Response:", data);
       message.success("Booking successful!");
     } catch (error) {
       console.error("API Error:", error);
+      setLoading(false);
     }
   };
   return (
@@ -201,21 +207,24 @@ const BookingThird = () => {
                   }}
                 />
               </Form.Item>
-              <Form.Item>
-                <Button
-                  type="primary"
-                  htmlType="submit"
-                  style={{
-                    borderRadius: "5px",
-                    width: "100%",
-                    height: "10%",
-                    backgroundColor: "#6bb546",
-                    fontSize: "20px",
-                  }}
-                >
-                  book now
-                </Button>
-              </Form.Item>
+              <Spin spinning={loading} tip="Booking in progress...">
+                <Form.Item>
+                  <Button
+                    type="primary"
+                    htmlType="submit"
+                    style={{
+                      borderRadius: "5px",
+                      width: "100%",
+                      height: "10%",
+                      backgroundColor: "#6bb546",
+                      fontSize: "20px",
+                    }}
+                    disabled={loading}
+                  >
+                    book now
+                  </Button>
+                </Form.Item>
+              </Spin>
             </div>
           </div>
         </Form>

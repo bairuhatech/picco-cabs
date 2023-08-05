@@ -1,7 +1,7 @@
 const API = {
-  BASE_URL: "http://localhost:12345/",
+  BASE_URL: "https://piccocabs-server-46642b82a774.herokuapp.com",
 
-  GET_ALL_BOOKINGS: "Booking/booking",
+  GET_ALL_BOOKINGS: "/Booking/booking",
   getAllUser: "get-all-user",
   login: "admin-login",
   getAllOffer: "get-all-offers",

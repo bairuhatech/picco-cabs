@@ -110,7 +110,7 @@ const LocationsTable = () => {
   async function fetchData() {
     try {
       const response = await axios.get(
-        "http://localhost:12345/Pickuplocation/location"
+        "https://piccocabs-server-46642b82a774.herokuapp.com/Pickuplocation/location"
       );
       setData(response.data);
     } catch (error) {
@@ -121,7 +121,7 @@ const LocationsTable = () => {
   async function deleteData(id: any) {
     try {
       const response = await axios.delete(
-        `http://localhost:12345/Pickuplocation/${id}`
+        `https://piccocabs-server-46642b82a774.herokuapp.com/Pickuplocation/${id}`
       );
       setData((prevData: any) =>
         prevData.filter((item: any) => item.id !== id)
