@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, Input, Button } from "antd";
+import { Form, Input, Button, message } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import smallcarimg from "../../assets/images/car_mini_small.png";
 import "./index.scss";
@@ -65,6 +65,7 @@ const BookingThird = () => {
       console.log(">>>>>>>>>>>>>>>>>>>>>{{{{{{{{{{{{{{{{{{{{{{{", data);
 
       console.log("API Response:", data);
+      message.success("Booking successful!");
     } catch (error) {
       console.error("API Error:", error);
     }
@@ -77,8 +78,8 @@ const BookingThird = () => {
             <div style={{ display: "flex" }}>
               {/* <div> */}
               <IoMdArrowRoundBack
-                onClick={() => setShow(show)}
-                size={25}
+                onClick={()=> window.history.back()}
+                size={25} 
                 className="Back-arrow mb-3"
               />
               {/* </div> */}
@@ -217,7 +218,7 @@ const BookingThird = () => {
           </div>
         </Form>
       ) : (
-        <BookingForm />
+        <BookingForm/>
       )}
     </div>
   );

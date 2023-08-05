@@ -18,6 +18,7 @@ function BookingForm(props: any) {
   const [shows, setShows] = useState(showBooking === true);
   const location = useLocation();
   const isLoggedIn = useSelector((state: any) => state.User.auth);
+  
 
   const { pickUpLoc, dropOffLoc, pickUpDate, dropOffDate, timeOfPickup } =
     location.state;
@@ -132,7 +133,9 @@ function BookingForm(props: any) {
                   </div>
                   <div className="button-Div">
                     <button
-                      onClick={() => setFormModal(true)}
+                      onClick={() =>
+                        isLoggedIn ? setShowBooking(true) : setFormModal(true)
+                      }
                       className="button"
                     >
                       Book now
@@ -174,7 +177,9 @@ function BookingForm(props: any) {
                     </p>
                   </div>
                   <div className="button-Div">
-                    <button onClick={show} className="button">
+                    <button onClick={() =>
+                        isLoggedIn ? setShowBooking(true) : setFormModal(true)
+                      } className="button">
                       Book now
                     </button>
                   </div>
