@@ -15,22 +15,14 @@ import moment from "moment";
 function BookingForm(props: any) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showBooking, setShowBooking] = useState(false);
-  const [shows, setShows] = useState(showBooking === true);
   const location = useLocation();
   const isLoggedIn = useSelector((state: any) => state.User.auth);
-  
 
-  const { pickUpLoc, dropOffLoc, pickUpDate, dropOffDate, timeOfPickup } =
+  const { selectedRoute, pickUpDate, dropOffDate, timeOfPickup, tripType } =
     location.state;
-  console.log(isLoggedIn);
-  // const formData = location.state && location.state.formData;
-  console.log(">>>>>>>>>>>>>>>>>>>>>", dropOffLoc);
-  console.log(">>>>>>>>>>>>>>>>>>>>>", pickUpDate);
-  console.log(">>>>>>>>>>>>>>>>>>>>>", pickUpLoc);
-  console.log(">>>>>>>>>>>>>>>>>>>>>", dropOffDate);
-  console.log(">>>>>>>>>>TIMeeeeeeeeeee>>>>>>>>>>>", timeOfPickup);
 
-  // const { state } = useLocation();
+  console.log(">>>>>>>>>>>>>>>>", tripType);
+
   const showModal = () => {
     setIsModalOpen(true);
   };
@@ -63,10 +55,9 @@ function BookingForm(props: any) {
               select a car
             </div>
             <p>
-              {/* {state.data.from} to {state.data.to} */}
-              {pickUpLoc}
+              {selectedRoute?.place}
               &nbsp;<b>to</b> &nbsp;
-              {dropOffLoc}
+              {selectedRoute?.location}
               <br />
               <b>Pickup:</b> {formattedDate} <b>Time:</b> {timeOfPickup}
             </p>
@@ -108,7 +99,7 @@ function BookingForm(props: any) {
                   <span>6 seat</span>
                   <span>3 bag</span>
                 </div>
-                <div className="price-Div">₹ 23180</div>
+                <div className="price-Div">₹ {selectedRoute.rate}</div>
               </div>
             </div>
             <br />
@@ -141,7 +132,6 @@ function BookingForm(props: any) {
                       Book now
                     </button>
                   </div>
-                  {/* )} */}
                 </div>
               </div>
               <div className="seats-Div">
@@ -177,9 +167,12 @@ function BookingForm(props: any) {
                     </p>
                   </div>
                   <div className="button-Div">
-                    <button onClick={() =>
+                    <button
+                      onClick={() =>
                         isLoggedIn ? setShowBooking(true) : setFormModal(true)
-                      } className="button">
+                      }
+                      className="button"
+                    >
                       Book now
                     </button>
                   </div>

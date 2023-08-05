@@ -3,35 +3,32 @@ import { Form, Input, Button, message } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import smallcarimg from "../../assets/images/car_mini_small.png";
 import "./index.scss";
-import { text } from "stream/consumers";
 import BookingForm from "../bookingSecondStep";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { useLocation } from "react-router-dom";
+import moment from "moment";
 
 const BookingThird = () => {
   const [show, setShow] = useState(true);
   const location = useLocation();
-
   const {
     pickUpLoc,
     dropOffLoc,
     pickUpDate,
     dropOffDate,
-    pickUpTime,
-    carDetails,
+    timeOfPickup,
+    tripType,
+    selectedRoute,
   } = location.state;
-  console.log(">>>>>>>>>>>>>>>>>>>>>", dropOffLoc);
-  console.log(">>>>>>>>>>>>>>>>>>>>>", pickUpDate);
-  console.log(">>>>>>>>>>>>>>>>>>>>>", pickUpLoc);
-  console.log(">>>>>>>>>>>>>>>>>>>>>", dropOffDate);
-  console.log(">>>>>>>>>>>>>>>>>>>>>", pickUpTime);
+
+  const formattedDate = moment(pickUpDate).format("MMMM Do, YYYY");
 
   const onFinish = async (values: any) => {
     try {
       const requestBody = {
         userId: 1,
         bookType: "outstations",
-        tripStatus: "oneWay",
+        tripStatus: tripType,
         pickUpDate: "2023-08-01T12:00:00Z",
         dropOffDate: "2023-08-02T12:00:00Z",
         pickUpLat: 37.7749,
@@ -53,7 +50,7 @@ const BookingThird = () => {
 
       console.log(">>>>>>>>>>>>>>>>>>>??????????????????", requestBody);
 
-      const response = await fetch("http://localhost:12345/Booking", {
+      const response = await fetch("http://localhost:8080/Booking", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -78,14 +75,19 @@ const BookingThird = () => {
             <div style={{ display: "flex" }}>
               {/* <div> */}
               <IoMdArrowRoundBack
-                onClick={()=> window.history.back()}
-                size={25} 
+                onClick={() => window.history.back()}
+                size={25}
                 className="Back-arrow mb-3"
               />
               {/* </div> */}
               <div style={{ marginTop: "19px", marginLeft: "12px" }}>
-                {pickUpLoc}&nbsp; <b>to</b>&nbsp;
-                {dropOffLoc}
+                <p>
+                  {selectedRoute?.place}
+                  &nbsp;<b>to</b> &nbsp;
+                  {selectedRoute?.location}
+                  <br />
+                  <b>Pickup:</b> {formattedDate} <b>Time:</b> {timeOfPickup}
+                </p>
               </div>
             </div>
             <div className="card">
@@ -117,7 +119,7 @@ const BookingThird = () => {
                   <span>6 seat</span>
                   <span>3 bag</span>
                 </div>
-                <div className="price-Div">₹ 23180</div>
+                <div className="price-Div">₹ {selectedRoute?.rate}</div>
               </div>
             </div>
             <div className="TravallersDetail-Div">
@@ -135,7 +137,7 @@ const BookingThird = () => {
                   style={{
                     borderRadius: "5px",
                     width: "100%",
-                    height: "15%",
+                    height: "35px",
                     backgroundColor: "#f1f1f1",
                     textIndent: "5px",
                   }}
@@ -152,7 +154,7 @@ const BookingThird = () => {
                   style={{
                     borderRadius: "5px",
                     width: "100%",
-                    height: "15%",
+                    height: "35px",
                     backgroundColor: "#f1f1f1",
                     textIndent: "5px",
                   }}
@@ -176,7 +178,7 @@ const BookingThird = () => {
                   style={{
                     borderRadius: "5px",
                     width: "100%",
-                    height: "15%",
+                    height: "35px",
                     backgroundColor: "#f1f1f1",
                     textIndent: "5px",
                   }}
@@ -193,7 +195,7 @@ const BookingThird = () => {
                   style={{
                     borderRadius: "5px",
                     width: "100%",
-                    height: "30%",
+                    height: "60px",
                     backgroundColor: "#f1f1f1",
                     textIndent: "5px",
                   }}
@@ -206,7 +208,7 @@ const BookingThird = () => {
                   style={{
                     borderRadius: "5px",
                     width: "100%",
-                    height: "12%",
+                    height: "10%",
                     backgroundColor: "#6bb546",
                     fontSize: "20px",
                   }}
@@ -218,7 +220,7 @@ const BookingThird = () => {
           </div>
         </Form>
       ) : (
-        <BookingForm/>
+        <BookingForm />
       )}
     </div>
   );

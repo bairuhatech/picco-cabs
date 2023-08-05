@@ -1,18 +1,19 @@
 import React, { useState } from "react";
 import classes from "./index.module.scss";
-import OneWay from "./Forms/oneWay";
-import RoundTrip from "./Forms/roundTrip";
+import OneWay from "./Forms/outstation";
+import RoundTrip from "./Forms/rentals";
 import Container from "react-bootstrap/esm/Container";
+import "./index.module.scss";
 
 const FirstStep = () => {
-  const [formType, setFormType] = useState("oneWay");
+  const [formType, setFormType] = useState("OUTSTATION");
 
   const radioBtn1ClickHandler = () => {
-    setFormType("oneWay");
+    setFormType("OUTSTATION");
   };
 
   const radioBtn2ClickHandler = () => {
-    setFormType("roundTrip");
+    setFormType("RENTALS");
   };
 
   const baseUrl = document.baseURI.includes("booking");
@@ -47,7 +48,7 @@ const FirstStep = () => {
               className={`btn btn-outline-success px-4 border border-2 border-success fw-bold fs-8 fs-9 `}
               htmlFor="btnradio1"
             >
-              ONE WAY
+              OUTSTATION
             </label>
             <input
               type="radio"
@@ -61,7 +62,7 @@ const FirstStep = () => {
               className="btn btn-outline-success px-4 border border-2 border-success fw-bold fs-8 fs-9 d-none d-md-block"
               htmlFor="btnradio2"
             >
-              ROUND TRIP
+              RENTALS
             </label>
           </div>
         </div>
@@ -72,9 +73,9 @@ const FirstStep = () => {
             india's premier intercity cabs
           </h6>
         </div>
-        {formType === "oneWay" ? (
-          <OneWay />
-        ) : formType === "roundTrip" ? (
+        {formType === "OUTSTATION" ? (
+          <OneWay types={formType} />
+        ) : formType === "RENTALS" ? (
           <RoundTrip />
         ) : null}
       </Container>

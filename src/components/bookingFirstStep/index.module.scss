@@ -44,5 +44,21 @@
   top: 140px;
 }
 
+.ant-select-selector {
+  height: 40px !important;
+  border-radius: 1px !important;
+  outline: black !important;
+  width: 200px !important;
+}
+
 @media (min-width: 768px) {
+}
+.btn-check {
+  width: 40px !important;
+}
+.btn-group {
+  background-color: #68af44 !important;
+}
+.btn-outline-success {
+  background-color: aqua;
 }
