@@ -21,11 +21,11 @@ function AddLocationModal(props: any) {
     try {
       if (props.purpose === "Edit") {
         await axios.put(
-          `http://localhost:12345/Pickuplocation/${props.locationId}`,
+          `https://piccocabs-server-46642b82a774.herokuapp.com/Pickuplocation/${props.locationId}`,
           newData
         );
       } else {
-        await axios.post("http://localhost:12345/Pickuplocation", newData);
+        await axios.post("https://piccocabs-server-46642b82a774.herokuapp.com/Pickuplocation", newData);
       }
 
       props.onSuccess();
