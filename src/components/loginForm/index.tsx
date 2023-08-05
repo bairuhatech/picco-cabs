@@ -1,6 +1,6 @@
 // import React, { useState, useEffect } from "react";
 // import { Modal, Input, message } from "antd";
-// import piccocabsimg from "../../assets/images/logo.png";
+// import piccocabsimg  from "../../assets/images/logo.png";
 // import { InputGroup, Form } from "react-bootstrap";
 // import "./index.scss";
 // import Button from "./components/button";
@@ -80,10 +80,10 @@
 //           <div className="piccocabsmodal_Maindiv">
 //             <div className="piccocabsmodal_Maindiv2">
 //               <div>
-//                 <div className="piccocabsimg-Div">
+//                 <div className="piccocabsimg -Div">
 //                   <img
-//                     className="piccocabsimgotp"
-//                     src={piccocabsimg}
+//                     className="piccocabsimg otp"
+//                     src={piccocabsimg }
 //                     alt="Logo"
 //                   />
 //                 </div>
@@ -273,10 +273,10 @@ const CustomModal = (props: any) => {
           <div className="piccocabsmodal_Maindiv">
             <div className="piccocabsmodal_Maindiv2">
               <div>
-                <div className="piccocabsimg-Div">
+                <div className="piccocabsimg -Div">
                   <img
-                    className="piccocabsimgotp"
-                    src={piccocabsimg}
+                    className="piccocabsimg otp"
+                    // src={piccocabsimg }
                     alt="Logo"
                   />
                 </div>
@@ -350,7 +350,7 @@ const CustomModal = (props: any) => {
                   <div id="recaptcha"></div>
                   {error && (
                     <p className="piccocabserrornotification">
-                      Please enter your mobile number
+                      OTP Sended Succesfully
                     </p>
                   )}
                 </div>
