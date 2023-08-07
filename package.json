@@ -25,6 +25,7 @@
     "axios": "^1.4.0",
     "bootstrap": "^5.2.3",
     "cdbreact": "^1.5.18",
+    "firebase": "^10.1.0",
     "font-awesome": "^4.7.0",
     "jquery": "^3.7.0",
     "moment": "^2.29.4",
