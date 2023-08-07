@@ -11,7 +11,7 @@ import {
   Select,
   Checkbox,
 } from "antd";
-import API from "../../../config/api"
+import API from "../../../config/api";
 import axios from "axios";
 
 const { RangePicker } = DatePicker;
@@ -104,11 +104,11 @@ export default function OutStation(props: any) {
     <div className="mt-3">
       <Form form={form} onFinish={onFinish}>
         <div className="row mx-0 gy-3">
-          <div className="col-3" style={{position:"absolute",top:10}}>
+          <div className="col-3" style={{ position: "absolute", top: 10 }}>
             <div>
               <label>
                 <Checkbox
-                  style={{ color: "#68af44" ,accentColor:"#68af44"}}
+                  style={{ color: "#68af44", accentColor: "#68af44" }}
                   checked={tripType === "oneWay"}
                   onChange={() => setTripType("oneWay")}
                 />
@@ -116,8 +116,7 @@ export default function OutStation(props: any) {
               </label>
               <label style={{ marginLeft: "10px" }}>
                 <Checkbox
-                  style={{ color: "#68af44" }} 
-                  
+                  style={{ color: "#68af44" }}
                   checked={tripType === "roundTrip"}
                   onChange={() => setTripType("roundTrip")}
                 />
@@ -127,7 +126,16 @@ export default function OutStation(props: any) {
           </div>
           <div className="col-md-3 col-sm-6 col-12">
             <div className="form-label fw-bold">FROM</div>
-            <Form.Item name="user_from" className="fw-bold">
+            <Form.Item
+              name="user_from"
+              className="fw-bold"
+              rules={[
+                {
+                  required: true,
+                  message: "required",
+                },
+              ]}
+            >
               {/* <Input
                 placeholder="Start typing City"
                 className="form-control border-0 border-bottom rounded-0"
@@ -153,7 +161,16 @@ export default function OutStation(props: any) {
             <label htmlFor="inputEmail4" className="form-label fw-bold">
               TO
             </label>
-            <Form.Item name="user_to" className="fw-bold">
+            <Form.Item
+              name="user_to"
+              className="fw-bold"
+              rules={[
+                {
+                  required: true,
+                  message: "required",
+                },
+              ]}
+            >
               <Select
                 showSearch
                 value={value}
@@ -178,7 +195,15 @@ export default function OutStation(props: any) {
             <label htmlFor="inputEmail4" className="form-label fw-bold">
               PICK UP
             </label>
-            <Form.Item name="dateRange">
+            <Form.Item
+              name="dateRange"
+              rules={[
+                {
+                  required: true,
+                  message: "required",
+                },
+              ]}
+            >
               <DatePicker
                 format="YYYY-MM-DD"
                 placeholder="Pick up date"
@@ -196,6 +221,7 @@ export default function OutStation(props: any) {
                 className="form-control border-0 border-bottom rounded-0"
                 placeholder="return_date"
                 aria-label="Last name"
+                required
               />
             </div>
           )}
@@ -207,7 +233,15 @@ export default function OutStation(props: any) {
             <label htmlFor="inputEmail4" className="form-label fw-bold">
               PICK UP AT
             </label>
-            <Form.Item name="timeRange">
+            <Form.Item
+              name="timeRange"
+              rules={[
+                {
+                  required: true,
+                  message: "required",
+                },
+              ]}
+            >
               <Input
                 className="form-control border-0  border-bottom rounded-0"
                 defaultValue={`${time}:${minute}`}
@@ -222,7 +256,12 @@ export default function OutStation(props: any) {
           style={{ width: "100%" }}
         >
           <Form.Item
-            style={{ width: "100%", display: "flex", justifyContent: "center", position: "absolute", }}
+            style={{
+              width: "100%",
+              display: "flex",
+              justifyContent: "center",
+              position: "absolute",
+            }}
           >
             <Button
               style={{
@@ -236,7 +275,7 @@ export default function OutStation(props: any) {
                 height: "40px",
                 outline: "none",
                 border: "none",
-                fontWeight:"bold"
+                fontWeight: "bold",
               }}
               htmlType="submit"
             >
