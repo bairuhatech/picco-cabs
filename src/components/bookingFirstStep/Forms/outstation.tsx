@@ -11,7 +11,7 @@ import {
   Select,
   Checkbox,
 } from "antd";
-import API from "../../../config/api";
+import API from "../../../config/api"
 import axios from "axios";
 
 const { RangePicker } = DatePicker;

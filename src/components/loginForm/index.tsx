@@ -215,7 +215,7 @@ const CustomModal = (props: any) => {
   const dispatch = useDispatch();
 
   // const isLoggedIn = useSelector((state: any) => state.auth.isLoggedIn);
-  onAuthStateChanged(auth, (user) => {
+  onAuthStateChanged(auth, (user:any) => {
     if (user) {
       console.log("User details:", user);
     } else {
