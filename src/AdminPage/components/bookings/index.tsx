@@ -56,13 +56,13 @@ const Bookings = () => {
           }}
         >
           <Spin size="large" style={{ color: "red" }} />
-          <br />
+          {/* <br />
           <br />
           <Spin size="large" style={{ color: "red" }} />
           <br />
           <br />
 
-          <Spin size="large" style={{ color: "red" }} />
+          <Spin size="large" style={{ color: "red" }} /> */}
         </div>
       ) : (
         <table className="table table-striped align-self-start table-hover">

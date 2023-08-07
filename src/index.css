@@ -36,3 +36,15 @@ code {
   font-family: "Poppins-Medium";
   src: url("./assets/fonts/Poppins-Medium.ttf") format("truetype");
 }
+.ant-select-selector {
+  height: 35px !important;
+  border-radius: 1px !important;
+  /* outline: black !important; */
+  /* width: 200px !important; */
+  border: none !important;
+  border-bottom: 1px solid #d3d3d3 !important;
+  outline: none !important;
+}
+.ant-select-selection-search-input{
+  outline: none !important;
+}

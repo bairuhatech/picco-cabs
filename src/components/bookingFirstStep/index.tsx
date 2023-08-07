@@ -23,11 +23,11 @@ const FirstStep = () => {
       fluid
       className={` ${classes["bg-picco-banner"]} position-relative d-flex justify-content-center `}
     >
-      <Container
-        style={{ height: "82%" }}
-        className={`pb-5 pt-4  rounded-3 bg-light ${
-          classes["banner-position-absolute"]
-        } ${!baseUrl ? "shadow" : ""}`}
+      <div
+        style={{zIndex:3,position:"absolute",top:120,backgroundColor:"#ffff",borderRadius:"12px",height:"fit-content",width:"80%",padding:"20px",boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px"}}
+        // className={`rounded-3 bg-light ${
+        //   classes["banner-position-absolute"]
+        // } ${!baseUrl ? "shadow" : ""}`}
       >
         <div className="d-flex justify-content-center">
           <div
@@ -45,7 +45,8 @@ const FirstStep = () => {
               onClick={radioBtn1ClickHandler}
             />
             <label
-              className={`btn btn-outline-success px-4 border border-2 border-success fw-bold fs-8 fs-9 `}
+              style={{width:"150px",fontWeight:500,fontSize:"15px",height:"35px"}}
+              className={`btn btn-outline-success border border-2 border-success`}
               htmlFor="btnradio1"
             >
               OUTSTATION
@@ -59,26 +60,27 @@ const FirstStep = () => {
               onClick={radioBtn2ClickHandler}
             />
             <label
-              className="btn btn-outline-success px-4 border border-2 border-success fw-bold fs-8 fs-9 d-none d-md-block"
+              style={{width:"150px",fontWeight:500,fontSize:"15px",height:"35px"}}
+              className="btn btn-outline-success border border-2 border-success "
               htmlFor="btnradio2"
             >
               RENTALS
             </label>
           </div>
         </div>
-        <div className="d-sm-none">
+        {/* <div className="d-sm-none">
           <h6
             className={`text-uppercase my-0 mt-4 text-center ${classes["title-city-cabs"]}`}
           >
             india's premier intercity cabs
           </h6>
-        </div>
+        </div> */}
         {formType === "outstations" ? (
           <OneWay types={formType} />
         ) : formType === "rentals" ? (
           <RoundTrip types={formType} />
         ) : null}
-      </Container>
+      </div>
     </Container>
   );
 };

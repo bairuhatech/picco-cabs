@@ -17,6 +17,7 @@ import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { Store, PersistedStore } from "./store/index";
 
+
 // const routes = createBrowserRouter([
 //   {
 //     path: "/",
@@ -53,6 +54,7 @@ import { Store, PersistedStore } from "./store/index";
 
 function App() {
   return (
+    
     <Fragment>
       {/* <NavigationBar /> */}
       <Provider store={Store}>
@@ -61,7 +63,6 @@ function App() {
           <FloateringButton />
         </PersistGate>
       </Provider>
-      ,
     </Fragment>
   );
 }

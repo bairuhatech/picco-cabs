@@ -91,10 +91,23 @@ export default function Rentals(props: any) {
           </div>
         </div>
         <div className="d-flex justify-content-center position-relative">
-          <Form.Item
-            style={{ width: "100%", display: "flex", justifyContent: "center" }}
+         <Form.Item
+            style={{ width: "100%", display: "flex", justifyContent: "center", position: "absolute", }}
           >
-            <Button htmlType={"submit"}>Explore Cabs</Button>
+            <Button
+              style={{
+                position: "absolute",
+                top: "0px",
+                // right: -50,
+                left: -100,
+                backgroundColor: "#198754",
+                color: "#ffff",
+                width: "200px",
+                height: "40px",
+                outline: "none",
+                border: "none",
+              }}
+             htmlType={"submit"}>Explore Cabs</Button>
           </Form.Item>
         </div>
       </Form>

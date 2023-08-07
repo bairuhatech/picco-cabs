@@ -249,11 +249,6 @@ const CustomModal = (props: any) => {
     }
   };
 
-  console.log(
-    ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>============>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>",
-    user
-  );
-
   const verifyOtp = async () => {
     try {
       if (await user.confirm(otp)) {
@@ -273,10 +268,10 @@ const CustomModal = (props: any) => {
           <div className="piccocabsmodal_Maindiv">
             <div className="piccocabsmodal_Maindiv2">
               <div>
-                <div className="piccocabsimg -Div">
+                <div className="piccocabsimg-Div">
                   <img
                     className="piccocabsimg otp"
-                    // src={piccocabsimg }
+                    src={piccocabsimg}
                     alt="Logo"
                   />
                 </div>

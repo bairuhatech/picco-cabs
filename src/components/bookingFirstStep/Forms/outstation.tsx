@@ -9,6 +9,7 @@ import {
   TimePicker,
   message,
   Select,
+  Checkbox,
 } from "antd";
 import API from "../../../config/api";
 import axios from "axios";
@@ -103,19 +104,20 @@ export default function OutStation(props: any) {
     <div className="mt-3">
       <Form form={form} onFinish={onFinish}>
         <div className="row mx-0 gy-3">
-          <div className="col-12">
+          <div className="col-3" style={{position:"absolute",top:10}}>
             <div>
               <label>
-                <input
-                  type="checkbox"
+                <Checkbox
+                  style={{ color: "#68af44" ,accentColor:"#68af44"}}
                   checked={tripType === "oneWay"}
                   onChange={() => setTripType("oneWay")}
                 />
                 One Way
               </label>
               <label style={{ marginLeft: "10px" }}>
-                <input
-                  type="checkbox"
+                <Checkbox
+                  style={{ color: "#68af44" }} 
+                  
                   checked={tripType === "roundTrip"}
                   onChange={() => setTripType("roundTrip")}
                 />
@@ -131,10 +133,10 @@ export default function OutStation(props: any) {
                 className="form-control border-0 border-bottom rounded-0"
               /> */}
               <Select
-                className="CustonSelect"
+                className="CustomSelect"
                 showSearch
                 defaultActiveFirstOption={false}
-                placeholder={"Start Date"}
+                placeholder={"Start Place"}
                 suffixIcon={null}
                 filterOption={false}
                 onSearch={handleSearch}
@@ -155,7 +157,7 @@ export default function OutStation(props: any) {
               <Select
                 showSearch
                 value={value}
-                placeholder={"End Date"}
+                placeholder={"End Place"}
                 defaultActiveFirstOption={false}
                 suffixIcon={null}
                 filterOption={false}
@@ -220,9 +222,26 @@ export default function OutStation(props: any) {
           style={{ width: "100%" }}
         >
           <Form.Item
-            style={{ width: "100%", display: "flex", justifyContent: "center" }}
+            style={{ width: "100%", display: "flex", justifyContent: "center", position: "absolute", }}
           >
-            <Button htmlType="submit">Explore Cabs</Button>
+            <Button
+              style={{
+                position: "absolute",
+                top: "0px",
+                // right: -50,
+                left: -100,
+                backgroundColor: "#198754",
+                color: "#ffff",
+                width: "200px",
+                height: "40px",
+                outline: "none",
+                border: "none",
+                fontWeight:"bold"
+              }}
+              htmlType="submit"
+            >
+              Explore Cabs
+            </Button>
           </Form.Item>
         </div>
       </Form>
