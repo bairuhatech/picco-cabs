@@ -20,12 +20,15 @@ const BookingThird = (props: any) => {
     pickUpDate,
     dropOffDate,
     timeOfPickup,
+    pickUpTime,
+    carDetails,
     tripType,
     selectedRoute,
     Package,
     RentPlace,
     modes,
     modesecond,
+    userName,
   } = location.state;
 
   const handleOk = () => {
@@ -53,14 +56,14 @@ const BookingThird = (props: any) => {
         hours: Package?.hours || 0,
         kms: Package?.kms || 0,
         estimatedAmt: selectedRoute?.rate || 0,
-        phoneNumber: "",
-        userName: "",
-        email: "",
-        driver: "",
-        returnDate: "2023-08-02T12:00:00Z",
+        returnDate:"2023-08-02T12:00:00Z",
         rentallPack: 1,
         car: 1,
         comments: values.Comments,
+        userName: values.name,
+        phoneNumber: values.phone,
+        email: values.email,
+        driver: "",
         adminStatus: "roaming",
         status: "pending",
       };
@@ -200,7 +203,7 @@ const BookingThird = (props: any) => {
                 />
               </Form.Item>
               <Form.Item
-                name="haii"
+                name="email"
                 rules={[
                   {
                     required: true,

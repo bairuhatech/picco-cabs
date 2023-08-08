@@ -79,24 +79,6 @@ const SidebarNavigation = () => {
         <CDBSidebarContent className="sidebar-content mx-0">
           <CDBSidebarMenu>
             <NavLink
-              to=""
-              end
-              style={({ isActive }) =>
-                isActive
-                  ? { fontWeight: "bolder", color: "#FFFF99" }
-                  : undefined
-              }
-              onClick={setNavHomes}
-            >
-              <CDBSidebarMenuItem
-                icon="home"
-                iconSize="lg"
-                className="nav-link"
-              >
-                Dashboard
-              </CDBSidebarMenuItem>
-            </NavLink>
-            <NavLink
               to="bookings"
               style={({ isActive }) =>
                 isActive
@@ -211,6 +193,24 @@ const SidebarNavigation = () => {
                 // }
               >
                 Login Attempts
+              </CDBSidebarMenuItem>
+            </NavLink>
+            <NavLink
+              to=""
+              end
+              style={({ isActive }) =>
+                isActive
+                  ? { fontWeight: "bolder", color: "#FFFF99" }
+                  : undefined
+              }
+              onClick={setNavHomes}
+            >
+              <CDBSidebarMenuItem
+                icon="home"
+                iconSize="lg"
+                className="nav-link"
+              >
+                Dashboard
               </CDBSidebarMenuItem>
             </NavLink>
           </CDBSidebarMenu>

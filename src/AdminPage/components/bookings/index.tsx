@@ -118,7 +118,7 @@ const Bookings = () => {
                     </Select></td></td>
                   <td>{item.comments}</td>
                   <td>{moment(item.createdAt).format("YYYY-MM-DD")}</td>
-                  <td>{item.Username}</td>
+                  <td>{item.userName}</td>
                 </tr>
               );
             })}
