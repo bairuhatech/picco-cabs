@@ -247,12 +247,19 @@ export default function OutStation(props: any) {
                 },
               ]}
             >
-              <Input
+              {/* <Input
                 className="form-control border-0  border-bottom rounded-0"
                 defaultValue={`${time}:${minute}`}
                 placeholder="Pick up time"
                 type="time"
-              />
+              /> */}
+                 <input
+              className="form-control border-0 border-bottom rounded-0"
+              placeholder="Pick up time"
+              type="time"
+              name="timeRange"
+              step={600} // 10 minutes in seconds
+            />
             </Form.Item>
           </div>
         </div>

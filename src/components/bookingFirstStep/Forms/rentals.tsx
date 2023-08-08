@@ -55,7 +55,7 @@ export default function Rentals(props: any) {
             <label htmlFor="inputEmail4" className="form-label fw-bold">
               FROM
             </label>
-            <Form.Item name="rentalPlace" rules={[{ required: true, message: "required" }]}>
+            <Form.Item name="rentalPlace" >
               <Input
                 type="text"
                 className="form-control border-0 border-bottom rounded-0"
@@ -93,7 +93,8 @@ export default function Rentals(props: any) {
               <label htmlFor="hours" className="form-label fw-bold">
                 HOURS
               </label>
-              <Form.Item name="hours" rules={[{ required: true, message: "required" }]}>
+              <Form.Item name="hours" >
+              {/* rules={[{ required: true, message: "required" }]} */}
                 <Input
                   type="number"
                   className="form-control border-0 border-bottom rounded-0"
@@ -106,7 +107,7 @@ export default function Rentals(props: any) {
               <label htmlFor="kilometers" className="form-label fw-bold">
                 KILOMETERS
               </label>
-              <Form.Item name="kilometers" rules={[{ required: true, message: "required" }]}>
+              <Form.Item name="kilometers" >
                 <Input
                   type="number"
                   className="form-control border-0 border-bottom rounded-0"

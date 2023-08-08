@@ -7,13 +7,33 @@
   background-size: cover;
   // background-image: url("../../assets/images/book_bg.jpg");
 }
+.cardMain-div2 {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: end;
+  padding: 12px;
+  background-size: cover;
+  background-image: url("../../assets/images/book_bg.jpg");
+}
 .subHeader{
   background-color: #ffff;
   height: 100px;
-  width: auto;
+  width: 80%;
   border-radius: 12px;
   padding: 20px;
   margin-bottom: 12px;
+  display: flex;
+}
+
+.innerHead{
+  // background-color: red;
+  height: 100%;
+  width: 50%;
+  display: flex;
+  
+  align-items: flex-end;
+
 }
 .card-Div {
   width: 30%;
@@ -26,19 +46,22 @@
 }
 .card {
   width: 100%;
-  height: 100%;
+  height: 50%;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px;
   padding: 15px;
 }
 .picco-mini {
   width: 100%;
   height: 20%;
+  margin-bottom: 9px;
+  font-weight: 400;
 }
 .piccoimg-Div {
   width: 100%;
   height: 55%;
   display: flex;
   font-family: "Montserrat", "Poppins", sans-serif;
+  background-color:"pink";
 
   justify-content: end;
 }
@@ -50,21 +73,22 @@
   border-top: solid 1px #c8c8c8;
 }
 .bookingbutton-Div {
-  width: 68%;
+  width: 50%;
   height: 100%;
   display: flex;
   flex-direction: column;
 }
-.price-Div {
-  height: 100%;
-  width: 50%;
-}
+// .price-Div {
+//   height: 100%;
+//   width: 50%;
+// }
 .price-Div {
   height: 100%;
   width: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: row;
 }
 .seatcontent-Div {
   height: 100%;
@@ -105,6 +129,125 @@
   width: 9%;
   height: 5%;
 }
+// .ModifyButton-Div{
+//   width: 40%;
+//   height: 100%;
+//   display: flex;
+//   justify-content: end;
+//   align-items: flex-end;
+//   background-color:#f7fff9;
+// }
+// .PickpDate-Div{
+//   width: 50%;
+//   height: 100%;
+//   // padding: 8px;
+//   display: flex;
+//   justify-content: space-between;
+//   align-items: flex-end;
+// }
+//   // background-color: #f7fff9;
+// // background-color: red;}
+
+// .PickupTime-Div{
+//   height: 100%;
+//   width: 70%;
+//   display: flex;
+//   justify-content: center;
+
+//   align-items: flex-end;
+//   // background-color: aqua;
+// }
+// .subHeader{
+//   background-color: #ffff;
+//   height: 100px;
+//   width: auto;
+//   border-radius: 12px;
+//   padding: 20px;
+//   margin-bottom: 12px;
+//   display: flex;
+// }
+
+// .innerHead{
+//   // background-color: red;
+//   height: 100%;
+//   width: 50%;
+//   display: flex;
+  
+//   align-items: flex-end;
+
+// }
+/* YourComponent.css */
+
+.subHeader {
+  background-color: #ffff;
+  width: auto;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 12px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.innerHead {
+  height: 100%;
+  width: 50%;
+  display: flex;
+  align-items: flex-end;
+}
+
+.ModifyButton-Div {
+  width: 40%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  background-color: #f7fff9;
+}
+
+.PickpDate-Div {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.PickupTime-Div {
+  height: 100%;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.modifyButton {
+  width: 100%;
+  height: 50%;
+  border-radius: 4px;
+  font-weight: 700;
+  border: 2px solid rgb(107, 181, 70);
+  color: rgb(107, 181, 70);
+}
+
+/* Media query for responsiveness */
+@media screen and (max-width: 768px) {
+  .subHeader {
+    flex-direction: column;
+  }
+
+  .innerHead {
+    width:50%;
+    font-size: 10px !important;
+
+  }
+
+  .ModifyButton-Div {
+    width: 100%;
+  }
+  .PickpDate-Div{
+    font-size: 10px !important;
+  }
+}
 
 @media screen and (max-width: 576px) {
   .card-Div {
@@ -144,10 +287,51 @@
   .piccosedanImg {
     width: 38% !important;
   }
+  .modifyButton{
+    width: 55% !important;
+    height: 40% !important;
+  }
+  
 }
 @media screen and (min-width: 577px) and (max-width: 768px) {
   .cardMain-div {
     background-image: none;
     justify-content: center;
   }
+}
+
+
+
+
+
+.Container-Card {
+  width: 100%;
+  height: 540px;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  // padding-bottom: 100px;
+  border-radius: 5px;
+  // box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px;
+}
+.inner-Card {
+  width: 70% !important;
+  height: 120px !important;
+  // box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px;
+  background-color: #ffff;
+  padding: 15px;
+  border: 1px solid #198754;
+  border-radius: 10px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.nameContainer{
+  display: flex;
+  flex-direction: column;
 }

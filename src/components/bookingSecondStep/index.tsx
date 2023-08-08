@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./index.scss";
 import { IoMdArrowRoundBack } from "react-icons/io";
+import { IoNewspaperOutline } from "react-icons/io5";
+import { MdOutlineSevereCold } from "react-icons/md";
 import smallcarimg from "../../assets/images/car_mini_small.png";
 import sedanimg from "../../assets/images/car_sedan_small.png";
 import suvimage from "../../assets/images/car_suv_small.png";
@@ -59,54 +61,127 @@ function BookingForm(props: any) {
 
   return (
     <div>
-      <NavigationBar/>
+      <NavigationBar />
       <div className="cardMain-div">
-        <div className="subHeader">
-anshab
-        </div>
+        {/* <div className="subHeader">
+          <div className="innerHead">
+          {RentPlace || selectedRoute?.place}&nbsp; <b>{RentPlace ? "" : "to"}</b>&nbsp; {RentPlace ? "" : selectedRoute?.location}
+          </div>
+          <div style={{ backgroundColor: "#f7fff9" }} className="innerHead">
+            <div className="PickpDate-Div">
+              Pick Up Date: <br />
+              08-08-2023{" "}
+              <div className="PickupTime-Div">
+              {Package?.label ? "" : "Pickup Time:"} <br/>
+              {timeOfPickup || ""}
+              </div>
+             
+            
+            </div>
+            <div className="ModifyButton-Div">
+              <button
+                style={{
+                  width: "30%",
+                  height: "50%",
+                  borderRadius: "4px",
+                  fontWeight: "700",
+                  border: "2px solid  rgb(107, 181, 70)",
+                  color: " rgb(107, 181, 70)",
+                }}
+              >
+                Modify
+              </button>
+            </div>
+          </div>
+        </div> */}
         {/* {isLoggedIn ? ( */}
         {showBooking != true ? (
-          <div className="card-Div">
-            <div style={{ fontSize: "20px" }} className="selectcar-Div">
-              <IoMdArrowRoundBack
-                onClick={() => window.history.back()}
-                className="Back-arrow"
-              />
-              select a car
+          <div>
+        <div className="subHeader">
+          <div className="innerHead">
+            {RentPlace || selectedRoute?.place}&nbsp;{" "}
+            <b>{RentPlace ? "" : "to"}</b>&nbsp;{" "}
+            {RentPlace ? "" : selectedRoute?.location}
+          </div>
+          <div style={{ backgroundColor: "#f7fff9" }} className="innerHead">
+            <div className="PickpDate-Div">
+              Pick Up Date: <br />
+              08-08-2023{" "}
+              <div className="PickupTime-Div">
+                {Package?.label ? "" : "Pickup Time:"} <br />
+                {timeOfPickup || ""}
+              </div>
             </div>
-            <p>
-              {RentPlace || selectedRoute?.place}
-              &nbsp;<b>{RentPlace ? "" : "to"}</b> &nbsp;
-              {RentPlace ? "" : selectedRoute?.location}
-              <br />
-              <b>{Package?.label ? "Package: " : "Pickup: "}</b>
-              {pack || formattedDate}
-              <b>{Package?.label ? "" : "Time:"}</b>
-              {timeOfPickup || ""}
-            </p>
-            <p></p>
-            <div className="card">
-              <div className="picco-mini"></div>
-              <div className="piccoimg-Div">
-                <img
-                  className="piccominiImg"
-                  style={{ width: "33%", height: "100%" }}
-                  src={smallcarimg}
-                  alt="Picco Mini"
-                />
-
-                <div className="bookingbutton-Div">
-                  <div className="faredetail-Div">
-                    <p
+            <div className="ModifyButton-Div">
+              <button className="modifyButton">Modify</button>
+            </div>
+          </div>
+        </div>
+            <div className="Container-Card">
+              <div className="inner-Card">
+                <div style={{ display: "flex" }}>
+                  <img
+                    className="piccominiImg"
+                    style={{ height: "70px", marginTop: "8px" }}
+                    src={smallcarimg}
+                    alt="Picco Mini"
+                  />
+                  <div className="nameContainer">
+                    <div className="picco-mini">Picco Mini</div>
+                    <div className="picco-mini">info</div>
+                  </div>
+                </div>
+                <div style={{ height: "100%", width: "60%", display: "flex" }}>
+                  <div
+                    style={{
+                      height: "100%",
+                      width: "200px",
+                      display:"flex",
+                      flexDirection:"column",
+                      alignItems:"center",
+                      justifyContent:"center"
+                    }}
+                  >
+                    <div>AC</div>
+                    <div>4 Seat</div>
+                    <div>2 Bag</div>
+                  </div>
+                  <div
+                    style={{
+                      height: "100%",
+                      width: "200px",
+                      display:"flex",
+                      justifyContent:"center",
+                      alignItems:"center",
+                      flexDirection:"column"
+                    }}
+                  >
+                    <div><IoNewspaperOutline size={27} color="green"/></div>
+                    <div>Incl. All Tax</div>
+                  </div>
+                  <div
+                    style={{
+                      height: "100%",
+                      width: "200px",
+                      display: "flex",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <div style={{backgroundColor:""}}>
+                     <p> ₹ <b>{selectedRoute?.rate + 50}</b></p>
+                      <p
                       style={{ cursor: "pointer", color: "#0056b3" }}
                       onClick={() => setIsModalOpen(!isModalOpen)}
                     >
                       Fare details
                     </p>
+                    </div>
                   </div>
+                </div>
+                <div>
                   <div className="button-Div">
                     <button
-                    style={{height:"25px"}}
+                      style={{ height: "40px", width: "150px" }}
                       onClick={() =>
                         isLoggedIn ? setShowBooking(true) : setFormModal(true)
                       }
@@ -117,81 +192,70 @@ anshab
                   </div>
                 </div>
               </div>
-              <div className="seats-Div">
-                <div className="seatcontent-Div">
-                  <span>Ac</span>
-                  <span>6 seat</span>
-                  <span>3 bag</span>
-                </div>
-                <div className="price-Div">₹ {selectedRoute?.rate + 50}</div>
-              </div>
-            </div>
-            <br />
-            <div className="card">
-              <div className="picco-mini">Picco suv</div>
-              <div className="piccoimg-Div">
-                <img
-                  className="piccosuvImg"
-                  style={{ width: "30%", height: "100%" }}
-                  src={suvimage}
-                  alt="Picco SUV"
-                />
-
-                <div className="bookingbutton-Div">
-                  <div className="faredetail-Div">
-                    <p
-                      style={{ color: "#0056b3" }}
-                      onClick={() => setIsModalOpen(!isModalOpen)}
-                    >
-                      Fare details
-                    </p>
-                  </div>
-                  <div className="button-Div">
-                    <button
-                      onClick={() =>
-                        isLoggedIn ? setShowBooking(true) : setFormModal(true)
-                      }
-                      className="button"
-                    >
-                      Book now
-                    </button>
+              <div className="inner-Card">
+                <div style={{ display: "flex" }}>
+                  <img
+                    className="piccominiImg"
+                    style={{ height: "70px", marginTop: "8px" }}
+                    src={sedanimg}
+                    alt="Picco Mini"
+                  />
+                  <div className="nameContainer">
+                    <div className="picco-mini">Picco Suv</div>
+                    <div className="picco-mini">info</div>
                   </div>
                 </div>
-              </div>
-              <div className="seats-Div">
-                <div className="seatcontent-Div">
-                  <span>Ac</span>
-                  <span>4 seat</span>
-                  <span>2 bag</span>
-                </div>
-                <div className="price-Div">₹ {selectedRoute?.rate + 200}</div>
-              </div>
-            </div>
-            <br />
-            <div className="card">
-              <div className="picco-mini">Picco sedan</div>
-              <div className="piccoimg-Div">
-                <img
-                  className="piccosedanImg"
-                  style={{ width: "30%", height: "100%" }}
-                  src={sedanimg}
-                  alt="Picco Sedan"
-                />
-                {isModalOpen && (
-                  <FareModal open={showModal} close={handleCancel} />
-                )}
-
-                <div className="bookingbutton-Div">
-                  <div className="faredetail-Div">
-                    <p
+                <div style={{ height: "100%", width: "60%", display: "flex" }}>
+                  <div
+                    style={{
+                      height: "100%",
+                      width: "200px",
+                      display:"flex",
+                      flexDirection:"column",
+                      alignItems:"center",
+                      justifyContent:"center"
+                    }}
+                  >
+                    <div>AC</div>
+                    <div>4 Seat</div>
+                    <div>2 Bag</div>
+                  </div>
+                  <div
+                    style={{
+                      height: "100%",
+                      width: "200px",
+                      display:"flex",
+                      justifyContent:"center",
+                      alignItems:"center",
+                      flexDirection:"column"
+                    }}
+                  >
+                    <div><IoNewspaperOutline size={27} color="green"/></div>
+                    <div>Incl. All Tax</div>
+                  </div>
+                  <div
+                    style={{
+                      height: "100%",
+                      width: "200px",
+                      display: "flex",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <div style={{backgroundColor:""}}>
+                     <p> ₹ <b>{selectedRoute?.rate + 50}</b></p>
+                      <p
                       style={{ cursor: "pointer", color: "#0056b3" }}
                       onClick={() => setIsModalOpen(!isModalOpen)}
                     >
                       Fare details
                     </p>
+                    </div>
                   </div>
+                </div>
+                <div>
                   <div className="button-Div">
                     <button
+                      style={{ height: "40px", width: "150px" }}
                       onClick={() =>
                         isLoggedIn ? setShowBooking(true) : setFormModal(true)
                       }
@@ -202,22 +266,86 @@ anshab
                   </div>
                 </div>
               </div>
-              {formModal && (
-                <CustomModal isModalOpen={show} handleCancel={Cancel} />
-              )}
-
-              <div className="seats-Div">
-                <div className="seatcontent-Div">
-                  <span>Ac</span>
-                  <span>4 seat</span>
-                  <span>1 bag</span>
+              <div className="inner-Card">
+                <div style={{ display: "flex" }}>
+                  <img
+                    className="piccominiImg"
+                    style={{ height: "70px", marginTop: "8px" }}
+                    src={suvimage}
+                    alt="Picco Mini"
+                  />
+                  <div className="nameContainer">
+                    <div className="picco-mini">Picco Mini</div>
+                    <div className="picco-mini">info</div>
+                  </div>
                 </div>
-                <div className="price-Div">₹ {selectedRoute?.rate + 100}</div>
+                <div style={{ height: "100%", width: "60%", display: "flex" }}>
+                  <div
+                    style={{
+                      height: "100%",
+                      width: "200px",
+                      display:"flex",
+                      flexDirection:"column",
+                      alignItems:"center",
+                      justifyContent:"center"
+                    }}
+                  >
+                    <div>AC</div>
+                    <div>4 Seat</div>
+                    <div>2 Bag</div>
+                  </div>
+                  <div
+                    style={{
+                      height: "100%",
+                      width: "200px",
+                      display:"flex",
+                      justifyContent:"center",
+                      alignItems:"center",
+                      flexDirection:"column"
+                    }}
+                  >
+                    <div><IoNewspaperOutline size={27} color="green"/></div>
+                    <div>Incl. All Tax</div>
+                  </div>
+                  <div
+                    style={{
+                      height: "100%",
+                      width: "200px",
+                      display: "flex",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <div style={{backgroundColor:""}}>
+                     <p> ₹ <b>{selectedRoute?.rate + 50}</b></p>
+                      <p
+                      style={{ cursor: "pointer", color: "#0056b3" }}
+                      onClick={() => setIsModalOpen(!isModalOpen)}
+                    >
+                      Fare details
+                    </p>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <div className="button-Div">
+                    <button
+                      style={{ height: "40px", width: "150px" }}
+                      onClick={() =>
+                        isLoggedIn ? setShowBooking(true) : setFormModal(true)
+                      }
+                      className="button"
+                    >
+                      Book now
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         ) : (
-          <>{showBooking && <BookingThird />}</>
+          <div className="cardMain-div2">
+          {showBooking && <BookingThird />}
+          </div>
         )}
       </div>
       ;

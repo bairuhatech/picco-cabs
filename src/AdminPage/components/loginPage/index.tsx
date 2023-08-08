@@ -61,13 +61,13 @@ const Login = () => {
 
   return (
     <div className="bg-light min-vh-100 d-flex flex-row align-items-center">
-      <CContainer>
-        <CRow className="justify-content-center">
+      <CContainer style={{ height:"400px"} }>
+        <CRow>
           <CCol md={8}>
-            <CCardGroup>
+            <CCardGroup style={{backgroundColor:"#ffff"}}>
               <CCard className="p-4">
-                <CCardBody>
-                  <CForm onSubmit={formSubmitHandler}>
+                <CCardBody style={{height:"100%"}}>
+                  <CForm onSubmit={formSubmitHandler} style={{height:"100%"}}>
                     <p className="text-medium-emphasis" onClick={showStatus}>
                       {isLoggedIn
                         ? "alread logged in"
