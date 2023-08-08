@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Form, Input, Button, message, Spin } from "antd";
+import React, { useState, useEffect } from "react";
+import { Form, Input, Button, message, Spin, Modal } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import smallcarimg from "../../assets/images/car_mini_small.png";
 import "./index.scss";
@@ -7,10 +7,12 @@ import BookingForm from "../bookingSecondStep";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { useLocation } from "react-router-dom";
 import moment from "moment";
+import piccologo from "../../assets/images/logo.png";
 
-const BookingThird = () => {
+const BookingThird = (props: any) => {
   const [show, setShow] = useState(true);
   const [loading, setLoading] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const location = useLocation();
   const {
     pickUpLoc,
@@ -25,6 +27,10 @@ const BookingThird = () => {
     modes,
     modesecond,
   } = location.state;
+
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
 
   const formattedDate = moment(pickUpDate).format("MMMM Do, YYYY");
 
@@ -47,11 +53,11 @@ const BookingThird = () => {
         hours: Package?.hours || 0,
         kms: Package?.kms || 0,
         estimatedAmt: selectedRoute?.rate || 0,
-        phoneNumber:"",
-        userName:"",
-        email:"",
-        driver:"",
-        returnDate:"2023-08-02T12:00:00Z",
+        phoneNumber: "",
+        userName: "",
+        email: "",
+        driver: "",
+        returnDate: "2023-08-02T12:00:00Z",
         rentallPack: 1,
         car: 1,
         comments: values.Comments,
@@ -79,20 +85,24 @@ const BookingThird = () => {
       console.log(">>>>>>>>>>>>>>>>>>>>>{{{{{{{{{{{{{{{{{{{{{{{", data);
       setLoading(false);
       console.log("API Response:", data);
-      message.success("Booking successful!");
+      setIsModalOpen(true);
+      setTimeout(() => {
+        setIsModalOpen(false);
+        window.history.back()
+      }, 2000);
     } catch (error) {
       console.error("API Error:", error);
       setLoading(false);
     }
   };
   let pack =
-  Package?.value === "custom_package" ? (
-    <div>
-      {Package?.hours}Hr&nbsp;{Package?.kms}kms
-    </div>
-  ) : (
-    <div>{Package?.label}</div>
-  );
+    Package?.value === "custom_package" ? (
+      <div>
+        {Package?.hours}Hr&nbsp;{Package?.kms}kms
+      </div>
+    ) : (
+      <div>{Package?.label}</div>
+    );
   return (
     <div>
       {show ? (
@@ -254,6 +264,30 @@ const BookingThird = () => {
       ) : (
         <BookingForm />
       )}
+      {isModalOpen ? (
+        <Modal
+          title="Basic Modal"
+          open={isModalOpen}
+          onOk={handleOk}
+          closable={false}
+          style={{ maxWidth: "25%" }}
+        >
+          <div
+            style={{
+              width: "100%",
+              height: "200px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              flexDirection: "column",
+              paddingBottom: "20px",
+            }}
+          >
+            <img src={piccologo} style={{ width: "50%", height: "200px" }} />
+            <h6>Booking Successfully.</h6>
+          </div>
+        </Modal>
+      ) : null}
     </div>
   );
 };
