@@ -189,6 +189,186 @@
 
 // export default CustomModal;
 
+// import React, { useState, useEffect } from "react";
+// import { Modal, Input, message } from "antd";
+// import piccocabsimg from "../../assets/images/logo.png";
+// import { InputGroup, Form } from "react-bootstrap";
+// import "./index.scss";
+// import Button from "./components/button";
+// import { auth } from "../../config/firebase";
+// import { useDispatch, useSelector } from "react-redux";
+// import { bookingLogin } from "../../store/loginSlice";
+// import { getAuth, onAuthStateChanged } from "firebase/auth";
+// import {
+//   RecaptchaVerifier,
+//   signInWithPhoneNumber,
+//   signOut,
+// } from "firebase/auth";
+// const CustomModal = (props: any) => {
+//   const [otp, setOtp] = useState("");
+
+//   const [phoneNumber, setPhoneNumber] = useState("");
+//   const [error, setError] = useState(false);
+//   const [otpInput, setOtpInput] = useState(false);
+//   const [user, setUser] = useState<any>();
+//   const [messageApi, contextHolder] = message.useMessage();
+//   const dispatch = useDispatch();
+
+//   // const isLoggedIn = useSelector((state: any) => state.auth.isLoggedIn);
+//   onAuthStateChanged(auth, (user) => {
+//     if (user) {
+//       console.log("User details:", user);
+//     } else {
+//       console.log("No user is signed in.");
+//     }
+//   });
+
+//   const sendOtp = async () => {
+//     if (phoneNumber.length === 0) {
+//       setError(true);
+//     } else if (phoneNumber.length === 12) {
+//       setError(false);
+//       setOtpInput(true);
+//     } else {
+//       setError(true);
+//     }
+//     try {
+//       let recaptchaVerifier = await new RecaptchaVerifier(auth, "recaptcha", {
+//         size: "invisible",
+//       });
+//       let confirmation: any = await signInWithPhoneNumber(
+//         auth,
+//         phoneNumber,
+//         recaptchaVerifier
+//       );
+//       console.log(confirmation);
+//       setOtpInput(true);
+//       setUser(confirmation);
+//     } catch (err) {
+//       console.log(err);
+//     }
+//   };
+
+//   const verifyOtp = async () => {
+//     try {
+//       if (await user.confirm(otp)) {
+//         alert("login successfully");
+//         dispatch(bookingLogin(user));
+//       }
+//     } catch (err: any) {
+//       console.log("Error Otp", err);
+//       alert("invalid otp");
+//     }
+//   };
+
+//   return (
+//     <>
+//       <Modal open={props.isModalOpen} onCancel={props.handleCancel}>
+//         <div>
+//           <div className="piccocabsmodal_Maindiv">
+//             <div className="piccocabsmodal_Maindiv2">
+//               <div>
+//                 <div className="piccocabsimg-Div">
+//                   <img
+//                     className="piccocabsimg otp"
+//                     src={piccocabsimg}
+//                     alt="Logo"
+//                   />
+//                 </div>
+//               </div>
+//               <div className="piccocab-text-loginwithotp-Div">
+//                 <h1 className="login-with-otp">Login with OTP</h1>
+//               </div>
+//               <br />
+//               {otpInput ? (
+//                 <div className="piccocabsotpinputfield-Div">
+//                   <div
+//                     style={{
+//                       width: "70%",
+//                       height: "30px",
+//                       display: "contents",
+//                     }}
+//                   >
+//                     <p
+//                       style={{ cursor: "pointer" }}
+//                       onClick={() => setOtpInput(false)}
+//                     >
+//                       OPT send to {phoneNumber}
+//                     </p>
+//                   </div>
+//                   <InputGroup style={{ width: "70%" }}>
+//                     <InputGroup.Text className="piccocabsinputfield">
+//                       OTP
+//                     </InputGroup.Text>
+//                     <Form.Control
+//                       className="input-otpfield"
+//                       placeholder="Enter OTP"
+//                       type="number"
+//                       style={{ backgroundColor: "#e9ecef" }}
+//                       onChange={(e: any) => setOtp(e.target.value)}
+//                     />
+//                   </InputGroup>
+//                   <br />
+
+//                   <Button text="Submit" onClick={verifyOtp} />
+//                   <span style={{ cursor: "pointer" }}>Resend</span>
+//                 </div>
+//               ) : (
+//                 <div className="piccocab-inputfield-Div">
+//                   <InputGroup style={{ width: "70%" }}>
+//                     <InputGroup.Text className="piccocabsinputfield">
+//                       +91
+//                     </InputGroup.Text>
+
+//                     <Input
+//                       className="form-control"
+//                       type="number"
+//                       defaultValue={phoneNumber}
+//                       placeholder="Enter your mobile number"
+//                       style={{ backgroundColor: "#e9ecef" }}
+//                       onChange={(e: any) =>
+//                         setPhoneNumber(`+91 ${e.target.value}`)
+//                       }
+//                     />
+//                   </InputGroup>
+//                 </div>
+//               )}
+
+//               <br />
+//               {!otpInput && (
+//                 <div className="piccocabssendotp-input">
+//                   <Button
+//                     className="piccocabssendotp-button"
+//                     text="Send OTP"
+//                     onClick={sendOtp}
+//                   />
+//                   <div id="recaptcha"></div>
+//                   {error && (
+//                     <p className="piccocabserrornotification">
+//                       OTP Sended Succesfully
+//                     </p>
+//                   )}
+//                 </div>
+//               )}
+//               <br />
+//               <div className="piccocabsfootertxt-Div">
+//                 <div className="piccocabsfootertxt">
+//                   <p>
+//                     We will send you a One Time Password (OTP) on your
+//                     registered mobile number to login.
+//                   </p>
+//                 </div>
+//               </div>
+//             </div>
+//           </div>
+//         </div>
+//       </Modal>
+//     </>
+//   );
+// };
+
+// export default CustomModal;
+
 import React, { useState, useEffect } from "react";
 import { Modal, Input, message } from "antd";
 import piccocabsimg from "../../assets/images/logo.png";
@@ -207,7 +387,9 @@ import {
 const CustomModal = (props: any) => {
   const [otp, setOtp] = useState("");
 
-  const [phoneNumber, setPhoneNumber] = useState("");
+  const [phonenumber, setPhonenumber] = useState("");
+  const [name, setName] = useState("");
+  const [mail, setMail] = useState(" ");
   const [error, setError] = useState(false);
   const [otpInput, setOtpInput] = useState(false);
   const [user, setUser] = useState<any>();
@@ -224,9 +406,9 @@ const CustomModal = (props: any) => {
   });
 
   const sendOtp = async () => {
-    if (phoneNumber.length === 0) {
+    if (phonenumber.length === 0) {
       setError(true);
-    } else if (phoneNumber.length === 12) {
+    } else if (phonenumber.length === 12) {
       setError(false);
       setOtpInput(true);
     } else {
@@ -238,7 +420,7 @@ const CustomModal = (props: any) => {
       });
       let confirmation: any = await signInWithPhoneNumber(
         auth,
-        phoneNumber,
+        phonenumber,
         recaptchaVerifier
       );
       console.log(confirmation);
@@ -246,6 +428,35 @@ const CustomModal = (props: any) => {
       setUser(confirmation);
     } catch (err) {
       console.log(err);
+    }
+  };
+
+  const postNumber = async () => {
+    try {
+      const reqBody = {
+        id: 0,
+        name: name,
+        email: mail,
+        phoneNumber: phonenumber, 
+      };
+      console.log("Request Body:", reqBody);
+
+      const response = await fetch(
+        "https://piccocabs-server-46642b82a774.herokuapp.com/User",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(reqBody),
+        }
+      );
+
+      const data = await response.json();
+      console.log("API Response:", data);
+      message.success("Booking successful!");
+    } catch (error) {
+      console.error("API Error:", error);
     }
   };
 
@@ -293,7 +504,7 @@ const CustomModal = (props: any) => {
                       style={{ cursor: "pointer" }}
                       onClick={() => setOtpInput(false)}
                     >
-                      OPT send to {phoneNumber}
+                      OPT send to {phonenumber}
                     </p>
                   </div>
                   <InputGroup style={{ width: "70%" }}>
@@ -323,12 +534,33 @@ const CustomModal = (props: any) => {
                     <Input
                       className="form-control"
                       type="number"
-                      defaultValue={phoneNumber}
+                      defaultValue={phonenumber}
                       placeholder="Enter your mobile number"
                       style={{ backgroundColor: "#e9ecef" }}
                       onChange={(e: any) =>
-                        setPhoneNumber(`+91 ${e.target.value}`)
+                        setPhonenumber(`+91 ${e.target.value}`)
                       }
+                    />
+                  </InputGroup>
+                  <br />
+                  <InputGroup style={{ width: "70%" }}>
+                    <Input
+                      className="form-control"
+                      type="text"
+                      defaultValue={name}
+                      placeholder="Enter Your Name"
+                      style={{ backgroundColor: "#e9ecef" }}
+                      onChange={(e: any) => setName(e.target.value)}
+                    />
+                  </InputGroup>
+                  <br />
+                  <InputGroup style={{ width: "70%" }}>
+                    <Input
+                      className="form-control"
+                      type="text"
+                      placeholder="Enter Your Mail"
+                      style={{ backgroundColor: "#e9ecef" }}
+                      onChange={(e: any) => setMail(e.target.value)}
                     />
                   </InputGroup>
                 </div>
@@ -340,7 +572,10 @@ const CustomModal = (props: any) => {
                   <Button
                     className="piccocabssendotp-button"
                     text="Send OTP"
-                    onClick={sendOtp}
+                    onClick={() => {
+                      sendOtp();
+                      postNumber();
+                    }}
                   />
                   <div id="recaptcha"></div>
                   {error && (

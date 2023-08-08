@@ -1,42 +1,31 @@
 import { useEffect, useState } from "react";
 import { message } from "antd";
 import API from "../../../config/api";
+import axios from "axios";
+import moment from "moment";
+
 
 const Users = () => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [userdata, setUserdata] = useState([]);
+  const [data, setData] = useState<any>([]);
 
   useEffect(() => {
-    getAllUser();
+    fetchData();
   }, []);
 
-  const getAllUser = async () => {
-    setIsLoading(true);
-    let url = API.BASE_URL + API.getAllUser;
-    const option = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({}),
-    };
+  console.log("dataaaa vannooo",fetchData)
+
+  async function fetchData() {
     try {
-      const response = await fetch(url, option);
-      if (response.status === 200) {
-        const data = await response.json();
-        console.log(data.results, "====================>>>>datadatadata");
-        setUserdata(data.results);
-        message.success("success");
-        setIsLoading(false);
-      } else {
-        setIsLoading(false);
-        message.error("something is  wrong !");
-      }
+      const response = await axios.get(
+        "https://piccocabs-server-46642b82a774.herokuapp.com/User/get"
+      );
+      setData(response.data);
     } catch (error) {
-      setIsLoading(false);
-      message.error("something is went wrong !");
+      console.error("Error:", error);
     }
-  };
+  }
+
+
   return (
     <div className="table-responsive w-100">
       <h2 className="py-3 ps-2">Users</h2>
@@ -51,13 +40,13 @@ const Users = () => {
           </tr>
         </thead>
         <tbody>
-          {userdata.map((item: any, index: any) => (
+          {data.map((item: any, index: any) => (
             <tr key={item.id}>
               <td>{index + 1}</td>
               <td>{item.name}</td>
               <td>{item.phoneNumber}</td>
               <td>{item.email}</td>
-              <td>{item.createdAt}</td>
+              <td>{moment(item.createdAt).format('MMMM Do YYYY')}</td>
             </tr>
           ))}
         </tbody>
