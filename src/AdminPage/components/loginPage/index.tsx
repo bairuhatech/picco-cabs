@@ -37,7 +37,7 @@ const Login = () => {
     event.preventDefault();
     if (!formData.user_name || !formData.password) {
       alert("please enter valid input");
-    } else if (formData.user_name && formData.password === "12345") {
+    } else if (formData.user_name === "Picco123" && formData.password === "12345") {
       dispatch(userLogin(formData));
       navigate("/adminpanel");
       setFormData({ user_name: "", password: "" });

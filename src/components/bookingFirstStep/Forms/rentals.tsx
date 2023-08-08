@@ -18,28 +18,26 @@ export default function Rentals(props: any) {
     { value: "six_hour", label: "6 Hr(60Km)", hours: 6, kms: 200 },
     { value: "eight_hour", label: "8 Hr(80Km)", hours: 8, kms: 40 },
     { value: "ten_hour", label: "10 Hr(100Km)", hours: 10, kms: 800 },
-    { value: "custom_package", label: "Customize your own Package" },
+    { value: "custom_package", label: "Custom Package" },
   ]);
 
   const handleFromChange = (value: any) => {
     console.log("Selected value:", value);
-    const packageDetails: any = packages.find(
-      (pkg: any) => pkg.value === value
-    );
-
+    const packageDetails: any = packages.find((pkg: any) => pkg.value === value);
+    
     setSelectedPackage(packageDetails);
   };
-
   const onFinish = async (val: any) => {
-    // const { user_from, user_to, dateRange, timeRange } = val;
-
     const Package = selectedPackage;
-    // const timeOfPickup = timeRange;
+  
+    if (selectedPackage && selectedPackage.value === "custom_package") {
+      Package.hours = val.hours;
+      Package.kms = val.kilometers;
+    }
+  
     const modesecond = props.types;
-
     const RentPlace = val.rentalPlace;
-    console.log("enteringggggggggggggggggg", RentPlace);
-    console.log(modesecond);
+  
     navigate("/bookingSecondStep", {
       state: {
         Package,
@@ -51,14 +49,13 @@ export default function Rentals(props: any) {
 
   return (
     <div className="mt-3">
-      {/* <form action=""> */}
       <Form form={form} onFinish={onFinish}>
         <div className="row mx-0 gy-3">
           <div className="col-md-6 col-12">
             <label htmlFor="inputEmail4" className="form-label fw-bold">
               FROM
             </label>
-            <Form.Item name="rentalPlace">
+            <Form.Item name="rentalPlace" rules={[{ required: true, message: "required" }]}>
               <Input
                 type="text"
                 className="form-control border-0 border-bottom rounded-0"
@@ -68,7 +65,7 @@ export default function Rentals(props: any) {
             </Form.Item>
           </div>
           <div className="col-md-6 col-12">
-            <Form.Item name="place">
+            <Form.Item name="place" >
               <label htmlFor="inputState" className="form-label fw-bold">
                 SELECT PACKAGE
               </label>
@@ -90,10 +87,45 @@ export default function Rentals(props: any) {
             </Form.Item>
           </div>
         </div>
+        {selectedPackage && selectedPackage.value === "custom_package" && (
+          <div className="row mx-0 gy-3">
+            <div className="col-md-6 col-12">
+              <label htmlFor="hours" className="form-label fw-bold">
+                HOURS
+              </label>
+              <Form.Item name="hours" rules={[{ required: true, message: "required" }]}>
+                <Input
+                  type="number"
+                  className="form-control border-0 border-bottom rounded-0"
+                  placeholder="Enter hours"
+                  aria-label="Hours"
+                />
+              </Form.Item>
+            </div>
+            <div className="col-md-6 col-12">
+              <label htmlFor="kilometers" className="form-label fw-bold">
+                KILOMETERS
+              </label>
+              <Form.Item name="kilometers" rules={[{ required: true, message: "required" }]}>
+                <Input
+                  type="number"
+                  className="form-control border-0 border-bottom rounded-0"
+                  placeholder="Enter kilometers"
+                  aria-label="Kilometers"
+                />
+              </Form.Item>
+            </div>
+          </div>
+        )}
         <div className="d-flex justify-content-center position-relative">
-         <Form.Item
-            style={{ width: "100%", display: "flex", justifyContent: "center", position: "absolute", }}
-          >
+          <Form.Item
+            style={{
+              width: "100%",
+              display: "flex",
+              justifyContent: "center",
+              position: "absolute",
+            }}
+            >
             <Button
               style={{
                 position: "absolute",
@@ -107,11 +139,21 @@ export default function Rentals(props: any) {
                 outline: "none",
                 border: "none",
               }}
-             htmlType={"submit"}>Explore Cabs</Button>
+              htmlType="submit"
+            >
+              Explore Cabs
+            </Button>
           </Form.Item>
         </div>
       </Form>
-      {/* </form> */}
     </div>
   );
 }
+  // const handleFromChange = (value: any) => {
+  //   console.log("Selected value:", value);
+  //   const packageDetails: any = packages.find(
+  //     (pkg: any) => pkg.value === value
+  //   );
+
+  //   setSelectedPackage(packageDetails);
+  // };

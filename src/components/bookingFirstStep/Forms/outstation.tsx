@@ -60,7 +60,7 @@ export default function OutStation(props: any) {
         "https://piccocabs-server-46642b82a774.herokuapp.com/Pickuplocation/location"
       );
       setData(response.data);
-      let listingData = filterUniqueNames(response.data);
+      let listingData = filterUniqueNames(response.data,"place");
       setFilteredOptions(listingData);
       console.log(response.data);
     } catch (error) {
@@ -80,11 +80,11 @@ export default function OutStation(props: any) {
     );
     setFilteredOptions(filteredData);
   };
-  const filterUniqueNames = (arr: any) => {
+  const filterUniqueNames = (arr: any,contiton:any) => {
     const uniqueNames: any = {};
     return arr.filter((item: any) => {
-      if (!uniqueNames[item.place]) {
-        uniqueNames[item.place] = true;
+      if (!uniqueNames[item[contiton]]) {
+        uniqueNames[item[contiton]] = true;
         return true;
       }
       return false;
@@ -92,12 +92,18 @@ export default function OutStation(props: any) {
   };
   const handleFromChange = (newValue: any) => {
     let toPlaces = data.filter((item: any) => item.place === newValue);
-
-    setToPlace(toPlaces);
+    let toListing = filterUniqueNames(toPlaces,"location");
+    setToPlace(toListing);
   };
   const handleToChange = (id: any) => {
     let route = data.find((item: any) => item.id === id);
     setSelectedRoute(route);
+  };
+  const handleToSearch = (newValue: string) => {
+    let filteredData = toPlace.filter((d: any) =>
+      d.place.toLowerCase().includes(newValue.toLowerCase())
+    );
+    setToPlace(filteredData);
   };
 
   return (
@@ -108,19 +114,17 @@ export default function OutStation(props: any) {
             <div>
               <label>
                 <Checkbox
-                  style={{ color: "#68af44", accentColor: "#68af44" }}
                   checked={tripType === "oneWay"}
                   onChange={() => setTripType("oneWay")}
                 />
-                One Way
+                &nbsp; One Way
               </label>
               <label style={{ marginLeft: "10px" }}>
                 <Checkbox
-                  style={{ color: "#68af44" }}
                   checked={tripType === "roundTrip"}
                   onChange={() => setTripType("roundTrip")}
                 />
-                Round Trip
+                &nbsp;Round Trip
               </label>
             </div>
           </div>
@@ -178,6 +182,7 @@ export default function OutStation(props: any) {
                 defaultActiveFirstOption={false}
                 suffixIcon={null}
                 filterOption={false}
+                onSearch={handleToSearch}
                 onChange={handleToChange}
                 notFoundContent={null}
                 options={toPlace.map((item: any) => ({

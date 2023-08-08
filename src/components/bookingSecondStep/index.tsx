@@ -11,6 +11,7 @@ import CustomModal from "../loginForm/index";
 import { useSelector } from "react-redux";
 import BookingThird from "../BookingThirdStep";
 import moment from "moment";
+import NavigationBar from "../navBar";
 
 function BookingForm(props: any) {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -47,10 +48,22 @@ function BookingForm(props: any) {
     setFormModal(false);
   };
   const formattedDate = moment(pickUpDate).format("MMMM Do, YYYY");
+  let pack =
+    Package?.value === "custom_package" ? (
+      <div>
+        {Package?.hours}Hr&nbsp;{Package?.kms}kms
+      </div>
+    ) : (
+      <div>{Package?.label}</div>
+    );
 
   return (
     <div>
+      <NavigationBar/>
       <div className="cardMain-div">
+        <div className="subHeader">
+anshab
+        </div>
         {/* {isLoggedIn ? ( */}
         {showBooking != true ? (
           <div className="card-Div">
@@ -67,7 +80,7 @@ function BookingForm(props: any) {
               {RentPlace ? "" : selectedRoute?.location}
               <br />
               <b>{Package?.label ? "Package: " : "Pickup: "}</b>
-              {Package?.label || formattedDate}
+              {pack || formattedDate}
               <b>{Package?.label ? "" : "Time:"}</b>
               {timeOfPickup || ""}
             </p>
@@ -93,6 +106,7 @@ function BookingForm(props: any) {
                   </div>
                   <div className="button-Div">
                     <button
+                    style={{height:"25px"}}
                       onClick={() =>
                         isLoggedIn ? setShowBooking(true) : setFormModal(true)
                       }

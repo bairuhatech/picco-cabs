@@ -48,3 +48,11 @@ code {
 .ant-select-selection-search-input{
   outline: none !important;
 }
+.ant-checkbox-checked .ant-checkbox-inner {
+  background-color: #198754;
+  border-color: #198754;
+}
+.ant-checkbox-checked .ant-checkbox-inner:hover {
+  background-color: #198754 !important;
+  border-color: #198754 !important;
+}

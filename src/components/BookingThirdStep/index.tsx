@@ -47,6 +47,11 @@ const BookingThird = () => {
         hours: Package?.hours || 0,
         kms: Package?.kms || 0,
         estimatedAmt: selectedRoute?.rate || 0,
+        phoneNumber:"",
+        userName:"",
+        email:"",
+        driver:"",
+        returnDate:"2023-08-02T12:00:00Z",
         rentallPack: 1,
         car: 1,
         comments: values.Comments,
@@ -80,6 +85,14 @@ const BookingThird = () => {
       setLoading(false);
     }
   };
+  let pack =
+  Package?.value === "custom_package" ? (
+    <div>
+      {Package?.hours}Hr&nbsp;{Package?.kms}kms
+    </div>
+  ) : (
+    <div>{Package?.label}</div>
+  );
   return (
     <div>
       {show ? (
@@ -100,7 +113,7 @@ const BookingThird = () => {
                   {RentPlace ? "" : selectedRoute?.location}
                   <br />
                   <b>{Package?.label ? "Package: " : "Pickup: "}</b>
-                  {Package?.label || formattedDate}
+                  {pack || formattedDate}
                   <b>{Package?.label ? "" : "Time:"}</b>
                   {timeOfPickup || ""}
                 </p>

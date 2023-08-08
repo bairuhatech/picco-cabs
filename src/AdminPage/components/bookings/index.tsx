@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Spin, message } from "antd";
+import { Spin, message,Select } from "antd";
 import API from "../../../config/api";
+import './index.scss'
+import moment from "moment";
 
 const Bookings = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [bookingData, setBookingData] = useState([]);
-
   useEffect(() => {
     getAllBookings();
   }, []);
@@ -18,7 +19,8 @@ const Bookings = () => {
       headers: {
         "Content-Type": "application/json",
       },
-    };
+    }; 
+
     try {
       const response = await fetch(url, options);
       console.log(
@@ -77,7 +79,7 @@ const Bookings = () => {
               <th scope="Col">Driver</th>
               <th scope="col">Hrs</th>
               <th scope="col">Kms</th>
-              <th scope="col">Estimated Amount</th>
+              <th scope="col">Est. Amount</th>
               <th scope="col">Pack</th>
               <th scope="col">Car</th>
               <th scope="col">Comments</th>
@@ -91,19 +93,31 @@ const Bookings = () => {
               return (
                 <tr key={item.id}>
                   <th scope="row">{item.id}</th>
-                  <td>{item.status}</td>
+                  <td><Select style={{width:"130px"}} defaultValue={"Select Status"}>
+                    <Select.Option>Pending</Select.Option>
+                    <Select.Option>Success</Select.Option>
+                    <Select.Option>Cancel</Select.Option>
+                    </Select></td>
                   <td>{item.bookType}</td>
                   <td>{item.tripStatus}</td>
                   <td>{item.pickUpLoc}</td>
                   <td>{item.dropOffLoc}</td>
-                  <td>{item.Driver}</td>
+                  <td><Select style={{width:"130px"}} defaultValue={"Select Driver"}>
+                    <Select.Option>driver 1</Select.Option>
+                    <Select.Option>driver 2</Select.Option>
+                    <Select.Option>driver 3</Select.Option>
+                    </Select></td>
                   <td>{item.hours}</td>
                   <td>{item.kms}</td>
                   <td>{item.estimatedAmt}</td>
                   <td>{item.rentallPack}</td>
-                  <td>{item.car}</td>
+                  <td><td><Select style={{width:"130px"}} defaultValue={"Select Car"}>
+                    <Select.Option>SEDAN</Select.Option>
+                    <Select.Option>SUV</Select.Option>
+                    <Select.Option>MINI</Select.Option>
+                    </Select></td></td>
                   <td>{item.comments}</td>
-                  <td>{item.createdAt}</td>
+                  <td>{moment(item.createdAt).format("YYYY-MM-DD")}</td>
                   <td>{item.Username}</td>
                 </tr>
               );
