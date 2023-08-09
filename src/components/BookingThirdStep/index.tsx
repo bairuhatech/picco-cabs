@@ -58,7 +58,7 @@ const BookingThird = (props: any) => {
         estimatedAmt: selectedRoute?.rate || 0,
         returnDate:"2023-08-02T12:00:00Z",
         rentallPack: 1,
-        car: 1,
+        car: "",
         comments: values.Comments,
         userName: values.name,
         phoneNumber: values.phone,

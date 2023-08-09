@@ -1,14 +1,24 @@
 import React, { useEffect, useState } from "react";
-import { Spin, message,Select } from "antd";
+import { Spin, message, Select } from "antd";
 import API from "../../../config/api";
-import './index.scss'
+import "./index.scss";
+import axios from "axios";
 import moment from "moment";
 
 const Bookings = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [bookingData, setBookingData] = useState([]);
+  const [data, setData] = useState<any>([]);
+  const [selectedStatus, setSelectedStatus] = useState("Pending");
+  const [selectedCarType, setSelectedCarType] = useState("");
+
+  const handleStatusChange = (value: any) => {
+    setSelectedStatus(value);
+  };
+
   useEffect(() => {
     getAllBookings();
+    fetchData();
   }, []);
 
   const getAllBookings = async () => {
@@ -19,18 +29,13 @@ const Bookings = () => {
       headers: {
         "Content-Type": "application/json",
       },
-    }; 
+    };
 
     try {
       const response = await fetch(url, options);
-      console.log(
-        "==============data ethiiii========================",
-        response
-      );
       if (response.status === 200) {
         const data = await response.json();
         setIsLoading(false);
-        console.log("Data ---> ", data);
         setBookingData(data);
         message.success("Success");
       } else {
@@ -42,7 +47,62 @@ const Bookings = () => {
       message.success("Something went wrong !");
     }
   };
-  // console.log(bookingData, "response==========================<<<<<>>>>");
+
+  async function fetchData() {
+    try {
+      const response = await axios.get(
+        "https://piccocabs-server-46642b82a774.herokuapp.com/Driver/location"
+      );
+      setData(response.data);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  }
+
+  const handleCarTypeChange = async (value: any, index: number) => {
+    let updatingItem: any = bookingData[index];
+    updatingItem.car = value;
+    updatingItem.driver = value;
+    let reqBody = { ...updatingItem };
+    delete reqBody.id;
+    if (value) {
+      try {
+        const response = await axios.put(
+          "https://piccocabs-server-46642b82a774.herokuapp.com/Booking/" +
+            updatingItem.id +
+            "",
+          reqBody
+        );
+
+        console.log("Response:", response.data);
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    }
+  };
+
+
+
+  const handleDriverTypeChange = async (value: any, index: number) => {
+    let updatingDriver: any = bookingData[index];
+    updatingDriver.driver = value;
+    let reqBody = { ...updatingDriver };
+    delete reqBody.id;
+    if (value) {
+      try {
+        const response = await axios.put(
+          "https://piccocabs-server-46642b82a774.herokuapp.com/Booking/" +
+          updatingDriver.id +
+            "",
+          reqBody
+        );
+
+        console.log("Response:", response.data);
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    }
+  };
 
   return (
     <div className="table-responsive" style={{ height: "100%" }}>
@@ -58,13 +118,6 @@ const Bookings = () => {
           }}
         >
           <Spin size="large" style={{ color: "red" }} />
-          {/* <br />
-          <br />
-          <Spin size="large" style={{ color: "red" }} />
-          <br />
-          <br />
-
-          <Spin size="large" style={{ color: "red" }} /> */}
         </div>
       ) : (
         <table className="table table-striped align-self-start table-hover">
@@ -88,34 +141,52 @@ const Bookings = () => {
             </tr>
           </thead>
           <tbody>
-            {bookingData?.reverse().map((item: any) => {
-              console.log("=========ooooooooooooo", bookingData);
+            {bookingData?.reverse().map((item: any, index: number) => {
               return (
                 <tr key={item.id}>
                   <th scope="row">{item.id}</th>
-                  <td><Select style={{width:"130px"}} defaultValue={"Select Status"}>
-                    <Select.Option>Pending</Select.Option>
-                    <Select.Option>Success</Select.Option>
-                    <Select.Option>Cancel</Select.Option>
-                    </Select></td>
+                  <td>
+                    <Select
+                      style={{ width: "130px" }}
+                      defaultValue={selectedStatus}
+                      onChange={handleStatusChange}
+                    >
+                      <Select.Option value="Pending">Pending</Select.Option>
+                      <Select.Option value="Success">Success</Select.Option>
+                      <Select.Option value="Cancel">Cancel</Select.Option>
+                    </Select>
+                  </td>
                   <td>{item.bookType}</td>
                   <td>{item.tripStatus}</td>
                   <td>{item.pickUpLoc}</td>
                   <td>{item.dropOffLoc}</td>
-                  <td><Select style={{width:"130px"}} defaultValue={"Select Driver"}>
-                    <Select.Option>driver 1</Select.Option>
-                    <Select.Option>driver 2</Select.Option>
-                    <Select.Option>driver 3</Select.Option>
-                    </Select></td>
+                  <td>
+                    <Select
+                      style={{ width: "130px" }}
+                      defaultValue={item.driver}
+                      onChange={(value) => handleDriverTypeChange(value, index)}
+                      options={data.map((item: any) => ({
+                        label: item.DriverName,
+                        value: item.DriverName,
+                      }))}
+                    />
+                  </td>
+
                   <td>{item.hours}</td>
                   <td>{item.kms}</td>
                   <td>{item.estimatedAmt}</td>
                   <td>{item.rentallPack}</td>
-                  <td><td><Select style={{width:"130px"}} defaultValue={"Select Car"}>
-                    <Select.Option>SEDAN</Select.Option>
-                    <Select.Option>SUV</Select.Option>
-                    <Select.Option>MINI</Select.Option>
-                    </Select></td></td>
+                  <td>
+                    <Select
+                      style={{ width: "130px" }}
+                      defaultValue={item.car}
+                      onChange={(val) => handleCarTypeChange(val, index)}
+                      options={data.map((item: any) => ({
+                        label: item.CarType,
+                        value: item.CarType,
+                      }))}
+                    />
+                  </td>
                   <td>{item.comments}</td>
                   <td>{moment(item.createdAt).format("YYYY-MM-DD")}</td>
                   <td>{item.userName}</td>
