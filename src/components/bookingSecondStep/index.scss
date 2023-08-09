@@ -16,7 +16,7 @@
   background-size: cover;
   background-image: url("../../assets/images/book_bg.jpg");
 }
-.subHeader{
+.subHeader {
   background-color: #ffff;
   height: 100px;
   width: 80%;
@@ -26,14 +26,13 @@
   display: flex;
 }
 
-.innerHead{
+.innerHead {
   // background-color: red;
   height: 100%;
   width: 50%;
   display: flex;
-  
-  align-items: flex-end;
 
+  align-items: flex-end;
 }
 .card-Div {
   width: 30%;
@@ -54,14 +53,23 @@
   width: 100%;
   height: 20%;
   margin-bottom: 9px;
+  font-weight: 700;
+}
+.piccomini-info {
+  width: 75%;
+  height: 41%;
+  margin-bottom: 9px;
   font-weight: 400;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .piccoimg-Div {
   width: 100%;
   height: 55%;
   display: flex;
   font-family: "Montserrat", "Poppins", sans-serif;
-  background-color:"pink";
+  background-color: "pink";
 
   justify-content: end;
 }
@@ -108,7 +116,7 @@
 }
 .button-Div {
   height: 100%;
-  width: 100%;
+  width: 20%;
   display: flex;
   justify-content: end;
   border-radius: 8px;
@@ -129,55 +137,9 @@
   width: 9%;
   height: 5%;
 }
-// .ModifyButton-Div{
-//   width: 40%;
-//   height: 100%;
-//   display: flex;
-//   justify-content: end;
-//   align-items: flex-end;
-//   background-color:#f7fff9;
-// }
-// .PickpDate-Div{
-//   width: 50%;
-//   height: 100%;
-//   // padding: 8px;
-//   display: flex;
-//   justify-content: space-between;
-//   align-items: flex-end;
-// }
-//   // background-color: #f7fff9;
-// // background-color: red;}
-
-// .PickupTime-Div{
-//   height: 100%;
-//   width: 70%;
-//   display: flex;
-//   justify-content: center;
-
-//   align-items: flex-end;
-//   // background-color: aqua;
-// }
-// .subHeader{
-//   background-color: #ffff;
-//   height: 100px;
-//   width: auto;
-//   border-radius: 12px;
-//   padding: 20px;
-//   margin-bottom: 12px;
-//   display: flex;
-// }
-
-// .innerHead{
-//   // background-color: red;
-//   height: 100%;
-//   width: 50%;
-//   display: flex;
-  
-//   align-items: flex-end;
-
-// }
-/* YourComponent.css */
-
+.piccocartext-font {
+  font-weight: 500;
+}
 .subHeader {
   background-color: #ffff;
   width: auto;
@@ -186,6 +148,7 @@
   margin-bottom: 12px;
   display: flex;
   flex-wrap: wrap;
+  margin-top: 15px;
 }
 
 .innerHead {
@@ -196,7 +159,7 @@
 }
 
 .ModifyButton-Div {
-  width: 40%;
+  width: 15%;
   height: 100%;
   display: flex;
   justify-content: flex-end;
@@ -210,6 +173,7 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+  font-weight: 600;
 }
 
 .PickupTime-Div {
@@ -236,15 +200,14 @@
   }
 
   .innerHead {
-    width:50%;
+    width: 50%;
     font-size: 10px !important;
-
   }
 
   .ModifyButton-Div {
     width: 100%;
   }
-  .PickpDate-Div{
+  .PickpDate-Div {
     font-size: 10px !important;
   }
 }
@@ -287,11 +250,10 @@
   .piccosedanImg {
     width: 38% !important;
   }
-  .modifyButton{
+  .modifyButton {
     width: 55% !important;
     height: 40% !important;
   }
-  
 }
 @media screen and (min-width: 577px) and (max-width: 768px) {
   .cardMain-div {
@@ -299,10 +261,6 @@
     justify-content: center;
   }
 }
-
-
-
-
 
 .Container-Card {
   width: 100%;
@@ -317,7 +275,6 @@
   // box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px;
 }
 .inner-Card {
-  width: 70% !important;
   height: 120px !important;
   // box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px;
   background-color: #ffff;
@@ -328,10 +285,101 @@
   align-items: flex-start;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 12px;
+  margin-bottom: 25px;
+  box-shadow: #92ca92 0px 0px 10px 0px;
+  border: 0px solid #92ca92;
+  width: 70%;
 }
 
-.nameContainer{
+.nameContainer {
   display: flex;
   flex-direction: column;
+  padding-top: 17px;
 }
+
+.cardnew {
+  width: 100%;
+  max-width: 70%;
+  min-height: 120px;
+  background: #ffff;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  backdrop-filter: blur(10px);
+  transition: 0.5s ease-in-out;
+  border: 0px solid #198754;
+  border-radius: 10px;
+  box-shadow: #92ca92 0px 0px 10px 0px;
+  margin-bottom: 17px;
+}
+
+.cardnew:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+}
+
+.img {
+  width: 100px;
+  height: 70px;
+  margin-left: 10px;
+  border-radius: 10px;
+}
+
+.cardnew:hover > .img {
+  transition: 0.5s ease-in-out;
+  background: linear-gradient(#9198e5, #712020);
+}
+
+.textBox {
+  width: calc(100% - 90px);
+  margin-left: 10px;
+  color: white;
+  font-family: "Poppins" sans-serif;
+}
+
+.textContent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.span {
+  font-size: 10px;
+}
+
+.h1 {
+  font-size: 16px;
+  color: #000;
+  font-weight: bold;
+}
+
+.p {
+  font-size: 12px;
+  color: #000;
+  font-weight: lighter;
+}
+
+@media (max-width: 568px) {
+  .inner-Card {
+    width: 100% !important;
+  }
+}
+
+// @media (max-width: 567px) and (min-width: 768px) {
+//   .inner-Card {
+//     width: 100% !important;
+//   }
+// }
+
+//   @media (max-width: 769px) and (min-width: 991px) {
+//   }
+//   .inner-Card {
+//     width: 100% !important;
+//   }
+// }
+// @media (min-width: 760px) {
+//   .inner-Card {
+//     width: 70% !important;
+//   }
+// }

@@ -55,7 +55,7 @@ const SidebarNavigation = () => {
   };
   const setNavDriver = () => {
     dispatch(setNavDrivers());
-  }
+  };
 
   return (
     <div>
@@ -210,7 +210,7 @@ const SidebarNavigation = () => {
               onClick={setNavHomes}
             >
               <CDBSidebarMenuItem
-                icon="home"
+                icon="cil-chart-line"
                 iconSize="lg"
                 className="nav-link"
               >
@@ -227,11 +227,7 @@ const SidebarNavigation = () => {
               }
               onClick={setNavDriver}
             >
-              <CDBSidebarMenuItem
-                icon="car"
-                iconSize="lg"
-                className="nav-link"
-              >
+              <CDBSidebarMenuItem icon="car" iconSize="lg" className="nav-link">
                 Driver
               </CDBSidebarMenuItem>
             </NavLink>

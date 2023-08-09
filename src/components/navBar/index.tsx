@@ -10,7 +10,9 @@ const NavigationBar = () => {
   };
 
   return (
-    <nav className="navbar navbar-expand-md bg-body-tertiary sticky-top bg-light  shadow border-bottom-rounded py-0">
+    // <nav className="navbar navbar-expand-md bg-body-tertiary sticky-top bg-light  shadow border-bottom-rounded py-0"  >
+    // <nav className="navbar navbar-expand-md bg-body-tertiary sticky-top bg-light shadow-sm border-bottom-rounded py-0">
+    <nav className="navbar navbar-expand-md bg-body-tertiary sticky-top bg-light shadow-sm py-0">
       <div className="container-fluid">
         <a className="navbar-brand" href="/">
           <img src={PiccoLogo} className="picco-logo ps-3"></img>
