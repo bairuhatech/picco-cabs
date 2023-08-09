@@ -22,6 +22,7 @@ import OfferSectionManagement from "./AdminPage/components/offerSectionManagemen
 import Users from "./AdminPage/components/users";
 import LocationsTable from "./AdminPage/components/locations";
 import BookingSecondStep from "./components/bookingSecondStep";
+import DriversTable from "./AdminPage/components/driverList";
 
 const routes = createBrowserRouter([
   {
@@ -92,6 +93,10 @@ const routes = createBrowserRouter([
           {
             path: "locations",
             element: <LocationsTable />,
+          },
+          {
+            path: "driver-List",
+            element: <DriversTable    />,
           },
         ],
       },

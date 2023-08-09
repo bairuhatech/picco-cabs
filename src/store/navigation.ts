@@ -25,6 +25,9 @@ const navSelected = createSlice({
     setNavLoginAttempts: (prevState) => {
       return (prevState = "Login Attempts");
     },
+    setNavDrivers: (prevState) => {
+      return (prevState = "Driver");
+    }
   },
 });
 export default navSelected.reducer;
@@ -36,4 +39,5 @@ export const {
   setNavLocation,
   setNavUsers,
   setNavBooking,
+  setNavDrivers
 } = navSelected.actions;

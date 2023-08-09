@@ -23,6 +23,7 @@ import {
   setNavLoginAttempts,
   setNavOffers,
   setNavUsers,
+  setNavDrivers,
 } from "../../../../store/navigation";
 
 const SidebarNavigation = () => {
@@ -52,6 +53,9 @@ const SidebarNavigation = () => {
   const setNavLoginAttempt = () => {
     dispatch(setNavLoginAttempts());
   };
+  const setNavDriver = () => {
+    dispatch(setNavDrivers());
+  }
 
   return (
     <div>
@@ -211,6 +215,24 @@ const SidebarNavigation = () => {
                 className="nav-link"
               >
                 Dashboard
+              </CDBSidebarMenuItem>
+            </NavLink>
+            <NavLink
+              to="driver-List"
+              end
+              style={({ isActive }) =>
+                isActive
+                  ? { fontWeight: "bolder", color: "#FFFF99" }
+                  : undefined
+              }
+              onClick={setNavDriver}
+            >
+              <CDBSidebarMenuItem
+                icon="car"
+                iconSize="lg"
+                className="nav-link"
+              >
+                Driver
               </CDBSidebarMenuItem>
             </NavLink>
           </CDBSidebarMenu>
