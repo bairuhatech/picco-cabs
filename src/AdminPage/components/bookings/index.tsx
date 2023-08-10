@@ -80,6 +80,27 @@ const Bookings = () => {
     }
   };
 
+  const handleStatusTypeChange = async (value: any, index: number) => {
+    let updatingStatus: any = bookingData[index];
+    updatingStatus.status = value;
+    let reqBody = { ...updatingStatus };
+    delete reqBody.id;
+    if (value) {
+      try {
+        const response = await axios.put(
+          "https://piccocabs-server-46642b82a774.herokuapp.com/Booking/" +
+          updatingStatus.id +
+            "",
+          reqBody
+        );
+
+        console.log("Response:", response.data);
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    }
+  };
+
 
 
   const handleDriverTypeChange = async (value: any, index: number) => {
@@ -147,8 +168,8 @@ const Bookings = () => {
                   <td>
                     <Select
                       style={{ width: "130px" }}
-                      defaultValue={selectedStatus}
-                      onChange={handleStatusChange}
+                      defaultValue={item.status}
+                      onChange={(value) => handleStatusTypeChange(value, index)}
                     >
                       <Select.Option value="Pending">Pending</Select.Option>
                       <Select.Option value="Success">Success</Select.Option>
