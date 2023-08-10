@@ -62,7 +62,6 @@ const Bookings = () => {
   const handleCarTypeChange = async (value: any, index: number) => {
     let updatingItem: any = bookingData[index];
     updatingItem.car = value;
-    updatingItem.driver = value;
     let reqBody = { ...updatingItem };
     delete reqBody.id;
     if (value) {
