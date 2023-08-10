@@ -43,7 +43,7 @@ const BookingThird = (props: any) => {
       const requestBody = {
         userId: 1,
         bookType: modes || modesecond,
-        tripStatus: tripType || "",
+        tripStatus: tripType || "roundTrip",
         pickUpDate: "2023-08-01T12:00:00Z",
         dropOffDate: "2023-08-02T12:00:00Z",
         pickUpLat: 37.7749,

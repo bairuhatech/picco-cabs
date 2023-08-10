@@ -442,7 +442,7 @@ const CustomModal = (props: any) => {
       console.log("Request Body:", reqBody);
 
       const response = await fetch(
-        "https://piccocabs-server-46642b82a774.herokuapp.com/User",
+        "https://piccocabs-server-46642b82a774.herokuapp.com/User/find-by-number",
         {
           method: "POST",
           headers: {

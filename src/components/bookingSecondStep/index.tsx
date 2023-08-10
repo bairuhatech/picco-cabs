@@ -393,6 +393,7 @@ function BookingForm(props: any) {
                     </div>
                   </div>
                 </div>
+                {formModal && <CustomModal isModalOpen={show} handleCancel={Cancel}/>}
                 <div>
                   <div className="button-Div">
                     <button
