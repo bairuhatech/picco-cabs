@@ -53,14 +53,14 @@ const OfferSections = () => {
           <div className="fleet_car">
             <img src={Car1} className="img-fluid m-auto" alt="car_mini" />
           </div>
-          <h5 className="cardTitle">Picco Mini</h5>
+          <h5 className="cardTitle">Picco SUV</h5>
           <p>Peppy Hatchbacks for quick and pocket friendly rides.</p>
         </div>
         <div className="card">
           <div className="fleet_car">
             <img src={Car2} className="img-fluid m-auto" alt="car_sedan" />
           </div>
-          <h5 className="cardTitle">Picco Sedan</h5>
+          <h5 className="cardTitle">Picco sedan</h5>
           <p>
             Comfortable Cars for Family & Touring with adequate boot space and
             ample entertainment.
@@ -70,14 +70,14 @@ const OfferSections = () => {
           <div className="fleet_car">
             <img src={Car3} className="img-fluid m-auto" alt="car_suv" />
           </div>
-          <h5 className="cardTitle)">Picco SUV</h5>
+          <h5 className="cardTitle)">Innova</h5>
           <p>Big Space , Big Trips with more people and more things.</p>
         </div>
         <div className="card">
           <div className="fleet_car">
             <img src={Car4} className="img-fluid m-auto" alt="car_suv_innova" />
           </div>
-          <h5 className="cardTitle">Innova</h5>
+          <h5 className="cardTitle">Innova crysta</h5>
           <p>
             People's most favorite ,most safest and Most Comfortable vehicle
             ever made.
@@ -91,7 +91,7 @@ const OfferSections = () => {
               alt="car_suv_innova_crysta"
             />
           </div>
-          <h5 className="cardTitle">Innova crysta</h5>
+          <h5 className="cardTitle">Picco Mini</h5>
           <p>
             Travel with the king of roads. Vehicle built with Luxury and Super
             Comfort.

@@ -101,20 +101,21 @@ function BookingForm(props: any) {
         {showBooking != true ? (
           <div>
             <div className="subHeader">
-              <div
-                className="innerHead"
-                style={{
-                  fontWeight: "600",
-                  backgroundColor: "rgb(247, 255, 249)",
-                }}
-              >
-                PICCO JOURNEY
+              <div className="innerHead">
+                <div style={{ fontWeight: 700, fontSize: "20px" }}>
+                  PICCO JOURNEY
+                </div>
                 <br />
-                <br />
-                {RentPlace || selectedRoute?.place} {RentPlace ? "" : "to"}
-                &nbsp; {RentPlace ? "" : selectedRoute?.location}
+                <div>
+                  {RentPlace || selectedRoute?.place}{" "}
+                  {RentPlace ? "" : <b>to</b>}
+                  &nbsp; {RentPlace ? "" : selectedRoute?.location}
+                </div>
               </div>
-              <div style={{ backgroundColor: "#f7fff9" }} className="innerHead">
+              <div
+                style={{ backgroundColor: "#f7fff9", height: "71px" }}
+                className="innerHead2"
+              >
                 <div className="PickpDate-Div">
                   Pick Up Date: <br />
                   08-08-2023{" "}
@@ -141,7 +142,14 @@ function BookingForm(props: any) {
                     <div className="picco-mini">Picco Mini</div>
                     <div className="piccomini-info">
                       info
-                      <BsInfoCircle size={18} color="#d3d3d3" />
+                      <Popover
+                        placement="rightTop"
+                        // title={text}
+                        content={content}
+                        // arrow={mergedArrow}
+                      >
+                        <BsInfoCircle size={18} color="#d3d3d3" />
+                      </Popover>
                     </div>
                   </div>
                 </div>
@@ -228,7 +236,14 @@ function BookingForm(props: any) {
                     <div className="picco-mini">Picco Suv</div>
                     <div className="piccomini-info">
                       info
-                      <BsInfoCircle size={18} color="#d3d3d3" />
+                      <Popover
+                        placement="rightTop"
+                        // title={text}
+                        content={content}
+                        // arrow={mergedArrow}
+                      >
+                        <BsInfoCircle size={18} color="#d3d3d3" />
+                      </Popover>
                     </div>
                   </div>
                 </div>
