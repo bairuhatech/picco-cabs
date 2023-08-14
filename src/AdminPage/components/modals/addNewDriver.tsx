@@ -7,6 +7,14 @@ function AddDriverModal(props: any) {
   const [carType, setCarType] = useState(props.CarType || "");
   const [carNumber, setCarNumber] = useState(props.CarNumber || "");
   const [driverName, setDriverName] = useState(props.setDriverName || "");
+  const [phoneNumber, setPhoneNumber] = useState(props.setPhoneNumber || "");
+  const [language, setLanguage] = useState(props.setLanguage || "");
+  const [dlNumber, setDlNumber] = useState(props.setDlNumber || "");
+  const [statuses, setStatuses] = useState(props.setStatuses || "");
+  const [currentBooking, setCurrentBooking] = useState(props.setCurrentBooking || "");
+
+
+
 
   const handleSubmit = async (event: any) => {
     event.preventDefault();
@@ -15,8 +23,11 @@ function AddDriverModal(props: any) {
       CarType: carType,
       CarNumber: carNumber,
       DriverName: driverName,
-      Active: 1,
-      Status: 0,
+      phoneNumber: phoneNumber,
+      language: language,
+      DlNumber: dlNumber,
+      status: statuses,
+      currentBooking: currentBooking
     };
 
     try {
@@ -72,6 +83,46 @@ function AddDriverModal(props: any) {
               className="bg-light-300"
               value={driverName}
               onChange={(e) => setDriverName(e.target.value)}
+            />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="formGroupPrice">
+            <Form.Label className="fw-bold">Phone Number</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Phone Number"
+              className="bg-light-300"
+              value={phoneNumber}
+              onChange={(e) => setPhoneNumber(e.target.value)}
+            />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="formGroupPrice">
+            <Form.Label className="fw-bold">Language</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Language"
+              className="bg-light-300"
+              value={language}
+              onChange={(e) => setLanguage(e.target.value)}
+            />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="formGroupPrice">
+            <Form.Label className="fw-bold">Driver Licence</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Driver Licence"
+              className="bg-light-300"
+              value={dlNumber}
+              onChange={(e) => setDlNumber(e.target.value)}
+            />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="formGroupPrice">
+            <Form.Label className="fw-bold">Current Booking</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Current Booking"
+              className="bg-light-300"
+              value={currentBooking}
+              onChange={(e) => setCurrentBooking(e.target.value)}
             />
           </Form.Group>
         </Modal.Body>
