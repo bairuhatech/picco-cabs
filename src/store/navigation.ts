@@ -27,6 +27,9 @@ const navSelected = createSlice({
     },
     setNavDrivers: (prevState) => {
       return (prevState = "Driver");
+    },
+    setNavCars: (prevState) => {
+      return (prevState = "Cars");
     }
   },
 });
@@ -39,5 +42,6 @@ export const {
   setNavLocation,
   setNavUsers,
   setNavBooking,
-  setNavDrivers
+  setNavDrivers,
+  setNavCars,
 } = navSelected.actions;

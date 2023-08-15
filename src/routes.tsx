@@ -23,6 +23,7 @@ import Users from "./AdminPage/components/users";
 import LocationsTable from "./AdminPage/components/locations";
 import BookingSecondStep from "./components/bookingSecondStep";
 import DriversTable from "./AdminPage/components/driverList";
+import CarsTable from "./AdminPage/components/carsList";
 
 const routes = createBrowserRouter([
   {
@@ -96,7 +97,11 @@ const routes = createBrowserRouter([
           },
           {
             path: "driver-List",
-            element: <DriversTable    />,
+            element: <DriversTable/>,
+          },
+          {
+            path: "cars",
+            element: <CarsTable/>,
           },
         ],
       },

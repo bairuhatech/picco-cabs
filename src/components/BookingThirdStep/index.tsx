@@ -30,6 +30,7 @@ const BookingThird = (props: any) => {
     modesecond,
     userName,
   } = location.state;
+  
 
   const handleOk = () => {
     setIsModalOpen(false);
@@ -59,6 +60,7 @@ const BookingThird = (props: any) => {
         returnDate:"2023-08-02T12:00:00Z",
         rentallPack: 1,
         car: "",
+        PiccoCar: props.selectedCar.name,
         comments: values.Comments,
         userName: values.name,
         phoneNumber: values.phone,
@@ -72,6 +74,8 @@ const BookingThird = (props: any) => {
         ">>>>>>>>>>>>>>>>>>>??????????????????",
         selectedRoute?.location
       );
+
+      
 
       const response = await fetch(
         "https://piccocabs-server-46642b82a774.herokuapp.com/Booking",
@@ -248,7 +252,7 @@ const BookingThird = (props: any) => {
                   <Button
                     type="primary"
                     htmlType="submit"
-                    style={{
+                    style={{ 
                       borderRadius: "5px",
                       width: "100%",
                       height: "10%",
@@ -265,7 +269,7 @@ const BookingThird = (props: any) => {
           </div>
         </Form>
       ) : (
-        <BookingForm />
+        <BookingForm  />
       )}
       {isModalOpen ? (
         <Modal

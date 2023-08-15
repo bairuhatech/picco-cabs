@@ -13,6 +13,7 @@ import { NavLink } from "react-router-dom";
 import "./navbar.scss";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
+import { FaCar } from 'react-icons/fa';
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -54,6 +55,9 @@ const SidebarNavigation = () => {
     dispatch(setNavLoginAttempts());
   };
   const setNavDriver = () => {
+    dispatch(setNavDrivers());
+  };
+  const setNavCars = () => {
     dispatch(setNavDrivers());
   };
 
@@ -227,8 +231,26 @@ const SidebarNavigation = () => {
               }
               onClick={setNavDriver}
             >
+              <CDBSidebarMenuItem
+                icon="user"
+                iconSize="lg"
+                className="nav-link"
+              >
+                Drivers
+              </CDBSidebarMenuItem>
+            </NavLink>
+            <NavLink
+              to="cars"
+              end
+              style={({ isActive }) =>
+                isActive
+                  ? { fontWeight: "bolder", color: "#FFFF99" }
+                  : undefined
+              }
+              onClick={setNavCars}
+            >
               <CDBSidebarMenuItem icon="car" iconSize="lg" className="nav-link">
-                Driver
+                Cars
               </CDBSidebarMenuItem>
             </NavLink>
           </CDBSidebarMenu>

@@ -21,6 +21,7 @@ function BookingForm(props: any) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showBooking, setShowBooking] = useState(false);
   const location = useLocation();
+  const [selectedCar, setSelectedCar] = useState(null); // Store selected car data
   const isLoggedIn = useSelector((state: any) => state.User.auth);
 
   const {
@@ -34,9 +35,19 @@ function BookingForm(props: any) {
   } = location.state;
 
   console.log(">>>>>>>>>>>>>>>>", Package);
+  console.log("dataa kitttyo",selectedCar)
 
   const showModal = () => {
     setIsModalOpen(true);
+  };
+
+  const handleBookNow = (carData: any) => {
+    setSelectedCar(carData);
+    if (isLoggedIn) {
+      setShowBooking(true);
+    } else {
+      setFormModal(true);
+    }
   };
 
   const handleCancel = () => {
@@ -67,37 +78,6 @@ function BookingForm(props: any) {
     <div>
       <NavigationBar />
       <div className="cardMain-div">
-        {/* <div className="subHeader">
-  <div className="innerHead">
-  {RentPlace || selectedRoute?.place}&nbsp; <b>{RentPlace ? "" : "to"}</b>&nbsp; {RentPlace ? "" : selectedRoute?.location}
-  </div>
-  <div style={{ backgroundColor: "#f7fff9" }} className="innerHead">
-    <div className="PickpDate-Div">
-      Pick Up Date: <br />
-      08-08-2023{" "}
-      <div className="PickupTime-Div">
-      {Package?.label ? "" : "Pickup Time:"} <br/>
-      {timeOfPickup || ""}
-      </div>
-
-    </div>
-    <div className="ModifyButton-Div">
-      <button
-        style={{
-          width: "30%",
-          height: "50%",
-          borderRadius: "4px",
-          fontWeight: "700",
-          border: "2px solid  rgb(107, 181, 70)",
-          color: " rgb(107, 181, 70)",
-        }}
-      >
-        Modify
-      </button>
-    </div>
-  </div>
-</div> */}
-        {/* {isLoggedIn ? ( */}
         {showBooking != true ? (
           <div>
             <div className="subHeader">
@@ -215,7 +195,10 @@ function BookingForm(props: any) {
                         fontSize: "18px",
                       }}
                       onClick={() =>
-                        isLoggedIn ? setShowBooking(true) : setFormModal(true)
+                        handleBookNow({
+                          name: "Picco Mini",
+                          type: "Mini",
+                        })
                       }
                       className="button"
                     >
@@ -309,7 +292,10 @@ function BookingForm(props: any) {
                         fontSize: "18px",
                       }}
                       onClick={() =>
-                        isLoggedIn ? setShowBooking(true) : setFormModal(true)
+                        handleBookNow({
+                          name: "Picco SUV",
+                          type: "SUV",
+                        })
                       }
                       className="button"
                     >
@@ -327,7 +313,7 @@ function BookingForm(props: any) {
                     alt="Picco Mini"
                   />
                   <div className="nameContainer">
-                    <div className="picco-mini">Picco Mini</div>
+                    <div className="picco-mini">Picco Sedan</div>
                     <div className="piccomini-info">
                       info
                       <Popover
@@ -393,7 +379,9 @@ function BookingForm(props: any) {
                     </div>
                   </div>
                 </div>
-                {formModal && <CustomModal isModalOpen={show} handleCancel={Cancel}/>}
+                {formModal && (
+                  <CustomModal isModalOpen={show} handleCancel={Cancel} />
+                )}
                 <div>
                   <div className="button-Div">
                     <button
@@ -404,7 +392,10 @@ function BookingForm(props: any) {
                         fontSize: "18px",
                       }}
                       onClick={() =>
-                        isLoggedIn ? setShowBooking(true) : setFormModal(true)
+                        handleBookNow({
+                          name: "Picco Sedan",
+                          type: "Sedan",
+                        })
                       }
                       className="button"
                     >
@@ -416,7 +407,7 @@ function BookingForm(props: any) {
             </div>
           </div>
         ) : (
-          <div className="cardMain-div2">{showBooking && <BookingThird />}</div>
+          <div className="cardMain-div2">{showBooking && <BookingThird selectedCar={selectedCar}/>}</div>
         )}
       </div>
       ;
