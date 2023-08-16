@@ -2,22 +2,26 @@ import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons/faTrash";
 import { FaEdit, FaPlus } from "react-icons/fa";
+import { FaSync } from "react-icons/fa";
 import axios from "axios";
-import { Select } from "antd";
-import { Modal, Button, Form } from "react-bootstrap";
+import { Form, Select, Input, Button } from "antd";
+import { Modal, } from "react-bootstrap";
 import AddLocationModal from "../modals/addNewLocation";
 import "font-awesome/css/font-awesome.min.css";
 import AddDriverModal from "../modals/addNewDriver";
+import Item from "antd/es/list/Item";
 
 
 const DriversTable = () => {
   const [selected, setSelected] = useState<any>({});
-  const [data, setData] = useState<any>([]);
+  const [data, setData] = useState<Array<{ DriverName: string, phoneNumber: string; }>>([]);
   const [selectedStatus, setSelectedStatus] = useState<any>([]);
   const [modalShow, setModalShow] = useState<any>(false);
   const [modalPurpose, setModalPurpose] = useState<any>("");
   const [selectedCar, setSelectedCar] = useState<any>({});
-  
+  const [DriverName, setdrivername] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+
 
   useEffect(() => {
     fetchData();
@@ -31,7 +35,7 @@ const DriversTable = () => {
       setSelectedStatus(response.data)
       setData(response.data);
 
-      console.log("data vannoda=========",data)
+      console.log("data vannoda=========", data)
     } catch (error) {
       console.error("Error:", error);
     }
@@ -50,7 +54,9 @@ const DriversTable = () => {
       console.error("Error:", error);
     }
   }
-
+const change = () =>{
+  fetchData()
+}
   const handleEdit = (location: any) => {
     setSelectedCar(location.id);
     setModalPurpose("Edit");
@@ -65,7 +71,7 @@ const DriversTable = () => {
   };
 
   const handleModalClose = () => {
-    setModalShow(false); 
+    setModalShow(false);
     setSelectedCar({});
   };
 
@@ -77,7 +83,7 @@ const DriversTable = () => {
 
   const handleSelect = async (value: any, index: number) => {
     let updatingStatus: any = selectedStatus[index];
-    console.log("updatingStatus",updatingStatus)
+    console.log("updatingStatus", updatingStatus)
     updatingStatus.status = value;
     let reqBody = { ...updatingStatus };
     delete reqBody.id;
@@ -86,7 +92,7 @@ const DriversTable = () => {
         const response = await axios.put(
           "https://piccocabs-server-46642b82a774.herokuapp.com/Driver/" +
           updatingStatus.id +
-            "",
+          "",
           reqBody
         );
 
@@ -96,20 +102,51 @@ const DriversTable = () => {
       }
     }
   };
+  const Filter = (values: any) => {
+    const filteredData = data.filter((item: any) => {
+      const driverNameMatch = item?.DriverName?.toLowerCase()?.includes(values.names?.toLowerCase());
+      const phoneNumberMatch = item?.phoneNumber === values?.number;
+      return (driverNameMatch || !values.names) && (phoneNumberMatch || !values.number);
+      
+    });
+    console.log("==============filter========",filteredData);
+    setPhoneNumber(phoneNumber);
+    setdrivername(DriverName);
+    setData(filteredData);
+  };
+  const handleRefresh = () => {
+
+    window.location.reload()
+  };
 
   return (
-    <div className="table-responsive w-100" style={{height:"100%"}}>
+    <div className="table-responsive w-100" style={{ height: "100%" }}>
       <div className="d-flex justify-content-between">
         <h2 className="py-3 ps-2">Drivers</h2>
         <button
-        style={{border:"1px solid green", color:"green"}}
+          style={{ border: "1px solid green", color: "green" }}
           className="btn btn-picco align-self-center me-3 text-light"
           onClick={() => handleCreate()}
         >
           <FaPlus className="text-light" />
-          <b style={{color:"green"}}>Add Driver</b>
+          <b style={{ color: "green" }}>Add Driver</b>
         </button>
       </div>
+      <Form layout="inline" onFinish={Filter}  style={{paddingLeft:"10px", marginTop: "10px"}}>
+        <Form.Item       style={{fontWeight:"600"}}  label="DiverName" name="names">
+          <Input placeholder="DiverName" onChange={change}/>
+        </Form.Item>
+        <Form.Item style={{fontWeight:"600"}} label="PhoneNumber" name="number">
+          <Input placeholder="PhoneNumber" onChange={change}/>
+        </Form.Item>
+        <Form.Item>
+          <Button htmlType="submit" style={{ backgroundColor: "rgb(104, 175, 68)",width:"100%", color:"white", fontSize:"13px", fontWeight:"500" }} >Filter</Button>
+        </Form.Item>
+        <span style={{ marginLeft: "10px", cursor: "pointer" }}>
+          <FaSync onClick={handleRefresh} />
+        </span>
+      </Form>
+      <br/>
       <table className="table table-striped align-self-start table-hover">
         <thead>
           <tr>
@@ -126,7 +163,7 @@ const DriversTable = () => {
           </tr>
         </thead>
         <tbody>
-          {data.map((item: any, index:number) => (
+          {data.map((item: any, index: number) => (
             <tr key={item.id}>
               <th scope="row">{item.id}</th>
               <td>{item.CarType}</td>
@@ -136,14 +173,14 @@ const DriversTable = () => {
               <td>{item.language}</td>
               <td>{item.DlNumber}</td>
               <td>
-                  <Select 
-                  style={{width: "130px"}}
+                <Select
+                  style={{ width: "130px" }}
                   defaultValue={item.status}
-                  onChange={(value)=> handleSelect(value, index)}
-                  >
-                      <Select.Option value="Active">Active</Select.Option>
-                      <Select.Option value="InActive">InActive</Select.Option>
-                  </Select>
+                  onChange={(value) => handleSelect(value, index)}
+                >
+                  <Select.Option value="Active">Active</Select.Option>
+                  <Select.Option value="InActive">InActive</Select.Option>
+                </Select>
               </td>
               <td>{item.currentBooking}</td>
               <td>

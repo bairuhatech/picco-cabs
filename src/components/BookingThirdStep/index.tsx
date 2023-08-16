@@ -61,6 +61,7 @@ const BookingThird = (props: any) => {
         rentallPack: 1,
         car: "",
         PiccoCar: props.selectedCar.name,
+        carType: "",
         comments: values.Comments,
         userName: values.name,
         phoneNumber: values.phone,

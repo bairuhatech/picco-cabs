@@ -1,20 +1,27 @@
 import React, { useEffect, useState } from "react";
-import { Spin, message, Select } from "antd";
+import { Form, Spin, message, Select, Input, Button } from "antd";
+import { FaSync } from "react-icons/fa";
 import API from "../../../config/api";
 import "./index.scss";
 import axios from "axios";
 import moment from "moment";
 
+
 const Bookings = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const [bookingData, setBookingData] = useState([]);
+  const [bookingData, setBookingData] = useState<Array<{ pickUpLoc: string; dropOffLoc: string; createdAt: Date }>>([]);
   const [data, setData] = useState<any>([]);
   const [selectedStatus, setSelectedStatus] = useState("Pending");
   const [selectedCarType, setSelectedCarType] = useState("");
-
+  const [fromLocation, setFromLocation] = useState("");
+  const [toLocation, setToLocation] = useState("");
+  const [bookingID, setbookingid] = useState("");
+  
+  
   const handleStatusChange = (value: any) => {
     setSelectedStatus(value);
   };
+  
 
   useEffect(() => {
     getAllBookings();
@@ -123,10 +130,67 @@ const Bookings = () => {
       }
     }
   };
+  
+  const handleFilter = (value: any) => {
+   
+    
+    const filteredData = bookingData.filter(item => {
+      
+      const fromMatch = item.pickUpLoc?.toLowerCase().includes(value.fromLocation?.toLowerCase());
+      const toMatch = item.dropOffLoc?.toLowerCase().includes(value.toLocation?.toLowerCase());
+      const bookingIDMatch = moment(item.createdAt).format("DDHHmmssYYM") === value.bookingid;
+
+      return (fromMatch || !value.fromLocation) && (toMatch || !value.toLocation) && (bookingIDMatch || !value.bookingid);
+    });
+
+  
+  
+    setFromLocation(fromLocation);
+    setToLocation(toLocation);
+    setbookingid(value.bookingIDMatch)
+    setBookingData(filteredData);
+  };
+  
+  const handleRefresh = () => {
+    
+    window.location.reload()
+  };
+  const change = () => {
+    getAllBookings();
+    fetchData();
+  };
 
   return (
     <div className="table-responsive" style={{ height: "100%" }}>
       <h2 className="py-3 ps-2">Bookings</h2>
+      {/*<form>
+        <label>FROM</label>
+        <input type="text" value={fromLocation} onChange={e => setFromLocation(e.target.value)} />
+        <label>TO</label>
+        <input type="text" value={toLocation} onChange={e => setToLocation(e.target.value)} />
+        <button type="button" onClick={handleFilter}>Filter</button>
+  </form>*/}
+    <Form  layout="inline" onFinish={handleFilter} style={{paddingLeft:"10px", marginTop: "20px"}}>
+    <Form.Item  style={{fontWeight:"600"}}label="BOOKINGID" name="bookingid">
+      <Input placeholder="bookingID" onChange={change} />
+    </Form.Item>
+      <Form.Item  style={{fontWeight:"600"}}label="FROM" name="fromLocation">
+        <Input placeholder="From Location" onChange={change} />
+      </Form.Item>
+      <Form.Item  style={{fontWeight:"600"}}label="TO" name="toLocation">
+        <Input placeholder="To Location" onChange={change}/>
+      </Form.Item>
+      <Form.Item>
+        <Button type="primary" style={{ backgroundColor: "rgb(104, 175, 68)",width:"100%", color:"white", fontSize:"13px", fontWeight:"500" }} htmlType="submit">Filter</Button>
+       
+  
+      </Form.Item>
+      <span style={{ marginLeft: "10px", cursor: "pointer" }}>
+          <FaSync onClick={handleRefresh} />
+        </span>
+    </Form>
+    <br/>
+
       {isLoading ? (
         <div
           style={{
@@ -139,11 +203,12 @@ const Bookings = () => {
         >
           <Spin size="large" style={{ color: "red" }} />
         </div>
+        
       ) : (
         <table className="table table-striped align-self-start table-hover">
           <thead>
             <tr>
-              <th scope="col">#</th>
+              <th scope="col">Booking ID</th>
               <th scope="col">Status</th>
               <th scope="col">Book Type</th>
               <th scope="col">One Way/RoundTrip</th>
@@ -164,7 +229,9 @@ const Bookings = () => {
             {bookingData?.reverse().map((item: any, index: number) => {
               return (
                 <tr key={item.id}>
-                  <th scope="row">{item.id}</th>
+                  <th scope="row">
+                  {moment(item.createdAt).format("DDHHmmssYYM")}
+                    </th>
                   <td>
                     <Select
                       style={{ width: "130px" }}
