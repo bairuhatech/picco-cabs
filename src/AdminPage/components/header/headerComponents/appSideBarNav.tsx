@@ -18,6 +18,7 @@ import { FaCar } from 'react-icons/fa';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   setNavBooking,
+  setNavOngoings,
   setNavBookingAttempts,
   setNavHome,
   setNavLocation,
@@ -45,6 +46,9 @@ const SidebarNavigation = () => {
   const setNavBookings = () => {
     dispatch(setNavBooking());
   };
+  const setNavOngoing = () => {
+    dispatch(setNavOngoings());
+  }
   const setNavOffer = () => {
     dispatch(setNavOffers());
   };
@@ -106,6 +110,23 @@ const SidebarNavigation = () => {
                 // }
               >
                 Bookings
+              </CDBSidebarMenuItem>
+            </NavLink>
+            <NavLink
+              to="ongoing"
+              style={({ isActive }) =>
+                isActive
+                  ? { fontWeight: "bolder", color: "#FFFF99" }
+                  : undefined
+              }
+              onClick={setNavOngoing}
+            >
+              <CDBSidebarMenuItem
+                icon="table"
+                iconSize="lg"
+                className="nav-link"
+              >
+                OnGoing
               </CDBSidebarMenuItem>
             </NavLink>
             <NavLink

@@ -24,6 +24,7 @@ import LocationsTable from "./AdminPage/components/locations";
 import BookingSecondStep from "./components/bookingSecondStep";
 import DriversTable from "./AdminPage/components/driverList";
 import CarsTable from "./AdminPage/components/carsList";
+import OnGoing from "./AdminPage/components/ongoing";
 
 const routes = createBrowserRouter([
   {
@@ -102,6 +103,10 @@ const routes = createBrowserRouter([
           {
             path: "cars",
             element: <CarsTable/>,
+          },
+          {
+            path: "ongoing",
+            element: <OnGoing/>,
           },
         ],
       },
