@@ -36,8 +36,9 @@ const BookingThird = (props: any) => {
     setIsModalOpen(false);
   };
 
-  const formattedDate = moment(pickUpDate).format("MMMM Do, YYYY");
-
+  const formattedDate = moment(pickUpDate).format("YYYY-MM-DD");
+  
+  console.log("formated dateeeeee",formattedDate);
   const onFinish = async (values: any) => {
     try {
       setLoading(true);
@@ -45,17 +46,21 @@ const BookingThird = (props: any) => {
         userId: 1,
         bookType: modes || modesecond,
         tripStatus: tripType || "roundTrip",
-        pickUpDate: "2023-08-01T12:00:00Z",
+        pickUpDate: formattedDate,
         dropOffDate: "2023-08-02T12:00:00Z",
         pickUpLat: 37.7749,
         pickUpLng: -122.4194,
         pickUpLoc: selectedRoute?.place || RentPlace || "",
+        pickUpCity: "",
+        pickUpAddress: "",
+        dropOffCity: "",
+        dropOffAddress:"",
         dropOffLat: 37.7749,
         dropOffLng: -122.4194,
         dropOffLoc: selectedRoute?.location || "",
-        pickUpTime: 12,
-        hours: Package?.hours || 0,
-        kms: Package?.kms || 0,
+        pickUpTime: timeOfPickup || "",
+        hours: parseInt(Package.hours) || 0,
+        kms: parseInt(Package.kms) || 0,
         estimatedAmt: selectedRoute?.rate || 0,
         returnDate:"2023-08-02T12:00:00Z",
         rentallPack: 1,
@@ -64,7 +69,7 @@ const BookingThird = (props: any) => {
         carType: "",
         comments: values.Comments,
         userName: values.name,
-        phoneNumber: values.phone,
+        phoneNumber: values.Phone,
         email: values.email,
         driver: "",
         adminStatus: "roaming",
@@ -75,6 +80,8 @@ const BookingThird = (props: any) => {
         ">>>>>>>>>>>>>>>>>>>??????????????????",
         selectedRoute?.location
       );
+
+      console.log("packageeee",Package)
 
       
 
@@ -191,7 +198,7 @@ const BookingThird = (props: any) => {
                 />
               </Form.Item>
               <Form.Item
-                name="phone"
+                name="Phone"
                 rules={[
                   { required: true, message: "Please enter your phone number" },
                 ]}
