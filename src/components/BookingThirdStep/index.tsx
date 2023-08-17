@@ -28,6 +28,7 @@ const BookingThird = (props: any) => {
     RentPlace,
     modes,
     modesecond,
+    userfrom,
     userName,
   } = location.state;
   
@@ -50,7 +51,7 @@ const BookingThird = (props: any) => {
         dropOffDate: "2023-08-02T12:00:00Z",
         pickUpLat: 37.7749,
         pickUpLng: -122.4194,
-        pickUpLoc: selectedRoute?.place || RentPlace || "",
+        pickUpLoc: selectedRoute?.place || RentPlace || userfrom || "",
         pickUpCity: "",
         pickUpAddress: "",
         dropOffCity: "",
@@ -59,8 +60,8 @@ const BookingThird = (props: any) => {
         dropOffLng: -122.4194,
         dropOffLoc: selectedRoute?.location || "",
         pickUpTime: timeOfPickup || "",
-        hours: parseInt(Package.hours) || 0,
-        kms: parseInt(Package.kms) || 0,
+        hours: parseInt(Package?.hours) || 0,
+        kms: parseInt(Package?.kms) || 0,
         estimatedAmt: selectedRoute?.rate || 0,
         returnDate:"2023-08-02T12:00:00Z",
         rentallPack: 1,

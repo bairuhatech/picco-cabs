@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import classes from "./index.module.scss";
 import OneWay from "./Forms/outstation";
 import RoundTrip from "./Forms/rentals";
+import Airports from "./Forms/airpot";
+
 import Container from "react-bootstrap/esm/Container";
 import "./index.module.scss";
 
@@ -14,6 +16,10 @@ const FirstStep = () => {
 
   const radioBtn2ClickHandler = () => {
     setFormType("rentals");
+  };
+
+  const radioBtn3ClickHandler = () => {
+    setFormType("airports");
   };
 
   const baseUrl = document.baseURI.includes("booking");
@@ -66,6 +72,21 @@ const FirstStep = () => {
             >
               RENTALS
             </label>
+            <input
+              type="radio"
+              className="btn-check"
+              name="btnradio"
+              id="btnradio3"
+              autoComplete="off"
+              onClick={radioBtn3ClickHandler}
+            />
+             <label
+              style={{width:"150px",fontWeight:500,fontSize:"15px",height:"35px"}}
+              className="btn btn-outline-success border border-2 border-success "
+              htmlFor="btnradio3"
+            >
+              AIRPORTS
+              </label>
           </div>
         </div>
         {/* <div className="d-sm-none">
@@ -79,6 +100,8 @@ const FirstStep = () => {
           <OneWay types={formType} />
         ) : formType === "rentals" ? (
           <RoundTrip types={formType} />
+        ) : formType === "airports" ? (
+          <Airports types={formType} />
         ) : null}
       </div>
     </Container>

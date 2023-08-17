@@ -139,6 +139,7 @@ export default function Rentals(props: any) {
                 height: "40px",
                 outline: "none",
                 border: "none",
+                fontWeight: "bold",
               }}
               htmlType="submit"
             >
