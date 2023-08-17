@@ -1,5 +1,4 @@
-
-  import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../index.module.scss";
 import { Link, useNavigate } from "react-router-dom";
 import {
@@ -29,10 +28,10 @@ export default function Airports(props: any) {
   const [data, setData] = useState<any["options"]>([]);
   const [selectedRoute, setSelectedRoute] = useState<any>({});
   const [toPlace, setToPlace] = useState<any>([]);
-  const [airport, setAirport] = useState<any>("pickUp")
+  const [airport, setAirport] = useState<any>("pickUp");
 
   const onFinish = async (val: any) => {
-    console.log("<<<<<<<<<<<<<<<<<<vallllll>>>>>>>",val)
+    console.log("<<<<<<<<<<<<<<<<<<vallllll>>>>>>>", val);
     const { Trip, user_from, user_to, dateRange, timeRange } = val;
 
     const pickUpDate = dateRange.toISOString();
@@ -53,7 +52,7 @@ export default function Airports(props: any) {
         timeOfPickup,
         userfrom,
         userto,
-        modes
+        modes,
       },
     });
   };
@@ -68,7 +67,7 @@ export default function Airports(props: any) {
         "https://piccocabs-server-46642b82a774.herokuapp.com/Pickuplocation/location"
       );
       setData(response.data);
-      let listingData = filterUniqueNames(response.data,"place");
+      let listingData = filterUniqueNames(response.data, "place");
       setFilteredOptions(listingData);
       console.log(response.data);
     } catch (error) {
@@ -88,7 +87,7 @@ export default function Airports(props: any) {
     );
     setFilteredOptions(filteredData);
   };
-  const filterUniqueNames = (arr: any,contiton:any) => {
+  const filterUniqueNames = (arr: any, contiton: any) => {
     const uniqueNames: any = {};
     return arr.filter((item: any) => {
       if (!uniqueNames[item[contiton]]) {
@@ -99,20 +98,17 @@ export default function Airports(props: any) {
     });
   };
   const handleTripChange = (newValue: any) => {
-    setAirport(newValue)  
-  console.log(">>>>>>>>>>>",newValue)
+    setAirport(newValue);
+    console.log(">>>>>>>>>>>", newValue);
   };
   const handleFromChange = (newValue: any) => {
     let toPlaces = data.filter((item: any) => item.place === newValue);
-    let toListing = filterUniqueNames(toPlaces,"location");
+    let toListing = filterUniqueNames(toPlaces, "location");
     setToPlace(toListing);
   };
   const handleToChange = (id: any) => {
     let route = data.find((item: any) => item.id === id);
     setSelectedRoute(route);
-
-
-
   };
   const handleToSearch = (newValue: string) => {
     let filteredData = toPlace.filter((d: any) =>
@@ -168,22 +164,24 @@ export default function Airports(props: any) {
                 filterOption={false}
                 onChange={handleTripChange}
                 notFoundContent={null}
-                options={[{
-                  value:"pickUp",
-                  label:"Pick From Airport",
-                },{
-                  value: "drop",
-                  label: "Drop To Airport",
-                },
-              ]}
+                options={[
+                  {
+                    value: "pickUp",
+                    label: "Pick From Airport",
+                  },
+                  {
+                    value: "drop",
+                    label: "Drop To Airport",
+                  },
+                ]}
               />
             </Form.Item>
           </div>
           <div className="col-md-3 col-sm-6 col-12">
             <label htmlFor="inputEmail4" className="form-label fw-bold">
-             {airport === "pickUp" ?  "PICKUP CITY" : "DROP CITY"} 
+              {airport === "pickUp" ? "PICKUP CITY" : "DROP CITY"}
             </label>
-            <Form.Item 
+            <Form.Item
               name="user_from"
               className="fw-bold"
               rules={[
@@ -194,7 +192,7 @@ export default function Airports(props: any) {
               ]}
             >
               <Select
-              className="CustomSelect"
+                className="CustomSelect"
                 showSearch
                 // value={value}
                 placeholder={"Start Place"}
@@ -205,20 +203,19 @@ export default function Airports(props: any) {
                 onChange={handleFromChange}
                 notFoundContent={null}
                 options={filteredOptions.map((item: any) => ({
-                  value:  item.place,
-                  label:  item.place,
+                  value: item.place,
+                  label: item.place,
                 }))}
               />
             </Form.Item>
           </div>
           <div className="col-md-3 col-sm-6 col-12">
             <label htmlFor="inputEmail4" className="form-label fw-bold">
-            {airport === "pickUp" ?  "PICKUP ADDRESS" : "DROP ADDRESS"} 
-
+              {airport === "pickUp" ? "PICKUP ADDRESS" : "DROP ADDRESS"}
             </label>
             <Form.Item
               name="user_to"
-              className="fw-bold"     
+              className="fw-bold"
               rules={[
                 {
                   required: true,
@@ -249,8 +246,7 @@ export default function Airports(props: any) {
             }
           >
             <label htmlFor="inputEmail4" className="form-label fw-bold">
-            {airport === "pickUp" ?  "PICK UP" : "DROP UP"}
-              
+              {airport === "pickUp" ? "PICK UP" : "DROP UP"}
             </label>
             <Form.Item
               name="dateRange"
@@ -288,8 +284,7 @@ export default function Airports(props: any) {
             }
           >
             <label htmlFor="inputEmail4" className="form-label fw-bold">
-            {airport === "pickUp" ?  "PICK UP AT " : "DROP UP AT"}
-              
+              {airport === "pickUp" ? "PICK UP AT " : "DROP UP AT"}
             </label>
             <Form.Item
               name="timeRange"
@@ -306,13 +301,13 @@ export default function Airports(props: any) {
                 placeholder="Pick up time"
                 type="time"
               /> */}
-                 <input
-              className="form-control border-0 border-bottom rounded-0"
-              placeholder="Pick up time"
-              type="time"
-              name="timeRange"
-              step={600} // 10 minutes in seconds
-            />
+              <input
+                className="form-control border-0 border-bottom rounded-0"
+                placeholder="Pick up time"
+                type="time"
+                name="timeRange"
+                step={600} // 10 minutes in seconds
+              />
             </Form.Item>
           </div>
         </div>
