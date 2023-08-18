@@ -109,6 +109,49 @@ const BookingThird = (props: any) => {
     } catch (error) {
       console.error("API Error:", error);
       setLoading(false);
+  
+      try {
+        const errorRequestBody = {
+            userId : 1,
+            bookType : modes || modesecond,
+            tripStatus : tripType || "roundTrip",
+            pickUpDate : formattedDate,
+            dropOffDate : "2023-08-02T12:00:00Z",
+            pickUpLat : 37.7749,
+            pickUpLng : -122.4194,
+            pickUpLoc : selectedRoute?.place || RentPlace || "",
+            dropOffLat : 37.7749,
+            dropOffLng : -122.4194,
+            dropOffLoc : selectedRoute?.location || "",
+            pickUpTime : timeOfPickup || "",
+            hours : parseInt(Package?.hours) || 0,
+            kms : parseInt(Package?.kms) || 0,
+            estimatedAmt : selectedRoute?.rate || 0,
+            rentallPack : 1,
+            car : 1,
+            comments : values.Comments,
+            PiccoCar : props.selectedCar.name,
+            phoneNumber : values.Phone,
+            userName : values.name,
+            email : values.email
+        };
+  
+        const errorResponse = await fetch(
+          "https://piccocabs-server-46642b82a774.herokuapp.com/booking-attempt",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(errorRequestBody),
+          }
+        );
+  
+        const errorData = await errorResponse.json();
+        console.log("Error API Response:", errorData);
+      } catch (error) {
+        console.error("Error API Error:", error);
+      }
     }
   };
   let pack =

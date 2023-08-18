@@ -6,7 +6,7 @@ import moment from "moment";
 
 
 const Users = () => {
-  const [data, setData] = useState<any>([]);
+  const [user, setUser] = useState<any>([]);
 
   useEffect(() => {
     fetchData();
@@ -19,7 +19,7 @@ const Users = () => {
       const response = await axios.get(
         "https://piccocabs-server-46642b82a774.herokuapp.com/User/get"
       );
-      setData(response.data);
+      setUser(response.data);
     } catch (error) {
       console.error("Error:", error);
     }
@@ -40,7 +40,7 @@ const Users = () => {
           </tr>
         </thead>
         <tbody>
-          {data.map((item: any, index: any) => (
+          {user.map((item: any, index: any) => (
             <tr key={item.id}>
               <td>{index + 1}</td>
               <td>{item.name}</td>

@@ -2,11 +2,16 @@ import AddNewOffersModal from "../modals/addNewOffer";
 import { message, Spin } from "antd";
 import { useState, useEffect } from "react";
 import API from "../../../config/api";
+import axios from "axios";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash } from "@fortawesome/free-solid-svg-icons/faTrash";
 
 const OfferSectionManagement = () => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [offersection, setOffersection] = useState([]);
   const [toggleModal, setToggleModal] = useState(false);
+  const [selectedStatus, setSelectedStatus] = useState<any>([]);
+  const [data, setData] = useState<Array<{ DriverName: string, phoneNumber: string; }>>([]);
+
+
 
   const modalToggler = () => {
     setToggleModal(!toggleModal);
@@ -17,39 +22,38 @@ const OfferSectionManagement = () => {
   };
 
   useEffect(() => {
-    getAllOffer();
+    fetchData();
   }, []);
 
-  const getAllOffer = async () => {
-    setIsLoading(true);
-    let url = API.BASE_URL + API.getAllOffer;
-    const options = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({}),
-    };
-
+  async function fetchData() {
     try {
-      const response = await fetch(url, options);
+      const response = await axios.get(
+        "https://piccocabs-server-46642b82a774.herokuapp.com/Offers/Offer"
+      );
+      setSelectedStatus(response.data)
+      setData(response.data);
 
-      if (response.status === 200) {
-        const data = await response.json();
-        console.log(data.results);
-        setOffersection(data.results);
-        console.log(data, "=========================>>>>>>> datadata");
-        message.success("success");
-        setIsLoading(false);
-      } else {
-        setIsLoading(false);
-        message.error("something went wrong !");
-      }
     } catch (error) {
-      setIsLoading(false);
-      message.error("something went wrong !");
+      console.error("Error:", error);
     }
-  };
+  }
+  async function deleteData(id: any) {
+    try {
+      const response = await axios.delete(
+        `https://piccocabs-server-46642b82a774.herokuapp.com/Offers/${id}`
+      );
+      setData((prevData: any) =>
+        prevData.filter((item: any) => item.id !== id)
+      );
+      // setData((prevData: any) =>
+      //   prevData.filter((item: any) => item.id !== id)
+      // );
+      console.log("Delete Response:", response);
+    } catch (error) {
+      console.log("??????????????????",data)
+      console.error("Error:", error);
+    }
+  }
 
   return (
     <>
@@ -61,25 +65,6 @@ const OfferSectionManagement = () => {
         >
           Add New
         </button>
-        {isLoading ? (
-          <div
-            style={{
-              width: "100%",
-              height: "100%",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <Spin size="large" style={{ color: "red" }} />
-            <br />
-            <br />
-            <Spin size="large" style={{ color: "red" }} />
-            <br />
-            <br />
-            <Spin size="large" style={{ color: "red" }} />
-          </div>
-        ) : (
           <table className="table table-striped align-self-start table-hover mt-2">
             <thead>
               <tr>
@@ -88,23 +73,22 @@ const OfferSectionManagement = () => {
                 <th scope="col">Description</th>
                 <th scope="col">Price</th>
                 <th scope="col">Image</th>
-                <th scope="col">Action</th>
+                <th scope="col">Actions</th>
               </tr>
             </thead>
             <tbody>
-              {offersection.map((item: any, index: any) => (
+              {data.map((item: any, index: any) => (
                 <tr key={item.id}>
                   <td>{index + 1}</td>
-                  <td>{item.Title}</td>
-                  <td>{item.Description}</td>
-                  <td>{item.Price}</td>
-                  <td>{item.Image}</td>
-                  <td>{item.Action}</td>
+                  <td>{item.title}</td>
+                  <td>{item.description}</td>
+                  <td>{item.price}</td>
+                  <td>{item.image}</td>
+                  <td></td>
                 </tr>
               ))}
             </tbody>
           </table>
-        )}
       </div>
       <AddNewOffersModal status={toggleModal} onClose={closeModal} />
     </>
