@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import axios from "axios";
+import { Spin } from "antd";
+import { Loading3QuartersOutlined } from "@ant-design/icons";
 
 function AddBookingModal(props: any) {
-  const [bookType, setBookType ] = useState(props.CarType || "");
+  const [bookType, setBookType] = useState(props.CarType || "");
   const [tripMode, setTripMode] = useState("");
   const [pickup, setPickup] = useState("");
   const [pickupDate, setPickupDate] = useState("");
@@ -16,11 +18,13 @@ function AddBookingModal(props: any) {
   const [comment, setComment] = useState("");
   const [user, setUser] = useState("");
   const [contact, setContact] = useState("");
-
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (event: any) => {
+    setLoading(true);
+
     event.preventDefault();
-  
+
     const newData = {
       userId: 1,
       bookType: "outstations" || "rentals",
@@ -49,16 +53,18 @@ function AddBookingModal(props: any) {
       adminStatus: "roaming",
       status: "pending",
     };
-  
+
     try {
       await axios.post(
         "https://piccocabs-server-46642b82a774.herokuapp.com/Booking",
         newData
       );
-  
+
       props.onSuccess();
       props.hide();
     } catch (error) {
+      setLoading(false);
+
       console.error("Error:", error);
     }
   };
@@ -71,26 +77,6 @@ function AddBookingModal(props: any) {
           <Modal.Title>{props.purpose}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {/* <Form.Group className="mb-3" controlId="formGroupFrom">
-            <Form.Label className="fw-bold">Book Type</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="outstations or rentals"
-              className="bg-light-300"
-              value={bookType}
-              onChange={(e) => setBookType(e.target.value)}
-            />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="formGroupTo">
-            <Form.Label className="fw-bold">Trip Mode</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="oneWay or roundTrip"
-              className="bg-light-300"
-              value={tripMode}
-              onChange={(e) => setTripMode(e.target.value)}
-            />
-          </Form.Group> */}
           <Form.Group className="mb-3" controlId="formGroupPrice">
             <Form.Label className="fw-bold">Pickup Location</Form.Label>
             <Form.Control
@@ -127,37 +113,18 @@ function AddBookingModal(props: any) {
               type="text"
               placeholder="Drop"
               className="bg-light-300"
-              value={drop} 
+              value={drop}
               onChange={(e) => setDrop(e.target.value)}
             />
           </Form.Group>
-          {/* <Form.Group className="mb-3" controlId="formGroupPrice">
-            <Form.Label className="fw-bold">Hrs</Form.Label>
-            <Form.Control
-              type="number"
-              placeholder="Hrs"
-              className="bg-light-300"
-              value={Hrs} 
-              onChange={(e) => setHrs(e.target.value)}
-            />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="formGroupPrice">
-            <Form.Label className="fw-bold">KMS</Form.Label>
-            <Form.Control
-              type="number"
-              placeholder="KMS"
-              className="bg-light-300"
-              value={kms} 
-              onChange={(e) => setKms(e.target.value)}
-            />
-          </Form.Group> */}
+
           <Form.Group className="mb-3" controlId="formGroupPrice">
             <Form.Label className="fw-bold">Amount</Form.Label>
             <Form.Control
               type="text"
               placeholder="amount"
               className="bg-light-300"
-              value={amount} 
+              value={amount}
               onChange={(e) => setAmount(e.target.value)}
             />
           </Form.Group>
@@ -167,7 +134,7 @@ function AddBookingModal(props: any) {
               type="text"
               placeholder="Picco Car"
               className="bg-light-300"
-              value={PiccoCar} 
+              value={PiccoCar}
               onChange={(e) => setPiccoCar(e.target.value)}
             />
           </Form.Group>
@@ -177,7 +144,7 @@ function AddBookingModal(props: any) {
               type="text"
               placeholder="Comments"
               className="bg-light-300"
-              value={comment} 
+              value={comment}
               onChange={(e) => setComment(e.target.value)}
             />
           </Form.Group>
@@ -187,7 +154,7 @@ function AddBookingModal(props: any) {
               type="text"
               placeholder="User Name"
               className="bg-light-300"
-              value={user} 
+              value={user}
               onChange={(e) => setUser(e.target.value)}
             />
           </Form.Group>
@@ -197,7 +164,7 @@ function AddBookingModal(props: any) {
               type="text"
               placeholder="Contact Number"
               className="bg-light-300"
-              value={contact} 
+              value={contact}
               onChange={(e) => setContact(e.target.value)}
             />
           </Form.Group>
@@ -207,6 +174,21 @@ function AddBookingModal(props: any) {
             Close
           </Button>
           <Button variant="success" type="submit">
+            {loading && (
+              <Spin
+                indicator={
+                  <Loading3QuartersOutlined
+                    style={{
+                      fontSize: 12,
+                      color: "black",
+                      marginRight: 4,
+                    }}
+                    spin
+                  />
+                }
+              />
+            )}
+
             {props.purpose === "Edit" ? "Update" : "Create"}
           </Button>
         </Modal.Footer>

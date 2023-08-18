@@ -5,6 +5,7 @@ import Modal from "react-bootstrap/Modal";
 import { Row, Col } from "react-bootstrap";
 import axios from "axios";
 import { Spin, message } from "antd"; // Import Spin and message components
+import { Loading3QuartersOutlined } from "@ant-design/icons";
 
 function AddNewOffersModal(props: any) {
   const [title, setTitle] = useState("");
@@ -50,48 +51,49 @@ function AddNewOffersModal(props: any) {
           </Modal.Header>
           <Modal.Body>
             <Row className="gy-3">
-            <Row className="gy-3">
-              <Form.Group as={Col} md="6" controlId="validationCustom03">
-                <Form.Label>Title</Form.Label>
-                <Form.Control
-                  required
-                  type="text"
-                  placeholder="Title"
-                  value={title}
-                  onChange={(e) => setTitle(e.target.value)}
-                />
-              </Form.Group>
-              <Form.Group as={Col} md="6" controlId="validationCustom03">
-                <Form.Label>Description</Form.Label>
-                <Form.Control
-                  required
-                  type="text"
-                  placeholder="Description"
-                  value={description}
-                  onChange={(e) => setDescription(e.target.value)}
-                />
-              </Form.Group>
-              <Form.Group as={Col} md="6" controlId="validationCustom03">
-                <Form.Label>Price</Form.Label>
-                <Form.Control
-                  required
-                  type="number"
-                  placeholder="Price"
-                  value={price}
-                  onChange={(e) => setPrice(e.target.value)}
-                />
-              </Form.Group>
-              <Form.Group as={Col} md="6" controlId="validationCustom03">
-                <Form.Label>Upload Image</Form.Label>
-                <Form.Control
-                  required
-                  type="file"
-                  placeholder=""
-                  value={image}
-                  onChange={(e) => setImage(e.target.value)}
-                />
-              </Form.Group>
-            </Row>            </Row>
+              <Row className="gy-3">
+                <Form.Group as={Col} md="6" controlId="validationCustom03">
+                  <Form.Label>Title</Form.Label>
+                  <Form.Control
+                    required
+                    type="text"
+                    placeholder="Title"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                  />
+                </Form.Group>
+                <Form.Group as={Col} md="6" controlId="validationCustom03">
+                  <Form.Label>Description</Form.Label>
+                  <Form.Control
+                    required
+                    type="text"
+                    placeholder="Description"
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                  />
+                </Form.Group>
+                <Form.Group as={Col} md="6" controlId="validationCustom03">
+                  <Form.Label>Price</Form.Label>
+                  <Form.Control
+                    required
+                    type="number"
+                    placeholder="Price"
+                    value={price}
+                    onChange={(e) => setPrice(e.target.value)}
+                  />
+                </Form.Group>
+                <Form.Group as={Col} md="6" controlId="validationCustom03">
+                  <Form.Label>Upload Image</Form.Label>
+                  <Form.Control
+                    required
+                    type="file"
+                    placeholder=""
+                    value={image}
+                    onChange={(e) => setImage(e.target.value)}
+                  />
+                </Form.Group>
+              </Row>{" "}
+            </Row>
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={props.onClose}>
@@ -103,7 +105,22 @@ function AddNewOffersModal(props: any) {
               className="btn btn-success"
               disabled={loading}
             >
-              {loading ? <Spin /> : "Add"}
+              {loading ? (
+                <Spin
+                  indicator={
+                    <Loading3QuartersOutlined
+                      style={{
+                        fontSize: 12,
+                        color: "black",
+                        marginRight: 4,
+                      }}
+                      spin
+                    />
+                  }
+                />
+              ) : (
+                "Add"
+              )}
             </Button>
           </Modal.Footer>
         </Form>
