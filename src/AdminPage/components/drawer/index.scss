@@ -1,0 +1,19 @@
+.Bookingsdrawer-Div {
+    // border: 1px solid grey;
+    border-radius: 10px;
+    box-shadow: #92ca92 0px 0px 10px 0px;
+    border: 0px solid #92ca92;
+    padding-left: 10px;
+    //   margin-left: 0px;
+  }
+  .Drawer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+    font-size: 18px;
+  }
+  
+  .ant-drawer .ant-drawer-header {
+    border-bottom: 0px;
+  }

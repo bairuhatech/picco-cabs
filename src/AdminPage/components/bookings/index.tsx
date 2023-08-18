@@ -7,6 +7,9 @@ import axios from "axios";
 import moment from "moment";
 import { FaEdit, FaPlus } from "react-icons/fa";
 import AddBookingModal from "../modals/addBooking";
+import BookingDrawer from "../drawer";
+import { AiOutlineEye } from "react-icons/ai";
+
 
 
 
@@ -267,6 +270,8 @@ const Bookings = () => {
               <th scope="col">User</th>
               <th scope="col">Contact</th>
               <th scope="col">Created At</th>
+              <th scope="col">View booking</th>
+
             </tr>
           </thead>
           <tbody>
@@ -331,6 +336,9 @@ const Bookings = () => {
                   <td>{item.userName}</td>  
                   <td>{item.phoneNumber}</td>
                   <td>{moment(item.createdAt).format("YYYY-MM-DD")}</td>
+                  <td>
+                    <AiOutlineEye size={30} onClick={() => setSelectedBooking(item)} />
+                  </td>
                   </>
                   ) : (
                     <>
@@ -371,6 +379,9 @@ const Bookings = () => {
                   <td>{item.userName}</td>  
                   <td>{item.phoneNumber}</td>
                   <td>{moment(item.createdAt).format("YYYY-MM-DD")}</td>
+                  <td>
+                    <AiOutlineEye size={25} onClick={() => setSelectedBooking(item)} />
+                  </td>
                   </>
                   )}
                 </tr>
@@ -379,6 +390,7 @@ const Bookings = () => {
           </tbody>
         </table>
       )}
+      
       <AddBookingModal
               show={modalShow}
               hide={handleModalClose}
@@ -386,6 +398,13 @@ const Bookings = () => {
               locationId={selectedBooking}
               onSuccess={handleModalSuccess}
       />
+      {selectedBooking &&(
+        <BookingDrawer
+          drawer={true}
+          bookingdetails={selectedBooking}
+          onClose={() => setSelectedBooking(null)}
+        />
+      )}
 
     </div>
   );

@@ -225,24 +225,6 @@ const SidebarNavigation = () => {
               </CDBSidebarMenuItem>
             </NavLink>
             <NavLink
-              to=""
-              end
-              style={({ isActive }) =>
-                isActive
-                  ? { fontWeight: "bolder", color: "#FFFF99" }
-                  : undefined
-              }
-              onClick={setNavHomes}
-            >
-              <CDBSidebarMenuItem
-                icon="cil-chart-line"
-                iconSize="lg"
-                className="nav-link"
-              >
-                Dashboard
-              </CDBSidebarMenuItem>
-            </NavLink>
-            <NavLink
               to="driver-List"
               end
               style={({ isActive }) =>
@@ -272,6 +254,24 @@ const SidebarNavigation = () => {
             >
               <CDBSidebarMenuItem icon="car" iconSize="lg" className="nav-link">
                 Cars
+              </CDBSidebarMenuItem>
+            </NavLink>
+            <NavLink
+              to="dashboard"
+              end
+              style={({ isActive }) =>
+                isActive
+                  ? { fontWeight: "bolder", color: "#FFFF99" }
+                  : undefined
+              }
+              onClick={setNavHomes}
+            >
+              <CDBSidebarMenuItem
+                icon="table"
+                iconSize="lg"
+                className="nav-link"
+              >
+                Dashboard
               </CDBSidebarMenuItem>
             </NavLink>
           </CDBSidebarMenu>

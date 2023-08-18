@@ -25,6 +25,8 @@ import BookingSecondStep from "./components/bookingSecondStep";
 import DriversTable from "./AdminPage/components/driverList";
 import CarsTable from "./AdminPage/components/carsList";
 import OnGoing from "./AdminPage/components/ongoing";
+import Charts from "./AdminPage/components/charts";
+
 
 const routes = createBrowserRouter([
   {
@@ -83,6 +85,10 @@ const routes = createBrowserRouter([
           {
             path: "login-attempts",
             element: <LoginAttempts />,
+          },
+          {
+            path: "dashboard",
+            element: <Charts/>,
           },
           {
             path: "offers",

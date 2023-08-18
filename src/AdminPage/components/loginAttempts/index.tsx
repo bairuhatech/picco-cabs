@@ -1,38 +1,26 @@
 import React, { useEffect, useState } from "react";
 import API from "../../../config/api";
 import { message } from "antd";
+import axios from "axios";
+import moment from "moment";
 
 const LoginAttempts = () => {
-  const [loginData, setLoginData] = useState([]);
+  const [loginData, setLoginData] = useState<any>([]);
 
   useEffect(() => {
     getAllBookings();
   }, []);
 
-  const getAllBookings = async () => {
-    let url = API.BASE_URL + API.getAllLoginAttempt;
-    const options = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({}),
-    };
+  async function getAllBookings() {
     try {
-      const response = await fetch(url, options);
-
-      if (response.status === 200) {
-        const data = await response.json();
-        console.log("Data ---> ", data);
-        setLoginData(data.results);
-        message.success("Success");
-      } else {
-        message.success("Something went wrong !");
-      }
+      const response = await axios.get(
+        "https://piccocabs-server-46642b82a774.herokuapp.com/Loginattempts/get"
+      );
+      setLoginData(response.data);
     } catch (error) {
-      message.success("Something went wrong !");
+      console.error("Error:", error);
     }
-  };
+  }
 
   return (
     <div className="table-responsive w-100" style={{ height: "100%" }}>
@@ -42,18 +30,16 @@ const LoginAttempts = () => {
           <tr>
             <th scope="col">#</th>
             <th scope="col">Phone Number</th>
-            <th scope="col">Date and Time</th>
             <th scope="col">Joined In</th>
           </tr>
         </thead>
         <tbody>
-          {loginData.map((item: any) => {
+          {loginData.map((item: any, index: any) => {
             return (
               <tr key={item.id}>
-                <th scope="row">{item.id}</th>
+                <td>{index + 1}</td>
                 <td>{item.phoneNumber}</td>
-                <td>{item.DateandTime}</td>
-                <td>{item.joinedIn}</td>
+                <td>{moment(item.createdAt).format("MMMM Do YYYY")}</td>
               </tr>
             );
           })}
