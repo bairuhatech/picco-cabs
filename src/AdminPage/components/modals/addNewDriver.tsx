@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import axios from "axios";
-import { Spin } from 'antd';
+import { Spin } from "antd";
+import { Loading3QuartersOutlined } from "@ant-design/icons";
 
 function AddDriverModal(props: any) {
   const [carType, setCarType] = useState(props.CarType || "");
@@ -11,12 +12,14 @@ function AddDriverModal(props: any) {
   const [language, setLanguage] = useState(props.setLanguage || "");
   const [dlNumber, setDlNumber] = useState(props.setDlNumber || "");
   const [statuses, setStatuses] = useState(props.setStatuses || "");
-  const [currentBooking, setCurrentBooking] = useState(props.setCurrentBooking || "");
-
-
-
+  const [currentBooking, setCurrentBooking] = useState(
+    props.setCurrentBooking || ""
+  );
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (event: any) => {
+    setLoading(true);
+
     event.preventDefault();
 
     const newData = {
@@ -27,7 +30,7 @@ function AddDriverModal(props: any) {
       language: language,
       DlNumber: dlNumber,
       status: statuses,
-      currentBooking: currentBooking
+      currentBooking: currentBooking,
     };
 
     try {
@@ -37,12 +40,17 @@ function AddDriverModal(props: any) {
           newData
         );
       } else {
-        await axios.post("https://piccocabs-server-46642b82a774.herokuapp.com/Driver", newData);
+        await axios.post(
+          "https://piccocabs-server-46642b82a774.herokuapp.com/Driver",
+          newData
+        );
       }
 
       props.onSuccess();
       props.hide();
     } catch (error) {
+      setLoading(false);
+
       console.error("Error:", error);
     }
   };
@@ -131,6 +139,21 @@ function AddDriverModal(props: any) {
             Close
           </Button>
           <Button variant="success" type="submit">
+            {loading && (
+              <Spin
+                indicator={
+                  <Loading3QuartersOutlined
+                    style={{
+                      fontSize: 12,
+                      color: "black",
+                      marginRight: 4,
+                    }}
+                    spin
+                  />
+                }
+              />
+            )}
+
             {props.purpose === "Edit" ? "Update" : "Create"}
           </Button>
         </Modal.Footer>

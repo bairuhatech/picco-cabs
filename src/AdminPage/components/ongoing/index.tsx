@@ -5,6 +5,7 @@ import API from "../../../config/api";
 import axios from "axios";
 import moment from "moment";
 
+import { Loading3QuartersOutlined } from "@ant-design/icons";
 
 const OnGoing = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -15,8 +16,6 @@ const OnGoing = () => {
   const [fromLocation, setFromLocation] = useState("");
   const [toLocation, setToLocation] = useState("");
   const [bookingID, setbookingid] = useState("");
-  
-  
 
   useEffect(() => {
     fetchData();
@@ -27,10 +26,14 @@ const OnGoing = () => {
       const response = await axios.get(
         "https://piccocabs-server-46642b82a774.herokuapp.com/Booking/ongoing"
       );
+      setIsLoading(false);
+
       setData(response.data.rows);
 
-      console.log("data vannoda=========", data)
+      console.log("data vannoda=========", data);
     } catch (error) {
+      setIsLoading(false);
+
       console.error("Error:", error);
     }
   }
@@ -38,8 +41,32 @@ const OnGoing = () => {
   return (
     <div className="table-responsive" style={{ height: "100%" }}>
       <h2 className="py-3 ps-2">OnGoings</h2>
-    <br/>
+      <br />
 
+      {isLoading ? (
+        <div
+          style={{
+            width: "100%",
+            height: "100%",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Spin
+            indicator={
+              <Loading3QuartersOutlined
+                style={{
+                  fontSize: 20,
+                  color: "rgb(107, 181, 70)",
+                  marginRight: 4,
+                }}
+                spin
+              />
+            }
+          />{" "}
+        </div>
+      ) : (
         <table className="table table-striped align-self-start table-hover">
           <thead>
             <tr>
@@ -61,28 +88,24 @@ const OnGoing = () => {
             </tr>
           </thead>
           <tbody>
-           
             {data?.map((item: any, index: number) => {
               return (
                 <tr key={item.id}>
                   <th scope="row">
-                  {moment(item.createdAt).format("DDHHmmssYYM")}
-                    </th>
-                  <td>{item.status}
-                  </td>
+                    {moment(item.createdAt).format("DDHHmmssYYM")}
+                  </th>
+                  <td>{item.status}</td>
                   <td>{item.bookType}</td>
                   <td>{item.tripStatus}</td>
                   <td>{item.pickUpLoc}</td>
                   <td>{item.dropOffLoc}</td>
-                  <td>{item.driver}
-                  </td>
+                  <td>{item.driver}</td>
 
                   <td>{item.hours}</td>
                   <td>{item.kms}</td>
                   <td>{item.estimatedAmt}</td>
                   <td>{item.rentallPack}</td>
-                  <td>{item.car}
-                  </td>
+                  <td>{item.car}</td>
                   <td>{item.comments}</td>
                   <td>{moment(item.createdAt).format("YYYY-MM-DD")}</td>
                   <td>{item.userName}</td>
@@ -91,6 +114,7 @@ const OnGoing = () => {
             })}
           </tbody>
         </table>
+      )}
     </div>
   );
 };

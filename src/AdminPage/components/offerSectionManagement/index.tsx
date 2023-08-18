@@ -5,13 +5,15 @@ import API from "../../../config/api";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons/faTrash";
+import { Loading3QuartersOutlined } from "@ant-design/icons";
 
 const OfferSectionManagement = () => {
   const [toggleModal, setToggleModal] = useState(false);
   const [selectedStatus, setSelectedStatus] = useState<any>([]);
-  const [data, setData] = useState<Array<{ DriverName: string, phoneNumber: string; }>>([]);
-
-
+  const [data, setData] = useState<
+    Array<{ DriverName: string; phoneNumber: string }>
+  >([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const modalToggler = () => {
     setToggleModal(!toggleModal);
@@ -30,10 +32,13 @@ const OfferSectionManagement = () => {
       const response = await axios.get(
         "https://piccocabs-server-46642b82a774.herokuapp.com/Offers/Offer"
       );
-      setSelectedStatus(response.data)
-      setData(response.data);
+      setIsLoading(false);
 
+      setSelectedStatus(response.data);
+      setData(response.data);
     } catch (error) {
+      setIsLoading(false);
+
       console.error("Error:", error);
     }
   }
@@ -50,7 +55,7 @@ const OfferSectionManagement = () => {
       // );
       console.log("Delete Response:", response);
     } catch (error) {
-      console.log("??????????????????",data)
+      console.log("??????????????????", data);
       console.error("Error:", error);
     }
   }
@@ -65,6 +70,30 @@ const OfferSectionManagement = () => {
         >
           Add New
         </button>
+        {isLoading ? (
+          <div
+            style={{
+              width: "100%",
+              height: "100%",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Spin
+              indicator={
+                <Loading3QuartersOutlined
+                  style={{
+                    fontSize: 20,
+                    color: "rgb(107, 181, 70)",
+                    marginRight: 4,
+                  }}
+                  spin
+                />
+              }
+            />{" "}
+          </div>
+        ) : (
           <table className="table table-striped align-self-start table-hover mt-2">
             <thead>
               <tr>
@@ -89,6 +118,7 @@ const OfferSectionManagement = () => {
               ))}
             </tbody>
           </table>
+        )}
       </div>
       <AddNewOffersModal status={toggleModal} onClose={closeModal} />
     </>

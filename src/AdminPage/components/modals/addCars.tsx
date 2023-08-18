@@ -1,21 +1,23 @@
 import React, { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import axios from "axios";
-import { Spin } from 'antd';
+import { Spin } from "antd";
+import { Loading3QuartersOutlined } from "@ant-design/icons";
 
 function AddCarsModal(props: any) {
   const [brands, setBrand] = useState(props.CarType || "");
   const [models, setModel] = useState(props.CarNumber || "");
   const [rcNumber, setRcNumber] = useState(props.setDriverName || "");
   const [Nps, setNps] = useState(props.setPhoneNumber || "");
-  const [CurrentBooking, setCurrentBooking] = useState(props.setCurrentBooking || "");
+  const [CurrentBooking, setCurrentBooking] = useState(
+    props.setCurrentBooking || ""
+  );
   const [History, setHistory] = useState(props.setLanguage || "");
   const [statuses, setStatuses] = useState(props.setStatuses || "");
-
-
-
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (event: any) => {
+    setLoading(true);
     event.preventDefault();
 
     const newData = {
@@ -23,7 +25,7 @@ function AddCarsModal(props: any) {
       model: models,
       RcNumber: rcNumber,
       nps: Nps,
-      status:statuses,
+      status: statuses,
       currentBooking: CurrentBooking,
       history: History,
     };
@@ -35,12 +37,16 @@ function AddCarsModal(props: any) {
           newData
         );
       } else {
-        await axios.post("https://piccocabs-server-46642b82a774.herokuapp.com/Cars", newData);
+        await axios.post(
+          "https://piccocabs-server-46642b82a774.herokuapp.com/Cars",
+          newData
+        );
       }
 
       props.onSuccess();
       props.hide();
     } catch (error) {
+      setLoading(false);
       console.error("Error:", error);
     }
   };
@@ -109,7 +115,7 @@ function AddCarsModal(props: any) {
               type="text"
               placeholder="History"
               className="bg-light-300"
-              value={History} 
+              value={History}
               onChange={(e) => setHistory(e.target.value)}
             />
           </Form.Group>
@@ -119,6 +125,21 @@ function AddCarsModal(props: any) {
             Close
           </Button>
           <Button variant="success" type="submit">
+            {loading && (
+              <Spin
+                indicator={
+                  <Loading3QuartersOutlined
+                    style={{
+                      fontSize: 12,
+                      color: "black",
+                      marginRight: 4,
+                    }}
+                    spin
+                  />
+                }
+              />
+            )}
+
             {props.purpose === "Edit" ? "Update" : "Create"}
           </Button>
         </Modal.Footer>

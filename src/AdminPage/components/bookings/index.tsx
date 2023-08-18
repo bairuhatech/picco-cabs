@@ -11,7 +11,7 @@ import BookingDrawer from "../drawer";
 import { AiOutlineEye } from "react-icons/ai";
 import DriverModal from "../modals/driverModal";
 import { LoadingOutlined } from "@ant-design/icons";
-
+import { Loading3QuartersOutlined } from "@ant-design/icons";
 
 const Bookings = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -198,7 +198,7 @@ const Bookings = () => {
           <Form.Item>
             <Button
               type="primary"
-              style={{  
+              style={{
                 backgroundColor: "rgb(104, 175, 68)",
                 width: "100%",
                 color: "white",
@@ -242,7 +242,18 @@ const Bookings = () => {
             alignItems: "center",
           }}
         >
-          <Spin size="large" style={{ color: "red" }} />
+          <Spin
+            indicator={
+              <Loading3QuartersOutlined
+                style={{
+                  fontSize: 20,
+                  color: "rgb(107, 181, 70)",
+                  marginRight: 4,
+                }}
+                spin
+              />
+            }
+          />{" "}
         </div>
       ) : (
         <table className="table table-striped align-self-start table-hover">

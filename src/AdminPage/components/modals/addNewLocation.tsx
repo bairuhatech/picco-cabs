@@ -1,14 +1,18 @@
 import React, { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import axios from "axios";
-import { Spin } from 'antd';
+import { Spin } from "antd";
+import { Loading3QuartersOutlined } from "@ant-design/icons";
 
 function AddLocationModal(props: any) {
   const [from, setFrom] = useState(props.from || "");
   const [to, setTo] = useState(props.to || "");
   const [price, setPrice] = useState(props.price || "");
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (event: any) => {
+    setLoading(true);
+
     event.preventDefault();
 
     const newData = {
@@ -26,7 +30,10 @@ function AddLocationModal(props: any) {
           newData
         );
       } else {
-        await axios.post("https://piccocabs-server-46642b82a774.herokuapp.com/Pickuplocation", newData);
+        await axios.post(
+          "https://piccocabs-server-46642b82a774.herokuapp.com/Pickuplocation",
+          newData
+        );
       }
 
       props.onSuccess();
@@ -80,6 +87,20 @@ function AddLocationModal(props: any) {
             Close
           </Button>
           <Button variant="success" type="submit">
+            {loading && (
+              <Spin
+                indicator={
+                  <Loading3QuartersOutlined
+                    style={{
+                      fontSize: 12,
+                      color: "black",
+                      marginRight: 4,
+                    }}
+                    spin
+                  />
+                }
+              />
+            )}
             {props.purpose === "Edit" ? "Update" : "Create"}
           </Button>
         </Modal.Footer>
