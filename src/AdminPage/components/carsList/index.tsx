@@ -3,10 +3,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons/faTrash";
 import { FaEdit, FaPlus } from "react-icons/fa";
 import axios from "axios";
-import { Select, Spin } from "antd";
+import { Select } from "antd";
 import "font-awesome/css/font-awesome.min.css";
 import AddCarsModal from "../modals/addCars";
-import { Loading3QuartersOutlined } from "@ant-design/icons";
+
+
 
 const CarsTable = () => {
   const [selected, setSelected] = useState<any>({});
@@ -57,29 +58,29 @@ const CarsTable = () => {
     }
   }
 
-  const handleEdit = (location: any) => {
-    setSelectedCar(location.id);
-    setModalPurpose("Edit");
-    setModalShow(true);
-    console.log(location.id);
-  };
+	const handleEdit = (location: any) => {
+		setSelectedCar(location.id);
+		setModalPurpose("Edit");
+		setModalShow(true);
+		console.log(location.id);
+	};
 
-  const handleCreate = () => {
-    setSelectedCar({});
-    setModalPurpose("Create");
-    setModalShow(true);
-  };
+	const handleCreate = () => {
+		setSelectedCar({});
+		setModalPurpose("Create");
+		setModalShow(true);
+	};
 
   const handleModalClose = () => {
-    setModalShow(false);
+    setModalShow(false); 
     setSelectedCar({});
   };
 
-  const handleModalSuccess = () => {
-    fetchData();
-    setModalShow(false);
-    setSelectedCar({});
-  };
+	const handleModalSuccess = () => {
+		fetchData();
+		setModalShow(false);
+		setSelectedCar({});
+	};
 
   const handleSelect = async (value: any, index: number) => {
     let updatingStatus: any = selectedStatus[index];
@@ -104,98 +105,73 @@ const CarsTable = () => {
   };
 
   return (
-    <div className="table-responsive w-100" style={{ height: "100%" }}>
+    <div className="table-responsive w-100" style={{height:"100%"}}>
       <div className="d-flex justify-content-between">
         <h2 className="py-3 ps-2">Cars</h2>
         <button
-          style={{ border: "1px solid green", color: "green" }}
+        style={{border:"1px solid green", color:"green"}}
           className="btn btn-picco align-self-center me-3 text-light"
           onClick={() => handleCreate()}
         >
           <FaPlus className="text-light" />
-          <b style={{ color: "green" }}>Add Cars</b>
+          <b style={{color:"green"}}>Add Cars</b>
         </button>
       </div>
-
-      {isLoading ? (
-        <div
-          style={{
-            width: "100%",
-            height: "100%",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <Spin
-            indicator={
-              <Loading3QuartersOutlined
-                style={{
-                  fontSize: 20,
-                  color: "rgb(107, 181, 70)",
-                  marginRight: 4,
-                }}
-                spin
-              />
-            }
-          />{" "}
-        </div>
-      ) : (
-        <table className="table table-striped align-self-start table-hover">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Brand</th>
-              <th scope="col">Model</th>
-              <th scope="col">RC Number</th>
-              <th scope="col">NPS</th>
-              <th scope="col">Status</th>
-              <th scope="col">Current Booking</th>
-              <th scope="col">History</th>
-              <th scope="col">Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {data.map((item: any, index: number) => (
-              <tr key={item.id}>
-                <th scope="row">{item.id}</th>
-                <td>{item.brand}</td>
-                <td>{item.model}</td>
-                <td>{item.RcNumber}</td>
-                <td>{item.nps}</td>
-                <td>
-                  <Select
-                    style={{ width: "130px" }}
-                    defaultValue={item.status}
-                    onChange={(value) => handleSelect(value, index)}
+      <table className="table table-striped align-self-start table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Brand</th>
+            <th scope="col">Model</th>
+            <th scope="col">RC Number</th>
+            <th scope="col">NPS</th>
+            <th scope="col">Status</th>
+            <th scope="col">Current Booking</th>
+            <th scope="col">History</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {data.map((item: any, index:number) => (
+            <tr key={item.id}>
+              <th scope="row">{item.id}</th>
+              <td>{item.brand}</td>
+              <td>{item.model}</td>
+              <td>{item.RcNumber}</td>
+              <td>{item.nps}</td>
+              <td>
+                  <Select 
+                  style={{width: "130px"}}
+                  defaultValue={item.status}
+                  onChange={(value)=> handleSelect(value, index)}
                   >
-                    <Select.Option value="Active">Active</Select.Option>
-                    <Select.Option value="InActive">InActive</Select.Option>
+                      <Select.Option value="Active">Active</Select.Option>
+                      <Select.Option value="InActive">InActive</Select.Option>
                   </Select>
-                </td>
-                <td>{item.currentBooking}</td>
-                <td>{item.history}</td>
-                <td>
-                  <div>
-                    <button
-                      className="btn btn-info me-2"
-                      onClick={() => handleEdit(item)}
-                    >
-                      <FaEdit />
-                    </button>
-                    <button
-                      className="btn btn-danger"
-                      onClick={() => deleteData(item.id)}
-                    >
-                      <FontAwesomeIcon icon={faTrash} />
-                    </button>
-                  </div>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
+              </td>
+              <td>{item.currentBooking}</td>
+              <td>{item.history}</td>
+              <td>
+                <div>
+                  <button
+                    className="btn btn-info me-2"
+                    onClick={() => handleEdit(item)}
+                  >
+                    <FaEdit />
+                  </button>
+                  <button
+                    className="btn btn-danger"
+                    onClick={() => deleteData(item.id)}
+                  >
+                    <FontAwesomeIcon icon={faTrash} />
+                  </button>
+                </div>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
       <AddCarsModal
         show={modalShow}
         hide={handleModalClose}
