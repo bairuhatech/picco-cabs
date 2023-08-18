@@ -33,7 +33,7 @@ const navSelected = createSlice({
     },
     setNavCars: (prevState) => {
       return (prevState = "Cars");
-    },
+    }
   },
 });
 export default navSelected.reducer;

@@ -126,6 +126,7 @@
 }
 .button-Div {
   height: 10%;
+  width: 90%;
   display: flex;
   justify-content: end;
   border-radius: 8px;
@@ -229,9 +230,6 @@
   border: 0px solid #92ca92;
   width: 100%;
 }
-.piccojourney-Div {
-  width: 70% !important;
-}
 
 .nameContainer {
   display: flex;
@@ -302,31 +300,25 @@
   font-weight: lighter;
 }
 
-.qwerty {
-  box-shadow: #575555 0px 0px 0px 0px;
-  border: 1px solid #a4a0a0;
-  height: 115px;
-  width: 80%;
-  border-radius: 6px;
-  display: flex;
-}
+// @media (max-width: 568px) {
+//   .inner-Card {
+//     width: 100% !important;
+//   }
+// }
 
-.bookingsecondstepmobileview-Div {
-  display: none !important;
-}
+// @media (max-width: 567px) and (min-width: 768px) {
+//   .inner-Card {
+//     width: 100% !important;
+//   }
+// }
 
-.piccocarmobileview-Div {
-  display: flex;
-  justify-content: center;
-  width: 72%;
-}
-.bookingsecondstepdiv {
-  display: flex;
-  justify-content: center;
-  margin-top: 22px;
-}
+// @media (max-width: 769px) and (min-width: 991px) {
+// }
+// .inner-Card {
+//   width: 100% !important;
+// }
 
-@media (min-width: 576px) and (max-width: 786px) {
+@media screen and (max-width: 768px) {
   .innerHead {
     width: 50%;
     font-size: 10px !important;
@@ -338,26 +330,9 @@
   .PickpDate-Div {
     font-size: 10px !important;
   }
-  .Container-Card {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .inner-Card {
-    width: 100% !important;
-  }
-  .piccojourney-Div {
-    width: 100% !important;
-  }
-  .inner-Card {
-    width: 100% !important;
-  }
-  .subHeader {
-    width: 94% !important;
-  }
-  .button-Div {
-    width: 70%;
-  }
+}
+
+@media screen and (max-width: 576px) {
   .card-Div {
     width: 100%;
     height: 100%;
@@ -387,7 +362,7 @@
     height: 7%;
   }
   .piccominiImg {
-    width: 100% !important;
+    width: 38% !important;
   }
   .piccosuvImg {
     width: 38% !important;
@@ -399,55 +374,15 @@
     width: 55% !important;
     height: 40% !important;
   }
+}
+@media screen and (min-width: 577px) and (max-width: 768px) {
   .cardMain-div {
     background-image: none;
     justify-content: center;
   }
-  .piccocartext-font {
-    font-size: 14px;
-  }
-  .picco-mini {
-    font-size: 14px;
-  }
-  .piccomini-info {
-    font-size: 14px;
-  }
-  .bookingsecondstepmobileview-Div {
-    display: none;
-  }
 }
-@media screen and (min-width: 786px) and (max-width: 1200px) {
+@media (min-width: 760px) {
   .inner-Card {
     width: 100% !important;
-  }
-  .piccojourney-Div {
-    width: 90% !important;
-  }
-  .subHeader {
-    width: 94% !important;
-  }
-  .button-Div {
-    width: 70%;
-  }
-  .bookingsecondstepmobileview-Div {
-    display: none !important;
-  }
-}
-
-@media (min-width: 1200px) {
-  .inner-Card {
-    width: 100% !important;
-  }
-}
-
-@media (max-width: 576px) {
-  .cardMain-div {
-    display: none;
-  }
-  .bookingsecondstepmobileview-Div {
-    display: block !important;
-    display: flex;
-    justify-content: center;
-    align-items: center;
   }
 }

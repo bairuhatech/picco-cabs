@@ -79,7 +79,7 @@ function BookingForm(props: any) {
       <NavigationBar />
       <div className="cardMain-div">
         {showBooking != true ? (
-          <div className="piccojourney-Div">
+          <div>
             <div className="subHeader">
               <div className="innerHead">
                 <div style={{ fontWeight: 700, fontSize: "20px" }}>
@@ -410,90 +410,7 @@ function BookingForm(props: any) {
           <div className="cardMain-div2">{showBooking && <BookingThird selectedCar={selectedCar}/>}</div>
         )}
       </div>
-      <div className="bookingsecondstepmobileview-Div">
-        <div className="bookingsecondstepdiv">
-          <div className="qwerty">
-            <div style={{ width: "50%" }}>
-              <b>PICCO MINI</b>
-              <div>
-                <p>
-                  {" "}
-                  ₹ <b>{selectedRoute?.rate + 50}</b>
-                </p>
-                {/* <div>
-                  <IoNewspaperOutline size={27} color="green" />
-                </div> */}
-                <p>Incl. All Tax</p>
-              </div>
-            </div>
-
-            <div className="piccocarmobileview-Div">
-              <img
-                className="piccominiImg"
-                style={{ height: "100px", marginTop: "8px" }}
-                src={smallcarimg}
-                alt="Picco Mini"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="bookingsecondstepmobileview-Div">
-        <div className="bookingsecondstepdiv">
-          <div className="qwerty">
-            <div style={{ width: "50%" }}>
-              <b>PICCO SUV</b>
-              <div>
-                <p>
-                  {" "}
-                  ₹ <b>{selectedRoute?.rate + 50}</b>
-                </p>
-                {/* <div>
-                  <IoNewspaperOutline size={27} color="green" />
-                </div> */}
-                <p>Incl. All Tax</p>
-              </div>
-            </div>
-
-            <div className="piccocarmobileview-Div">
-              <img
-                className="piccominiImg"
-                style={{ height: "100px", marginTop: "8px" }}
-                src={suvimage}
-                alt="Picco Mini"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="bookingsecondstepmobileview-Div">
-        <div className="bookingsecondstepdiv">
-          <div className="qwerty">
-            <div style={{ width: "50%" }}>
-              <b>PICCO MINI</b>
-              <div>
-                <p>
-                  {" "}
-                  ₹ <b>{selectedRoute?.rate + 50}</b>
-                </p>
-                {/* <div>
-                  <IoNewspaperOutline size={27} color="green" />
-                </div> */}
-                <p>Incl. All Tax</p>
-              </div>
-            </div>
-
-            <div className="piccocarmobileview-Div">
-              <img
-                className="piccominiImg"
-                style={{ height: "100px", marginTop: "8px" }}
-                src={sedanimg}
-                alt="PICCO SEDAN"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
+      ;
     </div>
   );
 }
