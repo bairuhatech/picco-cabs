@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Modal, Input, message } from "antd";
+import { Modal, Input, message,Spin } from "antd";
 import piccocabsimg from "../../assets/images/logo.png";
 import { InputGroup, Form } from "react-bootstrap";
 import "./index.scss";
@@ -13,6 +13,8 @@ import {
   signInWithPhoneNumber,
   signOut,
 } from "firebase/auth";
+import { Loading3QuartersOutlined } from "@ant-design/icons";
+
 const CustomModal = (props: any) => {
   const [otp, setOtp] = useState("");
   const [name, setName] = useState("");
@@ -22,6 +24,7 @@ const CustomModal = (props: any) => {
   const [step, setstep] = useState("number");
   const [otpInput, setOtpInput] = useState(false);
   const [user, setUser] = useState<any>();
+  const [isLoading, setIsLoading] = useState(false);
   const [messageApi, contextHolder] = message.useMessage();
   const dispatch = useDispatch();
 
@@ -35,6 +38,7 @@ const CustomModal = (props: any) => {
   });
 
   const sendOtp = async () => {
+    setIsLoading(true)
     if (phoneNumber.length === 0) {
       setError(true);
     } else if (phoneNumber.length === 12) {
@@ -57,6 +61,7 @@ const CustomModal = (props: any) => {
       // setOtpInput(true);
       setUser(confirmation);
     } catch (err) {
+      setIsLoading(false);
       console.log(err);
     }
   };
@@ -168,7 +173,7 @@ const CustomModal = (props: any) => {
                       style={{ cursor: "pointer" }}
                       onClick={() => setOtpInput(false)}
                     >
-                      OPT send to {phoneNumber}
+                      OTP send to {phoneNumber}
                     </p>
                   </div>
                   <InputGroup style={{ width: "70%" }}>
@@ -184,7 +189,9 @@ const CustomModal = (props: any) => {
                     />
                   </InputGroup>
                   <br />
-                  <Button text="Submit" onClick={verifyOtp} />
+                  <Button
+                   text="Submit" onClick={verifyOtp}
+                  />
                   <span style={{ cursor: "pointer" }}>Resend</span>
                 </div>
               ) : step === "number" ? (
@@ -209,8 +216,15 @@ const CustomModal = (props: any) => {
                   <div className="piccocabssendotp-input">
                     <Button
                       className="piccocabssendotp-button"
-                      text="Send OTP"
+                      text={
+                        isLoading ? (
+                          <Spin indicator={<Loading3QuartersOutlined spin style={{color:"white"}}/>} />
+                        ) : (
+                          "Send OTP"
+                        )
+                      }
                       onClick={sendOtp}
+                      disabled={isLoading} // Disable the button while loading
                     />
                     <div id="recaptcha"></div>
                     {error && (
@@ -281,8 +295,7 @@ const CustomModal = (props: any) => {
 
               <br />
 
-              <div>
-              </div>
+              <div></div>
             </div>
           </div>
         </div>

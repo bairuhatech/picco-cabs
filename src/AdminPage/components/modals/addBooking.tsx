@@ -30,6 +30,10 @@ function AddBookingModal(props: any) {
       pickUpLat: 37.7749,
       pickUpLng: -122.4194,
       pickUpLoc: pickup,
+      pickUpCity: "",
+      pickUpAddress: "",
+      dropOffCity: "",
+      dropOffAddress: "",
       dropOffLat: 37.7749,
       dropOffLng: -122.4194,
       dropOffLoc: drop,
@@ -71,26 +75,6 @@ function AddBookingModal(props: any) {
           <Modal.Title>{props.purpose}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {/* <Form.Group className="mb-3" controlId="formGroupFrom">
-            <Form.Label className="fw-bold">Book Type</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="outstations or rentals"
-              className="bg-light-300"
-              value={bookType}
-              onChange={(e) => setBookType(e.target.value)}
-            />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="formGroupTo">
-            <Form.Label className="fw-bold">Trip Mode</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="oneWay or roundTrip"
-              className="bg-light-300"
-              value={tripMode}
-              onChange={(e) => setTripMode(e.target.value)}
-            />
-          </Form.Group> */}
           <Form.Group className="mb-3" controlId="formGroupPrice">
             <Form.Label className="fw-bold">Pickup Location</Form.Label>
             <Form.Control
@@ -131,26 +115,6 @@ function AddBookingModal(props: any) {
               onChange={(e) => setDrop(e.target.value)}
             />
           </Form.Group>
-          {/* <Form.Group className="mb-3" controlId="formGroupPrice">
-            <Form.Label className="fw-bold">Hrs</Form.Label>
-            <Form.Control
-              type="number"
-              placeholder="Hrs"
-              className="bg-light-300"
-              value={Hrs} 
-              onChange={(e) => setHrs(e.target.value)}
-            />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="formGroupPrice">
-            <Form.Label className="fw-bold">KMS</Form.Label>
-            <Form.Control
-              type="number"
-              placeholder="KMS"
-              className="bg-light-300"
-              value={kms} 
-              onChange={(e) => setKms(e.target.value)}
-            />
-          </Form.Group> */}
           <Form.Group className="mb-3" controlId="formGroupPrice">
             <Form.Label className="fw-bold">Amount</Form.Label>
             <Form.Control

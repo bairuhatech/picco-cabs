@@ -8,6 +8,7 @@ import { IoMdArrowRoundBack } from "react-icons/io";
 import { useLocation } from "react-router-dom";
 import moment from "moment";
 import piccologo from "../../assets/images/logo.png";
+import { Loading3QuartersOutlined } from "@ant-design/icons";
 
 const BookingThird = (props: any) => {
   const [show, setShow] = useState(true);
@@ -31,15 +32,14 @@ const BookingThird = (props: any) => {
     userfrom,
     userName,
   } = location.state;
-  
 
   const handleOk = () => {
     setIsModalOpen(false);
   };
 
   const formattedDate = moment(pickUpDate).format("YYYY-MM-DD");
-  
-  console.log("formated dateeeeee",formattedDate);
+
+  console.log("formated dateeeeee", formattedDate);
   const onFinish = async (values: any) => {
     try {
       setLoading(true);
@@ -55,7 +55,7 @@ const BookingThird = (props: any) => {
         pickUpCity: "",
         pickUpAddress: "",
         dropOffCity: "",
-        dropOffAddress:"",
+        dropOffAddress: "",
         dropOffLat: 37.7749,
         dropOffLng: -122.4194,
         dropOffLoc: selectedRoute?.location || "",
@@ -63,7 +63,7 @@ const BookingThird = (props: any) => {
         hours: parseInt(Package?.hours) || 0,
         kms: parseInt(Package?.kms) || 0,
         estimatedAmt: selectedRoute?.rate || 0,
-        returnDate:"2023-08-02T12:00:00Z",
+        returnDate: "2023-08-02T12:00:00Z",
         rentallPack: 1,
         car: "",
         PiccoCar: props.selectedCar.name,
@@ -82,9 +82,7 @@ const BookingThird = (props: any) => {
         selectedRoute?.location
       );
 
-      console.log("packageeee",Package)
-
-      
+      console.log("packageeee", Package);
 
       const response = await fetch(
         "https://piccocabs-server-46642b82a774.herokuapp.com/Booking",
@@ -104,38 +102,38 @@ const BookingThird = (props: any) => {
       setIsModalOpen(true);
       setTimeout(() => {
         setIsModalOpen(false);
-        window.history.back()
+        window.history.back();
       }, 2000);
     } catch (error) {
       console.error("API Error:", error);
       setLoading(false);
-  
+
       try {
         const errorRequestBody = {
-            userId : 1,
-            bookType : modes || modesecond,
-            tripStatus : tripType || "roundTrip",
-            pickUpDate : formattedDate,
-            dropOffDate : "2023-08-02T12:00:00Z",
-            pickUpLat : 37.7749,
-            pickUpLng : -122.4194,
-            pickUpLoc : selectedRoute?.place || RentPlace || "",
-            dropOffLat : 37.7749,
-            dropOffLng : -122.4194,
-            dropOffLoc : selectedRoute?.location || "",
-            pickUpTime : timeOfPickup || "",
-            hours : parseInt(Package?.hours) || 0,
-            kms : parseInt(Package?.kms) || 0,
-            estimatedAmt : selectedRoute?.rate || 0,
-            rentallPack : 1,
-            car : 1,
-            comments : values.Comments,
-            PiccoCar : props.selectedCar.name,
-            phoneNumber : values.Phone,
-            userName : values.name,
-            email : values.email
+          userId: 1,
+          bookType: modes || modesecond,
+          tripStatus: tripType || "roundTrip",
+          pickUpDate: formattedDate,
+          dropOffDate: "2023-08-02T12:00:00Z",
+          pickUpLat: 37.7749,
+          pickUpLng: -122.4194,
+          pickUpLoc: selectedRoute?.place || RentPlace || "",
+          dropOffLat: 37.7749,
+          dropOffLng: -122.4194,
+          dropOffLoc: selectedRoute?.location || "",
+          pickUpTime: timeOfPickup || "",
+          hours: parseInt(Package?.hours) || 0,
+          kms: parseInt(Package?.kms) || 0,
+          estimatedAmt: selectedRoute?.rate || 0,
+          rentallPack: 1,
+          car: 1,
+          comments: values.Comments,
+          PiccoCar: props.selectedCar.name,
+          phoneNumber: values.Phone,
+          userName: values.name,
+          email: values.email,
         };
-  
+
         const errorResponse = await fetch(
           "https://piccocabs-server-46642b82a774.herokuapp.com/booking-attempt",
           {
@@ -146,7 +144,7 @@ const BookingThird = (props: any) => {
             body: JSON.stringify(errorRequestBody),
           }
         );
-  
+
         const errorData = await errorResponse.json();
         console.log("Error API Response:", errorData);
       } catch (error) {
@@ -299,12 +297,18 @@ const BookingThird = (props: any) => {
                   }}
                 />
               </Form.Item>
-              <Spin spinning={loading} tip="Booking in progress...">
+              <Spin
+                spinning={loading}
+                indicator={
+                  <Loading3QuartersOutlined spin style={{ color: "green" }} />
+                }
+                tip="Booking in progress..."
+              >
                 <Form.Item>
                   <Button
                     type="primary"
                     htmlType="submit"
-                    style={{ 
+                    style={{
                       borderRadius: "5px",
                       width: "100%",
                       height: "10%",
@@ -313,7 +317,7 @@ const BookingThird = (props: any) => {
                     }}
                     disabled={loading}
                   >
-                    book now
+                    Book Now
                   </Button>
                 </Form.Item>
               </Spin>
@@ -321,7 +325,7 @@ const BookingThird = (props: any) => {
           </div>
         </Form>
       ) : (
-        <BookingForm  />
+        <BookingForm />
       )}
       {isModalOpen ? (
         <Modal

@@ -10,13 +10,14 @@ import AddBookingModal from "../modals/addBooking";
 import BookingDrawer from "../drawer";
 import { AiOutlineEye } from "react-icons/ai";
 import DriverModal from "../modals/driverModal";
-
-
+import { LoadingOutlined } from "@ant-design/icons";
 
 
 const Bookings = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const [bookingData, setBookingData] = useState<Array<{ pickUpLoc: string; dropOffLoc: string; createdAt: Date }>>([]);
+  const [bookingData, setBookingData] = useState<
+    Array<{ pickUpLoc: string; dropOffLoc: string; createdAt: Date }>
+  >([]);
   const [data, setData] = useState<any>([]);
   const [cars, setCars] = useState<any>([]);
   const [number, setNumber] = useState<any>([]);
@@ -25,19 +26,18 @@ const Bookings = () => {
   const [fromLocation, setFromLocation] = useState("");
   const [toLocation, setToLocation] = useState("");
   const [bookingID, setbookingid] = useState("");
-  const [selectedBooking, setSelectedBooking] = useState<any>({});
+  const [selectedBooking, setSelectedBooking] = useState<any>(false);
+  const [selectedBookings, setSelectedBookings] = useState<any>({});
   const [modalPurpose, setModalPurpose] = useState<any>("");
-  const [modalShow, setModalShow] = useState<any>(false);
+  const [modalShown, setModalShown] = useState<any>(false);
   const [booking, setBooking] = useState({});
-	const [isDriverModal, setIsDriverModal] = useState(false);
-
-
+  const [isDriverModal, setIsDriverModal] = useState(false);
+  const [loading, setLoading] = useState(false);
 
 
   const handleStatusChange = (value: any) => {
     setSelectedStatus(value);
   };
-  
 
   useEffect(() => {
     getAllBookings();
@@ -64,11 +64,11 @@ const Bookings = () => {
         message.success("Success");
       } else {
         setIsLoading(false);
-        message.success("Something went wrong !");
+        message.success("Success");
       }
     } catch (error) {
       setIsLoading(false);
-      message.success("Something went wrong !");
+      message.error("Something went wrong !");
     }
   };
 
@@ -93,7 +93,6 @@ const Bookings = () => {
     }
   }
 
-
   const handleStatusTypeChange = async (value: any, index: number) => {
     let updatingStatus: any = bookingData[index];
     updatingStatus.status = value;
@@ -103,7 +102,7 @@ const Bookings = () => {
       try {
         const response = await axios.put(
           "https://piccocabs-server-46642b82a774.herokuapp.com/Booking/" +
-          updatingStatus.id +
+            updatingStatus.id +
             "",
           reqBody
         );
@@ -115,83 +114,122 @@ const Bookings = () => {
     }
   };
 
-  
   const handleFilter = (value: any) => {
-   
-    
-    const filteredData = bookingData.filter(item => {
-      
-      const fromMatch = item.pickUpLoc?.toLowerCase().includes(value.fromLocation?.toLowerCase());
-      const toMatch = item.dropOffLoc?.toLowerCase().includes(value.toLocation?.toLowerCase());
-      const bookingIDMatch = moment(item.createdAt).format("DDHHmmssYYM") === value.bookingid;
+    setLoading(true)
+    const filteredData = bookingData.filter((item) => {
+      const fromMatch = item.pickUpLoc
+        ?.toLowerCase()
+        .includes(value.fromLocation?.toLowerCase());
+      const toMatch = item.dropOffLoc
+        ?.toLowerCase()
+        .includes(value.toLocation?.toLowerCase());
+      const bookingIDMatch =
+        moment(item.createdAt).format("DDHHmmssYYM") === value.bookingid;
 
-      return (fromMatch || !value.fromLocation) && (toMatch || !value.toLocation) && (bookingIDMatch || !value.bookingid);
+      return (
+        (fromMatch || !value.fromLocation) &&
+        (toMatch || !value.toLocation) &&
+        (bookingIDMatch || !value.bookingid)
+      );
     });
 
-  
-  
     setFromLocation(fromLocation);
     setToLocation(toLocation);
-    setbookingid(value.bookingIDMatch)
+    setbookingid(value.bookingIDMatch);
     setBookingData(filteredData);
+    setLoading(false)
   };
-  
+
   const handleRefresh = () => {
-    
-    window.location.reload()
+    window.location.reload();
   };
   const change = () => {
     getAllBookings();
     fetchData();
   };
   const handleCreateBooking = () => {
-    setSelectedBooking({});
+    setSelectedBookings({});
     setModalPurpose("Create");
-    setModalShow(true);
+    setModalShown(true);
   };
   const handleModalClose = () => {
-    setModalShow(false); 
-    setSelectedBooking({});
+    setModalShown(false);
+    setSelectedBookings({});
   };
   const handleModalSuccess = () => {
     fetchData();
-    setModalShow(false);
-    setSelectedBooking({});
+    setModalShown(false);
+    setSelectedBookings({});
   };
-
 
   return (
     <div className="table-responsive" style={{ height: "100%" }}>
-      <div style={{width:"100%", height:"70px", display:"flex", justifyContent:"space-between"}}>
-      <h2 className="py-3 ps-2">Bookings</h2>
-    <Form  layout="inline" onFinish={handleFilter} style={{paddingLeft:"10px", marginTop: "20px"}}>
-    <Form.Item  style={{fontWeight:"600"}}label="BOOKINGID" name="bookingid">
-      <Input placeholder="bookingID" onChange={change} />
-    </Form.Item>
-      <Form.Item  style={{fontWeight:"600"}}label="FROM" name="fromLocation">
-        <Input placeholder="From Location" onChange={change} />
-      </Form.Item>
-      <Form.Item  style={{fontWeight:"600"}}label="TO" name="toLocation">
-        <Input placeholder="To Location" onChange={change}/>
-      </Form.Item>
-      <Form.Item>
-        <Button type="primary" style={{ backgroundColor: "rgb(104, 175, 68)",width:"100%", color:"white", fontSize:"13px", fontWeight:"500" }} htmlType="submit">Filter</Button>
-       
-  
-      </Form.Item>
-      <span style={{ marginLeft: "10px", cursor: "pointer" }}>
-          <FaSync onClick={handleRefresh} />
-        </span>
-    </Form>
-    <br/>
+      <div
+        style={{
+          width: "100%",
+          height: "70px",
+          display: "flex",
+          justifyContent: "space-between",
+        }}
+      >
+        <h2 className="py-3 ps-2">Bookings</h2>
+        <Form
+          layout="inline"
+          onFinish={handleFilter}
+          style={{ paddingLeft: "10px", marginTop: "20px" }}
+        >
+          <Form.Item
+            style={{ fontWeight: "600" }}
+            label="BOOKINGID"
+            name="bookingid"
+          >
+            <Input placeholder="bookingID" onChange={change} />
+          </Form.Item>
+          <Form.Item
+            style={{ fontWeight: "600" }}
+            label="FROM"
+            name="fromLocation"
+          >
+            <Input placeholder="From Location" onChange={change} />
+          </Form.Item>
+          <Form.Item style={{ fontWeight: "600" }} label="TO" name="toLocation">
+            <Input placeholder="To Location" onChange={change} />
+          </Form.Item>
+          <Form.Item>
+            <Button
+              type="primary"
+              style={{  
+                backgroundColor: "rgb(104, 175, 68)",
+                width: "100%",
+                color: "white",
+                fontSize: "13px",
+                fontWeight: "500",
+              }}
+              htmlType="submit"
+              disabled={loading} // Disable the button while loading
+            >
+              {loading ? (
+                <span>
+                  <Spin indicator={<LoadingOutlined />} /> Loading...
+                </span>
+              ) : (
+                "Filter"
+              )}
+            </Button>
+          </Form.Item>
+          <span style={{ marginLeft: "10px", cursor: "pointer" }}>
+            <FaSync onClick={handleRefresh} />
+          </span>
+        </Form>
+        <br />
 
-      <button
-        style={{border:"1px solid green", color:"green"}}
+        <button
+          style={{ border: "1px solid green", color: "green" }}
           className="btn btn-picco align-self-center me-3 text-light"
           onClick={() => handleCreateBooking()}
         >
           <FaPlus className="text-light" />
-          <b style={{color:"green"}}>Add Booking</b>
+          <b style={{ color: "green" }}>Add Booking</b>
         </button>
       </div>
       {isLoading ? (
@@ -206,7 +244,6 @@ const Bookings = () => {
         >
           <Spin size="large" style={{ color: "red" }} />
         </div>
-        
       ) : (
         <table className="table table-striped align-self-start table-hover">
           <thead>
@@ -231,7 +268,6 @@ const Bookings = () => {
               <th scope="col">Contact</th>
               <th scope="col">Created At</th>
               <th scope="col">View booking</th>
-
             </tr>
           </thead>
           <tbody>
@@ -239,112 +275,130 @@ const Bookings = () => {
               return (
                 <tr key={item.id}>
                   <th scope="row">
-                  {moment(item.createdAt).format("DDHHmmssYYM")}
-                    </th>
+                    {moment(item.createdAt).format("DDHHmmssYYM")}
+                  </th>
                   <td>
                     <Select
                       style={{ width: "130px" }}
                       defaultValue={item.status}
                       onChange={(value) => handleStatusTypeChange(value, index)}
                     >
-                      <Select.Option value="Trip Created">Trip Created</Select.Option>
-                      <Select.Option value="Trip Confirmed">Trip Confirmed</Select.Option>
-                      <Select.Option value="Assign On Trip">Assign On Trip</Select.Option>
-                      <Select.Option value="Trip Completed">Trip Completed</Select.Option>
-                      <Select.Option value="Canceled By Guest">Canceled By Guest</Select.Option>
-                      <Select.Option value="Cancelled By Picco">Cancelled By Picco</Select.Option>
+                      <Select.Option value="Trip Created">
+                        Trip Created
+                      </Select.Option>
+                      <Select.Option value="Trip Confirmed">
+                        Trip Confirmed
+                      </Select.Option>
+                      <Select.Option value="Assign On Trip">
+                        Assign On Trip
+                      </Select.Option>
+                      <Select.Option value="Trip Completed">
+                        Trip Completed
+                      </Select.Option>
+                      <Select.Option value="Canceled By Guest">
+                        Canceled By Guest
+                      </Select.Option>
+                      <Select.Option value="Cancelled By Picco">
+                        Cancelled By Picco
+                      </Select.Option>
                       <Select.Option value="No Show">No Show</Select.Option>
                     </Select>
                   </td>
                   <td>{item.bookType}</td>
                   {item.bookType == "rentals" ? (
                     <>
-                  <td>{item.tripStatus == null}</td>
-                  <td>{item.pickUpLoc}</td>
-                  <td>{moment(item.pickUpDate).format("MMMM Do, YYYY")}</td>
-                  <td>{item.pickUpTime}</td>
-                  <td>{item.dropOffLoc}</td>
-                  <td>
-										<Button
-											onClick={() => {
-												setBooking(item);
-												setIsDriverModal(true);
-											}}>
-											Assign Driver and Car
-										</Button>
-										{isDriverModal ? (
-											<DriverModal
-												booking={booking}
-												show={isDriverModal}
-												onHide={() => {
-													setIsDriverModal(false);
-												}}
-												onOk={() => {
-													setIsDriverModal(false);
-												}}
-											/>
-										) : null}
-									</td>
+                      <td>{item.tripStatus == null}</td>
+                      <td>{item.pickUpLoc}</td>
+                      <td>{moment(item.pickUpDate).format("MMMM Do, YYYY")}</td>
+                      <td>{item.pickUpTime}</td>
+                      <td>{item.dropOffLoc}</td>
+                      <td>
+                        <Button
+                          onClick={() => {
+                            setBooking(item);
+                            setIsDriverModal(true);
+                          }}
+                        >
+                          Assign Driver and Car
+                        </Button>
+                        {isDriverModal ? (
+                          <DriverModal
+                            booking={booking}
+                            show={isDriverModal}
+                            onHide={() => {
+                              setIsDriverModal(false);
+                            }}
+                            onOk={() => {
+                              setIsDriverModal(false);
+                            }}
+                          />
+                        ) : null}
+                      </td>
 
-                  <td>{item.hours}</td>
-                  <td>{item.kms}</td>
-                  <td>{item.estimatedAmt}</td>
-                  <td>{item.rentallPack}</td>
-                  <td>
-                  </td>
-                  <td>{item.PiccoCar}</td>
-                  <td>{item.comments}</td>
-                  <td>{item.userName}</td>  
-                  <td>{item.phoneNumber}</td>
-                  <td>{moment(item.createdAt).format("YYYY-MM-DD")}</td>
-                  <td>
-                    <AiOutlineEye size={30} onClick={() => setSelectedBooking(item)} />
-                  </td>
-                  </>
+                      <td>{item.hours}</td>
+                      <td>{item.kms}</td>
+                      <td>{item.estimatedAmt}</td>
+                      <td>{item.rentallPack}</td>
+                      <td></td>
+                      <td>{item.PiccoCar}</td>
+                      <td>{item.comments}</td>
+                      <td>{item.userName}</td>
+                      <td>{item.phoneNumber}</td>
+                      <td>{moment(item.createdAt).format("YYYY-MM-DD")}</td>
+                      <td>
+                        <AiOutlineEye
+                          size={30}
+                          onClick={() => setSelectedBooking(item)}
+                        />
+                      </td>
+                    </>
                   ) : (
                     <>
-                  <td>{item.tripStatus}</td>
-                  <td>{item.pickUpLoc}</td>
-                  <td>{moment(item.pickUpDate).format("MMMM Do, YYYY")}</td>
-                  <td>{item.pickUpTime}</td>
-                  <td>{item.dropOffLoc}</td>
-                  <td>
-										<Button
-											onClick={() => {
-												setBooking(item);
-												setIsDriverModal(true);
-											}}>
-											Assign Driver and Car
-										</Button>
-										{isDriverModal ? (
-											<DriverModal
-												booking={booking}
-												show={isDriverModal}
-												onHide={() => {
-													setIsDriverModal(false);
-												}}
-												onOk={() => {
-													setIsDriverModal(false);
-												}}
-											/>
-										) : null}
-									</td>
+                      <td>{item.tripStatus}</td>
+                      <td>{item.pickUpLoc}</td>
+                      <td>{moment(item.pickUpDate).format("MMMM Do, YYYY")}</td>
+                      <td>{item.pickUpTime}</td>
+                      <td>{item.dropOffLoc}</td>
+                      <td>
+                        <Button
+                          onClick={() => {
+                            setBooking(item);
+                            setIsDriverModal(true);
+                          }}
+                        >
+                          Assign Driver and Car
+                        </Button>
+                        {isDriverModal ? (
+                          <DriverModal
+                            booking={booking}
+                            show={isDriverModal}
+                            onHide={() => {
+                              setIsDriverModal(false);
+                            }}
+                            onOk={() => {
+                              setIsDriverModal(false);
+                            }}
+                          />
+                        ) : null}
+                      </td>
 
-                  <td>{item.hours}</td>
-                  <td>{item.kms}</td>
-                  <td>{item.estimatedAmt}</td>
-                  <td>{item.rentallPack}</td>
-                  <td>
-                  </td>
-                  <td>{item.PiccoCar}</td>
-                  <td>{item.comments}</td>
-                  <td>{item.userName}</td>  
-                  <td>{item.phoneNumber}</td>
-                  <td>{moment(item.createdAt).format("YYYY-MM-DD")}</td>
-                  <td>
-                    <AiOutlineEye size={25} onClick={() => setSelectedBooking(item)} />
-                  </td>
-                  </>
+                      <td>{item.hours}</td>
+                      <td>{item.kms}</td>
+                      <td>{item.estimatedAmt}</td>
+                      <td>{item.rentallPack}</td>
+                      <td></td>
+                      <td>{item.PiccoCar}</td>
+                      <td>{item.comments}</td>
+                      <td>{item.userName}</td>
+                      <td>{item.phoneNumber}</td>
+                      <td>{moment(item.createdAt).format("YYYY-MM-DD")}</td>
+                      <td>
+                        <AiOutlineEye
+                          size={25}
+                          onClick={() => setSelectedBooking(item)}
+                        />
+                      </td>
+                    </>
                   )}
                 </tr>
               );
@@ -353,86 +407,98 @@ const Bookings = () => {
         </table>
       )}
       <h2 className="py-3 ps-2">Allocated Bookings</h2>
-			<table className="table table-striped align-self-start table-hover">
-				<thead>
-					<tr>
-						<th scope="col">#</th>
-						<th scope="col">Status</th>
-						<th scope="col">Book Type</th>
-						<th scope="col">One Way/RoundTrip</th>
-						<th scope="col">Pickup</th>
-						<th scope="col">Drop</th>
-						<th scope="Col">Driver</th>
-						<th scope="col">Hrs</th>
-						<th scope="col">Kms</th>
-						<th scope="col">Est. Amount</th>
-						<th scope="col">Pack</th>
-						<th scope="col">Car</th>
-						<th scope="col">Comments</th>
-						<th scope="col">Created At</th>
-						<th scope="col">User</th>
-					</tr>
-				</thead>
-				<tbody>
-					{bookingData?.reverse().map((item: any, index: number) => {
-						return (
-							<>
-								{item.driver.length > 0 ? (
-									<tr key={item.id}>
-										<th scope="row">{item.id}</th>
-										<td>
-											<Select
-												style={{ width: "130px" }}
-												defaultValue={item.status}
-												onChange={(value) => handleStatusTypeChange(value, index)}>
-                      <Select.Option value="Trip Created">Trip Created</Select.Option>
-                      <Select.Option value="Trip Confirmed">Trip Confirmed</Select.Option>
-                      <Select.Option value="Assign On Trip">Assign On Trip</Select.Option>
-                      <Select.Option value="Trip Completed">Trip Completed</Select.Option>
-                      <Select.Option value="Canceled By Guest">Canceled By Guest</Select.Option>
-                      <Select.Option value="Cancelled By Picco">Cancelled By Picco</Select.Option>
-                      <Select.Option value="No Show">No Show</Select.Option>
-											</Select>
-										</td>
-										<td>{item.bookType}</td>
-										<td>{item.tripStatus}</td>
-										<td>{item.pickUpLoc}</td>
-										<td>{item.dropOffLoc}</td>
-										<td>
-											{item.driver}
-										</td>
+      <table className="table table-striped align-self-start table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Status</th>
+            <th scope="col">Book Type</th>
+            <th scope="col">One Way/RoundTrip</th>
+            <th scope="col">Pickup</th>
+            <th scope="col">Drop</th>
+            <th scope="Col">Driver</th>
+            <th scope="col">Hrs</th>
+            <th scope="col">Kms</th>
+            <th scope="col">Est. Amount</th>
+            <th scope="col">Pack</th>
+            <th scope="col">Car</th>
+            <th scope="col">Comments</th>
+            <th scope="col">Created At</th>
+            <th scope="col">User</th>
+          </tr>
+        </thead>
+        <tbody>
+          {bookingData?.reverse().map((item: any, index: number) => {
+            return (
+              <>
+                {item.driver.length > 0 ? (
+                  <tr key={item.id}>
+                    <th scope="row">{item.id}</th>
+                    <td>
+                      <Select
+                        style={{ width: "130px" }}
+                        defaultValue={item.status}
+                        onChange={(value) =>
+                          handleStatusTypeChange(value, index)
+                        }
+                      >
+                        <Select.Option value="Trip Created">
+                          Trip Created
+                        </Select.Option>
+                        <Select.Option value="Trip Confirmed">
+                          Trip Confirmed
+                        </Select.Option>
+                        <Select.Option value="Assign On Trip">
+                          Assign On Trip
+                        </Select.Option>
+                        <Select.Option value="Trip Completed">
+                          Trip Completed
+                        </Select.Option>
+                        <Select.Option value="Canceled By Guest">
+                          Canceled By Guest
+                        </Select.Option>
+                        <Select.Option value="Cancelled By Picco">
+                          Cancelled By Picco
+                        </Select.Option>
+                        <Select.Option value="No Show">No Show</Select.Option>
+                      </Select>
+                    </td>
+                    <td>{item.bookType}</td>
+                    <td>{item.tripStatus}</td>
+                    <td>{item.pickUpLoc}</td>
+                    <td>{item.dropOffLoc}</td>
+                    <td>{item.driver}</td>
 
-										<td>{item.hours}</td>
-										<td>{item.kms}</td>
-										<td>{item.estimatedAmt}</td>
-										<td>{item.rentallPack}</td>
-										<td>{item.car}</td>
-										<td>{item.comments}</td>
-										<td>{moment(item.createdAt).format("YYYY-MM-DD")}</td>
-										<td>{item.userName}</td>
-									</tr>
-								) : null}
-							</>
-						);
-					})}
-				</tbody>
-			</table>
-      
+                    <td>{item.hours}</td>
+                    <td>{item.kms}</td>
+                    <td>{item.estimatedAmt}</td>
+                    <td>{item.rentallPack}</td>
+                    <td>{item.car}</td>
+                    <td>{item.comments}</td>
+                    <td>{moment(item.createdAt).format("YYYY-MM-DD")}</td>
+                    <td>{item.userName}</td>
+                  </tr>
+                ) : null}
+              </>
+            );
+          })}
+        </tbody>
+      </table>
+
       <AddBookingModal
-              show={modalShow}
-              hide={handleModalClose}
-              purpose={modalPurpose}
-              locationId={selectedBooking}
-              onSuccess={handleModalSuccess}
+        show={modalShown}
+        hide={handleModalClose}
+        purpose={modalPurpose}
+        locationId={selectedBookings}
+        onSuccess={handleModalSuccess}
       />
-      {selectedBooking &&(
+      {selectedBooking && (
         <BookingDrawer
           drawer={true}
           bookingdetails={selectedBooking}
           onClose={() => setSelectedBooking(null)}
         />
       )}
-
     </div>
   );
 };
