@@ -9,6 +9,7 @@ import { FaEdit, FaPlus } from "react-icons/fa";
 import AddBookingModal from "../modals/addBooking";
 import BookingDrawer from "../drawer";
 import { AiOutlineEye } from "react-icons/ai";
+import DriverModal from "../modals/driverModal";
 
 
 
@@ -27,6 +28,8 @@ const Bookings = () => {
   const [selectedBooking, setSelectedBooking] = useState<any>({});
   const [modalPurpose, setModalPurpose] = useState<any>("");
   const [modalShow, setModalShow] = useState<any>(false);
+  const [booking, setBooking] = useState({});
+	const [isDriverModal, setIsDriverModal] = useState(false);
 
 
 
@@ -91,27 +94,6 @@ const Bookings = () => {
   }
 
 
-  const handleCarTypeChange = async (value: any, index: number) => {
-    let updatingItem: any = bookingData[index];
-    updatingItem.car = value;
-    let reqBody = { ...updatingItem };
-    delete reqBody.id;
-    if (value) {
-      try {
-        const response = await axios.put(
-          "https://piccocabs-server-46642b82a774.herokuapp.com/Booking/" +
-            updatingItem.id +
-            "",
-          reqBody
-        );
-
-        console.log("Response:", response.data);
-      } catch (error) {
-        console.error("Error:", error);
-      }
-    }
-  };
-
   const handleStatusTypeChange = async (value: any, index: number) => {
     let updatingStatus: any = bookingData[index];
     updatingStatus.status = value;
@@ -133,28 +115,6 @@ const Bookings = () => {
     }
   };
 
-
-
-  const handleDriverTypeChange = async (value: any, index: number) => {
-    let updatingDriver: any = bookingData[index];
-    updatingDriver.driver = value;
-    let reqBody = { ...updatingDriver };
-    delete reqBody.id;
-    if (value) {
-      try {
-        const response = await axios.put(
-          "https://piccocabs-server-46642b82a774.herokuapp.com/Booking/" +
-          updatingDriver.id +
-            "",
-          reqBody
-        );
-
-        console.log("Response:", response.data);
-      } catch (error) {
-        console.error("Error:", error);
-      }
-    }
-  };
   
   const handleFilter = (value: any) => {
    
@@ -305,31 +265,32 @@ const Bookings = () => {
                   <td>{item.pickUpTime}</td>
                   <td>{item.dropOffLoc}</td>
                   <td>
-                    <Select
-                      style={{ width: "130px" }}
-                      defaultValue={item.driver}
-                      onChange={(value) => handleDriverTypeChange(value, index)}
-                      options={data.map((item: any) => ({
-                        label: item.DriverName,
-                        value: item.DriverName,
-                      }))}
-                    />
-                  </td>
+										<Button
+											onClick={() => {
+												setBooking(item);
+												setIsDriverModal(true);
+											}}>
+											Assign Driver and Car
+										</Button>
+										{isDriverModal ? (
+											<DriverModal
+												booking={booking}
+												show={isDriverModal}
+												onHide={() => {
+													setIsDriverModal(false);
+												}}
+												onOk={() => {
+													setIsDriverModal(false);
+												}}
+											/>
+										) : null}
+									</td>
 
                   <td>{item.hours}</td>
                   <td>{item.kms}</td>
                   <td>{item.estimatedAmt}</td>
                   <td>{item.rentallPack}</td>
                   <td>
-                    <Select
-                      style={{ width: "130px" }}
-                      defaultValue={item.car}
-                      onChange={(val) => handleCarTypeChange(val, index)}
-                      options={cars.map((item: any) => ({
-                        label: `${item.brand} ${item.model}`,
-                        value: `${item.brand} ${item.model}`,
-                      }))}
-                    />
                   </td>
                   <td>{item.PiccoCar}</td>
                   <td>{item.comments}</td>
@@ -348,31 +309,32 @@ const Bookings = () => {
                   <td>{item.pickUpTime}</td>
                   <td>{item.dropOffLoc}</td>
                   <td>
-                    <Select
-                      style={{ width: "130px" }}
-                      defaultValue={item.driver}
-                      onChange={(value) => handleDriverTypeChange(value, index)}
-                      options={data.map((item: any) => ({
-                        label: item.DriverName,
-                        value: item.DriverName,
-                      }))}
-                    />
-                  </td>
+										<Button
+											onClick={() => {
+												setBooking(item);
+												setIsDriverModal(true);
+											}}>
+											Assign Driver and Car
+										</Button>
+										{isDriverModal ? (
+											<DriverModal
+												booking={booking}
+												show={isDriverModal}
+												onHide={() => {
+													setIsDriverModal(false);
+												}}
+												onOk={() => {
+													setIsDriverModal(false);
+												}}
+											/>
+										) : null}
+									</td>
 
                   <td>{item.hours}</td>
                   <td>{item.kms}</td>
                   <td>{item.estimatedAmt}</td>
                   <td>{item.rentallPack}</td>
                   <td>
-                    <Select
-                      style={{ width: "130px" }}
-                      defaultValue={item.car}
-                      onChange={(val) => handleCarTypeChange(val, index)}
-                      options={cars.map((item: any) => ({
-                        label: `${item.brand} ${item.model}`,
-                        value: `${item.brand} ${item.model}`,
-                      }))}
-                    />
                   </td>
                   <td>{item.PiccoCar}</td>
                   <td>{item.comments}</td>
@@ -390,6 +352,71 @@ const Bookings = () => {
           </tbody>
         </table>
       )}
+      <h2 className="py-3 ps-2">Allocated Bookings</h2>
+			<table className="table table-striped align-self-start table-hover">
+				<thead>
+					<tr>
+						<th scope="col">#</th>
+						<th scope="col">Status</th>
+						<th scope="col">Book Type</th>
+						<th scope="col">One Way/RoundTrip</th>
+						<th scope="col">Pickup</th>
+						<th scope="col">Drop</th>
+						<th scope="Col">Driver</th>
+						<th scope="col">Hrs</th>
+						<th scope="col">Kms</th>
+						<th scope="col">Est. Amount</th>
+						<th scope="col">Pack</th>
+						<th scope="col">Car</th>
+						<th scope="col">Comments</th>
+						<th scope="col">Created At</th>
+						<th scope="col">User</th>
+					</tr>
+				</thead>
+				<tbody>
+					{bookingData?.reverse().map((item: any, index: number) => {
+						return (
+							<>
+								{item.driver.length > 0 ? (
+									<tr key={item.id}>
+										<th scope="row">{item.id}</th>
+										<td>
+											<Select
+												style={{ width: "130px" }}
+												defaultValue={item.status}
+												onChange={(value) => handleStatusTypeChange(value, index)}>
+                      <Select.Option value="Trip Created">Trip Created</Select.Option>
+                      <Select.Option value="Trip Confirmed">Trip Confirmed</Select.Option>
+                      <Select.Option value="Assign On Trip">Assign On Trip</Select.Option>
+                      <Select.Option value="Trip Completed">Trip Completed</Select.Option>
+                      <Select.Option value="Canceled By Guest">Canceled By Guest</Select.Option>
+                      <Select.Option value="Cancelled By Picco">Cancelled By Picco</Select.Option>
+                      <Select.Option value="No Show">No Show</Select.Option>
+											</Select>
+										</td>
+										<td>{item.bookType}</td>
+										<td>{item.tripStatus}</td>
+										<td>{item.pickUpLoc}</td>
+										<td>{item.dropOffLoc}</td>
+										<td>
+											{item.driver}
+										</td>
+
+										<td>{item.hours}</td>
+										<td>{item.kms}</td>
+										<td>{item.estimatedAmt}</td>
+										<td>{item.rentallPack}</td>
+										<td>{item.car}</td>
+										<td>{item.comments}</td>
+										<td>{moment(item.createdAt).format("YYYY-MM-DD")}</td>
+										<td>{item.userName}</td>
+									</tr>
+								) : null}
+							</>
+						);
+					})}
+				</tbody>
+			</table>
       
       <AddBookingModal
               show={modalShow}
