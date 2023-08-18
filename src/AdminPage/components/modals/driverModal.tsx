@@ -32,7 +32,6 @@ function DriverModal(props: any) {
 			setSelectedStatus(response.data);
 			setData(response.data);
 			setIsLoading(false);
-			console.log("data vannoda=========", data);
 		} catch (error) {
 			console.error("Error:", error);
 		}
@@ -51,8 +50,6 @@ function DriverModal(props: any) {
 						"",
 					reqBody
 				);
-
-				console.log("Response:", response.data);
 			} catch (error) {
 				console.error("Error:", error);
 			}
@@ -76,14 +73,10 @@ function DriverModal(props: any) {
 		setSelectedRow(index);
 	};
 	const selectRowData = (item: any) => {
-		console.log("item=============", item);
 		setDriverData(item);
-		console.log("driverData==========>>>>>>>>>>>>", driverData);
 	};
 	const goingToCarModal = () => {
 		setCarModal(true);
-		// props.onHide();
-		// props.onOk();
 	};
 	return (
 		<Modal
@@ -94,7 +87,6 @@ function DriverModal(props: any) {
 			<div>
 				<h5 style={{ textAlign: "center" }}>Assign a Best Driver</h5>
 				<br />
-
 				<Row>
 					<Col md={7}></Col>
 					<Col md={3}>
@@ -153,7 +145,6 @@ function DriverModal(props: any) {
 								<td scope="col">Current Booking</td>
 							</tr>
 						</thead>
-
 						<tbody>
 							{data.map((item: any, index: number) => (
 								<tr key={item.id}>
@@ -197,10 +188,6 @@ function DriverModal(props: any) {
 							height: "35px",
 							color: "#ffff",
 						}}
-						// onClick={() => {
-						// 	setCarModal(true);
-						// 	props.onHide();
-						// }}
 						onClick={goingToCarModal}>
 						Save & Continue
 					</button>

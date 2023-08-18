@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Modal, Input, Button, Select, Radio, Spin } from "antd";
+import { Modal, Input, Button, Select, Radio, Spin, message } from "antd";
 import { Row, Col } from "react-bootstrap";
 import { BiSearch } from "react-icons/bi";
 import { FaPlus } from "react-icons/fa";
 import axios from "axios";
 import AddCarsModal from "./addCars";
-import { Loading3QuartersOutlined } from "@ant-design/icons";
-import piccologo from "../../../assets/images/logo.png";
+import { useNavigate } from "react-router-dom";
 
 function CarModal(props: any) {
 	const [data, setData] = useState<any>([]);
@@ -16,7 +15,7 @@ function CarModal(props: any) {
 	const [carData, setCarData] = useState<any>({});
 	const [loading, setLoading] = useState(false);
 	const [isLoading, setIsLoading] = useState(true);
-	const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		fetchData();
@@ -26,38 +25,29 @@ function CarModal(props: any) {
 		setCarData(item);
 	};
 
-
-	const DriverAndCar = async (index: any) => {
+	const DriverAndCarUpdate = async (index: any) => {
 		setLoading(true);
 
 		try {
 			let updatingItem: any = data[index];
-			console.log(updatingItem);
-
-			console.log("updatingItem --> ", updatingItem);
-			console.log("Driver ---> ", props?.setDriverData?.DriverName);
-			console.log("Car ---> ", carData.RcNumber);
-
 			let reqBody = {
 				driver: props?.setDriverData?.DriverName || "",
-                car: `${carData.brand} ${carData.model}`,
+				car: `${carData.brand}, ${carData.model}`,
 			};
-
 			const response = await axios.put(
 				"https://piccocabs-server-46642b82a774.herokuapp.com/Booking/" +
 					props.booking.id,
 				reqBody
 			);
-			console.log("response=======rishadddd=======>>>", response);
 			setLoading(false);
 			props.onHide();
-			alert("Driver and Car selected successfully");
+			message.success("Driver and Car selected successfully!");
+			navigate("/adminpanel");
 		} catch (err) {}
 	};
 	const handleCreateCar = () => {
 		setModalShow(true);
 	};
-
 	async function fetchData() {
 		setIsLoading(true);
 		try {
@@ -66,7 +56,6 @@ function CarModal(props: any) {
 			);
 			setSelectedStatus(response.data);
 			setData(response.data);
-			console.log("data vaerumm=========", data);
 			setIsLoading(false);
 		} catch (error) {
 			console.error("Error:", error);
@@ -86,8 +75,6 @@ function CarModal(props: any) {
 						"",
 					reqBody
 				);
-
-				console.log("Response:", response.data);
 			} catch (error) {
 				console.error("Error:", error);
 			}
@@ -102,9 +89,6 @@ function CarModal(props: any) {
 	};
 	const handleRadioChange = (index: any) => {
 		setSelectedRow(index);
-	};
-	const handleOk = () => {
-		setIsSuccessModalOpen(false);
 	};
 	return (
 		<Modal open={props.show} onCancel={props.onHide} width={1000}>
@@ -195,7 +179,7 @@ function CarModal(props: any) {
 										</Select>
 									</td>
 									<td>{item.currentBooking}</td>
-									<td>{item.history}</td>							
+									<td>{item.history}</td>
 								</tr>
 							))}
 						</tbody>
@@ -210,35 +194,12 @@ function CarModal(props: any) {
 							height: "35px",
 							color: "#ffff",
 						}}
-
 						loading={loading}
-						onClick={DriverAndCar}>
+						onClick={DriverAndCarUpdate}>
 						Save & Continue
 					</Button>
 				</div>
-			</div>{" "}
-			{isSuccessModalOpen ? (
-				<Modal
-					title="Basic Modal"
-					open={isSuccessModalOpen}
-					onOk={handleOk}
-					closable={false}
-					style={{ maxWidth: "25%" }}>
-					<div
-						style={{
-							width: "100%",
-							height: "200px",
-							display: "flex",
-							alignItems: "center",
-							justifyContent: "center",
-							flexDirection: "column",
-							paddingBottom: "20px",
-						}}>
-						<img src={piccologo} style={{ width: "50%", height: "200px" }} />
-						<h6>Booking Successfully.</h6>
-					</div>
-				</Modal>
-			) : null}
+			</div>
 			<AddCarsModal
 				show={modalShow}
 				hide={handleModalClose}
