@@ -22,12 +22,19 @@ const LocationsTable = () => {
   }, []);
 
   async function fetchData() {
+    setIsLoading(true);
+
     try {
       const response = await axios.get(
         "https://piccocabs-server-46642b82a774.herokuapp.com/Pickuplocation/location"
       );
       setData(response.data);
+      setIsLoading(false);
+
+      console.log("data vannoda", response.data);
     } catch (error) {
+      setIsLoading(false);
+
       console.error("Error:", error);
     }
   }
@@ -37,14 +44,14 @@ const LocationsTable = () => {
       const response = await axios.delete(
         `https://piccocabs-server-46642b82a774.herokuapp.com/Pickuplocation/${id}`
       );
-      setIsLoading(false);
+      // setIsLoading(false);
 
       setData((prevData: any) =>
         prevData.filter((item: any) => item.id !== id)
       );
       console.log("Delete Response:", response);
     } catch (error) {
-      setIsLoading(false);
+      // setIsLoading(false);
 
       console.error("Error:", error);
     }

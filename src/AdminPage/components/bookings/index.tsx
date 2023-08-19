@@ -34,7 +34,6 @@ const Bookings = () => {
   const [isDriverModal, setIsDriverModal] = useState(false);
   const [loading, setLoading] = useState(false);
 
-
   const handleStatusChange = (value: any) => {
     setSelectedStatus(value);
   };
@@ -115,7 +114,7 @@ const Bookings = () => {
   };
 
   const handleFilter = (value: any) => {
-    setLoading(true)
+    setLoading(true);
     const filteredData = bookingData.filter((item) => {
       const fromMatch = item.pickUpLoc
         ?.toLowerCase()
@@ -137,7 +136,7 @@ const Bookings = () => {
     setToLocation(toLocation);
     setbookingid(value.bookingIDMatch);
     setBookingData(filteredData);
-    setLoading(false)
+    setLoading(false);
   };
 
   const handleRefresh = () => {
@@ -272,7 +271,7 @@ const Bookings = () => {
               <th scope="col">Kms</th>
               <th scope="col">Est. Amount</th>
               <th scope="col">Pack</th>
-              <th scope="col">Car</th>
+              {/* <th scope="col">Car</th> */}
               <th scope="col">Picco Car</th>
               <th scope="col">Comments</th>
               <th scope="col">User</th>
@@ -350,7 +349,7 @@ const Bookings = () => {
                       <td>{item.kms}</td>
                       <td>{item.estimatedAmt}</td>
                       <td>{item.rentallPack}</td>
-                      <td></td>
+                      {/* <td></td> */}
                       <td>{item.PiccoCar}</td>
                       <td>{item.comments}</td>
                       <td>{item.userName}</td>
@@ -397,7 +396,7 @@ const Bookings = () => {
                       <td>{item.kms}</td>
                       <td>{item.estimatedAmt}</td>
                       <td>{item.rentallPack}</td>
-                      <td></td>
+                      {/* <td></td> */}
                       <td>{item.PiccoCar}</td>
                       <td>{item.comments}</td>
                       <td>{item.userName}</td>
@@ -422,7 +421,7 @@ const Bookings = () => {
         <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col">Status</th>
+            {/* <th scope="col">Status</th> */}
             <th scope="col">Book Type</th>
             <th scope="col">One Way/RoundTrip</th>
             <th scope="col">Pickup</th>
@@ -432,7 +431,7 @@ const Bookings = () => {
             <th scope="col">Kms</th>
             <th scope="col">Est. Amount</th>
             <th scope="col">Pack</th>
-            <th scope="col">Car</th>
+            {/* <th scope="col">Car</th> */}
             <th scope="col">Comments</th>
             <th scope="col">Created At</th>
             <th scope="col">User</th>
@@ -445,7 +444,7 @@ const Bookings = () => {
                 {item.driver.length > 0 ? (
                   <tr key={item.id}>
                     <th scope="row">{item.id}</th>
-                    <td>
+                    {/* <td>
                       <Select
                         style={{ width: "130px" }}
                         defaultValue={item.status}
@@ -473,7 +472,8 @@ const Bookings = () => {
                         </Select.Option>
                         <Select.Option value="No Show">No Show</Select.Option>
                       </Select>
-                    </td>
+                    </td> */}
+                    {/* <td>{item.status}</td> */}
                     <td>{item.bookType}</td>
                     <td>{item.tripStatus}</td>
                     <td>{item.pickUpLoc}</td>
@@ -484,7 +484,7 @@ const Bookings = () => {
                     <td>{item.kms}</td>
                     <td>{item.estimatedAmt}</td>
                     <td>{item.rentallPack}</td>
-                    <td>{item.car}</td>
+                    {/* <td>{item.car}</td> */}
                     <td>{item.comments}</td>
                     <td>{moment(item.createdAt).format("YYYY-MM-DD")}</td>
                     <td>{item.userName}</td>

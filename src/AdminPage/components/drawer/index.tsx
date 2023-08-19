@@ -13,7 +13,7 @@ const BookingDrawer = (props: any) => {
     adminStatus,
     bookType,
     driver,
-    car,
+    PiccoCar,
     CarType,
     pickUpTime,
     phoneNumber,
@@ -59,7 +59,7 @@ const BookingDrawer = (props: any) => {
           </span>
           <br /> <br />
           <span>
-            <b>car :</b> {car}
+            <b>Picco car :</b> {PiccoCar}
           </span>
           <br /> <br />
           <span>
@@ -91,6 +91,10 @@ const BookingDrawer = (props: any) => {
           </span>
           <br /> <br />
           <span>
+            <b>phoneNumber :</b> {phoneNumber}
+          </span>
+          <br /> <br />
+          <span>
             <b>status :</b> {status}
           </span>
           <br /> <br />
@@ -108,6 +112,10 @@ const BookingDrawer = (props: any) => {
           <br /> <br />
           <span>
             <b>tripStatus :</b> {tripStatus}
+          </span>
+          <br /> <br />
+          <span>
+            <b>returnDate :</b> {returnDate}
           </span>
           <br /> <br />
           <span>
