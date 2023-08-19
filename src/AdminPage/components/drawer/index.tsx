@@ -71,10 +71,6 @@ const BookingDrawer = (props: any) => {
           </span>
           <br /> <br />
           <span>
-            <b>Driver :</b> {driver}
-          </span>
-          <br /> <br />
-          <span>
             <b>adminStatus :</b> {adminStatus}
           </span>
           <br /> <br />

@@ -7,7 +7,7 @@ import { Modal, Button, Form } from "react-bootstrap";
 import AddLocationModal from "../modals/addNewLocation";
 import "font-awesome/css/font-awesome.min.css";
 import { Loading3QuartersOutlined } from "@ant-design/icons";
-import { Spin } from "antd";
+import { Spin, Popconfirm } from "antd";
 
 const LocationsTable = () => {
   const [selected, setSelected] = useState<any>({});
@@ -144,12 +144,28 @@ const LocationsTable = () => {
                     >
                       <FaEdit />
                     </button>
-                    <button
+
+                    <Popconfirm
+                      placement="left"
+                      title={"are you sure Delete ?"}
+                      description={
+                        "You will not be able to retreive this data."
+                      }
+                      onConfirm={() => deleteData(item.id)}
+                      okText="Yes"
+                      cancelText="No"
+                    >
+                      <button className="btn btn-danger">
+                        <FontAwesomeIcon icon={faTrash} />
+                      </button>
+                    </Popconfirm>
+
+                    {/* <button
                       className="btn btn-danger"
                       onClick={() => deleteData(item.id)}
                     >
                       <FontAwesomeIcon icon={faTrash} />
-                    </button>
+                    </button> */}
                   </div>
                 </td>
               </tr>

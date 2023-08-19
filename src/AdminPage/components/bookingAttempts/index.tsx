@@ -5,7 +5,7 @@ import moment from "moment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons/faTrash";
 import { Loading3QuartersOutlined } from "@ant-design/icons";
-import { Spin } from "antd";
+import { Spin, Popconfirm } from "antd";
 
 const BookingAttempts = () => {
   const [data, setData] = useState<any>([]);
@@ -115,12 +115,26 @@ const BookingAttempts = () => {
                   <td>{moment(item.createdAt).format("YYYY-MM-DD")}</td>
                   <td>
                     <div>
-                      <button
+                      {/* <button
                         className="btn btn-danger"
                         onClick={() => deleteData(item.id)}
                       >
                         <FontAwesomeIcon icon={faTrash} />
-                      </button>
+                      </button> */}
+                      <Popconfirm
+                        placement="left"
+                        title={"are you sure Delete ?"}
+                        description={
+                          "You will not be able to retreive this data."
+                        }
+                        onConfirm={() => deleteData(item.id)}
+                        okText="Yes"
+                        cancelText="No"
+                      >
+                        <button className="btn btn-danger">
+                          <FontAwesomeIcon icon={faTrash} />
+                        </button>
+                      </Popconfirm>
                     </div>
                   </td>
                 </tr>
