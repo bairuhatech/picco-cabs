@@ -4,7 +4,7 @@ import { faTrash } from "@fortawesome/free-solid-svg-icons/faTrash";
 import { FaEdit, FaPlus } from "react-icons/fa";
 import { FaSync } from "react-icons/fa";
 import axios from "axios";
-import { Form, Select, Input, Button, Spin } from "antd";
+import { Form, Select, Input, Button, Spin, Popconfirm } from "antd";
 import { Modal } from "react-bootstrap";
 import AddLocationModal from "../modals/addNewLocation";
 import "font-awesome/css/font-awesome.min.css";
@@ -244,12 +244,19 @@ const DriversTable = () => {
                     >
                       <FaEdit />
                     </button>
+                    <Popconfirm
+										placement="left"
+										title={"are you sure Delete ?"}
+										description={"You will not be able to retreive this data."}
+										onConfirm={() => deleteData(item.id)}
+										okText="Yes"
+										cancelText="No">
                     <button
                       className="btn btn-danger"
-                      onClick={() => deleteData(item.id)}
                     >
                       <FontAwesomeIcon icon={faTrash} />
                     </button>
+                  </Popconfirm>
                   </div>
                 </td>
               </tr>
