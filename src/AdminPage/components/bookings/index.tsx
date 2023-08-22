@@ -259,7 +259,7 @@ const Bookings = () => {
           <thead>
             <tr>
               <th scope="col">Booking ID</th>
-              <th scope="col">Status</th>
+              {/* <th scope="col">Status</th> */}
               <th scope="col">Book Type</th>
               <th scope="col">One Way/RoundTrip</th>
               <th scope="col">Pickup</th>
@@ -287,7 +287,7 @@ const Bookings = () => {
                   <th scope="row">
                     {moment(item.createdAt).format("DDHHmmssYYM")}
                   </th>
-                  <td>
+                  {/* <td>
                     <Select
                       style={{ width: "130px" }}
                       defaultValue={item.status}
@@ -313,7 +313,7 @@ const Bookings = () => {
                       </Select.Option>
                       <Select.Option value="No Show">No Show</Select.Option>
                     </Select>
-                  </td>
+                  </td> */}
                   <td>{item.bookType}</td>
                   {item.bookType == "rentals" ? (
                     <>
@@ -425,6 +425,7 @@ const Bookings = () => {
             <th scope="col">Book Type</th>
             <th scope="col">One Way/RoundTrip</th>
             <th scope="col">Pickup</th>
+            <th scope="col">Status</th>
             <th scope="col">Drop</th>
             <th scope="Col">Driver</th>
             <th scope="col">Hrs</th>
@@ -476,6 +477,33 @@ const Bookings = () => {
                     {/* <td>{item.status}</td> */}
                     <td>{item.bookType}</td>
                     <td>{item.tripStatus}</td>
+                    <td>
+                    <Select
+                      style={{ width: "130px" }}
+                      defaultValue={item.status}
+                      onChange={(value) => handleStatusTypeChange(value, index)}
+                    >
+                      <Select.Option value="Trip Created">
+                        Trip Created
+                      </Select.Option>
+                      <Select.Option value="Trip Confirmed">
+                        Trip Confirmed
+                      </Select.Option>
+                      <Select.Option value="Assign On Trip">
+                        Assign On Trip
+                      </Select.Option>
+                      <Select.Option value="Trip Completed">
+                        Trip Completed
+                      </Select.Option>
+                      <Select.Option value="Canceled By Guest">
+                        Canceled By Guest
+                      </Select.Option>
+                      <Select.Option value="Cancelled By Picco">
+                        Cancelled By Picco
+                      </Select.Option>
+                      <Select.Option value="No Show">No Show</Select.Option>
+                    </Select>
+                  </td>
                     <td>{item.pickUpLoc}</td>
                     <td>{item.dropOffLoc}</td>
                     <td>{item.driver}</td>

@@ -107,6 +107,7 @@ const CarsTable = () => {
 						<th scope="col">Brand</th>
 						<th scope="col">Model</th>
 						<th scope="col">RC Number</th>
+						<th scope="col">Picco Car</th>
 						<th scope="col">NPS</th>
 						<th scope="col">Status</th>
 						<th scope="col">Current Booking</th>
@@ -121,6 +122,7 @@ const CarsTable = () => {
 							<td>{item.brand}</td>
 							<td>{item.model}</td>
 							<td>{item.RcNumber}</td>
+							<td>{item.piccoCar}</td>
 							<td>{item.nps}</td>
 							<td>
 								<Select

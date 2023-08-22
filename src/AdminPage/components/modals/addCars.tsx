@@ -6,6 +6,7 @@ import { Spin, message } from "antd";
 function AddCarsModal(props: any) {
 	const [brands, setBrand] = useState(props.CarType || "");
 	const [models, setModel] = useState(props.CarNumber || "");
+	const [piccoCar, setPiccoCar] = useState(props.piccoCar || "");
 	const [rcNumber, setRcNumber] = useState(props.setDriverName || "");
 	const [Nps, setNps] = useState(props.setPhoneNumber || "");
 	const [CurrentBooking, setCurrentBooking] = useState(
@@ -21,6 +22,7 @@ function AddCarsModal(props: any) {
 		const newData = {
 			brand: brands,
 			model: models,
+			piccoCar: piccoCar,
 			RcNumber: rcNumber,
 			nps: Nps,
 			status: statuses,
@@ -76,6 +78,16 @@ function AddCarsModal(props: any) {
 							className="bg-light-300"
 							value={models}
 							onChange={(e) => setModel(e.target.value)}
+						/>
+					</Form.Group>
+					<Form.Group className="mb-3" controlId="formGroupTo">
+						<Form.Label className="fw-bold">Picco Car</Form.Label>
+						<Form.Control
+							type="text"
+							placeholder="Picco Car"
+							className="bg-light-300"
+							value={piccoCar}
+							onChange={(e) => setPiccoCar(e.target.value)}
 						/>
 					</Form.Group>
 					<Form.Group className="mb-3" controlId="formGroupPrice">

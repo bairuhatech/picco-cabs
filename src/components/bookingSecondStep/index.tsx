@@ -72,7 +72,12 @@ function BookingForm(props: any) {
       <div>{Package?.label}</div>
     );
 
-  const content = <p>car details </p>;
+  const minicontent = <p><b>Includes AC cabs like</b><br/>
+   <b>Swift, Etios, Polo GT, Civic</b></p>;
+  const sedanContent = <p><b>Includes AC cabs like</b><br/>
+  <b>Amaze, Verna, Sunny, Vento</b></p>
+  const SuvContent = <p><b>Includes AC cabs like</b><br/>
+  <b>Fortuner, Ertiga, Innova Crysta, Xylo</b></p>
 
   return (
     <div>
@@ -125,7 +130,7 @@ function BookingForm(props: any) {
                       <Popover
                         placement="rightTop"
                         // title={text}
-                        content={content}
+                        content={minicontent}
                         // arrow={mergedArrow}
                       >
                         <BsInfoCircle size={18} color="#d3d3d3" />
@@ -216,13 +221,13 @@ function BookingForm(props: any) {
                     alt="Picco Mini"
                   />
                   <div className="nameContainer">
-                    <div className="picco-mini">Picco Suv</div>
+                    <div className="picco-mini">Picco Sedan</div>
                     <div className="piccomini-info">
                       info
                       <Popover
                         placement="rightTop"
                         // title={text}
-                        content={content}
+                        content={sedanContent}
                         // arrow={mergedArrow}
                       >
                         <BsInfoCircle size={18} color="#d3d3d3" />
@@ -293,8 +298,8 @@ function BookingForm(props: any) {
                       }}
                       onClick={() =>
                         handleBookNow({
-                          name: "Picco SUV",
-                          type: "SUV",
+                          name: "Picco Sedan",
+                          type: "Sedan",
                         })
                       }
                       className="button"
@@ -313,13 +318,13 @@ function BookingForm(props: any) {
                     alt="Picco Mini"
                   />
                   <div className="nameContainer">
-                    <div className="picco-mini">Picco Sedan</div>
+                    <div className="picco-mini">Picco SUV</div>
                     <div className="piccomini-info">
                       info
                       <Popover
                         placement="rightTop"
                         // title={text}
-                        content={content}
+                        content={SuvContent}
                         // arrow={mergedArrow}
                       >
                         <BsInfoCircle size={18} color="#d3d3d3" />
@@ -339,7 +344,7 @@ function BookingForm(props: any) {
                     }}
                   >
                     <div className="piccocartext-font">AC</div>
-                    <div className="piccocartext-font">4 Seat</div>
+                    <div className="piccocartext-font">6 Seat</div>
                     <div className="piccocartext-font">2 Bag</div>
                   </div>
                   <div
@@ -393,8 +398,8 @@ function BookingForm(props: any) {
                       }}
                       onClick={() =>
                         handleBookNow({
-                          name: "Picco Sedan",
-                          type: "Sedan",
+                          name: "Picco SUV",
+                          type: "SUV",
                         })
                       }
                       className="button"

@@ -212,8 +212,8 @@ const BookingThird = (props: any) => {
               <div className="seats-Div">
                 <div className="seatcontent-Div">
                   <span>Ac</span>
-                  <span>6 seat</span>
-                  <span>3 bag</span>
+                  <span>4 seat</span>
+                  <span>2 bag</span>
                 </div>
                 <div className="price-Div">₹ {selectedRoute?.rate}</div>
               </div>
