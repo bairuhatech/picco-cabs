@@ -125,7 +125,9 @@ const LocationsTable = () => {
               <th scope="col">#</th>
               <th scope="col">From</th>
               <th scope="col">To</th>
-              <th scope="col">Price Rs</th>
+              <th scope="col">Mini Price</th>
+              <th scope="col">Sedan Price</th>
+              <th scope="col">SUV Price</th>
               <th scope="col">Action</th>
             </tr>
           </thead>
@@ -135,7 +137,9 @@ const LocationsTable = () => {
                 <th scope="row">{item.id}</th>
                 <td>{item.place}</td>
                 <td>{item.location}</td>
-                <td>{item.rate}</td>
+                <td>{item.miniPrice}</td>
+                <td>{item.sedanPrice}</td>
+                <td>{item.suvPrice}</td>
                 <td>
                   <div>
                     <button

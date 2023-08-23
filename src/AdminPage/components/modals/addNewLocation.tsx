@@ -7,7 +7,9 @@ import { Loading3QuartersOutlined } from "@ant-design/icons";
 function AddLocationModal(props: any) {
   const [from, setFrom] = useState(props.from || "");
   const [to, setTo] = useState(props.to || "");
-  const [price, setPrice] = useState(props.price || "");
+  const [miniPrice, setMiniPrice] = useState(props.price || "");
+  const [sedanPrice, setSedanPrice] = useState(props.price || "");
+  const [suvPrice, setSUVPrice] = useState(props.price || "");
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (event: any) => {
@@ -18,7 +20,9 @@ function AddLocationModal(props: any) {
     const newData = {
       place: from,
       location: to,
-      rate: parseFloat(price),
+      miniPrice: parseInt(miniPrice),
+      sedanPrice: parseInt(sedanPrice),
+      suvPrice: parseInt(suvPrice),
       Active: 1,
       Status: 0,
     };
@@ -72,13 +76,33 @@ function AddLocationModal(props: any) {
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="formGroupPrice">
-            <Form.Label className="fw-bold">Price(in Rs)</Form.Label>
+            <Form.Label className="fw-bold">Mini Price</Form.Label>
             <Form.Control
               type="number"
-              placeholder="Price"
+              placeholder="Mini Price"
               className="bg-light-300"
-              value={price}
-              onChange={(e) => setPrice(e.target.value)}
+              value={miniPrice}
+              onChange={(e) => setMiniPrice(e.target.value)}
+            />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="formGroupPrice">
+            <Form.Label className="fw-bold">Sedan Price</Form.Label>
+            <Form.Control
+              type="number"
+              placeholder="Sedan Price"
+              className="bg-light-300"
+              value={sedanPrice}
+              onChange={(e) => setSedanPrice(e.target.value)}
+            />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="formGroupPrice">
+            <Form.Label className="fw-bold">Mini Price</Form.Label>
+            <Form.Control
+              type="number"
+              placeholder="SUV Price"
+              className="bg-light-300"
+              value={suvPrice}
+              onChange={(e) => setSUVPrice(e.target.value)}
             />
           </Form.Group>
         </Modal.Body>

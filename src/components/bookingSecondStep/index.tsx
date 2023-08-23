@@ -34,8 +34,6 @@ function BookingForm(props: any) {
     RentPlace,
   } = location.state;
 
-  console.log(">>>>>>>>>>>>>>>>", Package);
-  console.log("dataa kitttyo",selectedCar)
 
   const showModal = () => {
     setIsModalOpen(true);
@@ -179,7 +177,7 @@ function BookingForm(props: any) {
                     <div style={{ backgroundColor: "" }}>
                       <p>
                         {" "}
-                        ₹ <b>{selectedRoute?.rate + 50}</b>
+                        ₹ <b>{selectedRoute?.miniPrice}</b>
                       </p>
                       <p
                         style={{ cursor: "pointer", color: "#0056b3" }}
@@ -276,7 +274,7 @@ function BookingForm(props: any) {
                     <div style={{ backgroundColor: "" }}>
                       <p>
                         {" "}
-                        ₹ <b>{selectedRoute?.rate + 50}</b>
+                        ₹ <b>{selectedRoute?.sedanPrice}</b>
                       </p>
                       <p
                         style={{ cursor: "pointer", color: "#0056b3" }}
@@ -373,7 +371,7 @@ function BookingForm(props: any) {
                     <div style={{ backgroundColor: "" }}>
                       <p>
                         {" "}
-                        ₹ <b>{selectedRoute?.rate + 50}</b>
+                        ₹ <b>{selectedRoute?.suvPrice}</b>
                       </p>
                       <p
                         style={{ cursor: "pointer", color: "#0056b3" }}

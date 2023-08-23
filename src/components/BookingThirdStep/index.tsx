@@ -62,7 +62,12 @@ const BookingThird = (props: any) => {
         pickUpTime: timeOfPickup || "",
         hours: parseInt(Package?.hours) || 0,
         kms: parseInt(Package?.kms) || 0,
-        estimatedAmt: selectedRoute?.rate || 0,
+        estimatedAmt:
+          props.selectedCar.name === "Picco Mini"
+            ? selectedRoute?.miniPrice
+            : props.selectedCar.name === "Picco Sedan"
+            ? selectedRoute?.sedanPrice
+            : selectedRoute?.suvPrice,
         returnDate: "2023-08-02T12:00:00Z",
         rentallPack: 1,
         car: "",
@@ -77,12 +82,7 @@ const BookingThird = (props: any) => {
         status: "pending",
       };
 
-      console.log(
-        ">>>>>>>>>>>>>>>>>>>??????????????????",
-        selectedRoute?.location
-      );
 
-      console.log("packageeee", Package);
 
       const response = await fetch(
         "https://piccocabs-server-46642b82a774.herokuapp.com/Booking",
@@ -96,7 +96,6 @@ const BookingThird = (props: any) => {
       );
 
       const data = await response.json();
-      console.log(">>>>>>>>>>>>>>>>>>>>>{{{{{{{{{{{{{{{{{{{{{{{", data);
       setLoading(false);
       console.log("API Response:", data);
       setIsModalOpen(true);
@@ -124,7 +123,12 @@ const BookingThird = (props: any) => {
           pickUpTime: timeOfPickup || "",
           hours: parseInt(Package?.hours) || 0,
           kms: parseInt(Package?.kms) || 0,
-          estimatedAmt: selectedRoute?.rate || 0,
+          estimatedAmt:
+            props.selectedCar.name === "Picco Mini"
+              ? selectedRoute?.miniPrice
+              : props.selectedCar.name === "Picco Sedan"
+              ? selectedRoute?.sedanPrice
+              : selectedRoute?.suvPrice,
           rentallPack: 1,
           car: 1,
           comments: values.Comments,
@@ -215,7 +219,14 @@ const BookingThird = (props: any) => {
                   <span>4 seat</span>
                   <span>2 bag</span>
                 </div>
-                <div className="price-Div">₹ {selectedRoute?.rate}</div>
+                <div className="price-Div">
+                  ₹{" "}
+                  {props.selectedCar.name === "Picco Mini"
+                    ? selectedRoute?.miniPrice
+                    : props.selectedCar.name === "Picco Sedan"
+                    ? selectedRoute?.sedanPrice
+                    : selectedRoute?.suvPrice}
+                </div>
               </div>
             </div>
             <div className="TravallersDetail-Div">
