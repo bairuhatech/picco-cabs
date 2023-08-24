@@ -3,10 +3,14 @@ import { Row, Col, Container } from "react-bootstrap";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import React, { useState } from "react";
 import { Button, Modal } from "antd";
-
 import "./index.scss";
+import { useLocation } from "react-router";
 
 const FareModal = (props: any) => {
+  const location = useLocation();
+  console.log("props vannkko======", location);
+  const { selectedRoute, tripType } = location.state;
+
   return (
     <>
       <Modal open={props.open} onCancel={props.close} footer={null}>
@@ -20,21 +24,30 @@ const FareModal = (props: any) => {
           >
             <div className="card-Divss">
               <div className="FaredetailDiv">
-                {/* <div className="backarrowDiv">
-                      <IoMdArrowRoundBack
-                        style={{ width: "30px", height: "30px" }}
-                      />
-                    </div> */}
-                <p style={{ fontSize: "20px" }}>Fare deatails</p>
+                <p style={{ fontSize: "20px" }}>Fare Details</p>
               </div>
               <div className="content-Div">
                 <div className="basefare-Div">
-                  base fare
+                  Base Fare
                   <div
                     style={{ justifyContent: "end", display: "flex" }}
                     className="baseFare-price"
                   >
-                    ₹35376
+                    ₹
+                    {props.selectedVeh.name === "Picco Mini"
+                      ? selectedRoute?.miniPrice +
+                        (tripType === "roundTrip"
+                          ? selectedRoute.miniPrice
+                          : null)
+                      : props.selectedVeh.name === "Picco Sedan"
+                      ? selectedRoute?.sedanPrice +
+                        (tripType === "roundTrip"
+                          ? selectedRoute.sedanPrice
+                          : null)
+                      : selectedRoute?.suvPrice +
+                        (tripType === "roundTrip"
+                          ? selectedRoute.suvPrice
+                          : null)}
                   </div>
                 </div>
 
@@ -56,7 +69,27 @@ const FareModal = (props: any) => {
                     style={{ justifyContent: "end", display: "flex" }}
                     className="TotelPrice"
                   >
-                    <p style={{ fontSize: "17px" }}>₹35676</p> <br />
+                    <p style={{ fontSize: "17px" }}>
+                      ₹
+                      {props.selectedVeh.name === "Picco Mini"
+                        ? selectedRoute?.miniPrice +
+                          (tripType === "roundTrip"
+                            ? selectedRoute.miniPrice
+                            : null) +
+                          300
+                        : props.selectedVeh.name === "Picco Sedan"
+                        ? selectedRoute?.sedanPrice +
+                          (tripType === "roundTrip"
+                            ? selectedRoute.sedanPrice
+                            : null) +
+                          300
+                        : selectedRoute?.suvPrice +
+                          (tripType === "roundTrip"
+                            ? selectedRoute.suvPrice
+                            : null) +
+                          300}
+                    </p>{" "}
+                    <br />
                   </div>
                 </div>
               </div>

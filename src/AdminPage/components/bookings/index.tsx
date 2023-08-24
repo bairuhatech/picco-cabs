@@ -394,7 +394,7 @@ const Bookings = () => {
 
                       <td>{item.hours}</td>
                       <td>{item.kms}</td>
-                      <td>{item.estimatedAmt}</td>
+                      <td>{item.estimatedAmt ? item.estimatedAmt+300 : null}</td>
                       <td>{item.rentallPack}</td>
                       {/* <td></td> */}
                       <td>{item.PiccoCar}</td>

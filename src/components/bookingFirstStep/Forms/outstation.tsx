@@ -13,6 +13,8 @@ import {
 } from "antd";
 import API from "../../../config/api";
 import axios from "axios";
+import moment from "moment";
+
 
 const { RangePicker } = DatePicker;
 
@@ -36,7 +38,7 @@ export default function OutStation(props: any) {
     const dropOffDate = dateRange.toISOString();
     const timeOfPickup = timeRange;
     const modes = props.types;
-    console.log("modeeeeeeeeeeeeeeeeee", modes);
+
 
     navigate("/bookingSecondStep", {
       state: {
@@ -105,6 +107,7 @@ export default function OutStation(props: any) {
     );
     setToPlace(filteredData);
   };
+  const today = new Date();
 
   return (
     <div className="mt-3">
@@ -213,6 +216,7 @@ export default function OutStation(props: any) {
                 format="YYYY-MM-DD"
                 placeholder="Pick up date"
                 className="form-control border-0 border-bottom rounded-0"
+                disabledDate={current => current && current < moment(today).startOf('day')}
               />
             </Form.Item>
           </div>
@@ -247,12 +251,6 @@ export default function OutStation(props: any) {
                 },
               ]}
             >
-              {/* <Input
-                className="form-control border-0  border-bottom rounded-0"
-                defaultValue={`${time}:${minute}`}
-                placeholder="Pick up time"
-                type="time"
-              /> */}
                  <input
               className="form-control border-0 border-bottom rounded-0"
               placeholder="Pick up time"

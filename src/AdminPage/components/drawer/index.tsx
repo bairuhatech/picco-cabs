@@ -95,7 +95,7 @@ const BookingDrawer = (props: any) => {
           </span>
           <br /> <br />
           <span>
-            <b>estimatedAmt :</b> {estimatedAmt}
+            <b>estimatedAmt :</b> {estimatedAmt ? estimatedAmt + 300: null}
           </span>
           <br /> <br />
           <span>

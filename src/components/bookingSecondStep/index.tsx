@@ -20,8 +20,10 @@ import "./index.scss";
 function BookingForm(props: any) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showBooking, setShowBooking] = useState(false);
+  const [showfare, setShowFare] = useState(false);
   const location = useLocation();
-  const [selectedCar, setSelectedCar] = useState(null); // Store selected car data
+  const [selectedCar, setSelectedCar] = useState(null); 
+  const [selectedVeh, setSelectedVeh] = useState<any>(null)
   const isLoggedIn = useSelector((state: any) => state.User.auth);
 
   const {
@@ -34,10 +36,11 @@ function BookingForm(props: any) {
     RentPlace,
   } = location.state;
 
+  console.log("type===== vanno",tripType)
 
   const showModal = () => {
     setIsModalOpen(true);
-  };
+  };  
 
   const handleBookNow = (carData: any) => {
     setSelectedCar(carData);
@@ -70,12 +73,36 @@ function BookingForm(props: any) {
       <div>{Package?.label}</div>
     );
 
-  const minicontent = <p><b>Includes AC cabs like</b><br/>
-   <b>Swift, Etios, Polo GT, Civic</b></p>;
-  const sedanContent = <p><b>Includes AC cabs like</b><br/>
-  <b>Amaze, Verna, Sunny, Vento</b></p>
-  const SuvContent = <p><b>Includes AC cabs like</b><br/>
-  <b>Fortuner, Ertiga, Innova Crysta, Xylo</b></p>
+  const minicontent = (
+    <p>
+      <b>Includes AC cabs like</b>
+      <br />
+      <b>Swift, Etios, Polo GT, Civic</b>
+    </p>
+  );
+  const sedanContent = (
+    <p>
+      <b>Includes AC cabs like</b>
+      <br />
+      <b>Amaze, Verna, Sunny, Vento</b>
+    </p>
+  );
+  const SuvContent = (
+    <p>
+      <b>Includes AC cabs like</b>
+      <br />
+      <b>Fortuner, Ertiga, Innova Crysta, Xylo</b>
+    </p>
+  );
+
+  const openfare = () => {
+    setShowFare(true);
+    console.log("clickeddddddd");
+  };
+  const closefare = () => {
+    setShowFare(false);
+    console.log("clickeddddddd");
+  };
 
   return (
     <div>
@@ -177,15 +204,25 @@ function BookingForm(props: any) {
                     <div style={{ backgroundColor: "" }}>
                       <p>
                         {" "}
-                        ₹ <b>{selectedRoute?.miniPrice}</b>
+                        ₹ <b>{tripType==="roundTrip"?selectedRoute.miniPrice+selectedRoute.miniPrice+300:selectedRoute.miniPrice+300}</b>
                       </p>
                       <p
                         style={{ cursor: "pointer", color: "#0056b3" }}
-                        onClick={() => setIsModalOpen(!isModalOpen)}
+                        onClick={() => {
+                          const carDetails = {
+                            name: "Picco Mini",
+                            type: "Mini",
+                          };
+                          setSelectedVeh(carDetails);
+                          setShowFare(true);
+                        }}
                       >
                         Fare details
                       </p>
                     </div>
+                    {showfare && (
+                      <FareModal open={openfare} close={closefare} selectedVeh={selectedVeh}/>
+                    )}
                   </div>
                 </div>
                 <div>
@@ -274,15 +311,25 @@ function BookingForm(props: any) {
                     <div style={{ backgroundColor: "" }}>
                       <p>
                         {" "}
-                        ₹ <b>{selectedRoute?.sedanPrice}</b>
+                        ₹ <b>{tripType==="roundTrip"?selectedRoute.sedanPrice+selectedRoute.sedanPrice+300:selectedRoute.sedanPrice+300}</b>
                       </p>
                       <p
                         style={{ cursor: "pointer", color: "#0056b3" }}
-                        onClick={() => setIsModalOpen(!isModalOpen)}
+                        onClick={() => {
+                          const carDetails = {
+                            name: "Picco Sedan",
+                            type: "Sedan",
+                          };
+                          setSelectedVeh(carDetails);
+                          setShowFare(true);
+                        }}
                       >
                         Fare details
                       </p>
                     </div>
+                    {showfare && (
+                      <FareModal open={openfare} close={closefare} selectedVeh={selectedVeh}/>
+                    )}
                   </div>
                 </div>
                 <div>
@@ -371,15 +418,29 @@ function BookingForm(props: any) {
                     <div style={{ backgroundColor: "" }}>
                       <p>
                         {" "}
-                        ₹ <b>{selectedRoute?.suvPrice}</b>
+                        ₹ <b>{tripType==="roundTrip"?selectedRoute.suvPrice+selectedRoute.suvPrice+300:selectedRoute.suvPrice+300}</b>
                       </p>
                       <p
                         style={{ cursor: "pointer", color: "#0056b3" }}
-                        onClick={() => setIsModalOpen(!isModalOpen)}
+                        onClick={() => {
+                          const carDetails = {
+                            name: "Picco SUV",
+                            type: "SUV",
+                          };
+                          setSelectedVeh(carDetails);
+                          setShowFare(true);
+                        }}
                       >
                         Fare details
                       </p>
                     </div>
+                    {showfare && (
+                      <FareModal
+                        open={openfare}
+                        close={closefare}
+                        selectedVeh={selectedVeh}
+                      />
+                    )}
                   </div>
                 </div>
                 {formModal && (
@@ -410,7 +471,9 @@ function BookingForm(props: any) {
             </div>
           </div>
         ) : (
-          <div className="cardMain-div2">{showBooking && <BookingThird selectedCar={selectedCar}/>}</div>
+          <div className="cardMain-div2">
+            {showBooking && <BookingThird selectedCar={selectedCar} />}
+          </div>
         )}
       </div>
       ;

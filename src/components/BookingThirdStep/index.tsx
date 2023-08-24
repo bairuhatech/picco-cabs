@@ -64,10 +64,13 @@ const BookingThird = (props: any) => {
         kms: parseInt(Package?.kms) || 0,
         estimatedAmt:
           props.selectedCar.name === "Picco Mini"
-            ? selectedRoute?.miniPrice
+            ? selectedRoute?.miniPrice +
+              (tripType === "roundTrip" ? selectedRoute.miniPrice : null) 
             : props.selectedCar.name === "Picco Sedan"
-            ? selectedRoute?.sedanPrice
-            : selectedRoute?.suvPrice,
+            ? selectedRoute?.sedanPrice +
+              (tripType === "roundTrip" ? selectedRoute.sedanPrice : null) 
+            : selectedRoute?.suvPrice +
+              (tripType === "roundTrip" ? selectedRoute.sedanPrice : null),
         returnDate: "2023-08-02T12:00:00Z",
         rentallPack: 1,
         car: "",
@@ -81,8 +84,6 @@ const BookingThird = (props: any) => {
         adminStatus: "roaming",
         status: "pending",
       };
-
-
 
       const response = await fetch(
         "https://piccocabs-server-46642b82a774.herokuapp.com/Booking",
@@ -200,14 +201,14 @@ const BookingThird = (props: any) => {
                   alt="Picco Mini"
                 />
                 <div className="bookingbutton-Div">
-                  <div className="faredetail-Div">
+                  {/* <div classN ame="faredetail-Div">
                     <p
                       style={{ cursor: "pointer", color: "#0056b3" }}
                       // onClick={() => setIsModalOpen(!isModalOpen)}
                     >
-                      Fare details
+                      Fare Details
                     </p>
-                  </div>
+                  </div> */}
                   <div className="button-Div">
                     {/* <button className="button">Book now</button> */}
                   </div>
@@ -222,10 +223,22 @@ const BookingThird = (props: any) => {
                 <div className="price-Div">
                   ₹{" "}
                   {props.selectedCar.name === "Picco Mini"
-                    ? selectedRoute?.miniPrice
+                    ? selectedRoute?.miniPrice +
+                      (tripType === "roundTrip"
+                        ? selectedRoute.miniPrice
+                        : null) +
+                      300
                     : props.selectedCar.name === "Picco Sedan"
-                    ? selectedRoute?.sedanPrice
-                    : selectedRoute?.suvPrice}
+                    ? selectedRoute?.sedanPrice +
+                      (tripType === "roundTrip"
+                        ? selectedRoute.sedanPrice
+                        : null) +
+                      300
+                    : selectedRoute?.suvPrice +
+                      (tripType === "roundTrip"
+                        ? selectedRoute.suvPrice
+                        : null) +
+                      300}
                 </div>
               </div>
             </div>

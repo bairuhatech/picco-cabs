@@ -13,6 +13,8 @@ import {
 } from "antd";
 import API from "../../../config/api";
 import axios from "axios";
+import moment from "moment";
+
 
 const { RangePicker } = DatePicker;
 
@@ -31,7 +33,6 @@ export default function Airports(props: any) {
   const [airport, setAirport] = useState<any>("pickUp");
 
   const onFinish = async (val: any) => {
-    console.log("<<<<<<<<<<<<<<<<<<vallllll>>>>>>>", val);
     const { Trip, user_from, user_to, dateRange, timeRange } = val;
 
     const pickUpDate = dateRange.toISOString();
@@ -41,7 +42,6 @@ export default function Airports(props: any) {
     const userfrom = user_from;
     const userto = user_to;
     const modes = props.types;
-    // console.log("modeeeeeeeeeeeeeeeeee", modes);
 
     navigate("/bookingSecondStep", {
       state: {
@@ -99,7 +99,6 @@ export default function Airports(props: any) {
   };
   const handleTripChange = (newValue: any) => {
     setAirport(newValue);
-    console.log(">>>>>>>>>>>", newValue);
   };
   const handleFromChange = (newValue: any) => {
     let toPlaces = data.filter((item: any) => item.place === newValue);
@@ -116,28 +115,14 @@ export default function Airports(props: any) {
     );
     setToPlace(filteredData);
   };
+  const today = new Date();
+
 
   return (
     <div className="mt-3">
       <Form form={form} onFinish={onFinish}>
         <div className="row mx-0 gy-3">
           <div className="col-3" style={{ position: "absolute", top: 10 }}>
-            {/* <div>
-              <label>
-                <Checkbox
-                  checked={tripType === "oneWay"}
-                  onChange={() => setTripType("oneWay")}
-                />
-                &nbsp; One Way
-              </label>
-              <label style={{ marginLeft: "10px" }}>
-                <Checkbox
-                  checked={tripType === "roundTrip"}
-                  onChange={() => setTripType("roundTrip")}
-                />
-                &nbsp;Round Trip
-              </label>
-            </div> */}
           </div>
           <div className="col-md-2 col-sm-6 col-12">
             <div className="form-label fw-bold">TRIP</div>
@@ -261,6 +246,8 @@ export default function Airports(props: any) {
                 format="YYYY-MM-DD"
                 placeholder="Pick up date"
                 className="form-control border-0 border-bottom rounded-0"
+                disabledDate={current => current && current < moment(today).startOf('day')}
+
               />
             </Form.Item>
           </div>
@@ -295,12 +282,6 @@ export default function Airports(props: any) {
                 },
               ]}
             >
-              {/* <Input
-                className="form-control border-0  border-bottom rounded-0"
-                defaultValue={`${time}:${minute}`}
-                placeholder="Pick up time"
-                type="time"
-              /> */}
               <input
                 className="form-control border-0 border-bottom rounded-0"
                 placeholder="Pick up time"
