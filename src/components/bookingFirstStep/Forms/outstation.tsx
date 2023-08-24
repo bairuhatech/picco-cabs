@@ -17,6 +17,8 @@ import moment from "moment";
 
 
 const { RangePicker } = DatePicker;
+const { Option } = Select;
+
 
 export default function OutStation(props: any) {
   const [form] = Form.useForm();
@@ -108,6 +110,19 @@ export default function OutStation(props: any) {
     setToPlace(filteredData);
   };
   const today = new Date();
+
+  const generateTimeOptions = () => {
+    const startTime = moment('00:00 AM', 'hh:mm A');
+    const endTime = moment('11:50 PM', 'hh:mm A');
+    const timeOptions = [];
+  
+    while (startTime.isSameOrBefore(endTime)) {
+      timeOptions.push(startTime.format('hh:mm A'));
+      startTime.add(10, 'minutes');
+    }
+  
+    return timeOptions;
+  };
 
   return (
     <div className="mt-3">
@@ -243,6 +258,27 @@ export default function OutStation(props: any) {
               PICK UP AT
             </label>
             <Form.Item
+        name="timeRange"
+        rules={[
+          {
+            required: true,
+            message: "required",
+          },
+        ]}
+      >
+        <Select
+          className="form-control border-0 border-bottom rounded-0"
+          placeholder="Pick up time"
+          // name="timeRange"
+        >
+          {generateTimeOptions().map((timeOption) => (
+            <Option key={timeOption} value={timeOption}>
+              {timeOption}
+            </Option>
+          ))}
+        </Select>
+      </Form.Item>
+            {/* <Form.Item
               name="timeRange"
               rules={[
                 {
@@ -258,7 +294,7 @@ export default function OutStation(props: any) {
               name="timeRange"
               step={600} // 10 minutes in seconds
             />
-            </Form.Item>
+            </Form.Item> */}
           </div>
         </div>
         <div
