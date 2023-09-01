@@ -8,36 +8,35 @@ export default function Rentals(props: any) {
   const [data, setData] = useState([]);
   const navigate = useNavigate();
   const [form] = Form.useForm();
+  const [filteredOptions, setFilteredOptions] = useState([]);
+  const [toPlace, setToPlace] = useState<any>([]);
 
   const [selectedPackage, setSelectedPackage] = useState<any>(null);
   const [packages, setPackages] = useState<any>([
-    { value: "one_hour", label: "1 Hr(10Km)", hours: 1, kms: 10 },
-    { value: "two_hour", label: "2 Hr(20Km)", hours: 2, kms: 20 },
     { value: "four_hour", label: "4 Hr(40Km)", hours: 4, kms: 40 },
-    { value: "five_hour", label: "5 Hr(50Km)", hours: 5, kms: 100 },
-    { value: "six_hour", label: "6 Hr(60Km)", hours: 6, kms: 200 },
     { value: "eight_hour", label: "8 Hr(80Km)", hours: 8, kms: 40 },
-    { value: "ten_hour", label: "10 Hr(100Km)", hours: 10, kms: 800 },
-    { value: "custom_package", label: "Custom Package" },
+    { value: "twelve_hour", label: "12 Hr(120Km)", hours: 12, kms: 120 },
   ]);
 
-  const handleFromChange = (value: any) => {
+  const handlePackageChange = (value: any) => {
     console.log("Selected value:", value);
-    const packageDetails: any = packages.find((pkg: any) => pkg.value === value);
-    
+    const packageDetails: any = packages.find(
+      (pkg: any) => pkg.value === value
+    );
+
     setSelectedPackage(packageDetails);
   };
   const onFinish = async (val: any) => {
     const Package = selectedPackage;
-  
-    if (selectedPackage && selectedPackage.value === "custom_package") {
-      Package.hours = val.hours;
-      Package.kms = val.kilometers;
-    }
-  
+
+    // if (selectedPackage && selectedPackage.value === "custom_package") {
+    //   Package.hours = val.hours;
+    //   Package.kms = val.kilometers;
+    // }
+
     const modesecond = props.types;
     const RentPlace = val.rentalPlace;
-  
+
     navigate("/bookingSecondStep", {
       state: {
         Package,
@@ -45,6 +44,45 @@ export default function Rentals(props: any) {
         RentPlace,
       },
     });
+  };
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  async function fetchData() {
+    try {
+      const response = await axios.get(
+        "https://piccocabs-server-46642b82a774.herokuapp.com/Pickuplocation/location"
+      );
+      setData(response.data);
+      let listingData = filterUniqueNames(response.data, "place");
+      setFilteredOptions(listingData);
+      console.log(response.data);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  }
+  const handleSearch = (newValue: string) => {
+    let filteredData = filteredOptions.filter((d: any) =>
+      d.place.toLowerCase().includes(newValue.toLowerCase())
+    );
+    setFilteredOptions(filteredData);
+  };
+  const filterUniqueNames = (arr: any, contiton: any) => {
+    const uniqueNames: any = {};
+    return arr.filter((item: any) => {
+      if (!uniqueNames[item[contiton]]) {
+        uniqueNames[item[contiton]] = true;
+        return true;
+      }
+      return false;
+    });
+  };
+  const handleFromChange = (newValue: any) => {
+    let toPlaces = data.filter((item: any) => item.place === newValue);
+    let toListing = filterUniqueNames(toPlaces, "location");
+    console.log("to listing", toListing);
+    setToPlace(toListing);
   };
 
   return (
@@ -55,17 +93,43 @@ export default function Rentals(props: any) {
             <label htmlFor="inputEmail4" className="form-label fw-bold">
               FROM
             </label>
-            <Form.Item name="rentalPlace" >
+            <Form.Item
+              name="rentalPlace"
+              className="fw-bold"
+              rules={[
+                {
+                  required: true,
+                  message: "required",
+                },
+              ]}
+            >
+              <Select
+                className="CustomSelect"
+                showSearch
+                defaultActiveFirstOption={false}
+                placeholder={"Start Place"}
+                suffixIcon={null}
+                filterOption={false}
+                onSearch={handleSearch}
+                onChange={handleFromChange}
+                notFoundContent={null}
+                options={filteredOptions.map((d: any) => ({
+                  value: d.place,
+                  label: d.place,
+                }))}
+              />
+            </Form.Item>
+            {/* <Form.Item name="rentalPlace" >
               <Input
                 type="text"
                 className="form-control border-0 border-bottom rounded-0"
                 placeholder="Start typing City"
                 aria-label="First name"
               />
-            </Form.Item>
+            </Form.Item> */}
           </div>
           <div className="col-md-6 col-12">
-            <Form.Item name="place" >
+            <Form.Item name="place">
               <label htmlFor="inputState" className="form-label fw-bold">
                 SELECT PACKAGE
               </label>
@@ -77,7 +141,7 @@ export default function Rentals(props: any) {
                 placeholder={"Select Package"}
                 suffixIcon={null}
                 filterOption={false}
-                onChange={handleFromChange}
+                onChange={handlePackageChange}
                 notFoundContent={null}
                 options={packages.map((pkg: any) => ({
                   value: pkg.value,
@@ -87,15 +151,15 @@ export default function Rentals(props: any) {
             </Form.Item>
           </div>
         </div>
-        {selectedPackage && selectedPackage.value === "custom_package" && (
+        {/* {selectedPackage && selectedPackage.value === "custom_package" && (
           <div className="row mx-0 gy-3">
             <div className="col-md-6 col-12">
               <label htmlFor="hours" className="form-label fw-bold">
                 HOURS
               </label>
-              <Form.Item name="hours" >
-              {/* rules={[{ required: true, message: "required" }]} */}
-                <Input
+              <Form.Item name="hours" > */}
+        {/* rules={[{ required: true, message: "required" }]} */}
+        {/* <Input
                   type="number"
                   className="form-control border-0 border-bottom rounded-0"
                   placeholder="Enter hours"
@@ -117,7 +181,7 @@ export default function Rentals(props: any) {
               </Form.Item>
             </div>
           </div>
-        )}
+        )} */}
         <div className="d-flex justify-content-center position-relative">
           <Form.Item
             style={{
@@ -126,7 +190,7 @@ export default function Rentals(props: any) {
               justifyContent: "center",
               position: "absolute",
             }}
-            >
+          >
             <Button
               style={{
                 position: "absolute",
@@ -143,7 +207,7 @@ export default function Rentals(props: any) {
               }}
               htmlType="submit"
             >
-              Explore Cabs
+              Search Cabs
             </Button>
           </Form.Item>
         </div>
@@ -151,11 +215,3 @@ export default function Rentals(props: any) {
     </div>
   );
 }
-  // const handleFromChange = (value: any) => {
-  //   console.log("Selected value:", value);
-  //   const packageDetails: any = packages.find(
-  //     (pkg: any) => pkg.value === value
-  //   );
-
-  //   setSelectedPackage(packageDetails);
-  // };

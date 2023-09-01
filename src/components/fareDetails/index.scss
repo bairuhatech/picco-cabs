@@ -30,7 +30,7 @@
     rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
 .basefare-Div {
-  height: 60px;
+  height: 35px;
   width: 100%;
   display: flex;
   border-bottom: 1px solid#C8C8C8;
@@ -41,7 +41,7 @@
   background-color: #f2f2f2;
 }
 .Driverallowence-Div {
-  height: 60px;
+  height: 35px;
   width: 100%;
   display: flex;
   background-color: #f2f2f2;
@@ -95,7 +95,14 @@
   padding: 7px;
   line-height: 30px;
   background-color: #f2f2f2;
-  border-radius: 14px;
+  // border-radius: 14px;
+}
+.Amenities-Div{
+  width: 90%;
+  height: 240px;
+  padding: 7px;
+  line-height: 30px;
+  background-color: #f2f2f2;
 }
 .tollhillstation-Div {
   height: 60px;

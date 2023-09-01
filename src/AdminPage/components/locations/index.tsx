@@ -125,6 +125,8 @@ const LocationsTable = () => {
               <th scope="col">#</th>
               <th scope="col">From</th>
               <th scope="col">To</th>
+              <th scope="col">Kilometers</th>
+              <th scope="col">Hours</th>
               <th scope="col">Mini Price</th>
               <th scope="col">Sedan Price</th>
               <th scope="col">SUV Price</th>
@@ -137,6 +139,8 @@ const LocationsTable = () => {
                 <th scope="row">{item.id}</th>
                 <td>{item.place}</td>
                 <td>{item.location}</td>
+                <td>{item.kilometer}</td>
+                <td>{item.hours}</td>
                 <td>{item.miniPrice}</td>
                 <td>{item.sedanPrice}</td>
                 <td>{item.suvPrice}</td>
@@ -163,13 +167,6 @@ const LocationsTable = () => {
                         <FontAwesomeIcon icon={faTrash} />
                       </button>
                     </Popconfirm>
-
-                    {/* <button
-                      className="btn btn-danger"
-                      onClick={() => deleteData(item.id)}
-                    >
-                      <FontAwesomeIcon icon={faTrash} />
-                    </button> */}
                   </div>
                 </td>
               </tr>

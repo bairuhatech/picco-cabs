@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import classes from "./index.module.scss";
 import OneWay from "./Forms/outstation";
-import RoundTrip from "./Forms/rentals";
 import Airports from "./Forms/airpot";
-
 import Container from "react-bootstrap/esm/Container";
 import "./index.module.scss";
+import Rentals from "./Forms/rentals";
+import Roundtrip from "./Forms/roundTrip";
+
 
 const FirstStep = () => {
   const [formType, setFormType] = useState("outstations");
@@ -20,6 +21,11 @@ const FirstStep = () => {
 
   const radioBtn3ClickHandler = () => {
     setFormType("airports");
+  };
+
+  const radioBtn4ClickHandler = () => {
+    console.log("working aano")
+    setFormType("roundTrip");
   };
 
   const baseUrl = document.baseURI.includes("booking");
@@ -55,8 +61,23 @@ const FirstStep = () => {
               className={`btn btn-outline-success border border-2 border-success`}
               htmlFor="btnradio1"
             >
-              OUTSTATION
+              ONE WAY
             </label>
+            <input
+              type="radio"
+              className="btn-check"
+              name="btnradio"
+              id="btnradio3"
+              autoComplete="off"
+              onClick={radioBtn4ClickHandler}
+            />
+             <label
+              style={{width:"150px",fontWeight:500,fontSize:"15px",height:"35px"}}
+              className="btn btn-outline-success border border-2 border-success "
+              htmlFor="btnradio3"
+            >
+              ROUND TRIP
+              </label>
             <input
               type="radio"
               className="btn-check"
@@ -76,30 +97,25 @@ const FirstStep = () => {
               type="radio"
               className="btn-check"
               name="btnradio"
-              id="btnradio3"
+              id="btnradio4"
               autoComplete="off"
               onClick={radioBtn3ClickHandler}
             />
              <label
               style={{width:"150px",fontWeight:500,fontSize:"15px",height:"35px"}}
               className="btn btn-outline-success border border-2 border-success "
-              htmlFor="btnradio3"
+              htmlFor="btnradio4"
             >
               AIRPORTS
               </label>
           </div>
         </div>
-        {/* <div className="d-sm-none">
-          <h6
-            className={`text-uppercase my-0 mt-4 text-center ${classes["title-city-cabs"]}`}
-          >
-            india's premier intercity cabs
-          </h6>
-        </div> */}
         {formType === "outstations" ? (
           <OneWay types={formType} />
         ) : formType === "rentals" ? (
-          <RoundTrip types={formType} />
+          <Rentals types={formType} />
+        ) : formType === "roundTrip" ? (
+          <Roundtrip types={formType} />
         ) : formType === "airports" ? (
           <Airports types={formType} />
         ) : null}

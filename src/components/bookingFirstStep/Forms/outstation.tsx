@@ -15,10 +15,8 @@ import API from "../../../config/api";
 import axios from "axios";
 import moment from "moment";
 
-
 const { RangePicker } = DatePicker;
 const { Option } = Select;
-
 
 export default function OutStation(props: any) {
   const [form] = Form.useForm();
@@ -34,13 +32,13 @@ export default function OutStation(props: any) {
   const [toPlace, setToPlace] = useState<any>([]);
 
   const onFinish = async (val: any) => {
-    const { user_from, user_to, dateRange, timeRange } = val;
+    const { user_from, user_to, dateRange, returnRange, timeRange } = val;
 
-    const pickUpDate = dateRange.toISOString();
-    const dropOffDate = dateRange.toISOString();
+    const pickUpDate = dateRange?.toISOString();
+    const dropOffDate = returnRange?.toISOString();
+    const returnDate = returnRange?.toISOString();
     const timeOfPickup = timeRange;
     const modes = props.types;
-
 
     navigate("/bookingSecondStep", {
       state: {
@@ -48,6 +46,7 @@ export default function OutStation(props: any) {
         selectedRoute,
         pickUpDate,
         dropOffDate,
+        returnDate,
         timeOfPickup,
         modes,
       },
@@ -64,7 +63,7 @@ export default function OutStation(props: any) {
         "https://piccocabs-server-46642b82a774.herokuapp.com/Pickuplocation/location"
       );
       setData(response.data);
-      let listingData = filterUniqueNames(response.data,"place");
+      let listingData = filterUniqueNames(response.data, "place");
       setFilteredOptions(listingData);
       console.log(response.data);
     } catch (error) {
@@ -84,7 +83,7 @@ export default function OutStation(props: any) {
     );
     setFilteredOptions(filteredData);
   };
-  const filterUniqueNames = (arr: any,contiton:any) => {
+  const filterUniqueNames = (arr: any, contiton: any) => {
     const uniqueNames: any = {};
     return arr.filter((item: any) => {
       if (!uniqueNames[item[contiton]]) {
@@ -96,7 +95,7 @@ export default function OutStation(props: any) {
   };
   const handleFromChange = (newValue: any) => {
     let toPlaces = data.filter((item: any) => item.place === newValue);
-    let toListing = filterUniqueNames(toPlaces,"location");
+    let toListing = filterUniqueNames(toPlaces, "location");
     setToPlace(toListing);
   };
   const handleToChange = (id: any) => {
@@ -105,22 +104,31 @@ export default function OutStation(props: any) {
   };
   const handleToSearch = (newValue: string) => {
     let filteredData = toPlace.filter((d: any) =>
-      d.place.toLowerCase().includes(newValue.toLowerCase())
+      d.location.toLowerCase().includes(newValue.toLowerCase())
     );
     setToPlace(filteredData);
   };
   const today = new Date();
 
   const generateTimeOptions = () => {
-    const startTime = moment('00:00 AM', 'hh:mm A');
-    const endTime = moment('11:50 PM', 'hh:mm A');
+    const currentTime = moment(); // Get the current time
+    const minStartTime = moment().add(2, "hours").startOf("hour"); // Minimum start time
+    const endTime = moment("11:45 PM", "hh:mm A"); // Adjusted end time
     const timeOptions = [];
-  
-    while (startTime.isSameOrBefore(endTime)) {
-      timeOptions.push(startTime.format('hh:mm A'));
-      startTime.add(10, 'minutes');
+
+    let startInterval = currentTime.isBefore(minStartTime)
+      ? minStartTime
+      : currentTime;
+    let nextInterval = moment(startInterval).add(
+      15 - (startInterval.minute() % 15),
+      "minutes"
+    );
+
+    while (nextInterval.isSameOrBefore(endTime)) {
+      timeOptions.push(nextInterval.format("hh:mm A"));
+      nextInterval.add(15, "minutes");
     }
-  
+
     return timeOptions;
   };
 
@@ -129,22 +137,6 @@ export default function OutStation(props: any) {
       <Form form={form} onFinish={onFinish}>
         <div className="row mx-0 gy-3">
           <div className="col-3" style={{ position: "absolute", top: 10 }}>
-            <div>
-              <label>
-                <Checkbox
-                  checked={tripType === "oneWay"}
-                  onChange={() => setTripType("oneWay")}
-                />
-                &nbsp; One Way
-              </label>
-              <label style={{ marginLeft: "10px" }}>
-                <Checkbox
-                  checked={tripType === "roundTrip"}
-                  onChange={() => setTripType("roundTrip")}
-                />
-                &nbsp;Round Trip
-              </label>
-            </div>
           </div>
           <div className="col-md-3 col-sm-6 col-12">
             <div className="form-label fw-bold">FROM</div>
@@ -158,10 +150,6 @@ export default function OutStation(props: any) {
                 },
               ]}
             >
-              {/* <Input
-                placeholder="Start typing City"
-                className="form-control border-0 border-bottom rounded-0"
-              /> */}
               <Select
                 className="CustomSelect"
                 showSearch
@@ -195,7 +183,6 @@ export default function OutStation(props: any) {
             >
               <Select
                 showSearch
-                value={value}
                 placeholder={"End Place"}
                 defaultActiveFirstOption={false}
                 suffixIcon={null}
@@ -231,7 +218,9 @@ export default function OutStation(props: any) {
                 format="YYYY-MM-DD"
                 placeholder="Pick up date"
                 className="form-control border-0 border-bottom rounded-0"
-                disabledDate={current => current && current < moment(today).startOf('day')}
+                disabledDate={(current) =>
+                  current && current < moment(today).startOf("day")
+                }
               />
             </Form.Item>
           </div>
@@ -240,13 +229,24 @@ export default function OutStation(props: any) {
               <label htmlFor="return_date" className="form-label fw-bold">
                 RETURN
               </label>
-              <input
-                type="date"
-                className="form-control border-0 border-bottom rounded-0"
-                placeholder="return_date"
-                aria-label="Last name"
-                required
-              />
+              <Form.Item
+                name="returnRange"
+                rules={[
+                  {
+                    required: true,
+                    message: "required",
+                  },
+                ]}
+              >
+                <DatePicker
+                  format="YYYY-MM-DD"
+                  placeholder="Return Date"
+                  className="form-control border-0 border-bottom rounded-0"
+                  disabledDate={(current) =>
+                    current && current < moment(today).startOf("day")
+                  }
+                />
+              </Form.Item>
             </div>
           )}
           <div
@@ -258,27 +258,6 @@ export default function OutStation(props: any) {
               PICK UP AT
             </label>
             <Form.Item
-        name="timeRange"
-        rules={[
-          {
-            required: true,
-            message: "required",
-          },
-        ]}
-      >
-        <Select
-          className="form-control border-0 border-bottom rounded-0"
-          placeholder="Pick up time"
-          // name="timeRange"
-        >
-          {generateTimeOptions().map((timeOption) => (
-            <Option key={timeOption} value={timeOption}>
-              {timeOption}
-            </Option>
-          ))}
-        </Select>
-      </Form.Item>
-            {/* <Form.Item
               name="timeRange"
               rules={[
                 {
@@ -287,14 +266,17 @@ export default function OutStation(props: any) {
                 },
               ]}
             >
-                 <input
-              className="form-control border-0 border-bottom rounded-0"
-              placeholder="Pick up time"
-              type="time"
-              name="timeRange"
-              step={600} // 10 minutes in seconds
-            />
-            </Form.Item> */}
+              <Select
+                className="form-control border-0 border-bottom rounded-0"
+                placeholder="Pick up time"
+              >
+                {generateTimeOptions().map((timeOption) => (
+                  <Option key={timeOption} value={timeOption}>
+                    {timeOption}
+                  </Option>
+                ))}
+              </Select>
+            </Form.Item>
           </div>
         </div>
         <div
@@ -325,7 +307,7 @@ export default function OutStation(props: any) {
               }}
               htmlType="submit"
             >
-              Explore Cabs
+              Search Cabs
             </Button>
           </Form.Item>
         </div>

@@ -101,19 +101,34 @@ const FareModal = (props: any) => {
                 }}
               >
                 <div className="exclusion-Div">
-                  Exclusion
+                  <b>Exclusion</b>
                   <ul>
                     <li>toll & permit charge</li>
 
-                    <li>Hill station charge</li>
+                    <li>Extra Kilometer Charge</li>
 
                     <li>Parking charges</li>
 
                     <li>Multiple pickup/drops</li>
 
-                    <li>Break and detours</li>
+                    <li>State Tax</li>
 
                     <li>Driver night allowence</li>
+                  </ul>
+                </div>
+                <div className="Amenities-Div">
+                  <b>Amenities</b>
+                  <ul>
+                    <li>Seats</li>
+
+                    <li>Bags</li>
+
+                    <li>AC</li>
+
+                    <li>Mobile Charger</li>
+
+                    <li>Music System</li>
+
                   </ul>
                 </div>
               </div>

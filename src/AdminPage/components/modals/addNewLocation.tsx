@@ -7,6 +7,8 @@ import { Loading3QuartersOutlined } from "@ant-design/icons";
 function AddLocationModal(props: any) {
   const [from, setFrom] = useState(props.from || "");
   const [to, setTo] = useState(props.to || "");
+  const [kms, setKms] = useState(props.to || "");
+  const [hrs, setHrs] = useState(props.to || "");
   const [miniPrice, setMiniPrice] = useState(props.price || "");
   const [sedanPrice, setSedanPrice] = useState(props.price || "");
   const [suvPrice, setSUVPrice] = useState(props.price || "");
@@ -20,6 +22,8 @@ function AddLocationModal(props: any) {
     const newData = {
       place: from,
       location: to,
+      kilometer: kms,
+      hours:hrs,
       miniPrice: parseInt(miniPrice),
       sedanPrice: parseInt(sedanPrice),
       suvPrice: parseInt(suvPrice),
@@ -75,6 +79,26 @@ function AddLocationModal(props: any) {
               onChange={(e) => setTo(e.target.value)}
             />
           </Form.Group>
+          <Form.Group className="mb-3" controlId="formGroupTo">
+            <Form.Label className="fw-bold">Kilometers</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="To"
+              className="bg-light-300"
+              value={kms}
+              onChange={(e) => setKms(e.target.value)}
+            />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="formGroupTo">
+            <Form.Label className="fw-bold">Hours</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="To"
+              className="bg-light-300"
+              value={hrs}
+              onChange={(e) => setHrs(e.target.value)}
+            />
+          </Form.Group>
           <Form.Group className="mb-3" controlId="formGroupPrice">
             <Form.Label className="fw-bold">Mini Price</Form.Label>
             <Form.Control
@@ -96,7 +120,7 @@ function AddLocationModal(props: any) {
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="formGroupPrice">
-            <Form.Label className="fw-bold">Mini Price</Form.Label>
+            <Form.Label className="fw-bold">SUV Price</Form.Label>
             <Form.Control
               type="number"
               placeholder="SUV Price"

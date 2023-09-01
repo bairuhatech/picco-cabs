@@ -31,6 +31,7 @@ const BookingThird = (props: any) => {
     modesecond,
     userfrom,
     userName,
+    modesSecondary
   } = location.state;
 
   const handleOk = () => {
@@ -39,13 +40,12 @@ const BookingThird = (props: any) => {
 
   const formattedDate = moment(pickUpDate).format("YYYY-MM-DD");
 
-  console.log("formated dateeeeee", formattedDate);
   const onFinish = async (values: any) => {
     try {
       setLoading(true);
       const requestBody = {
         userId: 1,
-        bookType: modes || modesecond,
+        bookType: modes || modesecond || modesSecondary,
         tripStatus: tripType || "roundTrip",
         pickUpDate: formattedDate,
         dropOffDate: "2023-08-02T12:00:00Z",
@@ -70,7 +70,7 @@ const BookingThird = (props: any) => {
             ? selectedRoute?.sedanPrice +
               (tripType === "roundTrip" ? selectedRoute.sedanPrice : null) 
             : selectedRoute?.suvPrice +
-              (tripType === "roundTrip" ? selectedRoute.sedanPrice : null),
+              (tripType === "roundTrip" ? selectedRoute.sedanPrice : null) || 0,
         returnDate: "2023-08-02T12:00:00Z",
         rentallPack: 1,
         car: "",

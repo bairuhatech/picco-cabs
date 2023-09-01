@@ -120,15 +120,24 @@ export default function Airports(props: any) {
   const today = new Date();
 
   const generateTimeOptions = () => {
-    const startTime = moment('00:00 AM', 'hh:mm A');
-    const endTime = moment('11:50 PM', 'hh:mm A');
+    const currentTime = moment(); // Get the current time
+    const minStartTime = moment().add(2, "hours").startOf("hour"); // Minimum start time
+    const endTime = moment("11:45 PM", "hh:mm A"); // Adjusted end time
     const timeOptions = [];
-  
-    while (startTime.isSameOrBefore(endTime)) {
-      timeOptions.push(startTime.format('hh:mm A'));
-      startTime.add(10, 'minutes');
+
+    let startInterval = currentTime.isBefore(minStartTime)
+      ? minStartTime
+      : currentTime;
+    let nextInterval = moment(startInterval).add(
+      15 - (startInterval.minute() % 15),
+      "minutes"
+    );
+
+    while (nextInterval.isSameOrBefore(endTime)) {
+      timeOptions.push(nextInterval.format("hh:mm A"));
+      nextInterval.add(15, "minutes");
     }
-  
+
     return timeOptions;
   };
 
@@ -140,7 +149,7 @@ export default function Airports(props: any) {
           <div className="col-3" style={{ position: "absolute", top: 10 }}>
           </div>
           <div className="col-md-2 col-sm-6 col-12">
-            <div className="form-label fw-bold">TRIP</div>
+            <div className="form-label fw-bold">Ride Type</div>
             <Form.Item
               name="Trip"
               className="fw-bold"
@@ -246,7 +255,7 @@ export default function Airports(props: any) {
             }
           >
             <label htmlFor="inputEmail4" className="form-label fw-bold">
-              {airport === "pickUp" ? "PICK UP" : "DROP UP"}
+            PICK UP
             </label>
             <Form.Item
               name="dateRange"
@@ -286,29 +295,28 @@ export default function Airports(props: any) {
             }
           >
             <label htmlFor="inputEmail4" className="form-label fw-bold">
-              {airport === "pickUp" ? "PICK UP AT " : "DROP UP AT"}
+            PICK UP AT
             </label>
             <Form.Item
-        name="timeRange"
-        rules={[
-          {
-            required: true,
-            message: "required",
-          },
-        ]}
-      >
-        <Select
-          className="form-control border-0 border-bottom rounded-0"
-          placeholder="Pick up time"
-          // name="timeRange"
-        >
-          {generateTimeOptions().map((timeOption) => (
-            <Option key={timeOption} value={timeOption}>
-              {timeOption}
-            </Option>
-          ))}
-        </Select>
-      </Form.Item>
+              name="timeRange"
+              rules={[
+                {
+                  required: true,
+                  message: "required",
+                },
+              ]}
+            >
+              <Select
+                className="form-control border-0 border-bottom rounded-0"
+                placeholder="Pick up time"
+              >
+                {generateTimeOptions().map((timeOption) => (
+                  <Option key={timeOption} value={timeOption}>
+                    {timeOption}
+                  </Option>
+                ))}
+              </Select>
+            </Form.Item>
           </div>
         </div>
         <div
@@ -339,7 +347,7 @@ export default function Airports(props: any) {
               }}
               htmlType="submit"
             >
-              Explore Cabs
+              Search Cabs
             </Button>
           </Form.Item>
         </div>

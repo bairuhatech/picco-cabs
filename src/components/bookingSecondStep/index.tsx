@@ -30,13 +30,15 @@ function BookingForm(props: any) {
     selectedRoute,
     pickUpDate,
     dropOffDate,
+    returnDate,
     timeOfPickup,
     tripType,
     Package,
     RentPlace,
+    modesSecondary,
   } = location.state;
 
-  console.log("type===== vanno",tripType)
+  console.log("type===== vanno",selectedRoute)
 
   const showModal = () => {
     setIsModalOpen(true);
@@ -63,9 +65,11 @@ function BookingForm(props: any) {
   const Cancel = () => {
     setFormModal(false);
   };
-  const formattedDate = moment(pickUpDate).format("MMMM Do, YYYY");
+  const formattedDate = moment(pickUpDate).format("DD-MM-YYYY");
+  const returnFrormat = moment(returnDate).format("DD-MM-YYYY");
+  
   let pack =
-    Package?.value === "custom_package" ? (
+    Package?.value === "custom_package" ? ( 
       <div>
         {Package?.hours}Hr&nbsp;{Package?.kms}kms
       </div>
@@ -97,11 +101,9 @@ function BookingForm(props: any) {
 
   const openfare = () => {
     setShowFare(true);
-    console.log("clickeddddddd");
   };
   const closefare = () => {
     setShowFare(false);
-    console.log("clickeddddddd");
   };
 
   return (
@@ -113,9 +115,11 @@ function BookingForm(props: any) {
             <div className="subHeader">
               <div className="innerHead">
                 <div style={{ fontWeight: 700, fontSize: "20px" }}>
-                  PICCO JOURNEY
+                  TRIP DETAILS
                 </div>
-                <br />
+                <div style={{fontSize:"12px"}}>
+                  {tripType}
+                </div>
                 <div>
                   {RentPlace || selectedRoute?.place}{" "}
                   {RentPlace ? "" : <b>to</b>}
@@ -128,14 +132,22 @@ function BookingForm(props: any) {
               >
                 <div className="PickpDate-Div">
                   Pick Up Date: <br />
-                  08-08-2023{" "}
+                  {formattedDate}{" "}
                   <div className="PickupTime-Div">
                     {Package?.label ? "" : "Pickup Time:"} <br />
                     {timeOfPickup || ""}
                   </div>
+                  {tripType === "roundTrip" ? (
+                  <div className="PickpDate-Div">
+                  Drop Date: <br />
+                  {returnFrormat}{" "}
+                  </div>
+                  ) : null} 
                 </div>
                 <div className="ModifyButton-Div">
-                  <button className="modifyButton">Modify</button>
+                  <button className="modifyButton"
+                  onClick={() => window.history.back()}
+                  >Modify</button>
                 </div>
               </div>
             </div>
@@ -188,26 +200,10 @@ function BookingForm(props: any) {
                       flexDirection: "column",
                     }}
                   >
-                    <div>
-                      <IoNewspaperOutline size={27} color="green" />
-                    </div>
-                    <div>Incl. All Tax</div>
-                  </div>
-                  <div
-                    style={{
-                      height: "100%",
-                      width: "200px",
-                      display: "flex",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <div style={{ backgroundColor: "" }}>
-                      <p>
-                        {" "}
-                        ₹ <b>{tripType==="roundTrip"?selectedRoute.miniPrice+selectedRoute.miniPrice+300:selectedRoute.miniPrice+300}</b>
-                      </p>
-                      <p
-                        style={{ cursor: "pointer", color: "#0056b3" }}
+                    <div><b>Includes {tripType === "roundTrip" ?  selectedRoute?.kilometer * 2  : selectedRoute?.kilometer} Km</b></div>
+                    <div><b>{tripType === "roundTrip" ? selectedRoute?.hours * 2 : selectedRoute?.hours}</b> hours to reach</div>
+                    <p
+                        style={{ cursor: "pointer", color: "#0056b3", marginTop:"10px"}}
                         onClick={() => {
                           const carDetails = {
                             name: "Picco Mini",
@@ -219,6 +215,21 @@ function BookingForm(props: any) {
                       >
                         Fare details
                       </p>
+                  </div>
+                  <div
+                    style={{
+                      height: "100%",
+                      width: "200px",
+                      display: "flex",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <div style={{ display:"flex", alignItems:"center" }}>
+                      <p>
+                        {" "}
+                        ₹ <b>{tripType==="roundTrip"?selectedRoute?.miniPrice+selectedRoute?.miniPrice+300:selectedRoute?.miniPrice+300}</b>
+                      </p>
+                      
                     </div>
                     {showfare && (
                       <FareModal open={openfare} close={closefare} selectedVeh={selectedVeh}/>
@@ -295,26 +306,10 @@ function BookingForm(props: any) {
                       flexDirection: "column",
                     }}
                   >
-                    <div>
-                      <IoNewspaperOutline size={27} color="green" />
-                    </div>
-                    <div>Incl. All Tax</div>
-                  </div>
-                  <div
-                    style={{
-                      height: "100%",
-                      width: "200px",
-                      display: "flex",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <div style={{ backgroundColor: "" }}>
-                      <p>
-                        {" "}
-                        ₹ <b>{tripType==="roundTrip"?selectedRoute.sedanPrice+selectedRoute.sedanPrice+300:selectedRoute.sedanPrice+300}</b>
-                      </p>
-                      <p
-                        style={{ cursor: "pointer", color: "#0056b3" }}
+                    <div><b>Includes {tripType === "roundTrip" ?  selectedRoute?.kilometer * 2  : selectedRoute?.kilometer} Km</b></div>
+                    <div><b>{tripType === "roundTrip" ? selectedRoute?.hours * 2 : selectedRoute?.hours}</b> hours to reach</div>
+                    <p
+                        style={{ cursor: "pointer", color: "#0056b3", marginTop:"10px" }}
                         onClick={() => {
                           const carDetails = {
                             name: "Picco Sedan",
@@ -325,6 +320,20 @@ function BookingForm(props: any) {
                         }}
                       >
                         Fare details
+                      </p>
+                  </div>
+                  <div
+                    style={{
+                      height: "100%",
+                      width: "200px",
+                      display: "flex",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <div style={{ display:"flex", alignItems:"center" }}>
+                      <p>
+                        {" "}
+                        ₹ <b>{tripType==="roundTrip"?selectedRoute?.sedanPrice+selectedRoute?.sedanPrice+300:selectedRoute?.sedanPrice+300}</b>
                       </p>
                     </div>
                     {showfare && (
@@ -402,26 +411,10 @@ function BookingForm(props: any) {
                       flexDirection: "column",
                     }}
                   >
-                    <div>
-                      <IoNewspaperOutline size={27} color="green" />
-                    </div>
-                    <div>Incl. All Tax</div>
-                  </div>
-                  <div
-                    style={{
-                      height: "100%",
-                      width: "200px",
-                      display: "flex",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <div style={{ backgroundColor: "" }}>
-                      <p>
-                        {" "}
-                        ₹ <b>{tripType==="roundTrip"?selectedRoute.suvPrice+selectedRoute.suvPrice+300:selectedRoute.suvPrice+300}</b>
-                      </p>
-                      <p
-                        style={{ cursor: "pointer", color: "#0056b3" }}
+                    <div><b>Includes {tripType === "roundTrip" ?  selectedRoute?.kilometer * 2  : selectedRoute?.kilometer} Km</b></div>
+                    <div><b>{tripType === "roundTrip" ? selectedRoute?.hours * 2 : selectedRoute?.hours}</b> hours to reach</div>
+                    <p
+                        style={{ cursor: "pointer", color: "#0056b3", marginTop:"10px" }}
                         onClick={() => {
                           const carDetails = {
                             name: "Picco SUV",
@@ -432,6 +425,20 @@ function BookingForm(props: any) {
                         }}
                       >
                         Fare details
+                      </p>
+                  </div>
+                  <div
+                    style={{
+                      height: "100%",
+                      width: "200px",
+                      display: "flex",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <div style={{ display:"flex", alignItems:"center" }}>
+                      <p>
+                        {" "}
+                        ₹ <b>{tripType==="roundTrip"?selectedRoute?.suvPrice+selectedRoute?.suvPrice+300:selectedRoute?.suvPrice+300}</b>
                       </p>
                     </div>
                     {showfare && (
