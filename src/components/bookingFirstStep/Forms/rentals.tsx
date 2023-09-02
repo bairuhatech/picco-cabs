@@ -3,13 +3,20 @@ import classes from "../index.module.scss";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Select, Form, Button, Input } from "antd";
+import { Option } from "antd/es/mentions";
+import { DatePicker } from "antd";
+import moment from "moment";
 
 export default function Rentals(props: any) {
   const [data, setData] = useState([]);
+  const today = new Date();
   const navigate = useNavigate();
   const [form] = Form.useForm();
   const [filteredOptions, setFilteredOptions] = useState([]);
   const [toPlace, setToPlace] = useState<any>([]);
+  const [tripType, setTripType] = useState<"oneWay" | "roundTrip" | "rentals">(
+    "rentals"
+  );
 
   const [selectedPackage, setSelectedPackage] = useState<any>(null);
   const [packages, setPackages] = useState<any>([
@@ -17,6 +24,28 @@ export default function Rentals(props: any) {
     { value: "eight_hour", label: "8 Hr(80Km)", hours: 8, kms: 40 },
     { value: "twelve_hour", label: "12 Hr(120Km)", hours: 12, kms: 120 },
   ]);
+
+  const generateTimeOptions = () => {
+    const currentTime = moment(); // Get the current time
+    const minStartTime = moment().add(2, "hours").startOf("hour"); // Minimum start time
+    const endTime = moment("11:45 PM", "hh:mm A"); // Adjusted end time
+    const timeOptions = [];
+
+    let startInterval = currentTime.isBefore(minStartTime)
+      ? minStartTime
+      : currentTime;
+    let nextInterval = moment(startInterval).add(
+      15 - (startInterval.minute() % 15),
+      "minutes"
+    );
+
+    while (nextInterval.isSameOrBefore(endTime)) {
+      timeOptions.push(nextInterval.format("hh:mm A"));
+      nextInterval.add(15, "minutes");
+    }
+
+    return timeOptions;
+  };
 
   const handlePackageChange = (value: any) => {
     console.log("Selected value:", value);
@@ -29,19 +58,20 @@ export default function Rentals(props: any) {
   const onFinish = async (val: any) => {
     const Package = selectedPackage;
 
-    // if (selectedPackage && selectedPackage.value === "custom_package") {
-    //   Package.hours = val.hours;
-    //   Package.kms = val.kilometers;
-    // }
-
+    const { timeRange, dateRange } = val;
     const modesecond = props.types;
     const RentPlace = val.rentalPlace;
+    const RentalTime = timeRange;
+    const RentalDate = dateRange?.toISOString();
 
     navigate("/bookingSecondStep", {
       state: {
         Package,
         modesecond,
         RentPlace,
+        RentalTime,
+        RentalDate,
+        tripType,
       },
     });
   };
@@ -89,7 +119,7 @@ export default function Rentals(props: any) {
     <div className="mt-3">
       <Form form={form} onFinish={onFinish}>
         <div className="row mx-0 gy-3">
-          <div className="col-md-6 col-12">
+          <div className="col-md-3 col-12">
             <label htmlFor="inputEmail4" className="form-label fw-bold">
               FROM
             </label>
@@ -119,16 +149,9 @@ export default function Rentals(props: any) {
                 }))}
               />
             </Form.Item>
-            {/* <Form.Item name="rentalPlace" >
-              <Input
-                type="text"
-                className="form-control border-0 border-bottom rounded-0"
-                placeholder="Start typing City"
-                aria-label="First name"
-              />
-            </Form.Item> */}
           </div>
-          <div className="col-md-6 col-12">
+
+          <div className="col-md-3 col-12">
             <Form.Item name="place">
               <label htmlFor="inputState" className="form-label fw-bold">
                 SELECT PACKAGE
@@ -150,38 +173,57 @@ export default function Rentals(props: any) {
               />
             </Form.Item>
           </div>
-        </div>
-        {/* {selectedPackage && selectedPackage.value === "custom_package" && (
-          <div className="row mx-0 gy-3">
-            <div className="col-md-6 col-12">
-              <label htmlFor="hours" className="form-label fw-bold">
-                HOURS
-              </label>
-              <Form.Item name="hours" > */}
-        {/* rules={[{ required: true, message: "required" }]} */}
-        {/* <Input
-                  type="number"
-                  className="form-control border-0 border-bottom rounded-0"
-                  placeholder="Enter hours"
-                  aria-label="Hours"
-                />
-              </Form.Item>
-            </div>
-            <div className="col-md-6 col-12">
-              <label htmlFor="kilometers" className="form-label fw-bold">
-                KILOMETERS
-              </label>
-              <Form.Item name="kilometers" >
-                <Input
-                  type="number"
-                  className="form-control border-0 border-bottom rounded-0"
-                  placeholder="Enter kilometers"
-                  aria-label="Kilometers"
-                />
-              </Form.Item>
-            </div>
+
+          <div className="col-md-3 col-12">
+            <label htmlFor="inputEmail4" className="form-label fw-bold">
+              PICK UP
+            </label>
+
+            <Form.Item
+              name="dateRange"
+              rules={[
+                {
+                  required: true,
+                  message: "required",
+                },
+              ]}
+            >
+              <DatePicker
+                format="YYYY-MM-DD"
+                placeholder="Pick up date"
+                className="form-control border-0 border-bottom rounded-0"
+                disabledDate={(current) =>
+                  current && current < moment(today).startOf("day")
+                }
+              />
+            </Form.Item>
           </div>
-        )} */}
+          <div className="col-md-3 col-12">
+            <label htmlFor="inputEmail4" className="form-label fw-bold">
+              PICK UP AT
+            </label>
+            <Form.Item
+              name="timeRange"
+              rules={[
+                {
+                  required: true,
+                  message: "required",
+                },
+              ]}
+            >
+              <Select
+                className="form-control border-0 border-bottom rounded-0"
+                placeholder="Pick up time"
+              >
+                {generateTimeOptions().map((timeOption) => (
+                  <Option key={timeOption} value={timeOption}>
+                    {timeOption}
+                  </Option>
+                ))}
+              </Select>
+            </Form.Item>
+          </div>
+        </div>
         <div className="d-flex justify-content-center position-relative">
           <Form.Item
             style={{

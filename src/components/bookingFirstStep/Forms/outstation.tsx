@@ -136,8 +136,10 @@ export default function OutStation(props: any) {
     <div className="mt-3">
       <Form form={form} onFinish={onFinish}>
         <div className="row mx-0 gy-3">
-          <div className="col-3" style={{ position: "absolute", top: 10 }}>
-          </div>
+          <div
+            className="col-3"
+            style={{ position: "absolute", top: 10 }}
+          ></div>
           <div className="col-md-3 col-sm-6 col-12">
             <div className="form-label fw-bold">FROM</div>
             <Form.Item

@@ -7,7 +7,6 @@ import "./index.module.scss";
 import Rentals from "./Forms/rentals";
 import Roundtrip from "./Forms/roundTrip";
 
-
 const FirstStep = () => {
   const [formType, setFormType] = useState("outstations");
 
@@ -24,7 +23,6 @@ const FirstStep = () => {
   };
 
   const radioBtn4ClickHandler = () => {
-    console.log("working aano")
     setFormType("roundTrip");
   };
 
@@ -36,7 +34,17 @@ const FirstStep = () => {
       className={` ${classes["bg-picco-banner"]} position-relative d-flex justify-content-center `}
     >
       <div
-        style={{zIndex:3,position:"absolute",top:120,backgroundColor:"#ffff",borderRadius:"12px",height:"fit-content",width:"80%",padding:"20px",boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px"}}
+        style={{
+          zIndex: 3,
+          position: "absolute",
+          top: 120,
+          backgroundColor: "#ffff",
+          borderRadius: "12px",
+          height: "fit-content",
+          width: "80%",
+          padding: "20px",
+          boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px",
+        }}
         // className={`rounded-3 bg-light ${
         //   classes["banner-position-absolute"]
         // } ${!baseUrl ? "shadow" : ""}`}
@@ -57,7 +65,12 @@ const FirstStep = () => {
               onClick={radioBtn1ClickHandler}
             />
             <label
-              style={{width:"150px",fontWeight:500,fontSize:"15px",height:"35px"}}
+              style={{
+                width: "150px",
+                fontWeight: 500,
+                fontSize: "15px",
+                height: "35px",
+              }}
               className={`btn btn-outline-success border border-2 border-success`}
               htmlFor="btnradio1"
             >
@@ -71,13 +84,18 @@ const FirstStep = () => {
               autoComplete="off"
               onClick={radioBtn4ClickHandler}
             />
-             <label
-              style={{width:"150px",fontWeight:500,fontSize:"15px",height:"35px"}}
+            <label
+              style={{
+                width: "150px",
+                fontWeight: 500,
+                fontSize: "15px",
+                height: "35px",
+              }}
               className="btn btn-outline-success border border-2 border-success "
               htmlFor="btnradio3"
             >
               ROUND TRIP
-              </label>
+            </label>
             <input
               type="radio"
               className="btn-check"
@@ -87,7 +105,12 @@ const FirstStep = () => {
               onClick={radioBtn2ClickHandler}
             />
             <label
-              style={{width:"150px",fontWeight:500,fontSize:"15px",height:"35px"}}
+              style={{
+                width: "150px",
+                fontWeight: 500,
+                fontSize: "15px",
+                height: "35px",
+              }}
               className="btn btn-outline-success border border-2 border-success "
               htmlFor="btnradio2"
             >
@@ -101,13 +124,18 @@ const FirstStep = () => {
               autoComplete="off"
               onClick={radioBtn3ClickHandler}
             />
-             <label
-              style={{width:"150px",fontWeight:500,fontSize:"15px",height:"35px"}}
+            <label
+              style={{
+                width: "150px",
+                fontWeight: 500,
+                fontSize: "15px",
+                height: "35px",
+              }}
               className="btn btn-outline-success border border-2 border-success "
               htmlFor="btnradio4"
             >
               AIRPORTS
-              </label>
+            </label>
           </div>
         </div>
         {formType === "outstations" ? (

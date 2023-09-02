@@ -31,7 +31,9 @@ const BookingThird = (props: any) => {
     modesecond,
     userfrom,
     userName,
-    modesSecondary
+    modesSecondary,
+    RentalTime,
+    RentalDate,
   } = location.state;
 
   const handleOk = () => {
@@ -47,7 +49,7 @@ const BookingThird = (props: any) => {
         userId: 1,
         bookType: modes || modesecond || modesSecondary,
         tripStatus: tripType || "roundTrip",
-        pickUpDate: formattedDate,
+        pickUpDate: tripType === "rentals" ? RentalDate : formattedDate,
         dropOffDate: "2023-08-02T12:00:00Z",
         pickUpLat: 37.7749,
         pickUpLng: -122.4194,
@@ -59,18 +61,19 @@ const BookingThird = (props: any) => {
         dropOffLat: 37.7749,
         dropOffLng: -122.4194,
         dropOffLoc: selectedRoute?.location || "",
-        pickUpTime: timeOfPickup || "",
+        pickUpTime: tripType === "rentals" ? RentalTime : timeOfPickup || "",
         hours: parseInt(Package?.hours) || 0,
         kms: parseInt(Package?.kms) || 0,
         estimatedAmt:
           props.selectedCar.name === "Picco Mini"
             ? selectedRoute?.miniPrice +
-              (tripType === "roundTrip" ? selectedRoute.miniPrice : null) 
+              (tripType === "roundTrip" ? selectedRoute.miniPrice : null)
             : props.selectedCar.name === "Picco Sedan"
             ? selectedRoute?.sedanPrice +
-              (tripType === "roundTrip" ? selectedRoute.sedanPrice : null) 
+              (tripType === "roundTrip" ? selectedRoute.sedanPrice : null)
             : selectedRoute?.suvPrice +
-              (tripType === "roundTrip" ? selectedRoute.sedanPrice : null) || 0,
+                (tripType === "roundTrip" ? selectedRoute.sedanPrice : null) ||
+              1,
         returnDate: "2023-08-02T12:00:00Z",
         rentallPack: 1,
         car: "",
