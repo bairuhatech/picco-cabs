@@ -40,10 +40,6 @@ function BookingForm(props: any) {
     RentalDate,
   } = location.state;
 
-  console.log("date vannodaaaaaa", RentalDate);
-  console.log("time vannodaaaaaa", RentalTime);
-  console.log("trip vannodaaaaaa", tripType);
-
   const showModal = () => {
     setIsModalOpen(true);
   };
