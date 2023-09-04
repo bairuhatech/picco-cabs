@@ -53,14 +53,14 @@ const OfferSections = () => {
           <div className="fleet_car">
             <img src={Car1} className="img-fluid m-auto" alt="car_mini" />
           </div>
-          <h5 className="cardTitle">Picco SUV</h5>
+          <h5 className="cardTitle">Spacious SUV</h5>
           <p>Peppy Hatchbacks for quick and pocket friendly rides.</p>
         </div>
         <div className="card">
           <div className="fleet_car">
             <img src={Car2} className="img-fluid m-auto" alt="car_sedan" />
           </div>
-          <h5 className="cardTitle">Picco sedan</h5>
+          <h5 className="cardTitle">Executive Sedan</h5>
           <p>
             Comfortable Cars for Family & Touring with adequate boot space and
             ample entertainment.
@@ -91,7 +91,7 @@ const OfferSections = () => {
               alt="car_suv_innova_crysta"
             />
           </div>
-          <h5 className="cardTitle">Picco Mini</h5>
+          <h5 className="cardTitle">Compact Mini</h5>
           <p>
             Travel with the king of roads. Vehicle built with Luxury and Super
             Comfort.

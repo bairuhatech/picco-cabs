@@ -26,13 +26,14 @@ export default function Airports(props: any) {
   const currTime = new Date();
   const [value, setValue] = useState<string>();
   const [filteredOptions, setFilteredOptions] = useState([]);
-  const [tripType, setTripType] = useState<"oneWay" | "roundTrip" | null>(
-    "oneWay"
+  const [tripType, setTripType] = useState<"oneWay" | "roundTrip" | "airports" | null>(
+    "airports"
   );
   const [data, setData] = useState<any["options"]>([]);
   const [selectedRoute, setSelectedRoute] = useState<any>({});
   const [toPlace, setToPlace] = useState<any>([]);
   const [airport, setAirport] = useState<any>("pickUp");
+  console.log("routeeeeeeeee",selectedRoute.place)
 
   const onFinish = async (val: any) => {
     const { Trip, user_from, user_to, dateRange, timeRange } = val;
@@ -55,6 +56,8 @@ export default function Airports(props: any) {
         userfrom,
         userto,
         modes,
+        tripType,
+        airport,
       },
     });
   };
@@ -175,11 +178,11 @@ export default function Airports(props: any) {
                 notFoundContent={null}
                 options={[
                   {
-                    value: "pickUp",
+                    value: "Pickup",
                     label: "Pick From Airport",
                   },
                   {
-                    value: "drop",
+                    value: "Drop",
                     label: "Drop To Airport",
                   },
                 ]}

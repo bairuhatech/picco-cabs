@@ -5,6 +5,9 @@ import { MdOutlineSevereCold } from "react-icons/md";
 import smallcarimg from "../../assets/images/car_mini_small.png";
 import sedanimg from "../../assets/images/car_sedan_small.png";
 import suvimage from "../../assets/images/car_suv_small.png";
+import innova from "../../assets/images/car_suv_innova.png";
+import crysta from "../../assets/images/car_suv_innova_crysta.png";
+import tempo from "../../assets/images/car_tempo.png";
 import { Row, Col, Container } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
 import FareModal from "../fareDetails";
@@ -38,6 +41,7 @@ function BookingForm(props: any) {
     modesSecondary,
     RentalTime,
     RentalDate,
+    airport,
   } = location.state;
 
   const showModal = () => {
@@ -118,7 +122,13 @@ function BookingForm(props: any) {
                 <div style={{ fontWeight: 700, fontSize: "20px" }}>
                   TRIP DETAILS
                 </div>
-                <div style={{ fontSize: "12px" }}>{tripType}</div>
+                <div style={{ fontSize: "12px" }}>
+                  {tripType === "airports"
+                    ? airport === "Pickup"
+                      ? "Cab From " + selectedRoute?.place + " Airport"
+                      : "Cab To " + selectedRoute?.place + " Airport"
+                    : tripType}
+                </div>
                 <div>
                   {RentPlace || selectedRoute?.place}{" "}
                   {RentPlace ? "" : <b>to</b>}
@@ -163,10 +173,10 @@ function BookingForm(props: any) {
                     className="piccominiImg"
                     style={{ height: "70px", marginTop: "8px" }}
                     src={smallcarimg}
-                    alt="Picco Mini"
+                    alt="Compact Mini"
                   />
                   <div className="nameContainer">
-                    <div className="picco-mini">Picco Mini</div>
+                    <div className="picco-mini">Compact Mini</div>
                     <div className="piccomini-info">
                       info
                       <Popover
@@ -230,7 +240,7 @@ function BookingForm(props: any) {
                       }}
                       onClick={() => {
                         const carDetails = {
-                          name: "Picco Mini",
+                          name: "Compact Mini",
                           type: "Mini",
                         };
                         setSelectedVeh(carDetails);
@@ -281,7 +291,7 @@ function BookingForm(props: any) {
                       }}
                       onClick={() =>
                         handleBookNow({
-                          name: "Picco Mini",
+                          name: "Compact Mini",
                           type: "Mini",
                         })
                       }
@@ -298,10 +308,10 @@ function BookingForm(props: any) {
                     className="piccominiImg"
                     style={{ height: "70px", marginTop: "8px" }}
                     src={sedanimg}
-                    alt="Picco Mini"
+                    alt="Compact Mini"
                   />
                   <div className="nameContainer">
-                    <div className="picco-mini">Picco Sedan</div>
+                    <div className="picco-mini">Executive Sedan</div>
                     <div className="piccomini-info">
                       info
                       <Popover
@@ -365,7 +375,7 @@ function BookingForm(props: any) {
                       }}
                       onClick={() => {
                         const carDetails = {
-                          name: "Picco Sedan",
+                          name: "Executive Sedan",
                           type: "Sedan",
                         };
                         setSelectedVeh(carDetails);
@@ -416,7 +426,7 @@ function BookingForm(props: any) {
                       }}
                       onClick={() =>
                         handleBookNow({
-                          name: "Picco Sedan",
+                          name: "Executive Sedan",
                           type: "Sedan",
                         })
                       }
@@ -433,10 +443,149 @@ function BookingForm(props: any) {
                     className="piccominiImg"
                     style={{ height: "70px", marginTop: "8px" }}
                     src={suvimage}
-                    alt="Picco Mini"
+                    alt="Compact Mini"
                   />
                   <div className="nameContainer">
-                    <div className="picco-mini">Picco SUV</div>
+                    <div className="picco-mini">Spacious SUV</div>
+                    <div className="piccomini-info">
+                      info
+                      <Popover
+                        placement="rightTop"
+                        // title={text}
+                        content={SuvContent}
+                        // arrow={mergedArrow}
+                      >
+                        <BsInfoCircle size={18} color="#d3d3d3" />
+                      </Popover>
+                    </div>
+                  </div>
+                </div>
+                <div style={{ height: "100%", width: "60%", display: "flex" }}>
+                  <div
+                    style={{
+                      height: "100%",
+                      width: "200px",
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <div className="piccocartext-font">AC</div>
+                    <div className="piccocartext-font">6/7 Seat</div>
+                    <div className="piccocartext-font">2 Bag</div>
+                  </div>
+                  <div
+                    style={{
+                      height: "100%",
+                      width: "200px",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      flexDirection: "column",
+                    }}
+                  >
+                    <div>
+                      <b>
+                        Includes{" "}
+                        {tripType === "roundTrip"
+                          ? selectedRoute?.kilometer * 2
+                          : selectedRoute?.kilometer}{" "}
+                        Km
+                      </b>
+                    </div>
+                    <div>
+                      <b>
+                        {tripType === "roundTrip"
+                          ? selectedRoute?.hours * 2
+                          : selectedRoute?.hours}
+                      </b>{" "}
+                      hours to reach
+                    </div>
+                    <p
+                      style={{
+                        cursor: "pointer",
+                        color: "#0056b3",
+                        marginTop: "10px",
+                      }}
+                      onClick={() => {
+                        const carDetails = {
+                          name: "Spacious SUV",
+                          type: "SUV",
+                        };
+                        setSelectedVeh(carDetails);
+                        setShowFare(true);
+                      }}
+                    >
+                      Fare details
+                    </p>
+                  </div>
+                  <div
+                    style={{
+                      height: "100%",
+                      width: "200px",
+                      display: "flex",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <div style={{ display: "flex", alignItems: "center" }}>
+                      <p>
+                        {" "}
+                        ₹{" "}
+                        <b>
+                          {tripType === "roundTrip"
+                            ? selectedRoute?.suvPrice +
+                              selectedRoute?.suvPrice +
+                              300
+                            : selectedRoute?.suvPrice + 300}
+                        </b>
+                      </p>
+                    </div>
+                    {showfare && (
+                      <FareModal
+                        open={openfare}
+                        close={closefare}
+                        selectedVeh={selectedVeh}
+                      />
+                    )}
+                  </div>
+                </div>
+                {formModal && (
+                  <CustomModal isModalOpen={show} handleCancel={Cancel} />
+                )}
+                <div>
+                  <div className="button-Div">
+                    <button
+                      style={{
+                        height: "40px",
+                        width: "150px",
+                        fontWeight: "700",
+                        fontSize: "18px",
+                      }}
+                      onClick={() =>
+                        handleBookNow({
+                          name: "Spacious SUV",
+                          type: "SUV",
+                        })
+                      }
+                      className="button"
+                    >
+                      Book now
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div className="inner-Card">
+                <div style={{ display: "flex" }}>
+                  <img
+                    className="piccominiImg"
+                    style={{ height: "70px", marginTop: "8px" }}
+                    src={innova}
+                    alt="Compact Mini"
+                  />
+                  <div className="nameContainer">
+                    <div className="picco-mini">Toyota Innova</div>
                     <div className="piccomini-info">
                       info
                       <Popover
@@ -500,8 +649,8 @@ function BookingForm(props: any) {
                       }}
                       onClick={() => {
                         const carDetails = {
-                          name: "Picco SUV",
-                          type: "SUV",
+                          name: "Innova SUV",
+                          type: "innova",
                         };
                         setSelectedVeh(carDetails);
                         setShowFare(true);
@@ -524,10 +673,10 @@ function BookingForm(props: any) {
                         ₹{" "}
                         <b>
                           {tripType === "roundTrip"
-                            ? selectedRoute?.suvPrice +
-                              selectedRoute?.suvPrice +
+                            ? selectedRoute?.innovaPrice +
+                              selectedRoute?.innovaPrice +
                               300
-                            : selectedRoute?.suvPrice + 300}
+                            : selectedRoute?.innovaPrice + 300}
                         </b>
                       </p>
                     </div>
@@ -554,8 +703,425 @@ function BookingForm(props: any) {
                       }}
                       onClick={() =>
                         handleBookNow({
-                          name: "Picco SUV",
-                          type: "SUV",
+                          name: "Innova SUV",
+                          type: "innova",
+                        })
+                      }
+                      className="button"
+                    >
+                      Book now
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div className="inner-Card">
+                <div style={{ display: "flex" }}>
+                  <img
+                    className="piccominiImg"
+                    style={{ height: "70px", marginTop: "8px" }}
+                    src={crysta}
+                    alt="Compact Mini"
+                  />
+                  <div className="nameContainer">
+                    <div className="picco-mini">Innova Crysta</div>
+                    <div className="piccomini-info">
+                      info
+                      <Popover
+                        placement="rightTop"
+                        // title={text}
+                        content={SuvContent}
+                        // arrow={mergedArrow}
+                      >
+                        <BsInfoCircle size={18} color="#d3d3d3" />
+                      </Popover>
+                    </div>
+                  </div>
+                </div>
+                <div style={{ height: "100%", width: "60%", display: "flex" }}>
+                  <div
+                    style={{
+                      height: "100%",
+                      width: "200px",
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <div className="piccocartext-font">AC</div>
+                    <div className="piccocartext-font">6 Seat</div>
+                    <div className="piccocartext-font">2 Bag</div>
+                  </div>
+                  <div
+                    style={{
+                      height: "100%",
+                      width: "200px",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      flexDirection: "column",
+                    }}
+                  >
+                    <div>
+                      <b>
+                        Includes{" "}
+                        {tripType === "roundTrip"
+                          ? selectedRoute?.kilometer * 2
+                          : selectedRoute?.kilometer}{" "}
+                        Km
+                      </b>
+                    </div>
+                    <div>
+                      <b>
+                        {tripType === "roundTrip"
+                          ? selectedRoute?.hours * 2
+                          : selectedRoute?.hours}
+                      </b>{" "}
+                      hours to reach
+                    </div>
+                    <p
+                      style={{
+                        cursor: "pointer",
+                        color: "#0056b3",
+                        marginTop: "10px",
+                      }}
+                      onClick={() => {
+                        const carDetails = {
+                          name: "Innova Crysta",
+                          type: "Crysta",
+                        };
+                        setSelectedVeh(carDetails);
+                        setShowFare(true);
+                      }}
+                    >
+                      Fare details
+                    </p>
+                  </div>
+                  <div
+                    style={{
+                      height: "100%",
+                      width: "200px",
+                      display: "flex",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <div style={{ display: "flex", alignItems: "center" }}>
+                      <p>
+                        {" "}
+                        ₹{" "}
+                        <b>
+                          {tripType === "roundTrip"
+                            ? selectedRoute?.crystaPrice +
+                              selectedRoute?.crystaPrice +
+                              300
+                            : selectedRoute?.crystaPrice + 300}
+                        </b>
+                      </p>
+                    </div>
+                    {showfare && (
+                      <FareModal
+                        open={openfare}
+                        close={closefare}
+                        selectedVeh={selectedVeh}
+                      />
+                    )}
+                  </div>
+                </div>
+                {formModal && (
+                  <CustomModal isModalOpen={show} handleCancel={Cancel} />
+                )}
+                <div>
+                  <div className="button-Div">
+                    <button
+                      style={{
+                        height: "40px",
+                        width: "150px",
+                        fontWeight: "700",
+                        fontSize: "18px",
+                      }}
+                      onClick={() =>
+                        handleBookNow({
+                          name: "Innova Crysta",
+                          type: "Crysta",
+                        })
+                      }
+                      className="button"
+                    >
+                      Book now
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div className="inner-Card">
+                <div style={{ display: "flex" }}>
+                  <img
+                    className="piccominiImg"
+                    style={{ height: "70px", marginTop: "8px" }}
+                    src={tempo}
+                    alt="Compact Mini"
+                  />
+                  <div className="nameContainer">
+                    <div className="picco-mini">Tempo Traveller</div>
+                    <div className="piccomini-info">
+                      info
+                      <Popover
+                        placement="rightTop"
+                        // title={text}
+                        content={SuvContent}
+                        // arrow={mergedArrow}
+                      >
+                        <BsInfoCircle size={18} color="#d3d3d3" />
+                      </Popover>
+                    </div>
+                  </div>
+                </div>
+                <div style={{ height: "100%", width: "60%", display: "flex" }}>
+                  <div
+                    style={{
+                      height: "100%",
+                      width: "200px",
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <div className="piccocartext-font">AC</div>
+                    <div className="piccocartext-font">12 Seat</div>
+                    <div className="piccocartext-font">2 Bag</div>
+                  </div>
+                  <div
+                    style={{
+                      height: "100%",
+                      width: "200px",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      flexDirection: "column",
+                    }}
+                  >
+                    <div>
+                      <b>
+                        Includes{" "}
+                        {tripType === "roundTrip"
+                          ? selectedRoute?.kilometer * 2
+                          : selectedRoute?.kilometer}{" "}
+                        Km
+                      </b>
+                    </div>
+                    <div>
+                      <b>
+                        {tripType === "roundTrip"
+                          ? selectedRoute?.hours * 2
+                          : selectedRoute?.hours}
+                      </b>{" "}
+                      hours to reach
+                    </div>
+                    <p
+                      style={{
+                        cursor: "pointer",
+                        color: "#0056b3",
+                        marginTop: "10px",
+                      }}
+                      onClick={() => {
+                        const carDetails = {
+                          name: "Tempo Traveller",
+                          type: "Tempo",
+                        };
+                        setSelectedVeh(carDetails);
+                        setShowFare(true);
+                      }}
+                    >
+                      Fare details
+                    </p>
+                  </div>
+                  <div
+                    style={{
+                      height: "100%",
+                      width: "200px",
+                      display: "flex",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <div style={{ display: "flex", alignItems: "center" }}>
+                      <p>
+                        {" "}
+                        ₹{" "}
+                        <b>
+                          {tripType === "roundTrip"
+                            ? selectedRoute?.TempoTravellerPrice +
+                              selectedRoute?.TempoTravellerPrice +
+                              300
+                            : selectedRoute?.TempoTravellerPrice + 300}
+                        </b>
+                      </p>
+                    </div>
+                    {showfare && (
+                      <FareModal
+                        open={openfare}
+                        close={closefare}
+                        selectedVeh={selectedVeh}
+                      />
+                    )}
+                  </div>
+                </div>
+                {formModal && (
+                  <CustomModal isModalOpen={show} handleCancel={Cancel} />
+                )}
+                <div>
+                  <div className="button-Div">
+                    <button
+                      style={{
+                        height: "40px",
+                        width: "150px",
+                        fontWeight: "700",
+                        fontSize: "18px",
+                      }}
+                      onClick={() =>
+                        handleBookNow({
+                          name: "Tempo Traveller",
+                          type: "Tempo",
+                        })
+                      }
+                      className="button"
+                    >
+                      Book now
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div className="inner-Card">
+                <div style={{ display: "flex" }}>
+                  <img
+                    className="piccominiImg"
+                    style={{ height: "70px", marginTop: "8px" }}
+                    src={tempo}
+                    alt="Compact Mini"
+                  />
+                  <div className="nameContainer">
+                    <div className="picco-mini">Tempo Traveller</div>
+                    <div className="piccomini-info">
+                      info
+                      <Popover
+                        placement="rightTop"
+                        // title={text}
+                        content={SuvContent}
+                        // arrow={mergedArrow}
+                      >
+                        <BsInfoCircle size={18} color="#d3d3d3" />
+                      </Popover>
+                    </div>
+                  </div>
+                </div>
+                <div style={{ height: "100%", width: "60%", display: "flex" }}>
+                  <div
+                    style={{
+                      height: "100%",
+                      width: "200px",
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <div className="piccocartext-font">AC</div>
+                    <div className="piccocartext-font">18 Seat</div>
+                    <div className="piccocartext-font">2 Bag</div>
+                  </div>
+                  <div
+                    style={{
+                      height: "100%",
+                      width: "200px",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      flexDirection: "column",
+                    }}
+                  >
+                    <div>
+                      <b>
+                        Includes{" "}
+                        {tripType === "roundTrip"
+                          ? selectedRoute?.kilometer * 2
+                          : selectedRoute?.kilometer}{" "}
+                        Km
+                      </b>
+                    </div>
+                    <div>
+                      <b>
+                        {tripType === "roundTrip"
+                          ? selectedRoute?.hours * 2
+                          : selectedRoute?.hours}
+                      </b>{" "}
+                      hours to reach
+                    </div>
+                    <p
+                      style={{
+                        cursor: "pointer",
+                        color: "#0056b3",
+                        marginTop: "10px",
+                      }}
+                      onClick={() => {
+                        const carDetails = {
+                          name: "Big tempo",
+                          type: "Bigtempo",
+                        };
+                        setSelectedVeh(carDetails);
+                        setShowFare(true);
+                      }}
+                    >
+                      Fare details
+                    </p>
+                  </div>
+                  <div
+                    style={{
+                      height: "100%",
+                      width: "200px",
+                      display: "flex",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <div style={{ display: "flex", alignItems: "center" }}>
+                      <p>
+                        {" "}
+                        ₹{" "}
+                        <b>
+                          {tripType === "roundTrip"
+                            ? selectedRoute?.traveller18Price +
+                              selectedRoute?.traveller18Price +
+                              300
+                            : selectedRoute?.traveller18Price + 300}
+                        </b>
+                      </p>
+                    </div>
+                    {showfare && (
+                      <FareModal
+                        open={openfare}
+                        close={closefare}
+                        selectedVeh={selectedVeh}
+                      />
+                    )}
+                  </div>
+                </div>
+                {formModal && (
+                  <CustomModal isModalOpen={show} handleCancel={Cancel} />
+                )}
+                <div>
+                  <div className="button-Div">
+                    <button
+                      style={{
+                        height: "40px",
+                        width: "150px",
+                        fontWeight: "700",
+                        fontSize: "18px",
+                      }}
+                      onClick={() =>
+                        handleBookNow({
+                          name: "Big tempo",
+                          type: "Bigtempo",
                         })
                       }
                       className="button"

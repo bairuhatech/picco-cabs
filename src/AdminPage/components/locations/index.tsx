@@ -130,6 +130,10 @@ const LocationsTable = () => {
               <th scope="col">Mini Price</th>
               <th scope="col">Sedan Price</th>
               <th scope="col">SUV Price</th>
+              <th scope="col">Innova Price</th>
+              <th scope="col">Crysta Price</th>
+              <th scope="col">Tempo trvlr Price</th>
+              <th scope="col">Big trvlr Price</th>
               <th scope="col">Action</th>
             </tr>
           </thead>
@@ -144,6 +148,10 @@ const LocationsTable = () => {
                 <td>{item.miniPrice}</td>
                 <td>{item.sedanPrice}</td>
                 <td>{item.suvPrice}</td>
+                <td>{item.innovaPrice}</td>
+                <td>{item.crystaPrice}</td>
+                <td>{item.TempoTravellerPrice}</td>
+                <td>{item.traveller18Price}</td>
                 <td>
                   <div>
                     <button

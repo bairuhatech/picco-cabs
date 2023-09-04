@@ -34,19 +34,39 @@ const FareModal = (props: any) => {
                     className="baseFare-price"
                   >
                     ₹
-                    {props.selectedVeh.name === "Picco Mini"
+                    {props.selectedVeh.name === "Compact Mini"
                       ? selectedRoute?.miniPrice +
                         (tripType === "roundTrip"
                           ? selectedRoute.miniPrice
                           : null)
-                      : props.selectedVeh.name === "Picco Sedan"
+                      : props.selectedVeh.name === "Executive Sedan"
                       ? selectedRoute?.sedanPrice +
                         (tripType === "roundTrip"
                           ? selectedRoute.sedanPrice
                           : null)
-                      : selectedRoute?.suvPrice +
+                      : props.selectedVeh.name === "Spacious SUV"
+                      ? selectedRoute?.suvPrice +
                         (tripType === "roundTrip"
                           ? selectedRoute.suvPrice
+                          : null)
+                      : props.selectedVeh.name === "Innova SUV"
+                      ? selectedRoute?.innovaPrice +
+                        (tripType === "roundTrip"
+                          ? selectedRoute.innovaPrice
+                          : null)
+                      : props.selectedVeh.name === "Innova Crysta"
+                      ? selectedRoute?.crystaPrice +
+                        (tripType === "roundTrip"
+                          ? selectedRoute.crystaPrice
+                          : null)
+                      : props.selectedVeh.name === "Tempo Traveller"
+                      ? selectedRoute?.TempoTravellerPrice +
+                        (tripType === "roundTrip"
+                          ? selectedRoute.TempoTravellerPrice
+                          : null)
+                      : selectedRoute?.traveller18Price +
+                        (tripType === "roundTrip"
+                          ? selectedRoute.traveller18Price
                           : null)}
                   </div>
                 </div>
@@ -71,23 +91,46 @@ const FareModal = (props: any) => {
                   >
                     <p style={{ fontSize: "17px" }}>
                       ₹
-                      {props.selectedVeh.name === "Picco Mini"
-                        ? selectedRoute?.miniPrice +
-                          (tripType === "roundTrip"
-                            ? selectedRoute.miniPrice
-                            : null) +
-                          300
-                        : props.selectedVeh.name === "Picco Sedan"
-                        ? selectedRoute?.sedanPrice +
-                          (tripType === "roundTrip"
-                            ? selectedRoute.sedanPrice
-                            : null) +
-                          300
-                        : selectedRoute?.suvPrice +
-                          (tripType === "roundTrip"
-                            ? selectedRoute.suvPrice
-                            : null) +
-                          300}
+                      {props.selectedVeh.name === "Compact Mini"
+                    ? selectedRoute?.miniPrice +
+                      (tripType === "roundTrip"
+                        ? selectedRoute.miniPrice
+                        : null) +
+                      300
+                    : props.selectedVeh.name === "Executive Sedan"
+                    ? selectedRoute?.sedanPrice +
+                      (tripType === "roundTrip"
+                        ? selectedRoute.sedanPrice
+                        : null) +
+                      300
+                    : props.selectedVeh.name === "Spacious SUV"
+                    ? selectedRoute?.suvPrice +
+                      (tripType === "roundTrip"
+                        ? selectedRoute.suvPrice
+                        : null) +
+                      300
+                    : props.selectedVeh.name === "Innova SUV"
+                    ? selectedRoute?.innovaPrice + 
+                    (tripType === "roundTrip"
+                        ? selectedRoute.innovaPrice
+                        : null) +
+                      300
+                    : props.selectedVeh.name === "Innova Crysta"
+                    ? selectedRoute?.crystaPrice + 
+                    (tripType === "roundTrip"
+                        ? selectedRoute.crystaPrice
+                        : null) +
+                      300
+                    : props.selectedVeh.name === "Tempo Traveller"
+                    ? selectedRoute?.TempoTravellerPrice + 
+                    (tripType === "roundTrip"
+                        ? selectedRoute.TempoTravellerPrice
+                        : null) +
+                      300
+                    : selectedRoute?.traveller18Price + 
+                    (tripType === "roundTrip" ? selectedRoute.traveller18Price : null) +
+                    300
+                    }
                     </p>{" "}
                     <br />
                   </div>

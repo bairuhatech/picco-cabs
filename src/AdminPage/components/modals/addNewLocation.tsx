@@ -12,6 +12,10 @@ function AddLocationModal(props: any) {
   const [miniPrice, setMiniPrice] = useState(props.price || "");
   const [sedanPrice, setSedanPrice] = useState(props.price || "");
   const [suvPrice, setSUVPrice] = useState(props.price || "");
+  const [innovaPrice, setInnova] = useState(props.price || "");
+  const [crystaPrice, setCrysta] = useState(props.price || "");
+  const [tempoTrvlr, setTempoTrvlr] = useState(props.price || "");
+  const [bigTrvlr, setBigTrvlr] = useState(props.price || "");
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (event: any) => {
@@ -27,6 +31,10 @@ function AddLocationModal(props: any) {
       miniPrice: parseInt(miniPrice),
       sedanPrice: parseInt(sedanPrice),
       suvPrice: parseInt(suvPrice),
+      innovaPrice: parseInt(innovaPrice),
+      crystaPrice: parseInt(crystaPrice),
+      TempoTravellerPrice: parseInt(tempoTrvlr),
+      traveller18Price: parseInt(bigTrvlr),
       Active: 1,
       Status: 0,
     };
@@ -127,6 +135,46 @@ function AddLocationModal(props: any) {
               className="bg-light-300"
               value={suvPrice}
               onChange={(e) => setSUVPrice(e.target.value)}
+            />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="formGroupPrice">
+            <Form.Label className="fw-bold">Innova Price</Form.Label>
+            <Form.Control
+              type="number"
+              placeholder="Innova Price"
+              className="bg-light-300"
+              value={innovaPrice}
+              onChange={(e) => setInnova(e.target.value)}
+            />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="formGroupPrice">
+            <Form.Label className="fw-bold">Crysta Price</Form.Label>
+            <Form.Control
+              type="number"
+              placeholder="Crysta Price"
+              className="bg-light-300"
+              value={crystaPrice}
+              onChange={(e) => setCrysta(e.target.value)}
+            />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="formGroupPrice">
+            <Form.Label className="fw-bold">Tempo traveller Price</Form.Label>
+            <Form.Control
+              type="number"
+              placeholder="Tempo Traveller Price"
+              className="bg-light-300"
+              value={tempoTrvlr}
+              onChange={(e) => setTempoTrvlr(e.target.value)}
+            />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="formGroupPrice">
+            <Form.Label className="fw-bold">Big Traveller Price</Form.Label>
+            <Form.Control
+              type="number"
+              placeholder="Big traveller Price"
+              className="bg-light-300"
+              value={bigTrvlr}
+              onChange={(e) => setBigTrvlr(e.target.value)}
             />
           </Form.Group>
         </Modal.Body>

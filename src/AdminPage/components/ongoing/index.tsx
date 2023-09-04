@@ -95,7 +95,11 @@ const OnGoing = () => {
                     {moment(item.createdAt).format("DDHHmmssYYM")}
                   </th>
                   <td>{item.status}</td>
-                  <td>{item.bookType}</td>
+                  <td>
+                    {item.bookType === "airports"
+                      ? item.AirportStatus
+                      : item.bookType}
+                  </td>
                   <td>{item.tripStatus}</td>
                   <td>{item.pickUpLoc}</td>
                   <td>{item.dropOffLoc}</td>
@@ -103,7 +107,7 @@ const OnGoing = () => {
 
                   <td>{item.hours}</td>
                   <td>{item.kms}</td>
-                  <td>{item.estimatedAmt}</td>
+                  <td>{item.estimatedAmt + 300}</td>
                   <td>{item.rentallPack}</td>
                   <td>{item.car}</td>
                   <td>{item.comments}</td>

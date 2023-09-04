@@ -262,6 +262,7 @@ const Bookings = () => {
               {/* <th scope="col">Status</th> */}
               <th scope="col">Book Type</th>
               <th scope="col">One Way/RoundTrip</th>
+
               <th scope="col">Pickup</th>
               <th scope="col">Pickup Date</th>
               <th scope="col">Pickup Time</th>
@@ -287,34 +288,7 @@ const Bookings = () => {
                   <th scope="row">
                     {moment(item.createdAt).format("DDHHmmssYYM")}
                   </th>
-                  {/* <td>
-                    <Select
-                      style={{ width: "130px" }}
-                      defaultValue={item.status}
-                      onChange={(value) => handleStatusTypeChange(value, index)}
-                    >
-                      <Select.Option value="Trip Created">
-                        Trip Created
-                      </Select.Option>
-                      <Select.Option value="Trip Confirmed">
-                        Trip Confirmed
-                      </Select.Option>
-                      <Select.Option value="Assign On Trip">
-                        Assign On Trip
-                      </Select.Option>
-                      <Select.Option value="Trip Completed">
-                        Trip Completed
-                      </Select.Option>
-                      <Select.Option value="Canceled By Guest">
-                        Canceled By Guest
-                      </Select.Option>
-                      <Select.Option value="Cancelled By Picco">
-                        Cancelled By Picco
-                      </Select.Option>
-                      <Select.Option value="No Show">No Show</Select.Option>
-                    </Select>
-                  </td> */}
-                  <td>{item.bookType}</td>
+                  <td>{item.bookType === "airports" ? item.AirportStatus : item.bookType}</td>
                   {item.bookType == "rentals" ? (
                     <>
                       <td>{item.tripStatus == null}</td>
@@ -420,8 +394,7 @@ const Bookings = () => {
       <table className="table table-striped align-self-start table-hover">
         <thead>
           <tr>
-            <th scope="col">#</th>
-            {/* <th scope="col">Status</th> */}
+            <th scope="col">Booking ID</th>
             <th scope="col">Book Type</th>
             <th scope="col">One Way/RoundTrip</th>
             <th scope="col">Pickup</th>
@@ -444,37 +417,9 @@ const Bookings = () => {
               <>
                 {item.driver.length > 0 ? (
                   <tr key={item.id}>
-                    <th scope="row">{item.id}</th>
-                    {/* <td>
-                      <Select
-                        style={{ width: "130px" }}
-                        defaultValue={item.status}
-                        onChange={(value) =>
-                          handleStatusTypeChange(value, index)
-                        }
-                      >
-                        <Select.Option value="Trip Created">
-                          Trip Created
-                        </Select.Option>
-                        <Select.Option value="Trip Confirmed">
-                          Trip Confirmed
-                        </Select.Option>
-                        <Select.Option value="Assign On Trip">
-                          Assign On Trip
-                        </Select.Option>
-                        <Select.Option value="Trip Completed">
-                          Trip Completed
-                        </Select.Option>
-                        <Select.Option value="Canceled By Guest">
-                          Canceled By Guest
-                        </Select.Option>
-                        <Select.Option value="Cancelled By Picco">
-                          Cancelled By Picco
-                        </Select.Option>
-                        <Select.Option value="No Show">No Show</Select.Option>
-                      </Select>
-                    </td> */}
-                    {/* <td>{item.status}</td> */}
+                    <th scope="row">
+                    {moment(item.createdAt).format("DDHHmmssYYM")}
+                  </th>
                     <td>{item.bookType}</td>
                     <td>{item.tripStatus}</td>
                     <td>
@@ -510,7 +455,7 @@ const Bookings = () => {
 
                     <td>{item.hours}</td>
                     <td>{item.kms}</td>
-                    <td>{item.estimatedAmt}</td>
+                    <td>{item.estimatedAmt+300}</td>
                     <td>{item.rentallPack}</td>
                     {/* <td>{item.car}</td> */}
                     <td>{item.comments}</td>
