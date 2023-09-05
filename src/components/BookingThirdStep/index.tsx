@@ -39,14 +39,11 @@ const BookingThird = (props: any) => {
     airport,
   } = location.state;
 
-
-
   const handleOk = () => {
     setIsModalOpen(false);
   };
 
   const formattedDate = moment(pickUpDate).format("YYYY-MM-DD");
-
 
   const onFinish = async (values: any) => {
     try {
@@ -81,17 +78,20 @@ const BookingThird = (props: any) => {
             ? selectedRoute?.suvPrice +
               (tripType === "roundTrip" ? selectedRoute.suvPrice : null)
             : props.selectedCar.name === "Innova SUV"
-            ? selectedRoute?.innovaPrice + 
+            ? selectedRoute?.innovaPrice +
               (tripType === "roundTrip" ? selectedRoute.innovaPrice : null)
             : props.selectedCar.name === "Innova Crysta"
-            ? selectedRoute?.crystaPrice + 
+            ? selectedRoute?.crystaPrice +
               (tripType === "roundTrip" ? selectedRoute.crystaPrice : null)
             : props.selectedCar.name === "Tempo Traveller"
-            ? selectedRoute?.TempoTravellerPrice + 
-              (tripType === "roundTrip" ? selectedRoute.TempoTravellerPrice : null)
-            : selectedRoute?.traveller18Price + 
-            (tripType === "roundTrip" ? selectedRoute.traveller18Price : null)
-            || 1,
+            ? selectedRoute?.TempoTravellerPrice +
+              (tripType === "roundTrip"
+                ? selectedRoute.TempoTravellerPrice
+                : null)
+            : selectedRoute?.traveller18Price +
+                (tripType === "roundTrip"
+                  ? selectedRoute.traveller18Price
+                  : null) || 1,
         returnDate: "2023-08-02T12:00:00Z",
         rentallPack: 1,
         car: "",
@@ -147,30 +147,32 @@ const BookingThird = (props: any) => {
           hours: parseInt(Package?.hours) || 0,
           kms: parseInt(Package?.kms) || 0,
           estimatedAmt:
-          props.selectedCar.name === "Compact Mini"
-          ? selectedRoute?.miniPrice +
-            (tripType === "roundTrip" ? selectedRoute.miniPrice : null)
-          : props.selectedCar.name === "Executive Sedan"
-          ? selectedRoute?.sedanPrice +
-            (tripType === "roundTrip" ? selectedRoute.sedanPrice : null)
-          : props.selectedCar.name === "Spacious SUV"
-          ? selectedRoute?.suvPrice +
-            (tripType === "roundTrip" ? selectedRoute.suvPrice : null)
-          : props.selectedCar.name === "Innova SUV"
-          ? selectedRoute?.innovaPrice + 
-            (tripType === "roundTrip" ? selectedRoute.innovaPrice : null)
-          : props.selectedCar.name === "Innova Crysta"
-          ? selectedRoute?.crystaPrice + 
-            (tripType === "roundTrip" ? selectedRoute.crystaPrice : null)
-          : props.selectedCar.name === "Tempo Traveller"
-          ? selectedRoute?.TempoTravellerPrice + 
-            (tripType === "roundTrip" ? selectedRoute.TempoTravellerPrice : null)
-          : selectedRoute?.traveller18Price,
+            props.selectedCar.name === "Compact Mini"
+              ? selectedRoute?.miniPrice +
+                (tripType === "roundTrip" ? selectedRoute.miniPrice : null)
+              : props.selectedCar.name === "Executive Sedan"
+              ? selectedRoute?.sedanPrice +
+                (tripType === "roundTrip" ? selectedRoute.sedanPrice : null)
+              : props.selectedCar.name === "Spacious SUV"
+              ? selectedRoute?.suvPrice +
+                (tripType === "roundTrip" ? selectedRoute.suvPrice : null)
+              : props.selectedCar.name === "Innova SUV"
+              ? selectedRoute?.innovaPrice +
+                (tripType === "roundTrip" ? selectedRoute.innovaPrice : null)
+              : props.selectedCar.name === "Innova Crysta"
+              ? selectedRoute?.crystaPrice +
+                (tripType === "roundTrip" ? selectedRoute.crystaPrice : null)
+              : props.selectedCar.name === "Tempo Traveller"
+              ? selectedRoute?.TempoTravellerPrice +
+                (tripType === "roundTrip"
+                  ? selectedRoute.TempoTravellerPrice
+                  : null)
+              : selectedRoute?.traveller18Price,
           rentallPack: 1,
           car: 1,
           comments: values.Comments,
           PiccoCar: props.selectedCar.name,
-          AirportStatus:airport || "",
+          AirportStatus: airport || "",
           phoneNumber: values.Phone,
           userName: values.name,
           email: values.email,
@@ -281,24 +283,24 @@ const BookingThird = (props: any) => {
     //                     : null) +
     //                   300
     //                 : props.selectedCar.name === "Innova SUV"
-    //                 ? selectedRoute?.innovaPrice + 
+    //                 ? selectedRoute?.innovaPrice +
     //                 (tripType === "roundTrip"
     //                     ? selectedRoute.innovaPrice
     //                     : null) +
     //                   300
     //                 : props.selectedCar.name === "Innova Crysta"
-    //                 ? selectedRoute?.crystaPrice + 
+    //                 ? selectedRoute?.crystaPrice +
     //                 (tripType === "roundTrip"
     //                     ? selectedRoute.crystaPrice
     //                     : null) +
     //                   300
     //                 : props.selectedCar.name === "Tempo Traveller"
-    //                 ? selectedRoute?.TempoTravellerPrice + 
+    //                 ? selectedRoute?.TempoTravellerPrice +
     //                 (tripType === "roundTrip"
     //                     ? selectedRoute.TempoTravellerPrice
     //                     : null) +
     //                   300
-    //                 : selectedRoute?.traveller18Price + 
+    //                 : selectedRoute?.traveller18Price +
     //                 (tripType === "roundTrip" ? selectedRoute.traveller18Price : null) +
     //                 300
     //                 }
@@ -440,13 +442,6 @@ const BookingThird = (props: any) => {
     //   ) : null}
     // </div>
 
-
-
-
-
-
-
-
     <div className="BookingDivMain">
       <div className="SecondCard-Div">
         <div className="Secondcard">
@@ -458,14 +453,14 @@ const BookingThird = (props: any) => {
               label={" ɪᴛᴇɴᴇʀᴀʀʏ:"}
             >
               <div style={{ borderRadius: "5px" }} className="content-Div">
-              {RentPlace || selectedRoute?.place}
-                  &nbsp;<b>{RentPlace ? "" : "to"}</b> &nbsp;
-                  {RentPlace ? "" : selectedRoute?.location}
+                {RentPlace || selectedRoute?.place}
+                &nbsp;<b>{RentPlace ? "" : "to"}</b> &nbsp;
+                {RentPlace ? "" : selectedRoute?.location}
               </div>
             </FormItem>
             <FormItem wrapperCol={{ offset: 1 }} label={"ᴘɪᴄᴋ ᴜᴘ ᴅᴀᴛᴇ:"}>
               <div style={{ borderRadius: "5px" }} className="content-Div">
-              {moment(formattedDate).format("Do MMMM YYYY")} at {timeOfPickup}
+                {moment(formattedDate).format("Do MMMM YYYY")} at {timeOfPickup}
               </div>
             </FormItem>
             <FormItem wrapperCol={{ offset: 1 }} label={"ᴄᴀʀ ᴛʏᴘᴇ:"}>
@@ -475,52 +470,55 @@ const BookingThird = (props: any) => {
             </FormItem>
             <FormItem wrapperCol={{ offset: 1 }} label={"ᴋᴍ:"}>
               <div style={{ borderRadius: "5px" }} className="content-Div">
-                {selectedRoute?.kilometer} km
+                {tripType === "roundTrip"
+                  ? selectedRoute?.kilometer *2
+                  : selectedRoute?.kilometer}{" "}
+                km
               </div>
             </FormItem>
             <FormItem wrapperCol={{ offset: 1 }} label={"ᴛᴏᴛᴇʟ ғᴀʀᴇ:"}>
               <div style={{ borderRadius: "5px" }} className="content-Div">
                 {" "}
-                ₹ {props.selectedCar.name === "Compact Mini"
-                    ? selectedRoute?.miniPrice +
-                      (tripType === "roundTrip"
-                        ? selectedRoute.miniPrice
-                        : null) +
-                      300
-                    : props.selectedCar.name === "Executive Sedan"
-                    ? selectedRoute?.sedanPrice +
-                      (tripType === "roundTrip"
-                        ? selectedRoute.sedanPrice
-                        : null) +
-                      300
-                    : props.selectedCar.name === "Spacious SUV"
-                    ? selectedRoute?.suvPrice +
-                      (tripType === "roundTrip"
-                        ? selectedRoute.suvPrice
-                        : null) +
-                      300
-                    : props.selectedCar.name === "Innova SUV"
-                    ? selectedRoute?.innovaPrice + 
+                ₹{" "}
+                {props.selectedCar.name === "Compact Mini"
+                  ? selectedRoute?.miniPrice +
                     (tripType === "roundTrip"
-                        ? selectedRoute.innovaPrice
-                        : null) +
-                      300
-                    : props.selectedCar.name === "Innova Crysta"
-                    ? selectedRoute?.crystaPrice + 
-                    (tripType === "roundTrip"
-                        ? selectedRoute.crystaPrice
-                        : null) +
-                      300
-                    : props.selectedCar.name === "Tempo Traveller"
-                    ? selectedRoute?.TempoTravellerPrice + 
-                    (tripType === "roundTrip"
-                        ? selectedRoute.TempoTravellerPrice
-                        : null) +
-                      300
-                    : selectedRoute?.traveller18Price + 
-                    (tripType === "roundTrip" ? selectedRoute.traveller18Price : null) +
+                      ? selectedRoute.miniPrice
+                      : null) +
                     300
-                    }
+                  : props.selectedCar.name === "Executive Sedan"
+                  ? selectedRoute?.sedanPrice +
+                    (tripType === "roundTrip"
+                      ? selectedRoute.sedanPrice
+                      : null) +
+                    300
+                  : props.selectedCar.name === "Spacious SUV"
+                  ? selectedRoute?.suvPrice +
+                    (tripType === "roundTrip" ? selectedRoute.suvPrice : null) +
+                    300
+                  : props.selectedCar.name === "Innova SUV"
+                  ? selectedRoute?.innovaPrice +
+                    (tripType === "roundTrip"
+                      ? selectedRoute.innovaPrice
+                      : null) +
+                    300
+                  : props.selectedCar.name === "Innova Crysta"
+                  ? selectedRoute?.crystaPrice +
+                    (tripType === "roundTrip"
+                      ? selectedRoute.crystaPrice
+                      : null) +
+                    300
+                  : props.selectedCar.name === "Tempo Traveller"
+                  ? selectedRoute?.TempoTravellerPrice +
+                    (tripType === "roundTrip"
+                      ? selectedRoute.TempoTravellerPrice
+                      : null) +
+                    300
+                  : selectedRoute?.traveller18Price +
+                    (tripType === "roundTrip"
+                      ? selectedRoute.traveller18Price
+                      : null) +
+                    300}
               </div>
             </FormItem>
           </Form>
@@ -652,7 +650,7 @@ const BookingThird = (props: any) => {
         </div>
       </div>
     </div>
-  )
+  );
 };
 
 export default BookingThird;
