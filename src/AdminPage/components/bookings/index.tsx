@@ -275,6 +275,8 @@ const Bookings = () => {
               {/* <th scope="col">Car</th> */}
               <th scope="col">Car Type</th>
               <th scope="col">Comments</th>
+              <th scope="col">Pickup Address</th>
+              <th scope="col">Drop Address</th>
               <th scope="col">User</th>
               <th scope="col">Contact</th>
               <th scope="col">Created At</th>
@@ -383,6 +385,8 @@ const Bookings = () => {
                       {/* <td></td> */}
                       <td>{item.PiccoCar}</td>
                       <td>{item.comments}</td>
+                      <td>{item.pickUpAddress}</td>
+                      <td>{item.dropOffAddress}</td>
                       <td>{item.userName}</td>
                       <td>{item.phoneNumber}</td>
                       <td>{moment(item.createdAt).format("YYYY-MM-DD")}</td>

@@ -191,7 +191,8 @@ export default function Airports(props: any) {
           </div>
           <div className="col-md-3 col-sm-6 col-12">
             <label htmlFor="inputEmail4" className="form-label fw-bold">
-              {airport === "pickUp" ? "PICKUP CITY" : "DROP CITY"}
+              {/* {airport === "pickUp" ? "PICKUP CITY" : "DROP CITY"} */}
+              PICKUP CITY
             </label>
             <Form.Item
               name="user_from"
@@ -223,7 +224,8 @@ export default function Airports(props: any) {
           </div>
           <div className="col-md-3 col-sm-6 col-12">
             <label htmlFor="inputEmail4" className="form-label fw-bold">
-              {airport === "pickUp" ? "PICKUP ADDRESS" : "DROP ADDRESS"}
+              {/* DROP ADDRESS */}
+              {airport === "Drop" ? "DROP ADDRESS" : "PICKUP ADDRESS"}
             </label>
             <Form.Item
               name="user_to"
