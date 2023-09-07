@@ -7,7 +7,7 @@ import moment from "moment";
 
 import { Loading3QuartersOutlined } from "@ant-design/icons";
 
-const OnGoing = () => {
+const CompletedTrips = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState<any>([]);
 
@@ -18,13 +18,12 @@ const OnGoing = () => {
   async function fetchData() {
     try {
       const response = await axios.get(
-        "https://piccocabs-server-46642b82a774.herokuapp.com/Booking/ongoing"
+        "https://piccocabs-server-46642b82a774.herokuapp.com/Booking/tripCompleted"
       );
       setIsLoading(false);
 
       setData(response.data.rows);
 
-      console.log("data vannoda=========", data);
     } catch (error) {
       setIsLoading(false);
 
@@ -32,30 +31,10 @@ const OnGoing = () => {
     }
   }
 
-  const handleStatusTypeChange = async (value: any, index: number) => {
-    let updatingStatus: any = data[index];
-    updatingStatus.status = value;
-    let reqBody = { ...updatingStatus };
-    delete reqBody.id;
-    if (value) {
-      try {
-        const response = await axios.put(
-          "https://piccocabs-server-46642b82a774.herokuapp.com/Booking/" +
-            updatingStatus.id +
-            "",
-          reqBody
-        );
-
-        console.log("Response:", response.data);
-      } catch (error) {
-        console.error("Error:", error);
-      }
-    }
-  };
 
   return (
     <div className="table-responsive" style={{ height: "100%" }}>
-      <h2 className="py-3 ps-2">OnGoings</h2>
+      <h2 className="py-3 ps-2">Completed Trips</h2>
       <br />
 
       {isLoading ? (
@@ -108,36 +87,7 @@ const OnGoing = () => {
                   <th scope="row">
                     {moment(item.createdAt).format("DDHHmmssYYM")}
                   </th>
-                  {/* <td>{item.status}</td> */}
-                  <td>
-                      <Select
-                        style={{ width: "130px" }}
-                        defaultValue={item.status}
-                        onChange={(value) =>
-                          handleStatusTypeChange(value, index)
-                        }
-                      >
-                        <Select.Option value="Trip Created">
-                          Trip Created
-                        </Select.Option>
-                        <Select.Option value="Trip Confirmed">
-                          Trip Confirmed
-                        </Select.Option>
-                        <Select.Option value="Assign On Trip">
-                          Assign On Trip
-                        </Select.Option>
-                        <Select.Option value="Trip Completed">
-                          Trip Completed
-                        </Select.Option>
-                        <Select.Option value="Canceled By Guest">
-                          Canceled By Guest
-                        </Select.Option>
-                        <Select.Option value="Cancelled By Picco">
-                          Cancelled By Picco
-                        </Select.Option>
-                        <Select.Option value="No Show">No Show</Select.Option>
-                      </Select>
-                    </td>
+                  <td>{item.status}</td>
                   <td>
                     {item.bookType === "airports"
                       ? item.AirportStatus
@@ -147,7 +97,6 @@ const OnGoing = () => {
                   <td>{item.pickUpLoc}</td>
                   <td>{item.dropOffLoc}</td>
                   <td>{item.driver}</td>
-
                   <td>{item.hours}</td>
                   <td>{item.kms}</td>
                   <td>{item.estimatedAmt + 300}</td>
@@ -165,4 +114,4 @@ const OnGoing = () => {
   );
 };
 
-export default OnGoing;
+export default CompletedTrips;

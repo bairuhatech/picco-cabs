@@ -19,6 +19,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   setNavBooking,
   setNavOngoings,
+  setNavCompletedTrips,
+  setNavCancelledTrips,
   setNavBookingAttempts,
   setNavHome,
   setNavLocation,
@@ -48,6 +50,12 @@ const SidebarNavigation = () => {
   };
   const setNavOngoing = () => {
     dispatch(setNavOngoings());
+  }
+  const setNavCompletedTrip = () => {
+    dispatch(setNavCompletedTrips());
+  }
+  const setNavCancelledTrip = () => {
+    dispatch(setNavCancelledTrips());
   }
   const setNavOffer = () => {
     dispatch(setNavOffers());
@@ -126,7 +134,41 @@ const SidebarNavigation = () => {
                 iconSize="lg"
                 className="nav-link"
               >
-                OnGoing
+                OnGoing Trips
+              </CDBSidebarMenuItem>
+            </NavLink>
+            <NavLink
+              to="completedTrips"
+              style={({ isActive }) =>
+                isActive
+                  ? { fontWeight: "bolder", color: "#FFFF99" }
+                  : undefined
+              }
+              onClick={setNavCompletedTrip}
+            >
+              <CDBSidebarMenuItem
+                icon="table"
+                iconSize="lg"
+                className="nav-link"
+              >
+                Completed Trips
+              </CDBSidebarMenuItem>
+            </NavLink>
+            <NavLink
+              to="cancelledTrips"
+              style={({ isActive }) =>
+                isActive
+                  ? { fontWeight: "bolder", color: "#FFFF99" }
+                  : undefined
+              }
+              onClick={setNavCancelledTrip}
+            >
+              <CDBSidebarMenuItem
+                icon="table"
+                iconSize="lg"
+                className="nav-link"
+              >
+                Cancelled Trips
               </CDBSidebarMenuItem>
             </NavLink>
             <NavLink

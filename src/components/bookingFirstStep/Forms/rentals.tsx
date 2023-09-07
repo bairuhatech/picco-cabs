@@ -212,7 +212,7 @@ export default function Rentals(props: any) {
               ]}
             >
               <Select
-                className="form-control border-0 border-bottom rounded-0"
+                className="form-control border-0 rounded-0"
                 placeholder="Pick up time"
               >
                 {generateTimeOptions().map((timeOption) => (

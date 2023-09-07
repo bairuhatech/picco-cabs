@@ -42,7 +42,10 @@ function BookingForm(props: any) {
     RentalTime,
     RentalDate,
     airport,
+    selectedValues,
   } = location.state;
+
+  console.log("secondpage vales==========>>>>", Package);
 
   const showModal = () => {
     setIsModalOpen(true);
@@ -101,6 +104,22 @@ function BookingForm(props: any) {
       <b>Includes AC cabs like</b>
       <br />
       <b>Fortuner, Ertiga, Innova Crysta, Xylo</b>
+    </p>
+  );
+
+  const TempoContent = (
+    <p>
+      <b>Includes AC cabs like</b>
+      <br />
+      <b>Tempo Traveller(12+1) Seater</b>
+    </p>
+  );
+
+  const BigTempoContent = (
+    <p>
+      <b>Includes AC cabs like</b>
+      <br />
+      <b>Tempo Traveller(18+1) Seater</b>
     </p>
   );
 
@@ -220,6 +239,8 @@ function BookingForm(props: any) {
                         Includes{" "}
                         {tripType === "roundTrip"
                           ? selectedRoute?.kilometer * 2
+                          : tripType === "rentals"
+                          ? Package.kms
                           : selectedRoute?.kilometer}{" "}
                         Km
                       </b>
@@ -228,10 +249,13 @@ function BookingForm(props: any) {
                       <b>
                         {tripType === "roundTrip"
                           ? selectedRoute?.hours * 2
+                          : tripType === "rentals"
+                          ? Package.hours
                           : selectedRoute?.hours}
                       </b>{" "}
                       hours to reach
                     </div>
+                    {tripType === "roundTrip" || tripType === "oneWay" || tripType === "airports" ? 
                     <p
                       style={{
                         cursor: "pointer",
@@ -249,6 +273,7 @@ function BookingForm(props: any) {
                     >
                       Fare details
                     </p>
+                    : null}
                   </div>
                   <div
                     style={{
@@ -267,7 +292,16 @@ function BookingForm(props: any) {
                             ? selectedRoute?.miniPrice +
                               selectedRoute?.miniPrice +
                               300
-                            : selectedRoute?.miniPrice + 300}
+                            : selectedRoute?.miniPrice + 300 ||
+                              (tripType === "rentals"
+                                ? Package.kms === 120
+                                  ? 5000
+                                  : Package.kms === 80
+                                  ? 3000
+                                  : Package.kms === 40
+                                  ? 2000
+                                  : null
+                                : null)}
                         </b>
                       </p>
                     </div>
@@ -355,6 +389,8 @@ function BookingForm(props: any) {
                         Includes{" "}
                         {tripType === "roundTrip"
                           ? selectedRoute?.kilometer * 2
+                          : tripType === "rentals"
+                          ? Package.kms
                           : selectedRoute?.kilometer}{" "}
                         Km
                       </b>
@@ -363,10 +399,13 @@ function BookingForm(props: any) {
                       <b>
                         {tripType === "roundTrip"
                           ? selectedRoute?.hours * 2
+                          : tripType === "rentals"
+                          ? Package.hours
                           : selectedRoute?.hours}
                       </b>{" "}
                       hours to reach
                     </div>
+                    {tripType === "roundTrip" || tripType === "oneWay" || tripType === "airports" ? 
                     <p
                       style={{
                         cursor: "pointer",
@@ -384,6 +423,7 @@ function BookingForm(props: any) {
                     >
                       Fare details
                     </p>
+                    : null}
                   </div>
                   <div
                     style={{
@@ -402,7 +442,18 @@ function BookingForm(props: any) {
                             ? selectedRoute?.sedanPrice +
                               selectedRoute?.sedanPrice +
                               300
-                            : selectedRoute?.sedanPrice + 300}
+                            : selectedRoute?.sedanPrice + 300
+                            ||
+                              (tripType === "rentals"
+                                ? Package.kms === 120
+                                  ? 5500
+                                  : Package.kms === 80
+                                  ? 3500
+                                  : Package.kms === 40
+                                  ? 2500
+                                  : null
+                                : null)
+                            }
                         </b>
                       </p>
                     </div>
@@ -490,6 +541,8 @@ function BookingForm(props: any) {
                         Includes{" "}
                         {tripType === "roundTrip"
                           ? selectedRoute?.kilometer * 2
+                          : tripType === "rentals"
+                          ? Package.kms
                           : selectedRoute?.kilometer}{" "}
                         Km
                       </b>
@@ -498,10 +551,13 @@ function BookingForm(props: any) {
                       <b>
                         {tripType === "roundTrip"
                           ? selectedRoute?.hours * 2
+                          : tripType === "rentals"
+                          ? Package.hours
                           : selectedRoute?.hours}
                       </b>{" "}
                       hours to reach
                     </div>
+                    {tripType === "roundTrip" || tripType === "oneWay" || tripType === "airports" ? 
                     <p
                       style={{
                         cursor: "pointer",
@@ -519,6 +575,7 @@ function BookingForm(props: any) {
                     >
                       Fare details
                     </p>
+                    : null}
                   </div>
                   <div
                     style={{
@@ -537,7 +594,18 @@ function BookingForm(props: any) {
                             ? selectedRoute?.suvPrice +
                               selectedRoute?.suvPrice +
                               300
-                            : selectedRoute?.suvPrice + 300}
+                            : selectedRoute?.suvPrice + 300
+                            ||
+                              (tripType === "rentals"
+                                ? Package.kms === 120
+                                  ? 6000
+                                  : Package.kms === 80
+                                  ? 4000
+                                  : Package.kms === 40
+                                  ? 3000
+                                  : null
+                                : null)
+                            }
                         </b>
                       </p>
                     </div>
@@ -629,6 +697,8 @@ function BookingForm(props: any) {
                         Includes{" "}
                         {tripType === "roundTrip"
                           ? selectedRoute?.kilometer * 2
+                          : tripType === "rentals"
+                          ? Package.kms
                           : selectedRoute?.kilometer}{" "}
                         Km
                       </b>
@@ -637,10 +707,13 @@ function BookingForm(props: any) {
                       <b>
                         {tripType === "roundTrip"
                           ? selectedRoute?.hours * 2
+                          : tripType === "rentals"
+                          ? Package.hours
                           : selectedRoute?.hours}
                       </b>{" "}
                       hours to reach
                     </div>
+                    {tripType === "roundTrip" || tripType === "oneWay" || tripType === "airports" ? 
                     <p
                       style={{
                         cursor: "pointer",
@@ -658,6 +731,7 @@ function BookingForm(props: any) {
                     >
                       Fare details
                     </p>
+                    : null}
                   </div>
                   <div
                     style={{
@@ -676,7 +750,18 @@ function BookingForm(props: any) {
                             ? selectedRoute?.innovaPrice +
                               selectedRoute?.innovaPrice +
                               300
-                            : selectedRoute?.innovaPrice + 300}
+                            : selectedRoute?.innovaPrice + 300 
+                            ||
+                              (tripType === "rentals"
+                                ? Package.kms === 120
+                                  ? 6500
+                                  : Package.kms === 80
+                                  ? 4500
+                                  : Package.kms === 40
+                                  ? 3500
+                                  : null
+                                : null)
+                            }
                         </b>
                       </p>
                     </div>
@@ -768,6 +853,8 @@ function BookingForm(props: any) {
                         Includes{" "}
                         {tripType === "roundTrip"
                           ? selectedRoute?.kilometer * 2
+                          : tripType === "rentals"
+                          ? Package.kms
                           : selectedRoute?.kilometer}{" "}
                         Km
                       </b>
@@ -776,10 +863,13 @@ function BookingForm(props: any) {
                       <b>
                         {tripType === "roundTrip"
                           ? selectedRoute?.hours * 2
+                          : tripType === "rentals"
+                          ? Package.hours
                           : selectedRoute?.hours}
                       </b>{" "}
                       hours to reach
                     </div>
+                    {tripType === "roundTrip" || tripType === "oneWay" || tripType === "airports" ? 
                     <p
                       style={{
                         cursor: "pointer",
@@ -797,6 +887,7 @@ function BookingForm(props: any) {
                     >
                       Fare details
                     </p>
+                    : null}
                   </div>
                   <div
                     style={{
@@ -815,7 +906,18 @@ function BookingForm(props: any) {
                             ? selectedRoute?.crystaPrice +
                               selectedRoute?.crystaPrice +
                               300
-                            : selectedRoute?.crystaPrice + 300}
+                            : selectedRoute?.crystaPrice + 300
+                            ||
+                              (tripType === "rentals"
+                                ? Package.kms === 120
+                                  ?  7000
+                                  : Package.kms === 80
+                                  ? 5000
+                                  : Package.kms === 40
+                                  ?  4000
+                                  : null
+                                : null)
+                            }
                         </b>
                       </p>
                     </div>
@@ -869,7 +971,7 @@ function BookingForm(props: any) {
                       <Popover
                         placement="rightTop"
                         // title={text}
-                        content={SuvContent}
+                        content={TempoContent}
                         // arrow={mergedArrow}
                       >
                         <BsInfoCircle size={18} color="#d3d3d3" />
@@ -907,6 +1009,8 @@ function BookingForm(props: any) {
                         Includes{" "}
                         {tripType === "roundTrip"
                           ? selectedRoute?.kilometer * 2
+                          : tripType === "rentals"
+                          ? Package.kms
                           : selectedRoute?.kilometer}{" "}
                         Km
                       </b>
@@ -915,10 +1019,13 @@ function BookingForm(props: any) {
                       <b>
                         {tripType === "roundTrip"
                           ? selectedRoute?.hours * 2
+                          : tripType === "rentals"
+                          ? Package.hours
                           : selectedRoute?.hours}
                       </b>{" "}
                       hours to reach
                     </div>
+                    {tripType === "roundTrip" || tripType === "oneWay" || tripType === "airports" ? 
                     <p
                       style={{
                         cursor: "pointer",
@@ -936,6 +1043,7 @@ function BookingForm(props: any) {
                     >
                       Fare details
                     </p>
+                    : null}
                   </div>
                   <div
                     style={{
@@ -954,7 +1062,18 @@ function BookingForm(props: any) {
                             ? selectedRoute?.TempoTravellerPrice +
                               selectedRoute?.TempoTravellerPrice +
                               300
-                            : selectedRoute?.TempoTravellerPrice + 300}
+                            : selectedRoute?.TempoTravellerPrice + 300
+                            ||
+                              (tripType === "rentals"
+                                ? Package.kms === 120
+                                  ?  12500
+                                  : Package.kms === 80
+                                  ? 11500
+                                  : Package.kms === 40
+                                  ? 10000
+                                  : null
+                                : null)
+                            }
                         </b>
                       </p>
                     </div>
@@ -1008,7 +1127,7 @@ function BookingForm(props: any) {
                       <Popover
                         placement="rightTop"
                         // title={text}
-                        content={SuvContent}
+                        content={BigTempoContent}
                         // arrow={mergedArrow}
                       >
                         <BsInfoCircle size={18} color="#d3d3d3" />
@@ -1046,6 +1165,8 @@ function BookingForm(props: any) {
                         Includes{" "}
                         {tripType === "roundTrip"
                           ? selectedRoute?.kilometer * 2
+                          : tripType === "rentals"
+                          ? Package.kms
                           : selectedRoute?.kilometer}{" "}
                         Km
                       </b>
@@ -1054,10 +1175,13 @@ function BookingForm(props: any) {
                       <b>
                         {tripType === "roundTrip"
                           ? selectedRoute?.hours * 2
+                          : tripType === "rentals"
+                          ? Package.hours
                           : selectedRoute?.hours}
                       </b>{" "}
                       hours to reach
                     </div>
+                    {tripType === "roundTrip" || tripType === "oneWay" || tripType === "airports" ? 
                     <p
                       style={{
                         cursor: "pointer",
@@ -1075,6 +1199,7 @@ function BookingForm(props: any) {
                     >
                       Fare details
                     </p>
+                    : null}
                   </div>
                   <div
                     style={{
@@ -1093,7 +1218,18 @@ function BookingForm(props: any) {
                             ? selectedRoute?.traveller18Price +
                               selectedRoute?.traveller18Price +
                               300
-                            : selectedRoute?.traveller18Price + 300}
+                            : selectedRoute?.traveller18Price + 300
+                            ||
+                              (tripType === "rentals"
+                                ? Package.kms === 120
+                                  ? 14000
+                                  : Package.kms === 80
+                                  ? 13000
+                                  : Package.kms === 40
+                                  ? 12000
+                                  : null
+                                : null)
+                            }
                         </b>
                       </p>
                     </div>

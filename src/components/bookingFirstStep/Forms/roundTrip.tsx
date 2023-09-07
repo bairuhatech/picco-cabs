@@ -27,6 +27,8 @@ export default function Roundtrip(props: any) {
   const currTime = new Date();
   const [value, setValue] = useState<string>();
   const [filteredOptions, setFilteredOptions] = useState([]);
+  const [selectedDestinations, setSelectedDestinations] = useState<any[]>([]);
+  
   const [tripType, setTripType] = useState<"oneWay" | "roundTrip" | null>(
     "roundTrip"
   );
@@ -34,6 +36,7 @@ export default function Roundtrip(props: any) {
   const [selectedRoute, setSelectedRoute] = useState<any>({});
   const [toPlace, setToPlace] = useState<any>([]);
   const [count, setCount] = useState(1);
+
 
 
   const onFinish = async (val: any) => {
@@ -194,12 +197,15 @@ export default function Roundtrip(props: any) {
               />
             </Form.Item>
           </div>
+          {/* {Array.from({ length: count }).map((_, index) => ( */}
+          {/* <div className="col-md-3 col-sm-6 col-12" key={index}> */}
           <div className="col-md-3 col-sm-6 col-12">
             <label htmlFor="inputEmail4" className="form-label fw-bold">
               TO
             </label>
             <Form.Item
-              name="user_to"
+              // name={`user_to${index}`}
+              name={"user_to"}
               className="fw-bold"
               rules={[
                 {
@@ -223,7 +229,9 @@ export default function Roundtrip(props: any) {
                 }))}
               />
             </Form.Item>
+            {/* <AiFillPlusCircle size={25} onClick={handleAdd}/> */}
           </div>
+          {/* ))} */}
           <div
             className="col-md-2 col-sm-6 col-12"
             // className={
@@ -293,7 +301,7 @@ export default function Roundtrip(props: any) {
               ]}
             >
               <Select
-                className="form-control border-0 border-bottom rounded-0"
+                className="form-control border-0 rounded-0"
                 placeholder="Pick up time"
               >
                 {generateTimeOptions().map((timeOption) => (

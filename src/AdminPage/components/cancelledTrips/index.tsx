@@ -7,7 +7,7 @@ import moment from "moment";
 
 import { Loading3QuartersOutlined } from "@ant-design/icons";
 
-const OnGoing = () => {
+const CancelledTrips = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState<any>([]);
 
@@ -18,13 +18,12 @@ const OnGoing = () => {
   async function fetchData() {
     try {
       const response = await axios.get(
-        "https://piccocabs-server-46642b82a774.herokuapp.com/Booking/ongoing"
+        "https://piccocabs-server-46642b82a774.herokuapp.com/Booking/cancelledTrips"
       );
       setIsLoading(false);
 
       setData(response.data.rows);
 
-      console.log("data vannoda=========", data);
     } catch (error) {
       setIsLoading(false);
 
@@ -32,30 +31,30 @@ const OnGoing = () => {
     }
   }
 
-  const handleStatusTypeChange = async (value: any, index: number) => {
-    let updatingStatus: any = data[index];
-    updatingStatus.status = value;
-    let reqBody = { ...updatingStatus };
-    delete reqBody.id;
-    if (value) {
-      try {
-        const response = await axios.put(
-          "https://piccocabs-server-46642b82a774.herokuapp.com/Booking/" +
-            updatingStatus.id +
-            "",
-          reqBody
-        );
+//   const handleStatusTypeChange = async (value: any, index: number) => {
+//     let updatingStatus: any = data[index];
+//     updatingStatus.status = value;
+//     let reqBody = { ...updatingStatus };
+//     delete reqBody.id;
+//     if (value) {
+//       try {
+//         const response = await axios.put(
+//           "https://piccocabs-server-46642b82a774.herokuapp.com/Booking/" +
+//             updatingStatus.id +
+//             "",
+//           reqBody
+//         );
 
-        console.log("Response:", response.data);
-      } catch (error) {
-        console.error("Error:", error);
-      }
-    }
-  };
+//         console.log("Response:", response.data);
+//       } catch (error) {
+//         console.error("Error:", error);
+//       }
+//     }
+//   };
 
   return (
     <div className="table-responsive" style={{ height: "100%" }}>
-      <h2 className="py-3 ps-2">OnGoings</h2>
+      <h2 className="py-3 ps-2">Completed Trips</h2>
       <br />
 
       {isLoading ? (
@@ -95,6 +94,7 @@ const OnGoing = () => {
               <th scope="col">Hrs</th>
               <th scope="col">Kms</th>
               <th scope="col">Est. Amount</th>
+              {/* <th scope="col">Pack</th> */}
               <th scope="col">Car</th>
               <th scope="col">Comments</th>
               <th scope="col">Created At</th>
@@ -108,8 +108,8 @@ const OnGoing = () => {
                   <th scope="row">
                     {moment(item.createdAt).format("DDHHmmssYYM")}
                   </th>
-                  {/* <td>{item.status}</td> */}
-                  <td>
+                  <td>{item.status}</td>
+                  {/* <td>
                       <Select
                         style={{ width: "130px" }}
                         defaultValue={item.status}
@@ -137,7 +137,7 @@ const OnGoing = () => {
                         </Select.Option>
                         <Select.Option value="No Show">No Show</Select.Option>
                       </Select>
-                    </td>
+                    </td> */}
                   <td>
                     {item.bookType === "airports"
                       ? item.AirportStatus
@@ -147,10 +147,10 @@ const OnGoing = () => {
                   <td>{item.pickUpLoc}</td>
                   <td>{item.dropOffLoc}</td>
                   <td>{item.driver}</td>
-
                   <td>{item.hours}</td>
                   <td>{item.kms}</td>
                   <td>{item.estimatedAmt + 300}</td>
+                  {/* <td>{item.rentallPack}</td> */}
                   <td>{item.car}</td>
                   <td>{item.comments}</td>
                   <td>{moment(item.createdAt).format("YYYY-MM-DD")}</td>
@@ -165,4 +165,4 @@ const OnGoing = () => {
   );
 };
 
-export default OnGoing;
+export default CancelledTrips;

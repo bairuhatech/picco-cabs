@@ -101,10 +101,10 @@ function AddCarsModal(props: any) {
 						/>
 					</Form.Group>
 					<Form.Group className="mb-3" controlId="formGroupPrice">
-						<Form.Label className="fw-bold">NPS</Form.Label>
+						<Form.Label className="fw-bold">Year Of Vehicle</Form.Label>
 						<Form.Control
-							type="text"
-							placeholder="NPS"
+							type="number"
+							placeholder="Year Of Vehicle"
 							className="bg-light-300"
 							value={Nps}
 							onChange={(e) => setNps(e.target.value)}

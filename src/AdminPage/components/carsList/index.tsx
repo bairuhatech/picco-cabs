@@ -108,7 +108,7 @@ const CarsTable = () => {
 						<th scope="col">Model</th>
 						<th scope="col">RC Number</th>
 						<th scope="col">Picco Car</th>
-						<th scope="col">NPS</th>
+						<th scope="col">Year Of Vehicle</th>
 						<th scope="col">Status</th>
 						<th scope="col">Current Booking</th>
 						<th scope="col">History</th>
@@ -131,6 +131,7 @@ const CarsTable = () => {
 									onChange={(value) => handleSelect(value, index)}>
 									<Select.Option value="Active">Active</Select.Option>
 									<Select.Option value="InActive">InActive</Select.Option>
+									<Select.Option value="Blocked">Blocked</Select.Option>
 								</Select>
 							</td>
 							<td>{item.currentBooking}</td>

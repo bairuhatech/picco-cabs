@@ -104,7 +104,7 @@ const BookingThird = (props: any) => {
         email: values.email,
         driver: "",
         adminStatus: "roaming",
-        status: "pending",
+        status: "Trip Created",
       };
 
       const response = await fetch(
@@ -470,8 +470,9 @@ const BookingThird = (props: any) => {
             </FormItem>
             <FormItem wrapperCol={{ offset: 1 }} label={"ᴋᴍ:"}>
               <div style={{ borderRadius: "5px" }} className="content-Div">
-                {tripType === "roundTrip"
+              {tripType === "roundTrip"
                   ? selectedRoute?.kilometer *2
+                  :tripType === "rentals" ? Package.kms
                   : selectedRoute?.kilometer}{" "}
                 km
               </div>

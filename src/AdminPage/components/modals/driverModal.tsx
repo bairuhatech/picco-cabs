@@ -136,14 +136,14 @@ function DriverModal(props: any) {
 							<tr>
 								<th scope="col">Select</th>
 								<th scope="col">#</th>
-								<td scope="col">Car Type</td>
+								{/* <td scope="col">Car Type</td> */}
 								<td scope="col">Car Number</td>
 								<td scope="col">Driver Name</td>
 								<td scope="col">Phone Number</td>
 								<td scope="col">Language</td>
 								<th scope="col">Licence No:</th>
 								<td scope="col">Status</td>
-								<td scope="col">Current Booking</td>
+								{/* <td scope="col">Current Booking</td> */}
 							</tr>
 						</thead>
 						<tbody>
@@ -159,13 +159,14 @@ function DriverModal(props: any) {
 										/>
 									</th>
 									<th scope="row">{item.id}</th>
-									<td>{item.CarType}</td>
+									{/* <td>{item.CarType}</td> */}
 									<td>{item.CarNumber}</td>
 									<td>{item.DriverName}</td>
 									<td>{item.phoneNumber}</td>
 									<td>{item.language}</td>
 									<td>{item.DlNumber}</td>
-									<td>
+									<td>{item.status}</td>
+									{/* <td>
 										<Select
 											style={{ width: "130px" }}
 											defaultValue={item.status}
@@ -173,8 +174,8 @@ function DriverModal(props: any) {
 											<Select.Option value="Active">Active</Select.Option>
 											<Select.Option value="InActive">InActive</Select.Option>
 										</Select>
-									</td>
-									<td>{item.currentBooking}</td>
+									</td> */}
+									{/* <td>{item.currentBooking}</td> */}
 								</tr>
 							))}
 						</tbody>
