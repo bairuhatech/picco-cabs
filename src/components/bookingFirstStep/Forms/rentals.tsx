@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import classes from "../index.module.scss";
+import "../index.module.scss";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Select, Form, Button, Input } from "antd";
@@ -66,7 +66,6 @@ export default function Rentals(props: any) {
 
     navigate("/bookingSecondStep", {
       state: {
-        Package,
         modesecond,
         RentPlace,
         RentalTime,
@@ -118,7 +117,10 @@ export default function Rentals(props: any) {
   return (
     <div className="mt-3">
       <Form form={form} onFinish={onFinish}>
-        <div className="row mx-0 gy-3">
+        <div
+          className="rental-container mx-0 gy-3"
+          style={{ display: "flex", justifyContent: "space-evenly" }}
+        >
           <div className="col-md-3 col-12">
             <label htmlFor="inputEmail4" className="form-label fw-bold">
               FROM
@@ -151,7 +153,7 @@ export default function Rentals(props: any) {
             </Form.Item>
           </div>
 
-          <div className="col-md-3 col-12">
+          {/* <div className="col-md-3 col-12">
             <Form.Item name="place">
               <label htmlFor="inputState" className="form-label fw-bold">
                 SELECT PACKAGE
@@ -172,7 +174,7 @@ export default function Rentals(props: any) {
                 }))}
               />
             </Form.Item>
-          </div>
+          </div> */}
 
           <div className="col-md-3 col-12">
             <label htmlFor="inputEmail4" className="form-label fw-bold">
