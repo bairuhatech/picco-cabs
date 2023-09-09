@@ -54,7 +54,7 @@ const CancelledTrips = () => {
 
   return (
     <div className="table-responsive" style={{ height: "100%" }}>
-      <h2 className="py-3 ps-2">Completed Trips</h2>
+      <h2 className="py-3 ps-2">Cancelled Trips</h2>
       <br />
 
       {isLoading ? (

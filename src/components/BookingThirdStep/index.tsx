@@ -61,9 +61,9 @@ const BookingThird = (props: any) => {
         pickUpLng: -122.4194,
         pickUpLoc: selectedRoute?.place || RentPlace || userfrom || "",
         pickUpCity: "",
-        pickUpAddress: "",
+        pickUpAddress: values.PickupAddress,
         dropOffCity: "",
-        dropOffAddress: "",
+        dropOffAddress: values.DropAddress,
         dropOffLat: 37.7749,
         dropOffLng: -122.4194,
         dropOffLoc: selectedRoute?.location || "",
@@ -580,7 +580,7 @@ const BookingThird = (props: any) => {
                 name="name"
                 className="label"
                 label={"ɴᴀᴍᴇ"}
-                rules={[{ required: true, message: "Please enter your name" }]}
+                rules={[{ required: true, message: "Please Enter Your Name" }]}
               >
                 <Input
                   placeholder="ᴇɴᴛᴇʀ ʏᴏᴜʀ ɴᴀᴍᴇ ʜᴇʀᴇ"
@@ -597,7 +597,7 @@ const BookingThird = (props: any) => {
                 rules={[
                   {
                     required: true,
-                    message: "Please enter your email address",
+                    message: "Please Enter Your Email Address",
                   },
                   {
                     type: "email",
@@ -617,10 +617,11 @@ const BookingThird = (props: any) => {
                 className="label"
                 label={"ᴍᴏʙɪʟᴇ"}
                 rules={[
-                  { required: true, message: "Please enter your phone number" },
+                  { required: true, message: "Please Enter Your Phone Number" },
                 ]}
               >
                 <Input
+                  type="number"
                   placeholder="ᴇɴᴛᴇʀ ʏᴏᴜʀ ᴍᴏʙɪʟᴇ ɴᴜᴍʙᴇʀ ʜᴇʀᴇ"
                   className="Mobileinput"
                 />
@@ -630,10 +631,30 @@ const BookingThird = (props: any) => {
             <Form.Item
               name="Comments"
               label={"ᴄᴏᴍᴍᴇɴᴛ"}
-              rules={[{ required: true, message: "Please enter your address" }]}
+              rules={[{ required: true, message: "Please Add a Comment" }]}
             >
               <Input
                 placeholder="ᴇɴᴛᴇʀ ʏᴏᴜʀ ᴄᴏᴍᴍᴇɴᴛ ʜᴇʀᴇ"
+                className="Commentinput"
+              />
+            </Form.Item>
+            <Form.Item
+              name="PickupAddress"
+              label={"ᴘɪᴄᴋᴜᴘ ᴀᴅᴅʀᴇss"}
+              rules={[{ required: true, message: "Please Enter Your Pickup Address" }]}
+            >
+              <Input
+                placeholder="ᴇɴᴛᴇʀ ʏᴏᴜʀ ᴘɪᴄᴋᴜᴘ ᴀᴅᴅʀᴇss"
+                className="Commentinput"
+              />
+            </Form.Item>
+            <Form.Item
+              name="DropAddress"
+              label={"ᴅʀᴏᴘ ᴀᴅᴅʀᴇss"}
+              rules={[{ required: true, message: "Please Enter Your Drop Address" }]}
+            >
+              <Input
+                placeholder="ᴇɴᴛᴇʀ ʏᴏᴜʀ ᴅʀᴏᴘ ᴀᴅᴅʀᴇss"
                 className="Commentinput"
               />
             </Form.Item>

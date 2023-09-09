@@ -34,6 +34,8 @@ const BookingDrawer = (props: any) => {
     dropOffLng,
     dropOffLoc,
     userName,
+    pickUpAddress,
+    dropOffAddress,
   } = props.bookingdetails;
 
   const formLayout = { labelCol: { span: 4 } };
@@ -116,28 +118,36 @@ const BookingDrawer = (props: any) => {
             {moment(dropOffDate).format("YYYY-MM-DD")}
           </span>
           <br /> <br />
-          <span>
-            <b>pickUpLat :</b> {pickUpLat}
+          {/* <span>
+            <b>Pickup la :</b> {pickUpLat}
           </span>
-          <br /> <br />
-          <span>
+          <br /> <br /> */}
+          {/* <span>
             <b>pickUpLng :</b> {pickUpLng}
           </span>
-          <br /> <br />
+          <br /> <br /> */}
           <span>
-            <b>pickUpLoc :</b> {pickUpLoc}
+            <b>Pickup Location :</b> {pickUpLoc}
           </span>
           <br /> <br />
-          <span>
+          {/* <span>
             <b>dropOffLat :</b> {dropOffLat}
           </span>
           <br /> <br />
           <span>
             <b>dropOffLng :</b> {dropOffLng}
           </span>
+          <br /> <br /> */}
+          <span>
+            <b>Drop Of Location :</b> {dropOffLoc}
+          </span>
           <br /> <br />
           <span>
-            <b>dropOffLoc :</b> {dropOffLoc}
+            <b>Pickup Address :</b> {pickUpAddress}
+          </span>
+          <br /> <br />
+          <span>
+            <b>Drop Address :</b> {dropOffAddress}
           </span>
           <br /> <br />
           <div
