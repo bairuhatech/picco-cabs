@@ -268,16 +268,11 @@ export default function OutStation(props: any) {
                 },
               ]}
             >
-              <Select
-                className="form-control border-0 border-bottom rounded-0"
-                placeholder="Pick up time"
-              >
-                {generateTimeOptions().map((timeOption) => (
-                  <Option key={timeOption} value={timeOption}>
-                    {timeOption}
-                  </Option>
-                ))}
-              </Select>
+              <TimePicker
+                format="h:mm A"
+                placeholder="Select a time"
+                minuteStep={10} // Set the step to 10 minutes
+              />
             </Form.Item>
           </div>
         </div>
