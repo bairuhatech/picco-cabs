@@ -173,85 +173,85 @@ function BookingForm(props: any) {
       <div>
         <div>
           <NavigationBar />
-          {tripType === "rentals" ? (
-            <div className="bkngscndStp-kmCard">
-              <div
-                className={
-                  active === 40
-                    ? "bkngscndStp-curveDivSub"
-                    : "bkngscndStp-curveDiv"
-                }
-              ></div>
-              <div className="bkngscndStp-innrDiv bg-light">
-                <div
-                  className={
-                    active === 40
-                      ? "bkngScndStp-innerDiv1-chng"
-                      : "bkngScndStp-innerDiv1"
-                  }
-                  onClick={() => handleClick(kilometerRental.kilometer1, 40)}
-                >
-                  {kilometerRental?.kilometer1.hrs}
-                  <div
-                    style={{
-                      border: "1px solid green",
-                      height: "16px",
-                      marginLeft: 4,
-                      marginRight: 4,
-                    }}
-                  ></div>
-                  {kilometerRental?.kilometer1.kilometer}
-                </div>
-                <div
-                  className={
-                    active === 80
-                      ? "bkngScndStp-innerDiv2-chng "
-                      : "bkngScndStp-innerDiv2"
-                  }
-                  onClick={(val) => handleClick(kilometerRental.kilometer2, 80)}
-                >
-                  {kilometerRental?.kilometer2.hrs}
-                  <div
-                    style={{
-                      border: "1px solid green",
-                      height: "16px",
-                      marginLeft: 4,
-                      marginRight: 4,
-                    }}
-                  ></div>
-                  {kilometerRental?.kilometer2.kilometer}
-                </div>
-                <div
-                  className={
-                    active === 120
-                      ? "bkngScndStp-innerDiv3-chng"
-                      : "bkngScndStp-innerDiv3"
-                  }
-                  onClick={(val) =>
-                    handleClick(kilometerRental.kilometer3, 120)
-                  }
-                >
-                  {kilometerRental?.kilometer3.hrs}
-                  <div
-                    style={{
-                      border: "1px solid green",
-                      height: "16px",
-                      marginLeft: 4,
-                      marginRight: 4,
-                    }}
-                  ></div>
-                  {kilometerRental?.kilometer3.kilometer}
-                </div>
-              </div>
-              <div
-                className={
-                  active === 120
-                    ? "bkngscndStp-curveDiv2Sub"
-                    : "bkngscndStp-curveDiv2"
-                }
-              ></div>
-            </div>
-          ) : null}
+          {!showBooking && tripType === "rentals" && (
+  <div className="bkngscndStp-kmCard">
+    <div
+      className={
+        active === 40
+          ? "bkngscndStp-curveDivSub"
+          : "bkngscndStp-curveDiv"
+      }
+    ></div>
+    <div className="bkngscndStp-innrDiv bg-light">
+      <div
+        className={
+          active === 40
+            ? "bkngScndStp-innerDiv1-chng"
+            : "bkngScndStp-innerDiv1"
+        }
+        onClick={() => handleClick(kilometerRental.kilometer1, 40)}
+      >
+        {kilometerRental?.kilometer1.hrs}
+        <div
+          style={{
+            border: "1px solid green",
+            height: "16px",
+            marginLeft: 4,
+            marginRight: 4,
+          }}
+        ></div>
+        {kilometerRental?.kilometer1.kilometer}
+      </div>
+      <div
+        className={
+          active === 80
+            ? "bkngScndStp-innerDiv2-chng "
+            : "bkngScndStp-innerDiv2"
+        }
+        onClick={(val) => handleClick(kilometerRental.kilometer2, 80)}
+      >
+        {kilometerRental?.kilometer2.hrs}
+        <div
+          style={{
+            border: "1px solid green",
+            height: "16px",
+            marginLeft: 4,
+            marginRight: 4,
+          }}
+        ></div>
+        {kilometerRental?.kilometer2.kilometer}
+      </div>
+      <div
+        className={
+          active === 120
+            ? "bkngScndStp-innerDiv3-chng"
+            : "bkngScndStp-innerDiv3"
+        }
+        onClick={(val) =>
+          handleClick(kilometerRental.kilometer3, 120)
+        }
+      >
+        {kilometerRental?.kilometer3.hrs}
+        <div
+          style={{
+            border: "1px solid green",
+            height: "16px",
+            marginLeft: 4,
+            marginRight: 4,
+          }}
+        ></div>
+        {kilometerRental?.kilometer3.kilometer}
+      </div>
+    </div>
+    <div
+      className={
+        active === 120
+          ? "bkngscndStp-curveDiv2Sub"
+          : "bkngscndStp-curveDiv2"
+      }
+    ></div>
+  </div>
+)}
         </div>
         {Package ? (
           <div className="cardMain-div">

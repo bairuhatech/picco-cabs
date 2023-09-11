@@ -15,6 +15,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { FaCar } from 'react-icons/fa';
 
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   setNavBooking,
@@ -108,7 +109,7 @@ const SidebarNavigation = () => {
               onClick={setNavBookings}
             >
               <CDBSidebarMenuItem
-                icon="table"
+                icon="address-book"
                 iconSize="lg"
                 className="nav-link nav-link-hover"
                 // suffix={

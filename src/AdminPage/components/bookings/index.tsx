@@ -328,6 +328,8 @@ const Bookings = () => {
                       {/* <td></td> */}
                       <td>{item.PiccoCar}</td>
                       <td>{item.comments}</td>
+                      <td>{item.pickUpAddress}</td>
+                      <td>{item.dropOffAddress}</td>
                       <td>{item.userName}</td>
                       <td>{item.phoneNumber}</td>
                       <td>{moment(item.createdAt).format("YYYY-MM-DD")}</td>
