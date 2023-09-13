@@ -15,13 +15,15 @@ import API from "../../../config/api";
 import axios from "axios";
 import moment from "moment";
 import {AiFillPlusCircle} from 'react-icons/ai';
+import dayjs from 'dayjs';
+
 
 
 const { RangePicker } = DatePicker;
 const { Option } = Select;
 
 export default function Roundtrip(props: any) {
-  console.log("props vernnndoooo",props)
+
   const [form] = Form.useForm();
   const navigate = useNavigate();
   const currTime = new Date();
@@ -59,6 +61,9 @@ export default function Roundtrip(props: any) {
         modesSecondary,
       },
     });
+    if (props.onClose) {
+      props.onClose();
+    }
   };
 
   useEffect(() => {
@@ -104,7 +109,6 @@ export default function Roundtrip(props: any) {
   const handleFromChange = (newValue: any) => {
     let toPlaces = data.filter((item: any) => item.place === newValue);
     let toListing = filterUniqueNames(toPlaces, "location");
-    console.log("to listing", toListing);
     setToPlace(toListing);
   };
   const handleToChange = (id: any) => {
@@ -112,7 +116,6 @@ export default function Roundtrip(props: any) {
     setSelectedRoute(route);
   };
   const handleToSearch = (newValue: string) => {
-    console.log("=========referes", toPlace);
     let filteredData = toPlace.filter((d: any) =>
       d.location.toLowerCase().includes(newValue.toLowerCase())
     );
@@ -187,6 +190,7 @@ export default function Roundtrip(props: any) {
                 placeholder={"Start Place"}
                 suffixIcon={null}
                 filterOption={false}
+                defaultValue={props?.selectedProps?.place}
                 onSearch={handleSearch}
                 onChange={handleFromChange}
                 notFoundContent={null}
@@ -220,6 +224,7 @@ export default function Roundtrip(props: any) {
                 defaultActiveFirstOption={false}
                 suffixIcon={null}
                 filterOption={false}
+                defaultValue={props?.selectedProps?.location}
                 onSearch={handleToSearch}
                 onChange={handleToChange}
                 notFoundContent={null}
@@ -253,6 +258,7 @@ export default function Roundtrip(props: any) {
               <DatePicker
                 format="YYYY-MM-DD"
                 placeholder="Pick up date"
+                defaultValue={dayjs(props?.selectedDate)}
                 className="form-control border-0 border-bottom rounded-0"
                 disabledDate={(current) =>
                   current && current < moment(today).startOf("day")
@@ -277,6 +283,7 @@ export default function Roundtrip(props: any) {
                 <DatePicker
                   format="YYYY-MM-DD"
                   placeholder="Return Date"
+                  defaultValue={dayjs(props?.dropDate)}
                   className="form-control border-0 border-bottom rounded-0"
                   disabledDate={(current) =>
                     current && current < moment(today).startOf("day")
@@ -303,6 +310,7 @@ export default function Roundtrip(props: any) {
               <Select
                 className="form-control border-0 rounded-0"
                 placeholder="Pick up time"
+                defaultValue={props?.selectedTime}
               >
                 {generateTimeOptions().map((timeOption) => (
                   <Option key={timeOption} value={timeOption}>

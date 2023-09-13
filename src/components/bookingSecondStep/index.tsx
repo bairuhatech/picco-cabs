@@ -20,13 +20,14 @@ import { BsInfoCircle } from "react-icons/bs";
 import { Popover } from "antd";
 import "./index.scss";
 import { BiPackage } from "react-icons/bi";
+import ModifyModal from "../../AdminPage/components/modals/modifyModal";
+
 
 function BookingForm(props: any) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showBooking, setShowBooking] = useState(false);
   const [showfare, setShowFare] = useState(false);
   const location = useLocation();
-  // console.log("---location---->>", location);
   const [selectedCar, setSelectedCar] = useState(null);
   const [selectedVeh, setSelectedVeh] = useState<any>(null);
   const isLoggedIn = useSelector((state: any) => state.User.auth);
@@ -34,9 +35,8 @@ function BookingForm(props: any) {
     hrs: "8 Hrs",
     kilometer: "80 Km",
   });
-  // console.log("-----Package-----", Package.kilometer);
   const [active, setActive] = useState<any>(80);
-  // console.log("-----active-----", active);
+  const [modify, setModify] = useState(false);
 
   const {
     selectedRoute,
@@ -52,15 +52,12 @@ function BookingForm(props: any) {
     airport,
     selectedValues,
   } = location.state;
-  // console.log("-----selectedRoute-----", selectedRoute);
-  // console.log("-----tripType-----", tripType);
 
   const showModal = () => {
     setIsModalOpen(true);
   };
 
   const handleBookNow = (carData: any) => {
-    console.log("----carData----", carData);
     setSelectedCar(carData);
     if (isLoggedIn) {
       setShowBooking(true);
@@ -301,10 +298,24 @@ function BookingForm(props: any) {
                     <div className="ModifyButton-Div">
                       <button
                         className="modifyButton"
-                        onClick={() => window.history.back()}
+                        onClick={()=> {
+                          setModify(true)
+                        }}
                       >
                         Modify
                       </button>
+                      {modify ? (
+                        <ModifyModal
+                        show={modify}
+                        selectedRoute={selectedRoute}
+                        pickUpDate={pickUpDate}
+                        timeOfPickup={timeOfPickup}
+                        dropOffDate={dropOffDate}
+                        onHide={() => {
+                          setModify(false)
+                        }}
+                        />
+                      ): null}
                     </div>
                   </div>
                 </div>

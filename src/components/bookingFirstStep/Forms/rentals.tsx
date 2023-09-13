@@ -6,6 +6,8 @@ import { Select, Form, Button, Input } from "antd";
 import { Option } from "antd/es/mentions";
 import { DatePicker } from "antd";
 import moment from "moment";
+import dayjs from 'dayjs';
+
 
 export default function Rentals(props: any) {
   const [data, setData] = useState([]);
@@ -48,7 +50,6 @@ export default function Rentals(props: any) {
   };
 
   const handlePackageChange = (value: any) => {
-    console.log("Selected value:", value);
     const packageDetails: any = packages.find(
       (pkg: any) => pkg.value === value
     );
@@ -73,6 +74,9 @@ export default function Rentals(props: any) {
         tripType,
       },
     });
+    if (props.onClose) {
+      props.onClose();
+    }
   };
   useEffect(() => {
     fetchData();
@@ -110,7 +114,6 @@ export default function Rentals(props: any) {
   const handleFromChange = (newValue: any) => {
     let toPlaces = data.filter((item: any) => item.place === newValue);
     let toListing = filterUniqueNames(toPlaces, "location");
-    console.log("to listing", toListing);
     setToPlace(toListing);
   };
 
@@ -140,6 +143,7 @@ export default function Rentals(props: any) {
                 showSearch
                 defaultActiveFirstOption={false}
                 placeholder={"Start Place"}
+                defaultValue={props?.selectedProps?.place}
                 suffixIcon={null}
                 filterOption={false}
                 onSearch={handleSearch}
@@ -193,6 +197,7 @@ export default function Rentals(props: any) {
               <DatePicker
                 format="YYYY-MM-DD"
                 placeholder="Pick up date"
+                defaultValue={dayjs(props?.selectedDate)}
                 className="form-control border-0 border-bottom rounded-0"
                 disabledDate={(current) =>
                   current && current < moment(today).startOf("day")
@@ -216,6 +221,7 @@ export default function Rentals(props: any) {
               <Select
                 className="form-control border-0 rounded-0"
                 placeholder="Pick up time"
+                defaultValue={props.selectedTime}
               >
                 {generateTimeOptions().map((timeOption) => (
                   <Option key={timeOption} value={timeOption}>

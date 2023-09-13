@@ -131,7 +131,7 @@ const SidebarNavigation = () => {
               onClick={setNavOngoing}
             >
               <CDBSidebarMenuItem
-                icon="table"
+                icon=" fa-rocket"
                 iconSize="lg"
                 className="nav-link"
               >
@@ -148,7 +148,7 @@ const SidebarNavigation = () => {
               onClick={setNavCompletedTrip}
             >
               <CDBSidebarMenuItem
-                icon="table"
+                icon=" fa-check-square "
                 iconSize="lg"
                 className="nav-link"
               >
@@ -165,7 +165,7 @@ const SidebarNavigation = () => {
               onClick={setNavCancelledTrip}
             >
               <CDBSidebarMenuItem
-                icon="table"
+                icon=" fa fa-thumbs-down"
                 iconSize="lg"
                 className="nav-link"
               >
@@ -199,7 +199,7 @@ const SidebarNavigation = () => {
               onClick={setNavLocations}
             >
               <CDBSidebarMenuItem
-                icon="table"
+                icon=" fa-map-marker "
                 className="nav-link"
                 iconSize="lg"
               >
@@ -255,7 +255,7 @@ const SidebarNavigation = () => {
               onClick={setNavLoginAttempt}
             >
               <CDBSidebarMenuItem
-                icon="user"
+                icon=" fa-street-view "
                 className="nav-link"
                 iconSize="lg"
                 // suffix={
@@ -278,7 +278,7 @@ const SidebarNavigation = () => {
               onClick={setNavDriver}
             >
               <CDBSidebarMenuItem
-                icon="user"
+                icon=" fa-universal-access "
                 iconSize="lg"
                 className="nav-link"
               >

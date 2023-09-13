@@ -13,12 +13,10 @@ import FormItem from "antd/es/form/FormItem";
 import { Col, Container } from "react-bootstrap";
 
 const BookingThird = (props: any) => {
-  console.log("---props---->>>>", props);
   const [show, setShow] = useState(true);
   const [loading, setLoading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const location = useLocation();
-  console.log(location);
   const {
     pickUpLoc,
     dropOffLoc,
@@ -29,7 +27,6 @@ const BookingThird = (props: any) => {
     carDetails,
     tripType,
     selectedRoute,
-    // Package,
     RentPlace,
     modes,
     modesecond,
@@ -40,7 +37,6 @@ const BookingThird = (props: any) => {
     RentalDate,
     airport,
   } = location.state;
-  console.log("------selectedRoute----->>", selectedRoute);
 
   const handleOk = () => {
     setIsModalOpen(false);
@@ -112,7 +108,6 @@ const BookingThird = (props: any) => {
         adminStatus: "roaming",
         status: "Trip Created",
       };
-      console.log("requestBody------>>>", requestBody);
       const response = await fetch(
         "https://piccocabs-server-46642b82a774.herokuapp.com/Booking",
         {
@@ -123,11 +118,9 @@ const BookingThird = (props: any) => {
           body: JSON.stringify(requestBody),
         }
       );
-      console.log("------------response-------------", response);
 
       const data = await response.json();
       setLoading(false);
-      console.log("API Response:", data);
       setIsModalOpen(true);
       setTimeout(() => {
         setIsModalOpen(false);
@@ -184,8 +177,6 @@ const BookingThird = (props: any) => {
           userName: values.name,
           email: values.email,
         };
-        console.log("--------------------->>>", errorRequestBody);
-        // console.log("--------Kms------------->>>",kms)
 
         const errorResponse = await fetch(
           "https://piccocabs-server-46642b82a774.herokuapp.com/booking-attempt",

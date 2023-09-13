@@ -299,14 +299,18 @@ const Bookings = () => {
                       <td>{item.pickUpTime}</td>
                       <td>{item.dropOffLoc}</td>
                       <td>
-                        <Button
-                          onClick={() => {
-                            setBooking(item);
-                            setIsDriverModal(true);
-                          }}
-                        >
-                          Assign Driver and Car
-                        </Button>
+                        {item.driver.length > 0 ? (
+                          item.driver
+                        ) : (
+                          <Button
+                            onClick={() => {
+                              setBooking(item);
+                              setIsDriverModal(true);
+                            }}
+                          >
+                            Assign Driver and Car
+                          </Button>
+                        )}
                         {isDriverModal ? (
                           <DriverModal
                             booking={booking}

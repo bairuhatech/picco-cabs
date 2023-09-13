@@ -1,13 +1,12 @@
 import React, { useState } from "react";
-import classes from "./index.module.scss";
-import OneWay from "./Forms/outstation";
-import Airports from "./Forms/airpot";
 import Container from "react-bootstrap/esm/Container";
-import "./index.module.scss";
-import Rentals from "./Forms/rentals";
-import Roundtrip from "./Forms/roundTrip";
+import OutStation from "../../../components/bookingFirstStep/Forms/outstation";
+import Airports from "../../../components/bookingFirstStep/Forms/airpot";
+import Rentals from "../../../components/bookingFirstStep/Forms/rentals";
+import Roundtrip from "../../../components/bookingFirstStep/Forms/roundTrip";
+import { Modal } from "antd";
 
-const FirstStep = () => {
+function ModifyModal(props: any) {
   const [formType, setFormType] = useState("outstations");
 
   const radioBtn1ClickHandler = () => {
@@ -26,29 +25,17 @@ const FirstStep = () => {
     setFormType("roundTrip");
   };
 
+  const propsedvalue = props.selectedRoute;
+  const selectedDate = props.pickUpDate;
+  const selectedTime = props.timeOfPickup;
+  const dropDate = props.dropOffDate;
+  const onClose = props.onHide;
+
   const baseUrl = document.baseURI.includes("booking");
 
   return (
-    <Container
-      fluid
-      className={` ${classes["bg-picco-banner"]} position-relative d-flex justify-content-center `}
-    >
-      <div
-        style={{
-          zIndex: 3,
-          position: "absolute",
-          top: 120,
-          backgroundColor: "#ffff",
-          borderRadius: "12px",
-          height: "fit-content",
-          width: "80%",
-          padding: "20px",
-          boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px",
-        }}
-        // className={`rounded-3 bg-light ${
-        //   classes["banner-position-absolute"]
-        // } ${!baseUrl ? "shadow" : ""}`}
-      >
+    <Modal open={props.show} onCancel={props.onHide} width={1000} centered>
+      <div>
         <div className="d-flex justify-content-center">
           <div
             className="btn-group"
@@ -139,17 +126,42 @@ const FirstStep = () => {
           </div>
         </div>
         {formType === "outstations" ? (
-          <OneWay types={formType} />
+          <OutStation
+            types={formType}
+            selectedProps={propsedvalue}
+            selectedDate={selectedDate}
+            selectedTime={selectedTime}
+            onClose={onClose}
+          />
         ) : formType === "rentals" ? (
-          <Rentals types={formType} />
+          <Rentals
+            types={formType}
+            selectedProps={propsedvalue}
+            selectedDate={selectedDate}
+            selectedTime={selectedTime}
+            onClose={onClose}
+          />
         ) : formType === "roundTrip" ? (
-          <Roundtrip types={formType} />
+          <Roundtrip
+            types={formType}
+            selectedProps={propsedvalue}
+            selectedDate={selectedDate}
+            selectedTime={selectedTime}
+            dropDate={dropDate}
+            onClose={onClose}
+          />
         ) : formType === "airports" ? (
-          <Airports types={formType} />
+          <Airports
+            types={formType}
+            selectedProps={propsedvalue}
+            selectedDate={selectedDate}
+            selectedTime={selectedTime}
+            onClose={onClose}
+          />
         ) : null}
       </div>
-    </Container>
+      {/* </Container> */}
+    </Modal>
   );
-};
-
-export default FirstStep;
+}
+export default ModifyModal;
