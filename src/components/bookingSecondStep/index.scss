@@ -228,7 +228,7 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 25px;
-  box-shadow: #92ca92 0px 0px 10px 0px;
+  box-shadow: gray -1px 5px 8px 1px;
   border: 0px solid #92ca92;
   width: 100%;
 }
@@ -301,7 +301,144 @@
   color: #000;
   font-weight: lighter;
 }
+.DetailModal-Main {
+  width: 900px;
+  height: 120px;
+  background-color: #fff;
+  box-shadow: gray -1px 5px 8px 1px;
+  background-color: #fff;
 
+  border-radius: 10px;
+  margin-top: -23px;
+
+  margin-bottom: 23px;
+}
+.Exclusion-item-Div {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  // background-color: aqua;
+}
+.pay-DIV {
+  width: 32%;
+  height: 40px;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // background-color: #9198e5;
+}
+.MultiptlPickup-Div {
+  width: 32%;
+  height: 40px;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // background-color: aqua;
+}
+.parking-Div {
+  width: 36%;
+  height: 40px;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // background-color: azure;
+}
+.facilities-DIV {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  // background-color: #9198e5;
+}
+.seates-Div {
+  width: 32%;
+  height: 38px;
+  font-weight: 500;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  // background-color: aqua;
+}
+.bags-Div {
+  width: 32%;
+  height: 38px;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // background-color: beige;
+}
+.AC_Div {
+  width: 36%;
+  display: flex;
+  font-weight: 500;
+  justify-content: start;
+  align-items: center;
+  height: 38px;
+  // background-color: burlywood;
+}
+.inclusion-DIV {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  // background-color: aqua;
+}
+.Basefare-DIV {
+  width: 25%;
+  display: flex;
+  font-weight: 500;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  // background-color: #9198e5;
+}
+.Driver-Div {
+  width: 30%;
+  display: flex;
+  font-weight: 500;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  // background-color: bisque;
+}
+.StateTax-Div {
+  width: 30%;
+  display: flex;
+  font-weight: 500;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  // background-color: yellow;
+}
+.GST-Div {
+  width: 30%;
+  display: flex;
+  font-weight: 500;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  // background-color: red;
+}
+.car-img {
+  width: 35px !important;
+  height: 23px !important;
+}
+.currency-img {
+  width: 35px !important;
+  height: 23px !important;
+}
+.GSTimg {
+  width: 35px !important;
+  height: 23px !important;
+}
+.TandCtext-Div {
+  width: 100%;
+  height: 68px;
+  font-size: 13px;
+  // background-color: #9198e5;
+}
 // @media (max-width: 568px) {
 //   .inner-Card {
 //     width: 100% !important;
