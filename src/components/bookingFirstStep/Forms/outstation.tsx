@@ -33,6 +33,10 @@ export default function OutStation(props: any) {
   const [data, setData] = useState<any["options"]>([]);
   const [selectedRoute, setSelectedRoute] = useState<any>({});
   const [toPlace, setToPlace] = useState<any>([]);
+  const [datePickup, setDatePickup] = useState<any>(new Date);
+  const [pickupDateString, setpickupDateString] = useState<any>("");
+
+
   // const [onClose, setOnclose] = useState(false)
 
   const onFinish = async (val: any) => {
@@ -118,26 +122,27 @@ export default function OutStation(props: any) {
   const today = new Date();
 
   const generateTimeOptions = () => {
-    const currentTime = moment(); // Get the current time
-    const minStartTime = moment().add(2, "hours").startOf("hour"); // Minimum start time
-    const endTime = moment("11:45 PM", "hh:mm A"); // Adjusted end time
+    const minStartTime = moment().add(2, "hours").startOf("hour"); 
+    const endTime = moment("11:45 PM", "hh:mm A"); 
     const timeOptions = [];
-
-    let startInterval = currentTime.isBefore(minStartTime)
-      ? minStartTime
-      : currentTime;
-    let nextInterval = moment(startInterval).add(
-      15 - (startInterval.minute() % 15),
+    let selectedStartTime =datePickup?.toISOString()?.slice(0, -14) === today?.toISOString()?.slice(0, -14) ? moment(minStartTime,"hh:mm A") : moment("12:00 AM", "hh:mm A");
+    let nextInterval = moment(selectedStartTime).add(
+      15 - (selectedStartTime.minute() % 15),
       "minutes"
     );
-
-    while (nextInterval.isSameOrBefore(endTime)) {
+  
+    while (nextInterval<=endTime) {
       timeOptions.push(nextInterval.format("hh:mm A"));
       nextInterval.add(15, "minutes");
     }
-
+  
     return timeOptions;
   };
+
+  const handleDateChange = (date:any,d:any) => {
+    setDatePickup(date)
+    setpickupDateString(d)
+  }
 
   
 
@@ -228,8 +233,10 @@ export default function OutStation(props: any) {
               ]}
             >
               <DatePicker
-                format="YYYY-MM-DD"
+                format="YYYY-MM-DD" 
                 placeholder="Pick up date"  
+                onChange={handleDateChange}
+                value={datePickup}
                 defaultValue={dayjs(props?.selectedDate)}
                 className="form-control border-0 border-bottom rounded-0"
                 disabledDate={(current) =>

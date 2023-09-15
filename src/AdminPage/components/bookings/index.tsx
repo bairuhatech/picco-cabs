@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Form, Spin, message, Select, Input, Button } from "antd";
+import { Form, Spin, message, Select, Input, Button, Pagination } from "antd";
 import { FaSync } from "react-icons/fa";
 import API from "../../../config/api";
 import "./index.scss";
@@ -33,20 +33,26 @@ const Bookings = () => {
   const [booking, setBooking] = useState({});
   const [isDriverModal, setIsDriverModal] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [page, setPage] = useState(1);
+  const [take, setTake] = useState(10);
+  const [meta, setMeta] = useState<any>({});
+  const [comingData, setComingData] = useState([]);
+
 
   const handleStatusChange = (value: any) => {
     setSelectedStatus(value);
   };
 
   useEffect(() => {
-    getAllBookings();
+    getAllBookings(page, take);
     fetchData();
     fetchCars();
   }, []);
 
-  const getAllBookings = async () => {
+  const getAllBookings = async (p: any, t: any) => {
     setIsLoading(true);
-    let url = API.BASE_URL + API.GET_ALL_BOOKINGS;
+    let url =
+      API.BASE_URL + API.GET_ALL_BOOKINGS + `?order=DESC&page=${p}&take=${t}`;
     const options = {
       method: "GET",
       headers: {
@@ -59,7 +65,9 @@ const Bookings = () => {
       if (response.status === 200) {
         const data = await response.json();
         setIsLoading(false);
-        setBookingData(data);
+        // setBookingData(data);
+        setComingData(data.data);
+        setMeta(data.meta);
         message.success("Success");
       } else {
         setIsLoading(false);
@@ -143,7 +151,7 @@ const Bookings = () => {
     window.location.reload();
   };
   const change = () => {
-    getAllBookings();
+    getAllBookings(page, take);
     fetchData();
   };
   const handleCreateBooking = () => {
@@ -159,6 +167,12 @@ const Bookings = () => {
     fetchData();
     setModalShown(false);
     setSelectedBookings({});
+  };
+  const pagination = (page: any, take: any) => {
+    window.scrollTo(0, 0);
+    setPage(page);
+    setTake(take);
+    getAllBookings(page, take);
   };
 
   return (
@@ -284,7 +298,7 @@ const Bookings = () => {
             </tr>
           </thead>
           <tbody>
-            {bookingData?.reverse().map((item: any, index: number) => {
+            {comingData?.map((item: any, index: number) => {
               return (
                 <tr key={item.id}>
                   <th scope="row">
@@ -410,6 +424,15 @@ const Bookings = () => {
           </tbody>
         </table>
       )}
+      <div className="pagination">
+        <Pagination
+          defaultCurrent={meta.page}
+          total={meta.itemCount}
+          pageSize={meta.take ? meta.take : 0}
+          onChange={(page, take) => pagination(page, take)}
+          pageSizeOptions={[10, 20, 50]}
+        />
+      </div>
       <h2 className="py-3 ps-2">Allocated Bookings</h2>
       <table className="table table-striped align-self-start table-hover">
         <thead>
@@ -433,7 +456,7 @@ const Bookings = () => {
           </tr>
         </thead>
         <tbody>
-          {bookingData?.reverse().map((item: any, index: number) => {
+          {comingData?.map((item: any, index: number) => {
             return (
               <>
                 {item.driver.length > 0 &&

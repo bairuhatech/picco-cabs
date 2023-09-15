@@ -4,3 +4,10 @@
 .table tr td {
     font-size: 14px;
 }
+.pagination {
+    text-align: right;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: end;
+}
