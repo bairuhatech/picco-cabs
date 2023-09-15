@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
-import classes from "../index.module.scss";
+import "../index.module.scss";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Select, Form, Button, Input } from "antd";
 import { Option } from "antd/es/mentions";
 import { DatePicker } from "antd";
 import moment from "moment";
+import dayjs from 'dayjs';
+
+
 
 export default function Rentals(props: any) {
   const [data, setData] = useState([]);
@@ -24,31 +27,35 @@ export default function Rentals(props: any) {
     { value: "eight_hour", label: "8 Hr(80Km)", hours: 8, kms: 40 },
     { value: "twelve_hour", label: "12 Hr(120Km)", hours: 12, kms: 120 },
   ]);
+  const [datePickup, setDatePickup] = useState<any>(new Date);
+  const [pickupDateString, setpickupDateString] = useState<any>("");
 
   const generateTimeOptions = () => {
-    const currentTime = moment(); // Get the current time
-    const minStartTime = moment().add(2, "hours").startOf("hour"); // Minimum start time
-    const endTime = moment("11:45 PM", "hh:mm A"); // Adjusted end time
+    const minStartTime = moment().add(2, "hours").startOf("hour"); 
+    const endTime = moment("11:45 PM", "hh:mm A"); 
     const timeOptions = [];
-
-    let startInterval = currentTime.isBefore(minStartTime)
-      ? minStartTime
-      : currentTime;
-    let nextInterval = moment(startInterval).add(
-      15 - (startInterval.minute() % 15),
+    let selectedStartTime =datePickup?.toISOString()?.slice(0, -14) === today?.toISOString()?.slice(0, -14) ? moment(minStartTime,"hh:mm A") : moment("12:00 AM", "hh:mm A");
+    let nextInterval = moment(selectedStartTime).add(
+      15 - (selectedStartTime.minute() % 15),
       "minutes"
     );
-
-    while (nextInterval.isSameOrBefore(endTime)) {
+  
+    while (nextInterval<=endTime) {
       timeOptions.push(nextInterval.format("hh:mm A"));
       nextInterval.add(15, "minutes");
     }
-
+  
     return timeOptions;
   };
 
+  const handleDateChange = (date:any,d:any) => {
+    setDatePickup(date)
+    setpickupDateString(d)
+  }
+
+
+
   const handlePackageChange = (value: any) => {
-    console.log("Selected value:", value);
     const packageDetails: any = packages.find(
       (pkg: any) => pkg.value === value
     );
@@ -66,7 +73,6 @@ export default function Rentals(props: any) {
 
     navigate("/bookingSecondStep", {
       state: {
-        Package,
         modesecond,
         RentPlace,
         RentalTime,
@@ -74,6 +80,9 @@ export default function Rentals(props: any) {
         tripType,
       },
     });
+    if (props.onClose) {
+      props.onClose();
+    }
   };
   useEffect(() => {
     fetchData();
@@ -111,14 +120,16 @@ export default function Rentals(props: any) {
   const handleFromChange = (newValue: any) => {
     let toPlaces = data.filter((item: any) => item.place === newValue);
     let toListing = filterUniqueNames(toPlaces, "location");
-    console.log("to listing", toListing);
     setToPlace(toListing);
   };
 
   return (
     <div className="mt-3">
       <Form form={form} onFinish={onFinish}>
-        <div className="row mx-0 gy-3">
+        <div
+          className="rental-container mx-0 gy-3"
+          style={{ display: "flex", justifyContent: "space-evenly" }}
+        >
           <div className="col-md-3 col-12">
             <label htmlFor="inputEmail4" className="form-label fw-bold">
               FROM
@@ -138,6 +149,7 @@ export default function Rentals(props: any) {
                 showSearch
                 defaultActiveFirstOption={false}
                 placeholder={"Start Place"}
+                defaultValue={props?.selectedProps?.place}
                 suffixIcon={null}
                 filterOption={false}
                 onSearch={handleSearch}
@@ -151,7 +163,7 @@ export default function Rentals(props: any) {
             </Form.Item>
           </div>
 
-          <div className="col-md-3 col-12">
+          {/* <div className="col-md-3 col-12">
             <Form.Item name="place">
               <label htmlFor="inputState" className="form-label fw-bold">
                 SELECT PACKAGE
@@ -172,7 +184,7 @@ export default function Rentals(props: any) {
                 }))}
               />
             </Form.Item>
-          </div>
+          </div> */}
 
           <div className="col-md-3 col-12">
             <label htmlFor="inputEmail4" className="form-label fw-bold">
@@ -191,6 +203,9 @@ export default function Rentals(props: any) {
               <DatePicker
                 format="YYYY-MM-DD"
                 placeholder="Pick up date"
+                onChange={handleDateChange}
+                value={datePickup}
+                defaultValue={dayjs(props?.selectedDate)}
                 className="form-control border-0 border-bottom rounded-0"
                 disabledDate={(current) =>
                   current && current < moment(today).startOf("day")
@@ -212,8 +227,9 @@ export default function Rentals(props: any) {
               ]}
             >
               <Select
-                className="form-control border-0 border-bottom rounded-0"
+                className="form-control border-0 rounded-0"
                 placeholder="Pick up time"
+                defaultValue={props.selectedTime}
               >
                 {generateTimeOptions().map((timeOption) => (
                   <Option key={timeOption} value={timeOption}>

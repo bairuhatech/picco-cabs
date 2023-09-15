@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Form, Spin, message, Select, Input, Button } from "antd";
+import { Form, Spin, message, Select, Input, Button, Pagination } from "antd";
 import { FaSync } from "react-icons/fa";
 import API from "../../../config/api";
 import "./index.scss";
@@ -21,7 +21,7 @@ const Bookings = () => {
   const [data, setData] = useState<any>([]);
   const [cars, setCars] = useState<any>([]);
   const [number, setNumber] = useState<any>([]);
-  const [selectedStatus, setSelectedStatus] = useState("Pending");
+  const [selectedStatus, setSelectedStatus] = useState("Trip Created");
   const [selectedCarType, setSelectedCarType] = useState("");
   const [fromLocation, setFromLocation] = useState("");
   const [toLocation, setToLocation] = useState("");
@@ -33,20 +33,26 @@ const Bookings = () => {
   const [booking, setBooking] = useState({});
   const [isDriverModal, setIsDriverModal] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [page, setPage] = useState(1);
+  const [take, setTake] = useState(10);
+  const [meta, setMeta] = useState<any>({});
+  const [comingData, setComingData] = useState([]);
+
 
   const handleStatusChange = (value: any) => {
     setSelectedStatus(value);
   };
 
   useEffect(() => {
-    getAllBookings();
+    getAllBookings(page, take);
     fetchData();
     fetchCars();
   }, []);
 
-  const getAllBookings = async () => {
+  const getAllBookings = async (p: any, t: any) => {
     setIsLoading(true);
-    let url = API.BASE_URL + API.GET_ALL_BOOKINGS;
+    let url =
+      API.BASE_URL + API.GET_ALL_BOOKINGS + `?order=DESC&page=${p}&take=${t}`;
     const options = {
       method: "GET",
       headers: {
@@ -59,7 +65,9 @@ const Bookings = () => {
       if (response.status === 200) {
         const data = await response.json();
         setIsLoading(false);
-        setBookingData(data);
+        // setBookingData(data);
+        setComingData(data.data);
+        setMeta(data.meta);
         message.success("Success");
       } else {
         setIsLoading(false);
@@ -143,7 +151,7 @@ const Bookings = () => {
     window.location.reload();
   };
   const change = () => {
-    getAllBookings();
+    getAllBookings(page, take);
     fetchData();
   };
   const handleCreateBooking = () => {
@@ -159,6 +167,12 @@ const Bookings = () => {
     fetchData();
     setModalShown(false);
     setSelectedBookings({});
+  };
+  const pagination = (page: any, take: any) => {
+    window.scrollTo(0, 0);
+    setPage(page);
+    setTake(take);
+    getAllBookings(page, take);
   };
 
   return (
@@ -271,10 +285,12 @@ const Bookings = () => {
               <th scope="col">Hrs</th>
               <th scope="col">Kms</th>
               <th scope="col">Est. Amount</th>
-              <th scope="col">Pack</th>
+              {/* <th scope="col">Pack</th> */}
               {/* <th scope="col">Car</th> */}
-              <th scope="col">Picco Car</th>
+              <th scope="col">Car Type</th>
               <th scope="col">Comments</th>
+              <th scope="col">Pickup Address</th>
+              <th scope="col">Drop Address</th>
               <th scope="col">User</th>
               <th scope="col">Contact</th>
               <th scope="col">Created At</th>
@@ -282,13 +298,13 @@ const Bookings = () => {
             </tr>
           </thead>
           <tbody>
-            {bookingData?.reverse().map((item: any, index: number) => {
+            {comingData?.map((item: any, index: number) => {
               return (
                 <tr key={item.id}>
                   <th scope="row">
                     {moment(item.createdAt).format("DDHHmmssYYM")}
                   </th>
-                  <td>{item.bookType === "airports" ? item.AirportStatus : item.bookType}</td>
+                  <td>{item.bookType}</td>
                   {item.bookType == "rentals" ? (
                     <>
                       <td>{item.tripStatus == null}</td>
@@ -297,14 +313,18 @@ const Bookings = () => {
                       <td>{item.pickUpTime}</td>
                       <td>{item.dropOffLoc}</td>
                       <td>
-                        <Button
-                          onClick={() => {
-                            setBooking(item);
-                            setIsDriverModal(true);
-                          }}
-                        >
-                          Assign Driver and Car
-                        </Button>
+                        {item.driver.length > 0 ? (
+                          item.driver
+                        ) : (
+                          <Button
+                            onClick={() => {
+                              setBooking(item);
+                              setIsDriverModal(true);
+                            }}
+                          >
+                            Assign Driver and Car
+                          </Button>
+                        )}
                         {isDriverModal ? (
                           <DriverModal
                             booking={booking}
@@ -322,10 +342,12 @@ const Bookings = () => {
                       <td>{item.hours}</td>
                       <td>{item.kms}</td>
                       <td>{item.estimatedAmt}</td>
-                      <td>{item.rentallPack}</td>
+                      {/* <td>{item.rentallPack}</td> */}
                       {/* <td></td> */}
                       <td>{item.PiccoCar}</td>
                       <td>{item.comments}</td>
+                      <td>{item.pickUpAddress}</td>
+                      <td>{item.dropOffAddress}</td>
                       <td>{item.userName}</td>
                       <td>{item.phoneNumber}</td>
                       <td>{moment(item.createdAt).format("YYYY-MM-DD")}</td>
@@ -338,20 +360,28 @@ const Bookings = () => {
                     </>
                   ) : (
                     <>
-                      <td>{item.tripStatus}</td>
+                      <td>
+                        {item.bookType === "airports"
+                          ? item.AirportStatus
+                          : item.tripStatus}
+                      </td>
                       <td>{item.pickUpLoc}</td>
                       <td>{moment(item.pickUpDate).format("MMMM Do, YYYY")}</td>
                       <td>{item.pickUpTime}</td>
                       <td>{item.dropOffLoc}</td>
                       <td>
-                        <Button
-                          onClick={() => {
-                            setBooking(item);
-                            setIsDriverModal(true);
-                          }}
-                        >
-                          Assign Driver and Car
-                        </Button>
+                        {item.driver.length > 0 ? (
+                          item.driver
+                        ) : (
+                          <Button
+                            onClick={() => {
+                              setBooking(item);
+                              setIsDriverModal(true);
+                            }}
+                          >
+                            Assign Driver and Car
+                          </Button>
+                        )}
                         {isDriverModal ? (
                           <DriverModal
                             booking={booking}
@@ -368,11 +398,15 @@ const Bookings = () => {
 
                       <td>{item.hours}</td>
                       <td>{item.kms}</td>
-                      <td>{item.estimatedAmt ? item.estimatedAmt+300 : null}</td>
-                      <td>{item.rentallPack}</td>
+                      <td>
+                        {item.estimatedAmt ? item.estimatedAmt + 300 : null}
+                      </td>
+                      {/* <td>{item.rentallPack}</td> */}
                       {/* <td></td> */}
                       <td>{item.PiccoCar}</td>
                       <td>{item.comments}</td>
+                      <td>{item.pickUpAddress}</td>
+                      <td>{item.dropOffAddress}</td>
                       <td>{item.userName}</td>
                       <td>{item.phoneNumber}</td>
                       <td>{moment(item.createdAt).format("YYYY-MM-DD")}</td>
@@ -390,6 +424,15 @@ const Bookings = () => {
           </tbody>
         </table>
       )}
+      <div className="pagination">
+        <Pagination
+          defaultCurrent={meta.page}
+          total={meta.itemCount}
+          pageSize={meta.take ? meta.take : 0}
+          onChange={(page, take) => pagination(page, take)}
+          pageSizeOptions={[10, 20, 50]}
+        />
+      </div>
       <h2 className="py-3 ps-2">Allocated Bookings</h2>
       <table className="table table-striped align-self-start table-hover">
         <thead>
@@ -397,14 +440,15 @@ const Bookings = () => {
             <th scope="col">Booking ID</th>
             <th scope="col">Book Type</th>
             <th scope="col">One Way/RoundTrip</th>
-            <th scope="col">Pickup</th>
             <th scope="col">Status</th>
+            <th scope="col">Pickup</th>
             <th scope="col">Drop</th>
             <th scope="Col">Driver</th>
             <th scope="col">Hrs</th>
             <th scope="col">Kms</th>
+            <th scope="col">Selected Car</th>
             <th scope="col">Est. Amount</th>
-            <th scope="col">Pack</th>
+            {/* <th scope="col">Pack</th> */}
             {/* <th scope="col">Car</th> */}
             <th scope="col">Comments</th>
             <th scope="col">Created At</th>
@@ -412,51 +456,57 @@ const Bookings = () => {
           </tr>
         </thead>
         <tbody>
-          {bookingData?.reverse().map((item: any, index: number) => {
+          {comingData?.map((item: any, index: number) => {
             return (
               <>
-                {item.driver.length > 0 ? (
+                {item.driver.length > 0 &&
+                (item.status === "Trip Created" ||
+                  item.status === "Trip Confirmed" ||
+                  item.status === "No Show") ? (
                   <tr key={item.id}>
                     <th scope="row">
-                    {moment(item.createdAt).format("DDHHmmssYYM")}
-                  </th>
+                      {moment(item.createdAt).format("DDHHmmssYYM")}
+                    </th>
                     <td>{item.bookType}</td>
                     <td>{item.tripStatus}</td>
                     <td>
-                    <Select
-                      style={{ width: "130px" }}
-                      defaultValue={item.status}
-                      onChange={(value) => handleStatusTypeChange(value, index)}
-                    >
-                      <Select.Option value="Trip Created">
-                        Trip Created
-                      </Select.Option>
-                      <Select.Option value="Trip Confirmed">
-                        Trip Confirmed
-                      </Select.Option>
-                      <Select.Option value="Assign On Trip">
-                        Assign On Trip
-                      </Select.Option>
-                      <Select.Option value="Trip Completed">
-                        Trip Completed
-                      </Select.Option>
-                      <Select.Option value="Canceled By Guest">
-                        Canceled By Guest
-                      </Select.Option>
-                      <Select.Option value="Cancelled By Picco">
-                        Cancelled By Picco
-                      </Select.Option>
-                      <Select.Option value="No Show">No Show</Select.Option>
-                    </Select>
-                  </td>
+                      <Select
+                        style={{ width: "130px" }}
+                        defaultValue={item.status}
+                        onChange={(value) =>
+                          handleStatusTypeChange(value, index)
+                        }
+                      >
+                        <Select.Option value="Trip Created">
+                          Trip Created
+                        </Select.Option>
+                        <Select.Option value="Trip Confirmed">
+                          Trip Confirmed
+                        </Select.Option>
+                        <Select.Option value="Assign On Trip">
+                          Assign On Trip
+                        </Select.Option>
+                        <Select.Option value="Trip Completed">
+                          Trip Completed
+                        </Select.Option>
+                        <Select.Option value="Canceled By Guest">
+                          Canceled By Guest
+                        </Select.Option>
+                        <Select.Option value="Cancelled By Picco">
+                          Cancelled By Picco
+                        </Select.Option>
+                        <Select.Option value="No Show">No Show</Select.Option>
+                      </Select>
+                    </td>
                     <td>{item.pickUpLoc}</td>
                     <td>{item.dropOffLoc}</td>
                     <td>{item.driver}</td>
 
                     <td>{item.hours}</td>
                     <td>{item.kms}</td>
-                    <td>{item.estimatedAmt+300}</td>
-                    <td>{item.rentallPack}</td>
+                    <td>{item.car}</td>
+                    <td>{item.estimatedAmt + 300}</td>
+                    {/* <td>{item.rentallPack}</td> */}
                     {/* <td>{item.car}</td> */}
                     <td>{item.comments}</td>
                     <td>{moment(item.createdAt).format("YYYY-MM-DD")}</td>

@@ -26,6 +26,8 @@ import DriversTable from "./AdminPage/components/driverList";
 import CarsTable from "./AdminPage/components/carsList";
 import OnGoing from "./AdminPage/components/ongoing";
 import Charts from "./AdminPage/components/charts";
+import CompletedTrips from "./AdminPage/components/completedTrips";
+import CancelledTrips from "./AdminPage/components/cancelledTrips";
 
 
 const routes = createBrowserRouter([
@@ -113,6 +115,14 @@ const routes = createBrowserRouter([
           {
             path: "ongoing",
             element: <OnGoing/>,
+          },
+          {
+            path: "completedTrips",
+            element: <CompletedTrips/>,
+          },
+          {
+            path: "cancelledTrips",
+            element: <CancelledTrips/>,
           },
         ],
       },

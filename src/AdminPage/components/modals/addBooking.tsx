@@ -55,7 +55,7 @@ function AddBookingModal(props: any) {
       email: "",
       driver: "",
       adminStatus: "roaming",
-      status: "pending",
+      status: "Trip Created",
     };
 
     try {

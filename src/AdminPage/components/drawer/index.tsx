@@ -34,6 +34,8 @@ const BookingDrawer = (props: any) => {
     dropOffLng,
     dropOffLoc,
     userName,
+    pickUpAddress,
+    dropOffAddress,
   } = props.bookingdetails;
 
   const formLayout = { labelCol: { span: 4 } };
@@ -51,7 +53,7 @@ const BookingDrawer = (props: any) => {
             <b>BOOKINGS DETAILS</b>
           </div>
           <span>
-            <b>userName :</b> {userName}
+            <b>User Name :</b> {userName}
           </span>
           <br /> <br />
           <span>
@@ -59,93 +61,93 @@ const BookingDrawer = (props: any) => {
           </span>
           <br /> <br />
           <span>
-            <b>Picco car :</b> {PiccoCar}
+            <b>Car Type :</b> {PiccoCar}
           </span>
           <br /> <br />
           <span>
-            <b>CarType :</b> {CarType}
+            <b>Book Type :</b> {bookType}
           </span>
           <br /> <br />
-          <span>
-            <b>bookType :</b> {bookType}
-          </span>
-          <br /> <br />
-          <span>
+          {/* <span>
             <b>adminStatus :</b> {adminStatus}
           </span>
-          <br /> <br />
+          <br /> <br /> */}
           <span>
-            <b>pickUpTime :</b> {pickUpTime}
+            <b>Pickup Time :</b> {pickUpTime}
           </span>
           <br /> <br />
           <span>
-            <b>comments :</b> {comments}
+            <b>Comments :</b> {comments}
           </span>
           <br /> <br />
           <span>
-            <b>email :</b> {email}
+            <b>Email :</b> {email}
           </span>
           <br /> <br />
           <span>
-            <b>phoneNumber :</b> {phoneNumber}
+            <b>Phone Number :</b> {phoneNumber}
           </span>
           <br /> <br />
           <span>
-            <b>status :</b> {status}
+            <b>Status :</b> {status}
           </span>
           <br /> <br />
           <span>
-            <b>estimatedAmt :</b> {estimatedAmt ? estimatedAmt + 300: null}
+            <b>Amount :</b> {estimatedAmt ? estimatedAmt + 300: null}
           </span>
           <br /> <br />
           <span>
-            <b>rentallPack :</b> {rentallPack}
+            <b>Hours :</b> {hours}
           </span>
           <br /> <br />
           <span>
-            <b>hours :</b> {hours}
+            <b>Trip Status :</b> {tripStatus}
           </span>
           <br /> <br />
           <span>
-            <b>tripStatus :</b> {tripStatus}
+            <b>Return Date :</b> {returnDate}
           </span>
           <br /> <br />
           <span>
-            <b>returnDate :</b> {returnDate}
-          </span>
-          <br /> <br />
-          <span>
-            <b>pickUpDate :</b>
+            <b>Pickup Date :</b>
             {moment(pickUpDate).format("YYYY-MM-DD")}
           </span>
           <br /> <br />
           <span>
-            <b>dropOffDate :</b>
+            <b>Drop date :</b>
             {moment(dropOffDate).format("YYYY-MM-DD")}
           </span>
           <br /> <br />
-          <span>
-            <b>pickUpLat :</b> {pickUpLat}
+          {/* <span>
+            <b>Pickup la :</b> {pickUpLat}
           </span>
-          <br /> <br />
-          <span>
+          <br /> <br /> */}
+          {/* <span>
             <b>pickUpLng :</b> {pickUpLng}
           </span>
-          <br /> <br />
+          <br /> <br /> */}
           <span>
-            <b>pickUpLoc :</b> {pickUpLoc}
+            <b>Pickup Location :</b> {pickUpLoc}
           </span>
           <br /> <br />
-          <span>
+          {/* <span>
             <b>dropOffLat :</b> {dropOffLat}
           </span>
           <br /> <br />
           <span>
             <b>dropOffLng :</b> {dropOffLng}
           </span>
+          <br /> <br /> */}
+          <span>
+            <b>Drop Of Location :</b> {dropOffLoc}
+          </span>
           <br /> <br />
           <span>
-            <b>dropOffLoc :</b> {dropOffLoc}
+            <b>Pickup Address :</b> {pickUpAddress}
+          </span>
+          <br /> <br />
+          <span>
+            <b>Drop Address :</b> {dropOffAddress}
           </span>
           <br /> <br />
           <div

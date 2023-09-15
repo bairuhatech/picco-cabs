@@ -14,11 +14,10 @@ import {
 import API from "../../../config/api";
 import axios from "axios";
 import moment from "moment";
-
+import dayjs from "dayjs";
 
 const { RangePicker } = DatePicker;
 const { Option } = Select;
-
 
 export default function Airports(props: any) {
   const [form] = Form.useForm();
@@ -26,14 +25,15 @@ export default function Airports(props: any) {
   const currTime = new Date();
   const [value, setValue] = useState<string>();
   const [filteredOptions, setFilteredOptions] = useState([]);
-  const [tripType, setTripType] = useState<"oneWay" | "roundTrip" | "airports" | null>(
-    "airports"
-  );
+  const [tripType, setTripType] = useState<
+    "oneWay" | "roundTrip" | "airports" | null
+  >("airports");
   const [data, setData] = useState<any["options"]>([]);
   const [selectedRoute, setSelectedRoute] = useState<any>({});
   const [toPlace, setToPlace] = useState<any>([]);
   const [airport, setAirport] = useState<any>("pickUp");
-  console.log("routeeeeeeeee",selectedRoute.place)
+  const [toPlaceOptions, setToPlaceOptions] = useState([]);
+  console.log("response vanno nokk============", toPlaceOptions);
 
   const onFinish = async (val: any) => {
     const { Trip, user_from, user_to, dateRange, timeRange } = val;
@@ -60,6 +60,9 @@ export default function Airports(props: any) {
         airport,
       },
     });
+    if (props.onClose) {
+      props.onClose();
+    }
   };
 
   useEffect(() => {
@@ -105,15 +108,22 @@ export default function Airports(props: any) {
   const handleTripChange = (newValue: any) => {
     setAirport(newValue);
   };
-  const handleFromChange = (newValue: any) => {
-    let toPlaces = data.filter((item: any) => item.place === newValue);
-    let toListing = filterUniqueNames(toPlaces, "location");
-    setToPlace(toListing);
+  // const handleFromChange = (newValue: any) => {
+  //   console.log("=================newValue=================",newValue)
+  //     let toPlaces = data.filter((item: any) => item.place === newValue);
+  //     let toListing = filterUniqueNames(toPlaces, "location");
+  //     setToPlace(toListing);
+  //     fetchNearbyPlaces(newValue.lat, newValue.lng);
+  //     console.log("====newValue.lat===",newValue.lat)
+  // };
+  const handleFromChange = (selectedPlaceName: string) => {
+    // fetchNearbyPlaces(selectedPlaceName); // Fetch nearby places for user_from
+    fetchPlacePredictions(selectedPlaceName); // Fetch place predictions for user_to
   };
-  const handleToChange = (id: any) => {
-    let route = data.find((item: any) => item.id === id);
-    setSelectedRoute(route);
-  };
+  // const handleToChange = (id: any) => {
+  //   let route = data.find((item: any) => item.id === id);
+  //   setSelectedRoute(route);
+  // };
   const handleToSearch = (newValue: string) => {
     let filteredData = toPlace.filter((d: any) =>
       d.place.toLowerCase().includes(newValue.toLowerCase())
@@ -143,14 +153,79 @@ export default function Airports(props: any) {
 
     return timeOptions;
   };
+  // const fetchNearbyPlaces = async (placeName: string) => {
+  //   console.log("=======================ffffffffffffff", placeName);
 
+  //   const apiKey = "AIzaSyDQi5xajVc33pRko4ciN0vSRhL89gWdF4w"; // Replace with your actual API key
+  //   const radius = 20000; // You can adjust the radius as needed
+
+  //   // Use the `placeName` parameter in the API request URL
+  //   const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${placeName}&radius=${radius}&key=${apiKey}`;
+
+  //   try {
+  //     const response = await fetch(url);
+  //     console.log("response vanno nokk============", response);
+  //     const data = await response.json();
+  //     console.log("data vanno nokk============", data);
+  //     console.log("areeeeeeel vanno nokk============", data.results);
+
+  //     if (data.status === "OK") {
+  //       const placeOptions = data.results.map((place: any) => ({
+  //         value: place.address_components.find((component: any) =>
+  //           component.types.includes("locality")
+  //         ).long_name,
+  //         label: place.address_components.find((component: any) =>
+  //           component.types.includes("locality")
+  //         ).long_name,
+  //       }));
+  //       setToPlaceOptions(placeOptions);
+  //       console.log("placeOptions vanno nokk============", placeOptions);
+  //     } else {
+  //       // Handle the case where the API request was not successful.
+  //       console.error("Google Maps Places API request failed.");
+  //     }
+  //   } catch (error) {
+  //     console.error("Error fetching data from Google Maps Places API:", error);
+  //   }
+  // };
+
+  const fetchPlacePredictions = async (input: string) => {
+    const apiKey = "AIzaSyDQi5xajVc33pRko4ciN0vSRhL89gWdF4w"; 
+    const url = `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${input}&key=${apiKey}`;
+
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+      console.log("==================nthaaaaaaada mone",data)
+
+      if (data.status === "OK") {
+        const placeOptions = data.predictions.map((prediction: any) => ({
+          value: prediction.place_id,
+          label: prediction.description,
+        }));
+        setToPlaceOptions(placeOptions);
+            console.log("=======================placeOptions", placeOptions);
+
+
+      } else {
+        console.error("Google Places Autocomplete API request failed.");
+      }
+    } catch (error) {
+      console.error(
+        "Error fetching data from Google Places Autocomplete API:",
+        error
+      );
+    }
+  };
 
   return (
     <div className="mt-3">
       <Form form={form} onFinish={onFinish}>
         <div className="row mx-0 gy-3">
-          <div className="col-3" style={{ position: "absolute", top: 10 }}>
-          </div>
+          <div
+            className="col-3"
+            style={{ position: "absolute", top: 10 }}
+          ></div>
           <div className="col-md-2 col-sm-6 col-12">
             <div className="form-label fw-bold">Ride Type</div>
             <Form.Item
@@ -163,10 +238,6 @@ export default function Airports(props: any) {
                 },
               ]}
             >
-              {/* <Input
-                placeholder="Start typing City"
-                className="form-control border-0 border-bottom rounded-0"
-              /> */}
               <Select
                 className="CustomSelect"
                 showSearch
@@ -191,7 +262,8 @@ export default function Airports(props: any) {
           </div>
           <div className="col-md-3 col-sm-6 col-12">
             <label htmlFor="inputEmail4" className="form-label fw-bold">
-              {airport === "pickUp" ? "PICKUP CITY" : "DROP CITY"}
+              {/* {airport === "pickUp" ? "PICKUP CITY" : "DROP CITY"} */}
+              PICKUP CITY
             </label>
             <Form.Item
               name="user_from"
@@ -207,12 +279,13 @@ export default function Airports(props: any) {
                 className="CustomSelect"
                 showSearch
                 // value={value}
+                defaultValue={props?.selectedProps?.place}
                 placeholder={"Start Place"}
                 defaultActiveFirstOption={false}
                 suffixIcon={null}
                 filterOption={false}
                 onSearch={handleSearch}
-                onChange={handleFromChange}
+                onChange={(selectedValue) => handleFromChange(selectedValue)}
                 notFoundContent={null}
                 options={filteredOptions.map((item: any) => ({
                   value: item.place,
@@ -223,7 +296,8 @@ export default function Airports(props: any) {
           </div>
           <div className="col-md-3 col-sm-6 col-12">
             <label htmlFor="inputEmail4" className="form-label fw-bold">
-              {airport === "pickUp" ? "PICKUP ADDRESS" : "DROP ADDRESS"}
+              {/* DROP ADDRESS */}
+              {airport === "Drop" ? "DROP ADDRESS" : "PICKUP ADDRESS"}
             </label>
             <Form.Item
               name="user_to"
@@ -236,19 +310,15 @@ export default function Airports(props: any) {
               ]}
             >
               <Select
+                className="CustomSelect"
                 showSearch
-                // value={value}
-                placeholder={"Enter your address"}
+                placeholder={"To Address"}
                 defaultActiveFirstOption={false}
                 suffixIcon={null}
                 filterOption={false}
-                onSearch={handleToSearch}
-                onChange={handleToChange}
                 notFoundContent={null}
-                options={toPlace.map((item: any) => ({
-                  value: item.id,
-                  label: item?.location,
-                }))}
+                onSearch={fetchPlacePredictions} // Trigger autocomplete while typing
+                options={toPlaceOptions}
               />
             </Form.Item>
           </div>
@@ -258,7 +328,7 @@ export default function Airports(props: any) {
             }
           >
             <label htmlFor="inputEmail4" className="form-label fw-bold">
-            PICK UP
+              PICK UP
             </label>
             <Form.Item
               name="dateRange"
@@ -272,9 +342,11 @@ export default function Airports(props: any) {
               <DatePicker
                 format="YYYY-MM-DD"
                 placeholder="Pick up date"
+                defaultValue={dayjs(props?.selectedDate)}
                 className="form-control border-0 border-bottom rounded-0"
-                disabledDate={current => current && current < moment(today).startOf('day')}
-
+                disabledDate={(current) =>
+                  current && current < moment(today).startOf("day")
+                }
               />
             </Form.Item>
           </div>
@@ -298,7 +370,7 @@ export default function Airports(props: any) {
             }
           >
             <label htmlFor="inputEmail4" className="form-label fw-bold">
-            PICK UP AT
+              PICK UP AT
             </label>
             <Form.Item
               name="timeRange"
@@ -310,8 +382,9 @@ export default function Airports(props: any) {
               ]}
             >
               <Select
-                className="form-control border-0 border-bottom rounded-0"
+                className="form-control border-0 rounded-0"
                 placeholder="Pick up time"
+                defaultValue={props?.selectedTime}
               >
                 {generateTimeOptions().map((timeOption) => (
                   <Option key={timeOption} value={timeOption}>

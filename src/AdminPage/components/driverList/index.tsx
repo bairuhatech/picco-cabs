@@ -204,8 +204,8 @@ const DriversTable = () => {
           <thead>
             <tr>
               <th scope="col">#</th>
-              <th scope="col">Car Type</th>
-              <th scope="col">Car Number</th>
+              {/* <th scope="col">Car Type</th> */}
+              {/* <th scope="col">Car Number</th> */}
               <th scope="col">Driver Name</th>
               <th scope="col">Phone Number</th>
               <th scope="col">Language</th>
@@ -219,8 +219,8 @@ const DriversTable = () => {
             {data.map((item: any, index: number) => (
               <tr key={item.id}>
                 <th scope="row">{item.id}</th>
-                <td>{item.CarType}</td>
-                <td>{item.CarNumber}</td>
+                {/* <td>{item.CarType}</td> */}
+                {/* <td>{item.CarNumber}</td> */}
                 <td>{item.DriverName}</td>
                 <td>{item.phoneNumber}</td>
                 <td>{item.language}</td>

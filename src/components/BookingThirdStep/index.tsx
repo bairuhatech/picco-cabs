@@ -27,7 +27,6 @@ const BookingThird = (props: any) => {
     carDetails,
     tripType,
     selectedRoute,
-    Package,
     RentPlace,
     modes,
     modesecond,
@@ -58,40 +57,43 @@ const BookingThird = (props: any) => {
         pickUpLng: -122.4194,
         pickUpLoc: selectedRoute?.place || RentPlace || userfrom || "",
         pickUpCity: "",
-        pickUpAddress: "",
+        pickUpAddress: values.PickupAddress,
         dropOffCity: "",
-        dropOffAddress: "",
+        dropOffAddress: values.DropAddress,
         dropOffLat: 37.7749,
         dropOffLng: -122.4194,
         dropOffLoc: selectedRoute?.location || "",
         pickUpTime: tripType === "rentals" ? RentalTime : timeOfPickup || "",
-        hours: parseInt(Package?.hours) || 0,
-        kms: parseInt(Package?.kms) || 0,
+        hours: tripType === "rentals" ? parseInt(props.Package?.hrs) : 0,
+        kms: tripType === "rentals" ? parseInt(props.Package?.kilometer) : parseInt(selectedRoute.kilometer),
         estimatedAmt:
           props.selectedCar.name === "Compact Mini"
-            ? selectedRoute?.miniPrice +
-              (tripType === "roundTrip" ? selectedRoute.miniPrice : null)
+            ? selectedRoute?.miniPrice + 
+              (tripType === "roundTrip" ? selectedRoute.miniPrice : null) || props.selectedCar.price
             : props.selectedCar.name === "Executive Sedan"
             ? selectedRoute?.sedanPrice +
-              (tripType === "roundTrip" ? selectedRoute.sedanPrice : null)
+              (tripType === "roundTrip" ? selectedRoute.sedanPrice : null) || props.selectedCar.price
             : props.selectedCar.name === "Spacious SUV"
             ? selectedRoute?.suvPrice +
-              (tripType === "roundTrip" ? selectedRoute.suvPrice : null)
+              (tripType === "roundTrip" ? selectedRoute.suvPrice : null) || props.selectedCar.price
             : props.selectedCar.name === "Innova SUV"
             ? selectedRoute?.innovaPrice +
-              (tripType === "roundTrip" ? selectedRoute.innovaPrice : null)
+              (tripType === "roundTrip" ? selectedRoute.innovaPrice : null)|| props.selectedCar.price
             : props.selectedCar.name === "Innova Crysta"
             ? selectedRoute?.crystaPrice +
-              (tripType === "roundTrip" ? selectedRoute.crystaPrice : null)
+              (tripType === "roundTrip" ? selectedRoute.crystaPrice : null)|| props.selectedCar.price
             : props.selectedCar.name === "Tempo Traveller"
             ? selectedRoute?.TempoTravellerPrice +
               (tripType === "roundTrip"
                 ? selectedRoute.TempoTravellerPrice
-                : null)
+                : null) || props.selectedCar.price
             : selectedRoute?.traveller18Price +
                 (tripType === "roundTrip"
                   ? selectedRoute.traveller18Price
-                  : null) || 1,
+                  : null) ||
+                   props.selectedCar.price,
+            // ? props.selectedCar.price
+            // : null,
         returnDate: "2023-08-02T12:00:00Z",
         rentallPack: 1,
         car: "",
@@ -104,9 +106,8 @@ const BookingThird = (props: any) => {
         email: values.email,
         driver: "",
         adminStatus: "roaming",
-        status: "pending",
+        status: "Trip Created",
       };
-
       const response = await fetch(
         "https://piccocabs-server-46642b82a774.herokuapp.com/Booking",
         {
@@ -120,7 +121,6 @@ const BookingThird = (props: any) => {
 
       const data = await response.json();
       setLoading(false);
-      console.log("API Response:", data);
       setIsModalOpen(true);
       setTimeout(() => {
         setIsModalOpen(false);
@@ -144,8 +144,8 @@ const BookingThird = (props: any) => {
           dropOffLng: -122.4194,
           dropOffLoc: selectedRoute?.location || "",
           pickUpTime: timeOfPickup || "",
-          hours: parseInt(Package?.hours) || 0,
-          kms: parseInt(Package?.kms) || 0,
+          hours: parseInt(props.Package?.hrs) || 0,
+          kms: parseInt(props.Package?.kilometer) || 0,
           estimatedAmt:
             props.selectedCar.name === "Compact Mini"
               ? selectedRoute?.miniPrice +
@@ -199,14 +199,14 @@ const BookingThird = (props: any) => {
   const Data = {
     labelCol: { span: 4 },
   };
-  let pack =
-    Package?.value === "custom_package" ? (
-      <div>
-        {Package?.hours}Hr&nbsp;{Package?.kms}kms
-      </div>
-    ) : (
-      <div>{Package?.label}</div>
-    );
+  // let pack =
+  //   Package?.value === "custom_package" ? (
+  //     <div>
+  //       {Package?.hours}Hr&nbsp;{Package?.kms}kms
+  //     </div>
+  //   ) : (
+  //     <div>{Package?.label}</div>
+  //   );
   return (
     // <div>
     //   {show ? (
@@ -471,9 +471,11 @@ const BookingThird = (props: any) => {
             <FormItem wrapperCol={{ offset: 1 }} label={"ᴋᴍ:"}>
               <div style={{ borderRadius: "5px" }} className="content-Div">
                 {tripType === "roundTrip"
-                  ? selectedRoute?.kilometer *2
+                  ? selectedRoute?.kilometer * 2
+                  : tripType === "rentals"
+                  ? props.Package.kilometer
                   : selectedRoute?.kilometer}{" "}
-                km
+                {tripType === "rentals" ? null :"KM"}
               </div>
             </FormItem>
             <FormItem wrapperCol={{ offset: 1 }} label={"ᴛᴏᴛᴇʟ ғᴀʀᴇ:"}>
@@ -482,43 +484,45 @@ const BookingThird = (props: any) => {
                 ₹{" "}
                 {props.selectedCar.name === "Compact Mini"
                   ? selectedRoute?.miniPrice +
-                    (tripType === "roundTrip"
-                      ? selectedRoute.miniPrice
-                      : null) +
-                    300
+                      (tripType === "roundTrip"
+                        ? selectedRoute.miniPrice
+                        : null) +
+                      300 || props.selectedCar.price
                   : props.selectedCar.name === "Executive Sedan"
                   ? selectedRoute?.sedanPrice +
-                    (tripType === "roundTrip"
-                      ? selectedRoute.sedanPrice
-                      : null) +
-                    300
+                      (tripType === "roundTrip"
+                        ? selectedRoute.sedanPrice
+                        : null) +
+                      300 || props.selectedCar.price
                   : props.selectedCar.name === "Spacious SUV"
                   ? selectedRoute?.suvPrice +
-                    (tripType === "roundTrip" ? selectedRoute.suvPrice : null) +
-                    300
+                      (tripType === "roundTrip"
+                        ? selectedRoute.suvPrice
+                        : null) +
+                      300 || props.selectedCar.price
                   : props.selectedCar.name === "Innova SUV"
                   ? selectedRoute?.innovaPrice +
-                    (tripType === "roundTrip"
-                      ? selectedRoute.innovaPrice
-                      : null) +
-                    300
+                      (tripType === "roundTrip"
+                        ? selectedRoute.innovaPrice
+                        : null) +
+                      300 || props.selectedCar.price
                   : props.selectedCar.name === "Innova Crysta"
                   ? selectedRoute?.crystaPrice +
-                    (tripType === "roundTrip"
-                      ? selectedRoute.crystaPrice
-                      : null) +
-                    300
+                      (tripType === "roundTrip"
+                        ? selectedRoute.crystaPrice
+                        : null) +
+                      300 || props.selectedCar.price
                   : props.selectedCar.name === "Tempo Traveller"
                   ? selectedRoute?.TempoTravellerPrice +
-                    (tripType === "roundTrip"
-                      ? selectedRoute.TempoTravellerPrice
-                      : null) +
-                    300
+                      (tripType === "roundTrip"
+                        ? selectedRoute.TempoTravellerPrice
+                        : null) +
+                      300 || props.selectedCar.price
                   : selectedRoute?.traveller18Price +
                     (tripType === "roundTrip"
                       ? selectedRoute.traveller18Price
                       : null) +
-                    300}
+                    300 || props.selectedCar.price}
               </div>
             </FormItem>
           </Form>
@@ -540,7 +544,7 @@ const BookingThird = (props: any) => {
                 name="name"
                 className="label"
                 label={"ɴᴀᴍᴇ"}
-                rules={[{ required: true, message: "Please enter your name" }]}
+                rules={[{ required: true, message: "Please Enter Your Name" }]}
               >
                 <Input
                   placeholder="ᴇɴᴛᴇʀ ʏᴏᴜʀ ɴᴀᴍᴇ ʜᴇʀᴇ"
@@ -557,7 +561,7 @@ const BookingThird = (props: any) => {
                 rules={[
                   {
                     required: true,
-                    message: "Please enter your email address",
+                    message: "Please Enter Your Email Address",
                   },
                   {
                     type: "email",
@@ -577,10 +581,11 @@ const BookingThird = (props: any) => {
                 className="label"
                 label={"ᴍᴏʙɪʟᴇ"}
                 rules={[
-                  { required: true, message: "Please enter your phone number" },
+                  { required: true, message: "Please Enter Your Phone Number" },
                 ]}
               >
                 <Input
+                  type="number"
                   placeholder="ᴇɴᴛᴇʀ ʏᴏᴜʀ ᴍᴏʙɪʟᴇ ɴᴜᴍʙᴇʀ ʜᴇʀᴇ"
                   className="Mobileinput"
                 />
@@ -590,10 +595,30 @@ const BookingThird = (props: any) => {
             <Form.Item
               name="Comments"
               label={"ᴄᴏᴍᴍᴇɴᴛ"}
-              rules={[{ required: true, message: "Please enter your address" }]}
+              rules={[{ required: true, message: "Please Add a Comment" }]}
             >
               <Input
                 placeholder="ᴇɴᴛᴇʀ ʏᴏᴜʀ ᴄᴏᴍᴍᴇɴᴛ ʜᴇʀᴇ"
+                className="Commentinput"
+              />
+            </Form.Item>
+            <Form.Item
+              name="PickupAddress"
+              label={"ᴘɪᴄᴋᴜᴘ ᴀᴅᴅʀᴇss"}
+              rules={[{ required: true, message: "Please Enter Your Pickup Address" }]}
+            >
+              <Input
+                placeholder="ᴇɴᴛᴇʀ ʏᴏᴜʀ ᴘɪᴄᴋᴜᴘ ᴀᴅᴅʀᴇss"
+                className="Commentinput"
+              />
+            </Form.Item>
+            <Form.Item
+              name="DropAddress"
+              label={"ᴅʀᴏᴘ ᴀᴅᴅʀᴇss"}
+              rules={[{ required: true, message: "Please Enter Your Drop Address" }]}
+            >
+              <Input
+                placeholder="ᴇɴᴛᴇʀ ʏᴏᴜʀ ᴅʀᴏᴘ ᴀᴅᴅʀᴇss"
                 className="Commentinput"
               />
             </Form.Item>
