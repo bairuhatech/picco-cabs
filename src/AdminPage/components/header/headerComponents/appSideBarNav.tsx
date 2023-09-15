@@ -15,10 +15,13 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { FaCar } from 'react-icons/fa';
 
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   setNavBooking,
   setNavOngoings,
+  setNavCompletedTrips,
+  setNavCancelledTrips,
   setNavBookingAttempts,
   setNavHome,
   setNavLocation,
@@ -48,6 +51,12 @@ const SidebarNavigation = () => {
   };
   const setNavOngoing = () => {
     dispatch(setNavOngoings());
+  }
+  const setNavCompletedTrip = () => {
+    dispatch(setNavCompletedTrips());
+  }
+  const setNavCancelledTrip = () => {
+    dispatch(setNavCancelledTrips());
   }
   const setNavOffer = () => {
     dispatch(setNavOffers());
@@ -100,7 +109,7 @@ const SidebarNavigation = () => {
               onClick={setNavBookings}
             >
               <CDBSidebarMenuItem
-                icon="table"
+                icon="address-book"
                 iconSize="lg"
                 className="nav-link nav-link-hover"
                 // suffix={
@@ -122,11 +131,45 @@ const SidebarNavigation = () => {
               onClick={setNavOngoing}
             >
               <CDBSidebarMenuItem
-                icon="table"
+                icon=" fa-rocket"
                 iconSize="lg"
                 className="nav-link"
               >
-                OnGoing
+                OnGoing Trips
+              </CDBSidebarMenuItem>
+            </NavLink>
+            <NavLink
+              to="completedTrips"
+              style={({ isActive }) =>
+                isActive
+                  ? { fontWeight: "bolder", color: "#FFFF99" }
+                  : undefined
+              }
+              onClick={setNavCompletedTrip}
+            >
+              <CDBSidebarMenuItem
+                icon=" fa-check-square "
+                iconSize="lg"
+                className="nav-link"
+              >
+                Completed Trips
+              </CDBSidebarMenuItem>
+            </NavLink>
+            <NavLink
+              to="cancelledTrips"
+              style={({ isActive }) =>
+                isActive
+                  ? { fontWeight: "bolder", color: "#FFFF99" }
+                  : undefined
+              }
+              onClick={setNavCancelledTrip}
+            >
+              <CDBSidebarMenuItem
+                icon=" fa fa-thumbs-down"
+                iconSize="lg"
+                className="nav-link"
+              >
+                Cancelled Trips
               </CDBSidebarMenuItem>
             </NavLink>
             <NavLink
@@ -156,7 +199,7 @@ const SidebarNavigation = () => {
               onClick={setNavLocations}
             >
               <CDBSidebarMenuItem
-                icon="table"
+                icon=" fa-map-marker "
                 className="nav-link"
                 iconSize="lg"
               >
@@ -212,7 +255,7 @@ const SidebarNavigation = () => {
               onClick={setNavLoginAttempt}
             >
               <CDBSidebarMenuItem
-                icon="user"
+                icon=" fa-street-view "
                 className="nav-link"
                 iconSize="lg"
                 // suffix={
@@ -235,7 +278,7 @@ const SidebarNavigation = () => {
               onClick={setNavDriver}
             >
               <CDBSidebarMenuItem
-                icon="user"
+                icon=" fa-universal-access "
                 iconSize="lg"
                 className="nav-link"
               >

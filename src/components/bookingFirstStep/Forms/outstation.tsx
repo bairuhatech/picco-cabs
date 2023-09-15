@@ -14,8 +14,11 @@ import {
 import API from "../../../config/api";
 import axios from "axios";
 import moment from "moment";
+import dayjs from 'dayjs';
+
 
 const { RangePicker } = DatePicker;
+moment.locale('en');
 const { Option } = Select;
 
 export default function OutStation(props: any) {
@@ -30,6 +33,11 @@ export default function OutStation(props: any) {
   const [data, setData] = useState<any["options"]>([]);
   const [selectedRoute, setSelectedRoute] = useState<any>({});
   const [toPlace, setToPlace] = useState<any>([]);
+  const [datePickup, setDatePickup] = useState<any>(new Date);
+  const [pickupDateString, setpickupDateString] = useState<any>("");
+
+
+  // const [onClose, setOnclose] = useState(false)
 
   const onFinish = async (val: any) => {
     const { user_from, user_to, dateRange, returnRange, timeRange } = val;
@@ -51,6 +59,9 @@ export default function OutStation(props: any) {
         modes,
       },
     });
+    if (props.onClose) {
+      props.onClose();
+    }
   };
 
   useEffect(() => {
@@ -111,26 +122,29 @@ export default function OutStation(props: any) {
   const today = new Date();
 
   const generateTimeOptions = () => {
-    const currentTime = moment(); // Get the current time
-    const minStartTime = moment().add(2, "hours").startOf("hour"); // Minimum start time
-    const endTime = moment("11:45 PM", "hh:mm A"); // Adjusted end time
+    const minStartTime = moment().add(2, "hours").startOf("hour"); 
+    const endTime = moment("11:45 PM", "hh:mm A"); 
     const timeOptions = [];
-
-    let startInterval = currentTime.isBefore(minStartTime)
-      ? minStartTime
-      : currentTime;
-    let nextInterval = moment(startInterval).add(
-      15 - (startInterval.minute() % 15),
+    let selectedStartTime =datePickup?.toISOString()?.slice(0, -14) === today?.toISOString()?.slice(0, -14) ? moment(minStartTime,"hh:mm A") : moment("12:00 AM", "hh:mm A");
+    let nextInterval = moment(selectedStartTime).add(
+      15 - (selectedStartTime.minute() % 15),
       "minutes"
     );
-
-    while (nextInterval.isSameOrBefore(endTime)) {
+  
+    while (nextInterval<=endTime) {
       timeOptions.push(nextInterval.format("hh:mm A"));
       nextInterval.add(15, "minutes");
     }
-
+  
     return timeOptions;
   };
+
+  const handleDateChange = (date:any,d:any) => {
+    setDatePickup(date)
+    setpickupDateString(d)
+  }
+
+  
 
   return (
     <div className="mt-3">
@@ -158,6 +172,7 @@ export default function OutStation(props: any) {
                 defaultActiveFirstOption={false}
                 placeholder={"Start Place"}
                 suffixIcon={null}
+                defaultValue={props?.selectedProps?.place}
                 filterOption={false}
                 onSearch={handleSearch}
                 onChange={handleFromChange}
@@ -189,6 +204,7 @@ export default function OutStation(props: any) {
                 defaultActiveFirstOption={false}
                 suffixIcon={null}
                 filterOption={false}
+                defaultValue={props?.selectedProps?.location}
                 onSearch={handleToSearch}
                 onChange={handleToChange}
                 notFoundContent={null}
@@ -217,8 +233,11 @@ export default function OutStation(props: any) {
               ]}
             >
               <DatePicker
-                format="YYYY-MM-DD"
-                placeholder="Pick up date"
+                format="YYYY-MM-DD" 
+                placeholder="Pick up date"  
+                onChange={handleDateChange}
+                value={datePickup}
+                defaultValue={dayjs(props?.selectedDate)}
                 className="form-control border-0 border-bottom rounded-0"
                 disabledDate={(current) =>
                   current && current < moment(today).startOf("day")
@@ -226,7 +245,7 @@ export default function OutStation(props: any) {
               />
             </Form.Item>
           </div>
-          {tripType === "roundTrip" && (
+          {/* {tripType === "roundTrip" && (
             <div className="col-md-2 col-sm-6 col-12">
               <label htmlFor="return_date" className="form-label fw-bold">
                 RETURN
@@ -243,6 +262,7 @@ export default function OutStation(props: any) {
                 <DatePicker
                   format="YYYY-MM-DD"
                   placeholder="Return Date"
+                  // defaultValue={dateFormat}
                   className="form-control border-0 border-bottom rounded-0"
                   disabledDate={(current) =>
                     current && current < moment(today).startOf("day")
@@ -250,7 +270,7 @@ export default function OutStation(props: any) {
                 />
               </Form.Item>
             </div>
-          )}
+          )} */}
           <div
             className={
               tripType === "oneWay" ? "col-md-3" : "col-md-2 col-sm-6 col-12"
@@ -268,11 +288,17 @@ export default function OutStation(props: any) {
                 },
               ]}
             >
-              <TimePicker
-                format="h:mm A"
-                placeholder="Select a time"
-                minuteStep={10} // Set the step to 10 minutes
-              />
+              <Select
+                className="form-control border-0 rounded-0"
+                placeholder="Pick up time"
+                defaultValue={props?.selectedTime}
+              >
+                {generateTimeOptions().map((timeOption) => (
+                  <Option key={timeOption} value={timeOption}>
+                    {timeOption}
+                  </Option>
+                ))}
+              </Select>
             </Form.Item>
           </div>
         </div>

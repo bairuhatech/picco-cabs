@@ -147,7 +147,7 @@ function CarModal(props: any) {
 								<th scope="col">Model</th>
 								<th scope="col">Picco Car</th>
 								<th scope="col">RC Number</th>
-								<th scope="col">NPS</th>
+								<th scope="col">Year Of Vehicle</th>
 								<th scope="col">Status</th>
 								<th scope="col">Current Booking</th>
 								<th scope="col">History</th>
@@ -171,16 +171,18 @@ function CarModal(props: any) {
 									<td>{item.piccoCar}</td>
 									<td>{item.RcNumber}</td>
 									<td>{item.nps}</td>
-									<td>
+									{/* <td>
 										<Select
 											style={{ width: "130px" }}
 											defaultValue={item.status}
 											onChange={(value) => handleSelect(value, index)}>
 											<Select.Option value="Active">Active</Select.Option>
 											<Select.Option value="InActive">InActive</Select.Option>
+											<Select.Option value="Blocked">Blocked</Select.Option>
 										</Select>
-									</td>
-									<td>{item.currentBooking}</td>
+									</td> */}
+									<td>{item.status}</td>
+									{/* <td>{item.currentBooking}</td> */}
 									<td>{item.history}</td>
 								</tr>
 							))}

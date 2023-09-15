@@ -15,18 +15,22 @@ import API from "../../../config/api";
 import axios from "axios";
 import moment from "moment";
 import {AiFillPlusCircle} from 'react-icons/ai';
+import dayjs from 'dayjs';
+
 
 
 const { RangePicker } = DatePicker;
 const { Option } = Select;
 
 export default function Roundtrip(props: any) {
-  console.log("props vernnndoooo",props)
+
   const [form] = Form.useForm();
   const navigate = useNavigate();
   const currTime = new Date();
   const [value, setValue] = useState<string>();
   const [filteredOptions, setFilteredOptions] = useState([]);
+  const [selectedDestinations, setSelectedDestinations] = useState<any[]>([]);
+  
   const [tripType, setTripType] = useState<"oneWay" | "roundTrip" | null>(
     "roundTrip"
   );
@@ -34,6 +38,9 @@ export default function Roundtrip(props: any) {
   const [selectedRoute, setSelectedRoute] = useState<any>({});
   const [toPlace, setToPlace] = useState<any>([]);
   const [count, setCount] = useState(1);
+  const [datePickup, setDatePickup] = useState<any>(new Date);
+  const [pickupDateString, setpickupDateString] = useState<any>("");
+
 
 
   const onFinish = async (val: any) => {
@@ -56,6 +63,9 @@ export default function Roundtrip(props: any) {
         modesSecondary,
       },
     });
+    if (props.onClose) {
+      props.onClose();
+    }
   };
 
   useEffect(() => {
@@ -101,7 +111,6 @@ export default function Roundtrip(props: any) {
   const handleFromChange = (newValue: any) => {
     let toPlaces = data.filter((item: any) => item.place === newValue);
     let toListing = filterUniqueNames(toPlaces, "location");
-    console.log("to listing", toListing);
     setToPlace(toListing);
   };
   const handleToChange = (id: any) => {
@@ -109,7 +118,6 @@ export default function Roundtrip(props: any) {
     setSelectedRoute(route);
   };
   const handleToSearch = (newValue: string) => {
-    console.log("=========referes", toPlace);
     let filteredData = toPlace.filter((d: any) =>
       d.location.toLowerCase().includes(newValue.toLowerCase())
     );
@@ -117,31 +125,30 @@ export default function Roundtrip(props: any) {
   };
   const today = new Date();
 
-  const generateTimeOptions = () => {
-    const currentTime = moment(); // Get the current time
-    const minStartTime = moment().add(2, "hours").startOf("hour"); // Minimum start time
-    const endTime = moment("11:45 PM", "hh:mm A"); // Adjusted end time
-    const timeOptions = [];
 
-    let startInterval = currentTime.isBefore(minStartTime)
-      ? minStartTime
-      : currentTime;
-    let nextInterval = moment(startInterval).add(
-      15 - (startInterval.minute() % 15),
+  const generateTimeOptions = () => {
+    const minStartTime = moment().add(2, "hours").startOf("hour"); 
+    const endTime = moment("11:45 PM", "hh:mm A"); 
+    const timeOptions = [];
+    let selectedStartTime =datePickup?.toISOString()?.slice(0, -14) === today?.toISOString()?.slice(0, -14) ? moment(minStartTime,"hh:mm A") : moment("12:00 AM", "hh:mm A");
+    let nextInterval = moment(selectedStartTime).add(
+      15 - (selectedStartTime.minute() % 15),
       "minutes"
     );
-
-    while (nextInterval.isSameOrBefore(endTime)) {
+  
+    while (nextInterval<=endTime) {
       timeOptions.push(nextInterval.format("hh:mm A"));
       nextInterval.add(15, "minutes");
     }
-
+  
     return timeOptions;
   };
-  
-  const handleAdd = () => {
-    setCount(count + 1);
+
+  const handleDateChange = (date:any,d:any) => {
+    setDatePickup(date)
+    setpickupDateString(d)
   }
+
 
   return (
     <div className="mt-3">
@@ -184,6 +191,7 @@ export default function Roundtrip(props: any) {
                 placeholder={"Start Place"}
                 suffixIcon={null}
                 filterOption={false}
+                defaultValue={props?.selectedProps?.place}
                 onSearch={handleSearch}
                 onChange={handleFromChange}
                 notFoundContent={null}
@@ -194,12 +202,15 @@ export default function Roundtrip(props: any) {
               />
             </Form.Item>
           </div>
+          {/* {Array.from({ length: count }).map((_, index) => ( */}
+          {/* <div className="col-md-3 col-sm-6 col-12" key={index}> */}
           <div className="col-md-3 col-sm-6 col-12">
             <label htmlFor="inputEmail4" className="form-label fw-bold">
               TO
             </label>
             <Form.Item
-              name="user_to"
+              // name={`user_to${index}`}
+              name={"user_to"}
               className="fw-bold"
               rules={[
                 {
@@ -214,6 +225,7 @@ export default function Roundtrip(props: any) {
                 defaultActiveFirstOption={false}
                 suffixIcon={null}
                 filterOption={false}
+                defaultValue={props?.selectedProps?.location}
                 onSearch={handleToSearch}
                 onChange={handleToChange}
                 notFoundContent={null}
@@ -223,7 +235,9 @@ export default function Roundtrip(props: any) {
                 }))}
               />
             </Form.Item>
+            {/* <AiFillPlusCircle size={25} onClick={handleAdd}/> */}
           </div>
+          {/* ))} */}
           <div
             className="col-md-2 col-sm-6 col-12"
             // className={
@@ -245,6 +259,9 @@ export default function Roundtrip(props: any) {
               <DatePicker
                 format="YYYY-MM-DD"
                 placeholder="Pick up date"
+                onChange={handleDateChange}
+                value={datePickup}
+                defaultValue={dayjs(props?.selectedDate)}
                 className="form-control border-0 border-bottom rounded-0"
                 disabledDate={(current) =>
                   current && current < moment(today).startOf("day")
@@ -269,6 +286,7 @@ export default function Roundtrip(props: any) {
                 <DatePicker
                   format="YYYY-MM-DD"
                   placeholder="Return Date"
+                  defaultValue={dayjs(props?.dropDate)}
                   className="form-control border-0 border-bottom rounded-0"
                   disabledDate={(current) =>
                     current && current < moment(today).startOf("day")
@@ -293,8 +311,9 @@ export default function Roundtrip(props: any) {
               ]}
             >
               <Select
-                className="form-control border-0 border-bottom rounded-0"
+                className="form-control border-0 rounded-0"
                 placeholder="Pick up time"
+                defaultValue={props?.selectedTime}
               >
                 {generateTimeOptions().map((timeOption) => (
                   <Option key={timeOption} value={timeOption}>

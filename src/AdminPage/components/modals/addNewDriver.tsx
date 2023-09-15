@@ -20,7 +20,7 @@ function AddDriverModal(props: any) {
 		event.preventDefault();
 
 		const newData = {
-			CarType: carType,
+			// CarType: carType,
 			CarNumber: carNumber,
 			DriverName: driverName,
 			phoneNumber: phoneNumber,
@@ -60,7 +60,7 @@ function AddDriverModal(props: any) {
 					<Modal.Title>{props.purpose}</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
-					<Form.Group className="mb-3" controlId="formGroupFrom">
+					{/* <Form.Group className="mb-3" controlId="formGroupFrom">
 						<Form.Label className="fw-bold">Car Type</Form.Label>
 						<Form.Control
 							type="text"
@@ -69,7 +69,7 @@ function AddDriverModal(props: any) {
 							value={carType}
 							onChange={(e) => setCarType(e.target.value)}
 						/>
-					</Form.Group>
+					</Form.Group> */}
 					<Form.Group className="mb-3" controlId="formGroupTo">
 						<Form.Label className="fw-bold">Car Number</Form.Label>
 						<Form.Control
