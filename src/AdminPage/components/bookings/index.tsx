@@ -133,19 +133,19 @@ const Bookings = () => {
         ?.toLowerCase()
         .includes(value.toLocation?.toLowerCase());
       const bookingIDMatch =
-        moment(item.createdAt).format("DDHHmmssYYM") === value.bookingid;
+        moment(item.createdAt).format("DDHHmmssYYM") === value.bookingID;
 
       return (
         (fromMatch || !value.fromLocation) &&
         (toMatch || !value.toLocation) &&
-        (bookingIDMatch || !value.bookingid)
+        (bookingIDMatch || !value.bookingID)
       );
     });
 
     setFromLocation(fromLocation);
     setToLocation(toLocation);
-    setbookingid(value.bookingIDMatch);
-    setBookingData(filteredData);
+    setbookingid(value.bookingID);
+    setComingData(filteredData);
     setLoading(false);
   };
 
@@ -196,7 +196,7 @@ const Bookings = () => {
           <Form.Item
             style={{ fontWeight: "600" }}
             label="BOOKINGID"
-            name="bookingid"
+            name="bookingID"
           >
             <Input placeholder="bookingID" onChange={change} />
           </Form.Item>
@@ -222,6 +222,7 @@ const Bookings = () => {
               }}
               htmlType="submit"
               disabled={loading} // Disable the button while loading
+              onClick={handleFilter}
             >
               {loading ? (
                 <span>
