@@ -36,7 +36,9 @@ const Bookings = () => {
   const [page, setPage] = useState(1);
   const [take, setTake] = useState(10);
   const [meta, setMeta] = useState<any>({});
-  const [comingData, setComingData] = useState([]);
+  const [comingData, setComingData] = useState<
+  Array<{ pickUpLoc: string; dropOffLoc: string; createdAt: Date }>
+>([]);
 
 
   const handleStatusChange = (value: any) => {
@@ -101,7 +103,7 @@ const Bookings = () => {
   }
 
   const handleStatusTypeChange = async (value: any, index: number) => {
-    let updatingStatus: any = bookingData[index];
+    let updatingStatus: any = comingData[index];
     updatingStatus.status = value;
     let reqBody = { ...updatingStatus };
     delete reqBody.id;
@@ -123,7 +125,7 @@ const Bookings = () => {
 
   const handleFilter = (value: any) => {
     setLoading(true);
-    const filteredData = bookingData.filter((item) => {
+    const filteredData = comingData.filter((item) => {
       const fromMatch = item.pickUpLoc
         ?.toLowerCase()
         .includes(value.fromLocation?.toLowerCase());

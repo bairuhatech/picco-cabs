@@ -239,9 +239,10 @@ export default function OutStation(props: any) {
                 value={datePickup}
                 defaultValue={dayjs(props?.selectedDate)}
                 className="form-control border-0 border-bottom rounded-0"
-                disabledDate={(current) =>
-                  current && current < moment(today).startOf("day")
-                }
+                disabledDate={(current) =>{
+                  let customDate = moment().format("YYYY-MM-DD");
+                  return current && current < moment(customDate, "YYYY-MM-DD");
+            }} 
               />
             </Form.Item>
           </div>
