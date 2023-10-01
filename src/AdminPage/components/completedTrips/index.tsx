@@ -23,14 +23,12 @@ const CompletedTrips = () => {
       setIsLoading(false);
 
       setData(response.data.rows);
-
     } catch (error) {
       setIsLoading(false);
 
       console.error("Error:", error);
     }
   }
-
 
   return (
     <div className="table-responsive" style={{ height: "100%" }}>
@@ -59,6 +57,23 @@ const CompletedTrips = () => {
               />
             }
           />{" "}
+        </div>
+      ) : data.length === 0 ? (
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "20px",
+            fontSize: "24px",
+            color: "#999",
+          }}
+        >
+          <span role="img" aria-label="Oops">
+            😔
+          </span>
+          <p>Oops, There Is No Completed Trips</p>
         </div>
       ) : (
         <table className="table table-striped align-self-start table-hover">

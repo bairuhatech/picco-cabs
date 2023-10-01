@@ -203,9 +203,7 @@ const Login = () => {
     setShowPassword(!showPassword);
   };
   const isLoggedIn = useSelector((state: any) => state.User.auth);
-  console.log("================isLoggedIn=========================");
   console.log(isLoggedIn);
-  console.log("==================isLoggedIn=======================");
 
   const showStatus = () => {
     alert(isLoggedIn);

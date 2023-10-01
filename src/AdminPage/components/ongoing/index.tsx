@@ -81,6 +81,23 @@ const OnGoing = () => {
             }
           />{" "}
         </div>
+      ) : data.length === 0 ? (
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "20px",
+            fontSize: "24px",
+            color: "#999",
+          }}
+        >
+          <span role="img" aria-label="Oops">
+            😔
+          </span>
+          <p>Oops, There Is No On Going Trips</p>
+        </div>
       ) : (
         <table className="table table-striped align-self-start table-hover">
           <thead>
@@ -110,34 +127,32 @@ const OnGoing = () => {
                   </th>
                   {/* <td>{item.status}</td> */}
                   <td>
-                      <Select
-                        style={{ width: "130px" }}
-                        defaultValue={item.status}
-                        onChange={(value) =>
-                          handleStatusTypeChange(value, index)
-                        }
-                      >
-                        <Select.Option value="Trip Created">
-                          Trip Created
-                        </Select.Option>
-                        <Select.Option value="Trip Confirmed">
-                          Trip Confirmed
-                        </Select.Option>
-                        <Select.Option value="Assign On Trip">
-                          Assign On Trip
-                        </Select.Option>
-                        <Select.Option value="Trip Completed">
-                          Trip Completed
-                        </Select.Option>
-                        <Select.Option value="Canceled By Guest">
-                          Canceled By Guest
-                        </Select.Option>
-                        <Select.Option value="Cancelled By Picco">
-                          Cancelled By Picco
-                        </Select.Option>
-                        <Select.Option value="No Show">No Show</Select.Option>
-                      </Select>
-                    </td>
+                    <Select
+                      style={{ width: "130px" }}
+                      defaultValue={item.status}
+                      onChange={(value) => handleStatusTypeChange(value, index)}
+                    >
+                      <Select.Option value="Trip Created">
+                        Trip Created
+                      </Select.Option>
+                      <Select.Option value="Trip Confirmed">
+                        Trip Confirmed
+                      </Select.Option>
+                      <Select.Option value="Assign On Trip">
+                        Assign On Trip
+                      </Select.Option>
+                      <Select.Option value="Trip Completed">
+                        Trip Completed
+                      </Select.Option>
+                      <Select.Option value="Canceled By Guest">
+                        Canceled By Guest
+                      </Select.Option>
+                      <Select.Option value="Cancelled By Picco">
+                        Cancelled By Picco
+                      </Select.Option>
+                      <Select.Option value="No Show">No Show</Select.Option>
+                    </Select>
+                  </td>
                   <td>
                     {item.bookType === "airports"
                       ? item.AirportStatus

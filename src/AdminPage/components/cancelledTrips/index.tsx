@@ -23,7 +23,6 @@ const CancelledTrips = () => {
       setIsLoading(false);
 
       setData(response.data.rows);
-
     } catch (error) {
       setIsLoading(false);
 
@@ -31,26 +30,26 @@ const CancelledTrips = () => {
     }
   }
 
-//   const handleStatusTypeChange = async (value: any, index: number) => {
-//     let updatingStatus: any = data[index];
-//     updatingStatus.status = value;
-//     let reqBody = { ...updatingStatus };
-//     delete reqBody.id;
-//     if (value) {
-//       try {
-//         const response = await axios.put(
-//           "https://piccocabs-server-46642b82a774.herokuapp.com/Booking/" +
-//             updatingStatus.id +
-//             "",
-//           reqBody
-//         );
+  //   const handleStatusTypeChange = async (value: any, index: number) => {
+  //     let updatingStatus: any = data[index];
+  //     updatingStatus.status = value;
+  //     let reqBody = { ...updatingStatus };
+  //     delete reqBody.id;
+  //     if (value) {
+  //       try {
+  //         const response = await axios.put(
+  //           "https://piccocabs-server-46642b82a774.herokuapp.com/Booking/" +
+  //             updatingStatus.id +
+  //             "",
+  //           reqBody
+  //         );
 
-//         console.log("Response:", response.data);
-//       } catch (error) {
-//         console.error("Error:", error);
-//       }
-//     }
-//   };
+  //         console.log("Response:", response.data);
+  //       } catch (error) {
+  //         console.error("Error:", error);
+  //       }
+  //     }
+  //   };
 
   return (
     <div className="table-responsive" style={{ height: "100%" }}>
@@ -79,6 +78,23 @@ const CancelledTrips = () => {
               />
             }
           />{" "}
+        </div>
+      ) : data.length === 0 ? (
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "20px",
+            fontSize: "24px",
+            color: "#999",
+          }}
+        >
+          <span role="img" aria-label="Oops">
+            😔
+          </span>
+          <p>Oops, there is no data</p>
         </div>
       ) : (
         <table className="table table-striped align-self-start table-hover">

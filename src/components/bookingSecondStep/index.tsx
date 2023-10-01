@@ -89,6 +89,7 @@ function BookingForm(props: any) {
   const handleBookNow = (item: any) => {
     // setSelectedCar(carData);
     setSelectedCar(item);
+
     if (isLoggedIn) {
       setShowBooking(true);
     } else {
@@ -296,7 +297,7 @@ function BookingForm(props: any) {
       Image: crysta,
       name: "Crysta",
       seat: 4,
-      price:
+      price: 
         tripType === "roundTrip"
           ? selectedRoute?.crystaPrice * 2 + 300
           : tripType === "rentals" && Package.kilometer === "80 Km"
@@ -667,6 +668,9 @@ function BookingForm(props: any) {
                             )}
                           </div>
                         </div>
+                        {formModal && (
+                      <CustomModal isModalOpen={show} handleCancel={Cancel} />
+                    )}
                         <div>
                           <div className="button-Div">
                             <button

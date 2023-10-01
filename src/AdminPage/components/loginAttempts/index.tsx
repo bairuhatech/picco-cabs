@@ -56,6 +56,23 @@ const LoginAttempts = () => {
             }
           />{" "}
         </div>
+      ) : loginData.length === 0 ? (
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "20px",
+            fontSize: "24px",
+            color: "#999",
+          }}
+        >
+          <span role="img" aria-label="Oops">
+            😔
+          </span>
+          <p>Oops, there is no data</p>
+        </div>
       ) : (
         <table className="table table-striped align-self-start table-hover">
           <thead>

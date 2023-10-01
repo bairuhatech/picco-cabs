@@ -15,7 +15,8 @@ import API from "../../../config/api";
 import axios from "axios";
 import moment from "moment";
 import dayjs from "dayjs";
-
+// import { AutoComplete } from "antd";
+// import Autocomplete from "react-google-autocomplete";
 const { RangePicker } = DatePicker;
 const { Option } = Select;
 
@@ -33,7 +34,8 @@ export default function Airports(props: any) {
   const [toPlace, setToPlace] = useState<any>([]);
   const [airport, setAirport] = useState<any>("pickUp");
   const [toPlaceOptions, setToPlaceOptions] = useState([]);
-  console.log("response vanno nokk============", toPlaceOptions);
+  const [datePickup, setDatePickup] = useState<any>(new Date());
+  const [pickupDateString, setpickupDateString] = useState<any>("");
 
   const onFinish = async (val: any) => {
     const { Trip, user_from, user_to, dateRange, timeRange } = val;
@@ -133,20 +135,20 @@ export default function Airports(props: any) {
   const today = new Date();
 
   const generateTimeOptions = () => {
-    const currentTime = moment(); // Get the current time
-    const minStartTime = moment().add(2, "hours").startOf("hour"); // Minimum start time
-    const endTime = moment("11:45 PM", "hh:mm A"); // Adjusted end time
+    const minStartTime = moment().add(2, "hours").startOf("hour");
+    const endTime = moment("11:45 PM", "hh:mm A");
     const timeOptions = [];
-
-    let startInterval = currentTime.isBefore(minStartTime)
-      ? minStartTime
-      : currentTime;
-    let nextInterval = moment(startInterval).add(
-      15 - (startInterval.minute() % 15),
+    let selectedStartTime =
+      datePickup?.toISOString()?.slice(0, -14) ===
+      today?.toISOString()?.slice(0, -14)
+        ? moment(minStartTime, "hh:mm A")
+        : moment("12:00 AM", "hh:mm A");
+    let nextInterval = moment(selectedStartTime).add(
+      15 - (selectedStartTime.minute() % 15),
       "minutes"
     );
 
-    while (nextInterval.isSameOrBefore(endTime)) {
+    while (nextInterval <= endTime) {
       timeOptions.push(nextInterval.format("hh:mm A"));
       nextInterval.add(15, "minutes");
     }
@@ -190,32 +192,27 @@ export default function Airports(props: any) {
   // };
 
   const fetchPlacePredictions = async (input: string) => {
-    const apiKey = "AIzaSyDQi5xajVc33pRko4ciN0vSRhL89gWdF4w"; 
+    const apiKey = "AIzaSyDQi5xajVc33pRko4ciN0vSRhL89gWdF4w";
     const url = `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${input}&key=${apiKey}`;
-
     try {
-      const response = await fetch(url);
-      const data = await response.json();
-      console.log("==================nthaaaaaaada mone",data)
-
-      if (data.status === "OK") {
-        const placeOptions = data.predictions.map((prediction: any) => ({
-          value: prediction.place_id,
-          label: prediction.description,
-        }));
-        setToPlaceOptions(placeOptions);
-            console.log("=======================placeOptions", placeOptions);
-
-
-      } else {
-        console.error("Google Places Autocomplete API request failed.");
-      }
+      const headers = {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        "User-Agent": "YourAppName/1.0",
+      };
+      const response = await axios.get(url, { headers });
+      console.log(response);
     } catch (error) {
-      console.error(
-        "Error fetching data from Google Places Autocomplete API:",
-        error
-      );
+      console.log(error);
     }
+  };
+
+  const handleDateChange = (date: any, d: any) => {
+    setDatePickup(date);
+    setpickupDateString(d);
+  };
+  const onSelect = (value: any) => {
+    console.log("onSelect", value);
   };
 
   return (
@@ -285,7 +282,8 @@ export default function Airports(props: any) {
                 suffixIcon={null}
                 filterOption={false}
                 onSearch={handleSearch}
-                onChange={(selectedValue) => handleFromChange(selectedValue)}
+                onChange={handleFromChange}
+                // onChange={(selectedValue) => handleFromChange(selectedValue)}
                 notFoundContent={null}
                 options={filteredOptions.map((item: any) => ({
                   value: item.place,
@@ -309,17 +307,9 @@ export default function Airports(props: any) {
                 },
               ]}
             >
-              <Select
-                className="CustomSelect"
-                showSearch
-                placeholder={"To Address"}
-                defaultActiveFirstOption={false}
-                suffixIcon={null}
-                filterOption={false}
-                notFoundContent={null}
-                onSearch={fetchPlacePredictions} // Trigger autocomplete while typing
-                options={toPlaceOptions}
-              />
+              <Select/>
+              
+          
             </Form.Item>
           </div>
           <div
@@ -342,6 +332,8 @@ export default function Airports(props: any) {
               <DatePicker
                 format="YYYY-MM-DD"
                 placeholder="Pick up date"
+                onChange={handleDateChange}
+                value={datePickup}
                 defaultValue={dayjs(props?.selectedDate)}
                 className="form-control border-0 border-bottom rounded-0"
                 disabledDate={(current) =>
@@ -385,6 +377,7 @@ export default function Airports(props: any) {
                 className="form-control border-0 rounded-0"
                 placeholder="Pick up time"
                 defaultValue={props?.selectedTime}
+                allowClear
               >
                 {generateTimeOptions().map((timeOption) => (
                   <Option key={timeOption} value={timeOption}>
