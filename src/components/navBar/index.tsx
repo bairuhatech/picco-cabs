@@ -48,7 +48,7 @@ const NavigationBar = () => {
             <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
               <li className="nav-item border-bottom-md-none py-2">
                 <a className="nav-link px-3 fw-bold" href="/#about-us">
-                  About Us
+                  {/* About Us */}
                 </a>
               </li>
               <li className="nav-item border-bottom-md-none py-2">
