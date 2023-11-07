@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { IoNewspaperOutline } from "react-icons/io5";
 import { MdOutlineSevereCold } from "react-icons/md";
+import { LuSnowflake } from "react-icons/lu";
+import { MdAirlineSeatReclineNormal } from "react-icons/md"
 import smallcarimg from "../../assets/images/car_mini_small.png";
 import sedanimg from "../../assets/images/car_sedan_small.png";
 import suvimage from "../../assets/images/car_suv_small.png";
@@ -29,7 +31,7 @@ import {
   BsCarFrontFill,
 } from "react-icons/bs";
 import { AiFillCar } from "react-icons/ai";
-import { Popover } from "antd";
+import { Popover, Tooltip } from "antd";
 import { HiCurrencyRupee } from "react-icons/hi";
 import "./index.scss";
 import { ImFileText } from "react-icons/im";
@@ -61,6 +63,7 @@ function BookingForm(props: any) {
     setIsDetailVisible(!isDetailVisible);
     setIscheckVisible(item);
   };
+  const title = <div></div>
 
   const handleClickRentals = (val: any, field: number) => {
     setPackage(val);
@@ -183,11 +186,12 @@ function BookingForm(props: any) {
           : Package.kilometer === " 40 Km"
           ? 40
           : selectedRoute?.kilometer,
+      tooltip: "Compact mini: Small and portable.",
     },
     {
       id: 2,
       Image: sedanimg,
-      name: "Sedan",
+      name: "sedan",
       seat: 4,
       price:
         tripType === "roundTrip"
@@ -219,11 +223,12 @@ function BookingForm(props: any) {
           : Package.kilometer === " 40 Km"
           ? 40
           : selectedRoute?.kilometer,
+      tooltip: "Four-door, enclosed passenger car style.",
     },
     {
       id: 3,
       Image: suvimage,
-      name: "Suv",
+      name: "suv",
       seat: 4,
       price:
         tripType === "roundTrip"
@@ -255,6 +260,7 @@ function BookingForm(props: any) {
           : Package.kilometer === " 40 Km"
           ? 40
           : selectedRoute?.kilometer,
+      tooltip: "Sport Utility Vehicle for versatility.",
     },
     {
       id: 4,
@@ -291,13 +297,14 @@ function BookingForm(props: any) {
           : Package.kilometer === " 40 Km"
           ? 40
           : selectedRoute?.kilometer,
+      tooltip: "Toyota's versatile MPV (Multi-Purpose Vehicle).",
     },
     {
       id: 5,
       Image: crysta,
       name: "Crysta",
       seat: 4,
-      price: 
+      price:
         tripType === "roundTrip"
           ? selectedRoute?.crystaPrice * 2 + 300
           : tripType === "rentals" && Package.kilometer === "80 Km"
@@ -327,6 +334,7 @@ function BookingForm(props: any) {
           : Package.kilometer === " 40 Km"
           ? 40
           : selectedRoute?.kilometer,
+      tooltip: "Toyota Innova Crysta: An upgraded version.",
     },
     {
       id: 6,
@@ -363,6 +371,7 @@ function BookingForm(props: any) {
           : Package.kilometer === " 40 Km"
           ? 40
           : selectedRoute?.kilometer,
+      tooltip: "Tempo: Commercial passenger-carrying vehicle.",
     },
     {
       id: 7,
@@ -399,6 +408,7 @@ function BookingForm(props: any) {
           : Package.kilometer === " 40 Km"
           ? 40
           : selectedRoute?.kilometer,
+      tooltip: "Tempo with 18 seats: Large passenger vehicle.",
     },
   ];
 
@@ -580,14 +590,19 @@ function BookingForm(props: any) {
                           <div className="nameContainer">
                             <div className="picco-mini">{item?.name}</div>
                             <div className="piccomini-info">
-                              info
+                              {/* info */}
                               <Popover
                                 placement="rightTop"
                                 // title={text}
                                 // content={minicontent}
                                 // arrow={mergedArrow}
                               >
-                                <BsInfoCircle size={18} color="#d3d3d3" />
+                                <Tooltip
+                                  placement="bottom"
+                                  title={item.tooltip}
+                                >
+                                  <BsInfoCircle size={18} color="#d3d3d3" />
+                                </Tooltip>
                               </Popover>
                             </div>
                           </div>
@@ -609,9 +624,13 @@ function BookingForm(props: any) {
                               justifyContent: "center",
                             }}
                           >
-                            <div className="piccocartext-font">AC</div>
+                            <div className="piccocartext-font">
+                              AC <LuSnowflake/> 
+                              <img src="FaSnowflake" alt="" />
+                            </div>
                             <div className="piccocartext-font">
                               {item?.seat}Seat
+                              < MdAirlineSeatReclineNormal/>
                             </div>
                             <div className="piccocartext-font">2 Bag</div>
                           </div>
@@ -669,8 +688,11 @@ function BookingForm(props: any) {
                           </div>
                         </div>
                         {formModal && (
-                      <CustomModal isModalOpen={show} handleCancel={Cancel} />
-                    )}
+                          <CustomModal
+                            isModalOpen={show}
+                            handleCancel={Cancel}
+                          />
+                        )}
                         <div>
                           <div className="button-Div">
                             <button
@@ -703,6 +725,10 @@ function BookingForm(props: any) {
                                   width: "50%",
                                   height: "50%",
                                   padding: "5px",
+                                  // backgroundColor: "blue",
+                                  display: "flex",
+                                  alignItems: "center",
+                                  justifyContent: "space-between"
                                 }}
                               >
                                 <input
@@ -729,9 +755,7 @@ function BookingForm(props: any) {
                                   className={`btn btn-outline-success border border-2 border-success`}
                                   htmlFor="btnradio10"
                                 >
-                                  <p style={{ fontSize: "13px" }}>
-                                    INCLUSION
-                                  </p>
+                                  <p style={{ fontSize: "13px" }}>INCLUSION</p>
                                 </label>
                                 {/* /* //*** */}
 
@@ -816,7 +840,7 @@ function BookingForm(props: any) {
                                   <div className="inclusion-DIV">
                                     <div className="Basefare-DIV">
                                       <BsFuelPumpDieselFill />
-                                      BASEFARE
+                                      Base Fare
                                     </div>
                                     <div className="Driver-Div">
                                       <AiFillCar className="car-img" />
@@ -843,7 +867,7 @@ function BookingForm(props: any) {
                                           height: "30px",
                                         }}
                                       />
-                                      Pay ₹14/km after 2142 km
+                                      Pay ₹14/km <br /> after 2142 km
                                     </div>
                                     <div className="MultiptlPickup-Div">
                                       <BsCarFrontFill
@@ -852,7 +876,7 @@ function BookingForm(props: any) {
                                           height: "30px",
                                         }}
                                       />{" "}
-                                      Multiple pickups/drops
+                                      Multiple <br /> pickups/drops
                                     </div>
                                     <div className="parking-Div">
                                       <LuParkingCircle
@@ -917,7 +941,7 @@ function BookingForm(props: any) {
                               )}
                             </div>
                           ) : null}
-                          </>
+                        </>
                       )}
                     </>
                   );
