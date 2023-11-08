@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../index.module.scss";
+import { BiTime } from "react-icons/bi";
 import { Link, useNavigate } from "react-router-dom";
 import {
   Button,
@@ -261,7 +262,7 @@ export default function Roundtrip(props: any) {
                 placeholder="Pick up date"
                 onChange={handleDateChange}
                 value={datePickup}
-                defaultValue={dayjs(props?.selectedDate)}
+                // defaultValue={dayjs(props?.selectedDate)}
                 className="form-control border-0 border-bottom rounded-0"
                 disabledDate={(current) =>
                   current && current < moment(today).startOf("day")
@@ -270,36 +271,35 @@ export default function Roundtrip(props: any) {
             </Form.Item>
           </div>
           {/* {tripType === "roundTrip" && ( */}
-            <div className="col-md-2 col-sm-6 col-12">
-              <label htmlFor="return_date" className="form-label fw-bold">
-                RETURN
-              </label>
-              <Form.Item
-                name="returnRange"
-                rules={[
-                  {
-                    required: true,
-                    message: "required",
-                  },
-                ]}
-              >
-                <DatePicker
-                  format="YYYY-MM-DD"
-                  placeholder="Return Date"
-                  defaultValue={dayjs(props?.dropDate)}
-                  className="form-control border-0 border-bottom rounded-0"
-                  disabledDate={(current) =>
-                    current && current < moment(today).startOf("day")
-                  }
-                />
-              </Form.Item>
-            </div>
+          <div className="col-md-2 col-sm-6 col-12">
+            <label htmlFor="return_date" className="form-label fw-bold">
+              RETURN
+            </label>
+            <Form.Item
+              name="returnRange"
+              rules={[
+                {
+                  required: true,
+                  message: "required",
+                },
+              ]}
+            >
+              <DatePicker
+                format="YYYY-MM-DD"
+                placeholder="Return Date"
+                // defaultValue={dayjs(props?.dropDate)}
+                className="form-control border-0 border-bottom rounded-0"
+                disabledDate={(current) =>
+                  current && current < moment(today).startOf("day")
+                }
+              />
+            </Form.Item>
+          </div>
           {/* )} */}
-          <div
-          className="col-md-2 col-sm-6 col-12"
-          >
+          <div className="col-md-2 col-sm-6 col-12">
             <label htmlFor="inputEmail4" className="form-label fw-bold">
               PICK UP AT
+              {/* <BiTime /> */}
             </label>
             <Form.Item
               name="timeRange"
@@ -314,6 +314,7 @@ export default function Roundtrip(props: any) {
                 className="form-control border-0 rounded-0"
                 placeholder="Pick up time"
                 defaultValue={props?.selectedTime}
+                suffixIcon={<BiTime size={20} />}
               >
                 {generateTimeOptions().map((timeOption) => (
                   <Option key={timeOption} value={timeOption}>

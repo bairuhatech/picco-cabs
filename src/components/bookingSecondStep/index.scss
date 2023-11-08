@@ -513,7 +513,7 @@
 }
 .DetailModal-Main {
   width: 900px;
-  height: 120px;
+  height: 150px;
   background-color: #fff;
   box-shadow: gray -1px 5px 8px 1px;
   background-color: #fff;
@@ -647,5 +647,7 @@
   width: 100%;
   height: 68px;
   font-size: 13px;
-  // background-color: #9198e5;
+  // background-color: #9198e5; 
+  // display: flex;
+  // align-items: center;
 }

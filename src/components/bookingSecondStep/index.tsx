@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { IoNewspaperOutline } from "react-icons/io5";
 import { MdOutlineSevereCold } from "react-icons/md";
-import { LuSnowflake } from "react-icons/lu";
+// import { PiFanFill } from "react-icons/lu";
 import { MdAirlineSeatReclineNormal } from "react-icons/md"
 import smallcarimg from "../../assets/images/car_mini_small.png";
 import sedanimg from "../../assets/images/car_sedan_small.png";
@@ -13,6 +13,7 @@ import tempo from "../../assets/images/car_tempo.png";
 import { Row, Col, Container } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
 import { CgNotes } from "react-icons/cg";
+import { BiChevronDown } from "react-icons/bi";
 
 import FareModal from "../fareDetails";
 import { LuParkingCircle } from "react-icons/lu";
@@ -265,7 +266,7 @@ function BookingForm(props: any) {
     {
       id: 4,
       Image: innova,
-      name: "innova",
+      name: "Innova",
       seat: 4,
       price:
         tripType === "roundTrip"
@@ -339,7 +340,7 @@ function BookingForm(props: any) {
     {
       id: 6,
       Image: tempo,
-      name: "Tempo",
+      name: "Tempo-12",
       seat: 12,
       price:
         tripType === "roundTrip"
@@ -376,7 +377,7 @@ function BookingForm(props: any) {
     {
       id: 7,
       Image: tempo,
-      name: "tempo",
+      name: "Tempo-18",
       seat: 18,
       price:
         tripType === "roundTrip"
@@ -522,7 +523,8 @@ function BookingForm(props: any) {
                       ? airport === "Pickup"
                         ? "Cab From " + selectedRoute?.place + " Airport"
                         : "Cab To " + selectedRoute?.place + " Airport"
-                      : tripType}
+                      : tripType.charAt(0).toUpperCase() + tripType.slice(1)}
+
                   </div>
                   <div>
                     {RentPlace || selectedRoute?.place}{" "}
@@ -625,14 +627,33 @@ function BookingForm(props: any) {
                             }}
                           >
                             <div className="piccocartext-font">
-                              AC <LuSnowflake/> 
+                              AC{" "}
+                              <PiFanFill
+                                style={{
+                                  width: "20px",
+                                  height: "15",
+                                }}
+                              />
                               <img src="FaSnowflake" alt="" />
                             </div>
                             <div className="piccocartext-font">
                               {item?.seat}Seat
-                              < MdAirlineSeatReclineNormal/>
+                              <MdAirlineSeatReclineNormal
+                                style={{
+                                  width: "20px",
+                                  height: "15",
+                                }}
+                              />
                             </div>
-                            <div className="piccocartext-font">2 Bag</div>
+                            <div className="piccocartext-font">
+                              2 Bag
+                              <BiSolidBalloon
+                                style={{
+                                  width: "20px",
+                                  height: "15px",
+                                }}
+                              />
+                            </div>
                           </div>
                           <div
                             style={{
@@ -660,6 +681,7 @@ function BookingForm(props: any) {
                               onClick={() => handleClick(item)}
                             >
                               Details
+                              <BiChevronDown size={25} />
                             </p>
                           </div>
                           <div
@@ -728,7 +750,7 @@ function BookingForm(props: any) {
                                   // backgroundColor: "blue",
                                   display: "flex",
                                   alignItems: "center",
-                                  justifyContent: "space-between"
+                                  justifyContent: "space-between",
                                 }}
                               >
                                 <input

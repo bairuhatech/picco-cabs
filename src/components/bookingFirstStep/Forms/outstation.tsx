@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "../index.module.scss";
+import {MdTimerOff} from "react-icons/md";
+import {BiTime} from "react-icons/bi"
+
 import { Link, useNavigate } from "react-router-dom";
 import {
   Button,
@@ -69,6 +72,7 @@ export default function OutStation(props: any) {
   }, []);
 
   async function fetchData() {
+    console.log("=====fetchData=");
     try {
       const response = await axios.get(
         "https://piccocabs-server-46642b82a774.herokuapp.com/Pickuplocation/location"
@@ -233,16 +237,16 @@ export default function OutStation(props: any) {
               ]}
             >
               <DatePicker
-                format="YYYY-MM-DD" 
-                placeholder="Pick up date"  
+                format="YYYY-MM-DD"
+                placeholder="Pick up date"
                 onChange={handleDateChange}
                 value={datePickup}
-                defaultValue={dayjs(props?.selectedDate)}
+                // defaultValue={dayjs(props?.selectedDate)}
                 className="form-control border-0 border-bottom rounded-0"
-                disabledDate={(current) =>{
+                disabledDate={(current) => {
                   let customDate = moment().format("YYYY-MM-DD");
                   return current && current < moment(customDate, "YYYY-MM-DD");
-            }} 
+                }}
               />
             </Form.Item>
           </div>
@@ -293,7 +297,9 @@ export default function OutStation(props: any) {
                 className="form-control border-0 rounded-0"
                 placeholder="Pick up time"
                 defaultValue={props?.selectedTime}
+                suffixIcon={<BiTime size={20} />}
               >
+                <MdTimerOff color="red" />
                 {generateTimeOptions().map((timeOption) => (
                   <Option key={timeOption} value={timeOption}>
                     {timeOption}
