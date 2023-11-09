@@ -37,9 +37,8 @@ const Bookings = () => {
   const [take, setTake] = useState(10);
   const [meta, setMeta] = useState<any>({});
   const [comingData, setComingData] = useState<
-  Array<{ pickUpLoc: string; dropOffLoc: string; createdAt: Date }>
->([]);
-
+    Array<{ pickUpLoc: string; dropOffLoc: string; createdAt: Date }>
+  >([]);
 
   const handleStatusChange = (value: any) => {
     setSelectedStatus(value);
@@ -298,6 +297,7 @@ const Bookings = () => {
               <th scope="col">Contact</th>
               <th scope="col">Created At</th>
               <th scope="col">View booking</th>
+              <th scope="col">Action</th>
             </tr>
           </thead>
           <tbody>
