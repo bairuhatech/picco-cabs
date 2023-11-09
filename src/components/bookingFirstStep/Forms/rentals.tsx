@@ -72,7 +72,7 @@ export default function Rentals(props: any) {
     const RentalTime = timeRange;
     const RentalDate = dateRange?.toISOString();
 
-    navigate("/bookingSecondStep", {
+    navigate("/selectCars", {
       state: {
         modesecond,
         RentPlace,

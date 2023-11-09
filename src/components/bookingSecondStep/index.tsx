@@ -155,7 +155,7 @@ function BookingForm(props: any) {
     {
       id: 1,
       Image: smallcarimg,
-      name: "Compact Mini",
+      name: " Mini",
       seat: 4,
       price:
         tripType === "roundTrip"
@@ -521,10 +521,17 @@ function BookingForm(props: any) {
                   <div style={{ fontSize: "12px" }}>
                     {tripType === "airports"
                       ? airport === "Pickup"
-                        ? "Cab From " + selectedRoute?.place + " Airport"
-                        : "Cab To " + selectedRoute?.place + " Airport"
-                      : tripType.charAt(0).toUpperCase() + tripType.slice(1)}
-
+                        ? "Cab From " + (selectedRoute?.place + " Airport")
+                        : "Cab To " + (selectedRoute?.place + " Airport")
+                      : tripType === "oneWay"
+                      ? "One Way"
+                      : tripType === "roundTrip"
+                      ? "Round Trip"
+                      : tripType === "rentals"
+                      ? "Rental"
+                      : tripType === "airports"
+                      ? "Airport"
+                      : null}
                   </div>
                   <div>
                     {RentPlace || selectedRoute?.place}{" "}
@@ -885,20 +892,20 @@ function BookingForm(props: any) {
                                     <div className="pay-DIV">
                                       <HiCurrencyRupee
                                         style={{
-                                          width: "20px",
-                                          height: "30px",
+                                          width: "25px",
+                                          height: "35px",
                                         }}
                                       />
-                                      Pay ₹14/km <br /> after 2142 km
+                                      Pay ₹14/km after 2142 km
                                     </div>
                                     <div className="MultiptlPickup-Div">
                                       <BsCarFrontFill
                                         style={{
-                                          width: "20px",
-                                          height: "30px",
+                                          width: "25px",
+                                          height: "35px",
                                         }}
                                       />{" "}
-                                      Multiple <br /> pickups/drops
+                                      Multiple pickups/drops
                                     </div>
                                     <div className="parking-Div">
                                       <LuParkingCircle

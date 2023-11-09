@@ -51,7 +51,7 @@ export default function OutStation(props: any) {
     const timeOfPickup = timeRange;
     const modes = props.types;
 
-    navigate("/bookingSecondStep", {
+    navigate("/selectCars", {
       state: {
         tripType,
         selectedRoute,

@@ -60,7 +60,7 @@ const routes = createBrowserRouter([
     element: <Login />,
   },
   {
-    path: "bookingSecondStep",
+    path: "selectCars",
     element: <BookingSecondStep />,
   },
   {

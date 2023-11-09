@@ -49,7 +49,7 @@ export default function Airports(props: any) {
     const userto = user_to;
     const modes = props.types;
 
-    navigate("/bookingSecondStep", {
+    navigate("//selectCars", {
       state: {
         Trips,
         selectedRoute,

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Modal, Input, message,Spin } from "antd";
+import { Modal, Input, message, Spin } from "antd";
 import piccocabsimg from "../../assets/images/logo.png";
 import { InputGroup, Form } from "react-bootstrap";
 import "./index.scss";
@@ -38,7 +38,7 @@ const CustomModal = (props: any) => {
   });
 
   const sendOtp = async () => {
-    setIsLoading(true)
+    setIsLoading(true);
     if (phoneNumber.length === 0) {
       setError(true);
     } else if (phoneNumber.length === 12) {
@@ -61,6 +61,7 @@ const CustomModal = (props: any) => {
       // setOtpInput(true);
       setUser(confirmation);
     } catch (err) {
+      message.error("Unable to send OTP");
       setIsLoading(false);
       console.log(err);
     }
@@ -176,7 +177,7 @@ const CustomModal = (props: any) => {
                       OTP send to {phoneNumber}
                     </p>
                   </div>
-                  <InputGroup style={{ width: "70%" }}>
+                  {/* <InputGroup style={{ width: "70%" }}>
                     <InputGroup.Text className="piccocabsinputfield">
                       OTP
                     </InputGroup.Text>
@@ -186,17 +187,30 @@ const CustomModal = (props: any) => {
                       type="number"
                       style={{ backgroundColor: "#e9ecef" }}
                       onChange={(e: any) => setOtp(e.target.value)}
+                      
+                    />
+                  </InputGroup> */}
+                  <InputGroup style={{ width: "70%" }}>
+                    <InputGroup.Text className="piccocabsinputfield">
+                      OTP
+                    </InputGroup.Text>
+                    <Form.Control
+                      className="input-otpfield"
+                      placeholder="Enter OTP"
+                      type="number"
+                      style={{ backgroundColor: "#e9ecef" }}
+                      inputMode="numeric" // Add this line to remove spinner
+                      onChange={(e: any) => setOtp(e.target.value)}
                     />
                   </InputGroup>
+
                   <br />
-                  <Button
-                   text="Submit" onClick={verifyOtp}
-                  />
+                  <Button text="Submit" onClick={verifyOtp} />
                   <span style={{ cursor: "pointer" }}>Resend</span>
                 </div>
               ) : step === "number" ? (
                 <div className="piccocab-inputfield-Div">
-                  <InputGroup style={{ width: "70%" }}>
+                  {/* <InputGroup style={{ width: "70%" }}>
                     <InputGroup.Text className="piccocabsinputfield">
                       +91
                     </InputGroup.Text>
@@ -210,7 +224,24 @@ const CustomModal = (props: any) => {
                         setPhoneNumber(`+91 ${e.target.value}`)
                       }
                     />
+                  </InputGroup> */}
+                  <InputGroup style={{ width: "70%" }}>
+                    <InputGroup.Text className="piccocabsinputfield">
+                      +91
+                    </InputGroup.Text>
+                    <Input
+                      className="form-control"
+                      type="text" // Change the input type to text
+                      defaultValue={phoneNumber}
+                      placeholder="Enter your mobile number"
+                      style={{ backgroundColor: "#e9ecef" }}
+                      onChange={(e: any) =>
+                        setPhoneNumber(`+91 ${e.target.value}`)
+                      }
+                      inputMode="numeric" // Set inputMode to "numeric"
+                    />
                   </InputGroup>
+
                   <br />
                   {/* {!otpInput && ( */}
                   <div className="piccocabssendotp-input">
@@ -218,7 +249,14 @@ const CustomModal = (props: any) => {
                       className="piccocabssendotp-button"
                       text={
                         isLoading ? (
-                          <Spin indicator={<Loading3QuartersOutlined spin style={{color:"white"}}/>} />
+                          <Spin
+                            indicator={
+                              <Loading3QuartersOutlined
+                                spin
+                                style={{ color: "white" }}
+                              />
+                            }
+                          />
                         ) : (
                           "Send OTP"
                         )
@@ -227,11 +265,11 @@ const CustomModal = (props: any) => {
                       disabled={isLoading} // Disable the button while loading
                     />
                     <div id="recaptcha"></div>
-                    {error && (
+                    {/* {error && (
                       <p className="piccocabserrornotification">
                         OTP Sended Succesfully
                       </p>
-                    )}
+                    )} */}
                   </div>
                   {/* )} */}
                   <br />

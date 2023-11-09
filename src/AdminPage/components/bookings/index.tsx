@@ -12,6 +12,9 @@ import { AiOutlineEye } from "react-icons/ai";
 import DriverModal from "../modals/driverModal";
 import { LoadingOutlined } from "@ant-design/icons";
 import { Loading3QuartersOutlined } from "@ant-design/icons";
+import { Popconfirm } from "antd";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash } from "@fortawesome/free-solid-svg-icons/faTrash";
 
 const Bookings = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -123,6 +126,25 @@ const Bookings = () => {
     }
   };
 
+   async function deleteData(id: any) {
+     try {
+       const response = await axios.delete(
+         `https://piccocabs-server-46642b82a774.herokuapp.com/Booking/${id}`
+       ); 
+       // setIsLoading(false);
+
+       setData((prevData: any) =>
+         prevData.filter((item: any) => item.id !== id)
+       );
+       console.log("Delete Response:", response);
+       window.location.reload();
+     } catch (error) {
+       // setIsLoading(false);
+
+       console.error("Error:", error);
+     }
+   }
+   
   const handleFilter = (value: any) => {
     setLoading(true);
     const filteredData = comingData.filter((item) => {
@@ -298,6 +320,7 @@ const Bookings = () => {
               <th scope="col">Contact</th>
               <th scope="col">Created At</th>
               <th scope="col">View booking</th>
+              <th scope="col">Action</th>
             </tr>
           </thead>
           <tbody>
@@ -418,6 +441,22 @@ const Bookings = () => {
                           size={25}
                           onClick={() => setSelectedBooking(item)}
                         />
+                      </td>
+                      <td>
+                        <Popconfirm
+                          placement="left"
+                          title={"are you sure Delete ?"}
+                          description={
+                            "You will not be able to retreive this data."
+                          }
+                          onConfirm={() => deleteData(item.id)}
+                          okText="Yes"
+                          cancelText="No"
+                        >
+                          <button className="btn btn-danger">
+                            <FontAwesomeIcon icon={faTrash} />
+                          </button>
+                        </Popconfirm>
                       </td>
                     </>
                   )}

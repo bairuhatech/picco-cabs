@@ -53,7 +53,7 @@ export default function Roundtrip(props: any) {
     const timeOfPickup = timeRange;
     const modesSecondary = props.types;
 
-    navigate("/bookingSecondStep", {
+    navigate("/selectCars", {
       state: {
         tripType,
         selectedRoute,
