@@ -297,7 +297,7 @@ const Bookings = () => {
               <th scope="col">Contact</th>
               <th scope="col">Created At</th>
               <th scope="col">View booking</th>
-              <th scope="col">Action</th>
+              {/* <th scope="col">Action</th> */}
             </tr>
           </thead>
           <tbody>

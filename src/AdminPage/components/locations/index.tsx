@@ -84,7 +84,7 @@ const LocationsTable = () => {
   return (
     <div className="table-responsive w-100" style={{ height: "100%" }}>
       <div className="d-flex justify-content-between">
-        <h2 className="py-3 ps-2">Locations1234567</h2>
+        <h2 className="py-3 ps-2">Locations</h2>
         <button
           style={{ border: "1px solid green", color: "green" }}
           className="btn btn-picco align-self-center me-3 text-light"
