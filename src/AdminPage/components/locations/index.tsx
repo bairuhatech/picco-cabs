@@ -172,7 +172,6 @@ const LocationsTable = () => {
                       cancelText="No"
                     >
                       <button className="btn btn-danger">
-                        dfghjk
                         <FontAwesomeIcon icon={faTrash} />
                       </button>
                     </Popconfirm>
