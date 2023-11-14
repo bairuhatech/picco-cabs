@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { IoNewspaperOutline } from "react-icons/io5";
 import { MdOutlineSevereCold } from "react-icons/md";
+// import { PiFanFill } from "react-icons/lu";
+import { MdAirlineSeatReclineNormal } from "react-icons/md"
 import smallcarimg from "../../assets/images/car_mini_small.png";
 import sedanimg from "../../assets/images/car_sedan_small.png";
 import suvimage from "../../assets/images/car_suv_small.png";
@@ -11,6 +13,7 @@ import tempo from "../../assets/images/car_tempo.png";
 import { Row, Col, Container } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
 import { CgNotes } from "react-icons/cg";
+import { BiChevronDown } from "react-icons/bi";
 
 import FareModal from "../fareDetails";
 import { LuParkingCircle } from "react-icons/lu";
@@ -29,7 +32,7 @@ import {
   BsCarFrontFill,
 } from "react-icons/bs";
 import { AiFillCar } from "react-icons/ai";
-import { Popover } from "antd";
+import { Popover, Tooltip } from "antd";
 import { HiCurrencyRupee } from "react-icons/hi";
 import "./index.scss";
 import { ImFileText } from "react-icons/im";
@@ -61,6 +64,7 @@ function BookingForm(props: any) {
     setIsDetailVisible(!isDetailVisible);
     setIscheckVisible(item);
   };
+  const title = <div></div>
 
   const handleClickRentals = (val: any, field: number) => {
     setPackage(val);
@@ -151,7 +155,7 @@ function BookingForm(props: any) {
     {
       id: 1,
       Image: smallcarimg,
-      name: "Compact Mini",
+      name: " Mini",
       seat: 4,
       price:
         tripType === "roundTrip"
@@ -183,11 +187,12 @@ function BookingForm(props: any) {
           : Package.kilometer === " 40 Km"
           ? 40
           : selectedRoute?.kilometer,
+      tooltip: "Compact mini: Small and portable.",
     },
     {
       id: 2,
       Image: sedanimg,
-      name: "Sedan",
+      name: "sedan",
       seat: 4,
       price:
         tripType === "roundTrip"
@@ -219,11 +224,12 @@ function BookingForm(props: any) {
           : Package.kilometer === " 40 Km"
           ? 40
           : selectedRoute?.kilometer,
+      tooltip: "Four-door, enclosed passenger car style.",
     },
     {
       id: 3,
       Image: suvimage,
-      name: "Suv",
+      name: "suv",
       seat: 4,
       price:
         tripType === "roundTrip"
@@ -255,11 +261,12 @@ function BookingForm(props: any) {
           : Package.kilometer === " 40 Km"
           ? 40
           : selectedRoute?.kilometer,
+      tooltip: "Sport Utility Vehicle for versatility.",
     },
     {
       id: 4,
       Image: innova,
-      name: "innova",
+      name: "Innova",
       seat: 4,
       price:
         tripType === "roundTrip"
@@ -291,13 +298,14 @@ function BookingForm(props: any) {
           : Package.kilometer === " 40 Km"
           ? 40
           : selectedRoute?.kilometer,
+      tooltip: "Toyota's versatile MPV (Multi-Purpose Vehicle).",
     },
     {
       id: 5,
       Image: crysta,
       name: "Crysta",
       seat: 4,
-      price: 
+      price:
         tripType === "roundTrip"
           ? selectedRoute?.crystaPrice * 2 + 300
           : tripType === "rentals" && Package.kilometer === "80 Km"
@@ -327,11 +335,12 @@ function BookingForm(props: any) {
           : Package.kilometer === " 40 Km"
           ? 40
           : selectedRoute?.kilometer,
+      tooltip: "Toyota Innova Crysta: An upgraded version.",
     },
     {
       id: 6,
       Image: tempo,
-      name: "Tempo",
+      name: "Tempo-12",
       seat: 12,
       price:
         tripType === "roundTrip"
@@ -363,11 +372,12 @@ function BookingForm(props: any) {
           : Package.kilometer === " 40 Km"
           ? 40
           : selectedRoute?.kilometer,
+      tooltip: "Tempo: Commercial passenger-carrying vehicle.",
     },
     {
       id: 7,
       Image: tempo,
-      name: "tempo",
+      name: "Tempo-18",
       seat: 18,
       price:
         tripType === "roundTrip"
@@ -399,6 +409,7 @@ function BookingForm(props: any) {
           : Package.kilometer === " 40 Km"
           ? 40
           : selectedRoute?.kilometer,
+      tooltip: "Tempo with 18 seats: Large passenger vehicle.",
     },
   ];
 
@@ -510,9 +521,17 @@ function BookingForm(props: any) {
                   <div style={{ fontSize: "12px" }}>
                     {tripType === "airports"
                       ? airport === "Pickup"
-                        ? "Cab From " + selectedRoute?.place + " Airport"
-                        : "Cab To " + selectedRoute?.place + " Airport"
-                      : tripType}
+                        ? "Cab From " + (selectedRoute?.place + " Airport")
+                        : "Cab To " + (selectedRoute?.place + " Airport")
+                      : tripType === "oneWay"
+                      ? "One Way"
+                      : tripType === "roundTrip"
+                      ? "Round Trip"
+                      : tripType === "rentals"
+                      ? "Rental"
+                      : tripType === "airports"
+                      ? "Airport"
+                      : null}
                   </div>
                   <div>
                     {RentPlace || selectedRoute?.place}{" "}
@@ -580,14 +599,19 @@ function BookingForm(props: any) {
                           <div className="nameContainer">
                             <div className="picco-mini">{item?.name}</div>
                             <div className="piccomini-info">
-                              info
+                              {/* info */}
                               <Popover
                                 placement="rightTop"
                                 // title={text}
                                 // content={minicontent}
                                 // arrow={mergedArrow}
                               >
-                                <BsInfoCircle size={18} color="#d3d3d3" />
+                                <Tooltip
+                                  placement="bottom"
+                                  title={item.tooltip}
+                                >
+                                  <BsInfoCircle size={18} color="#d3d3d3" />
+                                </Tooltip>
                               </Popover>
                             </div>
                           </div>
@@ -609,11 +633,34 @@ function BookingForm(props: any) {
                               justifyContent: "center",
                             }}
                           >
-                            <div className="piccocartext-font">AC</div>
+                            <div className="piccocartext-font">
+                              AC{" "}
+                              <PiFanFill
+                                style={{
+                                  width: "20px",
+                                  height: "15",
+                                }}
+                              />
+                              <img src="FaSnowflake" alt="" />
+                            </div>
                             <div className="piccocartext-font">
                               {item?.seat}Seat
+                              <MdAirlineSeatReclineNormal
+                                style={{
+                                  width: "20px",
+                                  height: "15",
+                                }}
+                              />
                             </div>
-                            <div className="piccocartext-font">2 Bag</div>
+                            <div className="piccocartext-font">
+                              2 Bag
+                              <BiSolidBalloon
+                                style={{
+                                  width: "20px",
+                                  height: "15px",
+                                }}
+                              />
+                            </div>
                           </div>
                           <div
                             style={{
@@ -641,6 +688,7 @@ function BookingForm(props: any) {
                               onClick={() => handleClick(item)}
                             >
                               Details
+                              <BiChevronDown size={25} />
                             </p>
                           </div>
                           <div
@@ -669,8 +717,11 @@ function BookingForm(props: any) {
                           </div>
                         </div>
                         {formModal && (
-                      <CustomModal isModalOpen={show} handleCancel={Cancel} />
-                    )}
+                          <CustomModal
+                            isModalOpen={show}
+                            handleCancel={Cancel}
+                          />
+                        )}
                         <div>
                           <div className="button-Div">
                             <button
@@ -703,6 +754,10 @@ function BookingForm(props: any) {
                                   width: "50%",
                                   height: "50%",
                                   padding: "5px",
+                                  // backgroundColor: "blue",
+                                  display: "flex",
+                                  alignItems: "center",
+                                  justifyContent: "space-between",
                                 }}
                               >
                                 <input
@@ -729,9 +784,7 @@ function BookingForm(props: any) {
                                   className={`btn btn-outline-success border border-2 border-success`}
                                   htmlFor="btnradio10"
                                 >
-                                  <p style={{ fontSize: "13px" }}>
-                                    INCLUSION
-                                  </p>
+                                  <p style={{ fontSize: "13px" }}>INCLUSION</p>
                                 </label>
                                 {/* /* //*** */}
 
@@ -816,7 +869,7 @@ function BookingForm(props: any) {
                                   <div className="inclusion-DIV">
                                     <div className="Basefare-DIV">
                                       <BsFuelPumpDieselFill />
-                                      BASEFARE
+                                      Base Fare
                                     </div>
                                     <div className="Driver-Div">
                                       <AiFillCar className="car-img" />
@@ -839,8 +892,8 @@ function BookingForm(props: any) {
                                     <div className="pay-DIV">
                                       <HiCurrencyRupee
                                         style={{
-                                          width: "20px",
-                                          height: "30px",
+                                          width: "25px",
+                                          height: "35px",
                                         }}
                                       />
                                       Pay ₹14/km after 2142 km
@@ -848,8 +901,8 @@ function BookingForm(props: any) {
                                     <div className="MultiptlPickup-Div">
                                       <BsCarFrontFill
                                         style={{
-                                          width: "20px",
-                                          height: "30px",
+                                          width: "25px",
+                                          height: "35px",
                                         }}
                                       />{" "}
                                       Multiple pickups/drops
@@ -917,7 +970,7 @@ function BookingForm(props: any) {
                               )}
                             </div>
                           ) : null}
-                          </>
+                        </>
                       )}
                     </>
                   );

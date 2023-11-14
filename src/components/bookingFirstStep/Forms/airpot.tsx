@@ -15,6 +15,7 @@ import API from "../../../config/api";
 import axios from "axios";
 import moment from "moment";
 import dayjs from "dayjs";
+import {BiTime} from 'react-icons/bi';
 // import { AutoComplete } from "antd";
 // import Autocomplete from "react-google-autocomplete";
 const { RangePicker } = DatePicker;
@@ -48,7 +49,7 @@ export default function Airports(props: any) {
     const userto = user_to;
     const modes = props.types;
 
-    navigate("/bookingSecondStep", {
+    navigate("//selectCars", {
       state: {
         Trips,
         selectedRoute,
@@ -307,9 +308,7 @@ export default function Airports(props: any) {
                 },
               ]}
             >
-              <Select/>
-              
-          
+              <Select />
             </Form.Item>
           </div>
           <div
@@ -334,7 +333,7 @@ export default function Airports(props: any) {
                 placeholder="Pick up date"
                 onChange={handleDateChange}
                 value={datePickup}
-                defaultValue={dayjs(props?.selectedDate)}
+                // defaultValue={dayjs(props?.selectedDate)}
                 className="form-control border-0 border-bottom rounded-0"
                 disabledDate={(current) =>
                   current && current < moment(today).startOf("day")
@@ -378,6 +377,7 @@ export default function Airports(props: any) {
                 placeholder="Pick up time"
                 defaultValue={props?.selectedTime}
                 allowClear
+                suffixIcon={<BiTime size={20} />}
               >
                 {generateTimeOptions().map((timeOption) => (
                   <Option key={timeOption} value={timeOption}>

@@ -238,7 +238,7 @@ const Login = () => {
         </div>
         <div className="input_container">
           <label className="input_label">Password</label>
-          <img src={Password} alt="PasswordIcon" className="icon" />
+          {/* <img src={Password} alt="PasswordIcon" className="icon" /> */}
           <input
             placeholder="Password"
             title="Input title"

@@ -7,6 +7,7 @@ import { Option } from "antd/es/mentions";
 import { DatePicker } from "antd";
 import moment from "moment";
 import dayjs from 'dayjs';
+import {BiTime} from 'react-icons/bi'
 
 
 
@@ -71,7 +72,7 @@ export default function Rentals(props: any) {
     const RentalTime = timeRange;
     const RentalDate = dateRange?.toISOString();
 
-    navigate("/bookingSecondStep", {
+    navigate("/selectCars", {
       state: {
         modesecond,
         RentPlace,
@@ -205,7 +206,7 @@ export default function Rentals(props: any) {
                 placeholder="Pick up date"
                 onChange={handleDateChange}
                 value={datePickup}
-                defaultValue={dayjs(props?.selectedDate)}
+                // defaultValue={dayjs(props?.selectedDate)}
                 className="form-control border-0 border-bottom rounded-0"
                 disabledDate={(current) =>
                   current && current < moment(today).startOf("day")
@@ -230,6 +231,7 @@ export default function Rentals(props: any) {
                 className="form-control border-0 rounded-0"
                 placeholder="Pick up time"
                 defaultValue={props.selectedTime}
+                suffixIcon={<BiTime size={20} />}
               >
                 {generateTimeOptions().map((timeOption) => (
                   <Option key={timeOption} value={timeOption}>

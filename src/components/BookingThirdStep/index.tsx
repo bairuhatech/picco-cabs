@@ -3,7 +3,6 @@ import { Form, Input, Button, message, Spin, Modal } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import smallcarimg from "../../assets/images/car_mini_small.png";
 import "./index.scss";
-import BookingForm from "../bookingSecondStep";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { useLocation } from "react-router-dom";
 import moment from "moment";
