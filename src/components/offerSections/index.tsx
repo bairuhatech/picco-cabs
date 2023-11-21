@@ -38,13 +38,16 @@ const OfferSections = () => {
         breakpoint: 480,
         settings: {
           slidesToShow: 1,
+          arrows: false,
         },
       },
     ],
   };
   return (
     <div className="container section" id="offer-section">
-         <h2 id='offers' className='text-center mt-md-5 mt-4'>Great <span style={{ color: "#6bb546" }}>Offers</span> For You</h2>
+      <h2 id="offers" className="text-center mt-md-5 mt-4">
+        Great <span style={{ color: "#6bb546" }}>Offers</span> For You
+      </h2>
       <h2 className="text-center mt-4">
         Picco's <span style={{ color: "#6bb546" }}>Fleet</span>
       </h2>
@@ -62,8 +65,8 @@ const OfferSections = () => {
           </div>
           <h5 className="cardTitle">Executive Sedan</h5>
           <p>
-            Comfortable Cars for Family & Touring with adequate boot space and
-            ample entertainment.
+            Comfortable family cars for touring, with spacious boot and
+            entertainment
           </p>
         </div>
         <div className="card">

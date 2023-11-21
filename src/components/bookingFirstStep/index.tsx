@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import classes from "./index.module.scss";
 import OneWay from "./Forms/outstation";
 import Airports from "./Forms/airpot";
@@ -6,8 +6,11 @@ import Container from "react-bootstrap/esm/Container";
 import "./index.module.scss";
 import Rentals from "./Forms/rentals";
 import Roundtrip from "./Forms/roundTrip";
+import { Col, Row } from "react-bootstrap";
 
 const FirstStep = () => {
+  const [width, setWidth] = React.useState("");
+
   const [formType, setFormType] = useState("outstations");
 
   const radioBtn1ClickHandler = () => {
@@ -28,6 +31,24 @@ const FirstStep = () => {
 
   const baseUrl = document.baseURI.includes("booking");
 
+  const Views: any = {
+    outstations: OneWay,
+    rentals: Rentals,
+    roundTrip: Roundtrip,
+    airports: Airports,
+  };
+  const CurrentView = Views[formType];
+  console.log("CurrentView", CurrentView);
+
+  useEffect(() => {
+    const MediaQuary = window.matchMedia("(max-width:600px)");
+    if (MediaQuary.matches) {
+      setWidth("97%");
+    } else {
+      setWidth("80%");
+    }
+  }, []);
+
   return (
     <Container
       fluid
@@ -41,13 +62,11 @@ const FirstStep = () => {
           backgroundColor: "#ffff",
           borderRadius: "12px",
           height: "fit-content",
-          width: "80%",
+          width: width,
           padding: "20px",
           boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px",
         }}
-        // className={`rounded-3 bg-light ${
-        //   classes["banner-position-absolute"]
-        // } ${!baseUrl ? "shadow" : ""}`}
+        id="anshab"
       >
         <div className="d-flex justify-content-center">
           <div
@@ -55,98 +74,114 @@ const FirstStep = () => {
             role="group"
             aria-label="Basic radio toggle button group"
           >
-            <input
-              type="radio"
-              className="btn-check"
-              name="btnradio"
-              id="btnradio1"
-              autoComplete="off"
-              defaultChecked
-              onClick={radioBtn1ClickHandler}
-            />
-            <label
+            <Row
               style={{
-                width: "150px",
-                fontWeight: 500,
-                fontSize: "15px",
-                height: "35px",
+                display: "flex",
               }}
-              className={`btn btn-outline-success border border-2 border-success`}
-              htmlFor="btnradio1"
             >
-              ONE WAY
-            </label>
-            <input
-              type="radio"
-              className="btn-check"
-              name="btnradio"
-              id="btnradio3"
-              autoComplete="off"
-              onClick={radioBtn4ClickHandler}
-            />
-            <label
-              style={{
-                width: "150px",
-                fontWeight: 500,
-                fontSize: "15px",
-                height: "35px",
-              }}
-              className="btn btn-outline-success border border-2 border-success "
-              htmlFor="btnradio3"
-            >
-              ROUND TRIP
-            </label>
-            <input
-              type="radio"
-              className="btn-check"
-              name="btnradio"
-              id="btnradio2"
-              autoComplete="off"
-              onClick={radioBtn2ClickHandler}
-            />
-            <label
-              style={{
-                width: "150px",
-                fontWeight: 500,
-                fontSize: "15px",
-                height: "35px",
-              }}
-              className="btn btn-outline-success border border-2 border-success "
-              htmlFor="btnradio2"
-            >
-              RENTALS
-            </label>
-            <input
-              type="radio"
-              className="btn-check"
-              name="btnradio"
-              id="btnradio4"
-              autoComplete="off"
-              onClick={radioBtn3ClickHandler}
-            />
-            <label
-              style={{
-                width: "150px",
-                fontWeight: 500,
-                fontSize: "15px",
-                height: "35px",
-              }}
-              className="btn btn-outline-success border border-2 border-success "
-              htmlFor="btnradio4"
-            >
-              AIRPORTS
-            </label>
+              <Col
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+              >
+                <input
+                  type="radio"
+                  className="btn-check"
+                  name="formType"
+                  id="oneWay"
+                  autoComplete="off"
+                  defaultChecked
+                  onClick={radioBtn1ClickHandler}
+                />
+                <label
+                  style={{
+                    width: "150px",
+                    fontWeight: 500,
+                    fontSize: "15px",
+                    height: "35px",
+                  }}
+                  className={`btn btn-outline-success border border-2 border-success`}
+                  htmlFor="oneWay"
+                >
+                  ONE WAY
+                </label>
+                &nbsp; &nbsp;
+                <input
+                  type="radio"
+                  className="btn-check"
+                  name="formType"
+                  id="roundTrip"
+                  autoComplete="off"
+                  onClick={radioBtn4ClickHandler}
+                />
+                <label
+                  style={{
+                    width: "150px",
+                    fontWeight: 500,
+                    fontSize: "15px",
+                    height: "35px",
+                  }}
+                  className="btn btn-outline-success border border-2 border-success "
+                  htmlFor="roundTrip"
+                >
+                  ROUND TRIP
+                </label>
+              </Col>
+              <Col
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <input
+                  type="radio"
+                  className="btn-check"
+                  name="formType"
+                  id="rentals"
+                  autoComplete="off"
+                  onClick={radioBtn2ClickHandler}
+                />
+                <label
+                  style={{
+                    width: "150px",
+                    fontWeight: 500,
+                    fontSize: "15px",
+                    height: "35px",
+                  }}
+                  className="btn btn-outline-success border border-2 border-success "
+                  htmlFor="rentals"
+                >
+                  RENTALS
+                </label>
+                &nbsp; &nbsp;
+                <input
+                  type="radio"
+                  className="btn-check"
+                  name="formType"
+                  id="airports"
+                  autoComplete="off"
+                  onClick={radioBtn3ClickHandler}
+                />
+                <label
+                  style={{
+                    width: "150px",
+                    fontWeight: 500,
+                    fontSize: "15px",
+                    height: "35px",
+                  }}
+                  className="btn btn-outline-success border border-2 border-success "
+                  htmlFor="airports"
+                >
+                  AIRPORTS
+                </label>
+              </Col>
+            </Row>
           </div>
         </div>
-        {formType === "outstations" ? (
-          <OneWay types={formType} />
-        ) : formType === "rentals" ? (
-          <Rentals types={formType} />
-        ) : formType === "roundTrip" ? (
-          <Roundtrip types={formType} />
-        ) : formType === "airports" ? (
-          <Airports types={formType} />
-        ) : null}
+        <CurrentView />
+        {/* Render the corresponding form based on the selected formType */}
       </div>
     </Container>
   );
