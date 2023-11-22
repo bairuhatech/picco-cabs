@@ -65,8 +65,8 @@ const OfferSections = () => {
           </div>
           <h5 className="cardTitle">Executive Sedan</h5>
           <p>
-            Comfortable family cars for touring, with spacious boot and
-            entertainment
+            Comfortable family cars for touring, featuring spacious boot and
+            entertainment.
           </p>
         </div>
         <div className="card">

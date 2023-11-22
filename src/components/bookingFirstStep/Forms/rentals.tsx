@@ -252,8 +252,8 @@ export default function Rentals(props: any) {
     // </div>
     <div className="mt-3">
       <Form form={form} onFinish={onFinish}>
-        <div className="rental-container mx-0 gy-3 row justify-content-around">
-          <div className="col-md-3 col-12 d-flex flex-column justify-content-between">
+        <div className="rental-container mx-0 gy-3 row">
+          <div className="col-md-3 col-12">
             <label htmlFor="inputEmail4" className="form-label fw-bold">
               FROM
             </label>
@@ -285,8 +285,7 @@ export default function Rentals(props: any) {
               />
             </Form.Item>
           </div>
-
-          <div className="col-md-3 col-12 d-flex flex-column justify-content-between">
+          <div className="col-md-3 col-12">
             <label htmlFor="inputEmail4" className="form-label fw-bold">
               PICK UP
             </label>
@@ -311,8 +310,7 @@ export default function Rentals(props: any) {
               />
             </Form.Item>
           </div>
-
-          <div className="col-md-3 col-12 d-flex flex-column justify-content-between">
+          <div className="col-md-3 col-12">
             <label htmlFor="inputEmail4" className="form-label fw-bold">
               PICK UP AT
             </label>
