@@ -65,15 +65,14 @@ const OfferSections = () => {
           </div>
           <h5 className="cardTitle">Executive Sedan</h5>
           <p>
-            Comfortable family cars for touring, featuring spacious boot and
-            entertainment.
+            Comfortable family cars for touring with spacious and entertainment
           </p>
         </div>
         <div className="card">
           <div className="fleet_car">
             <img src={Car3} className="img-fluid m-auto" alt="car_suv" />
           </div>
-          <h5 className="cardTitle)">Innova</h5>
+          <h5 className="cardTitle">Innova</h5>
           <p>Big Space , Big Trips with more people and more things.</p>
         </div>
         <div className="card">
@@ -82,8 +81,7 @@ const OfferSections = () => {
           </div>
           <h5 className="cardTitle">Innova crysta</h5>
           <p>
-            People's most favorite ,most safest and Most Comfortable vehicle
-            ever made.
+            People's favorite, safest, and most comfortable vehicle ever made.
           </p>
         </div>
         <div className="card">
@@ -96,8 +94,7 @@ const OfferSections = () => {
           </div>
           <h5 className="cardTitle">Compact Mini</h5>
           <p>
-            Travel with the king of roads. Vehicle built with Luxury and Super
-            Comfort.
+            Travel with the king of roads. Vehicle built with Luxury Comfort.
           </p>
         </div>
         <div className="card">

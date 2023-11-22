@@ -250,10 +250,129 @@ export default function Rentals(props: any) {
     //     </div>
     //   </Form>
     // </div>
+    // <div className="mt-3">
+    //   <Form form={form} onFinish={onFinish}>
+    //     <div className="rental-container mx-0 gy-3 row">
+    //       <div className="col-md-3 col-12">
+    //         <label htmlFor="inputEmail4" className="form-label fw-bold">
+    //           FROM
+    //         </label>
+    //         <Form.Item
+    //           name="rentalPlace"
+    //           className="fw-bold"
+    //           rules={[
+    //             {
+    //               required: true,
+    //               message: "required",
+    //             },
+    //           ]}
+    //         >
+    //           <Select
+    //             className="CustomSelect"
+    //             showSearch
+    //             defaultActiveFirstOption={false}
+    //             placeholder={"Start Place"}
+    //             defaultValue={props?.selectedProps?.place}
+    //             suffixIcon={null}
+    //             filterOption={false}
+    //             onSearch={handleSearch}
+    //             onChange={handleFromChange}
+    //             notFoundContent={null}
+    //             options={filteredOptions.map((d: any) => ({
+    //               value: d.place,
+    //               label: d.place,
+    //             }))}
+    //           />
+    //         </Form.Item>
+    //       </div>
+    //       <div className="col-md-3 col-12">
+    //         <label htmlFor="inputEmail4" className="form-label fw-bold">
+    //           PICK UP
+    //         </label>
+    //         <Form.Item
+    //           name="dateRange"
+    //           rules={[
+    //             {
+    //               required: true,
+    //               message: "required",
+    //             },
+    //           ]}
+    //         >
+    //           <DatePicker
+    //             format="YYYY-MM-DD"
+    //             placeholder="Pick up date"
+    //             onChange={handleDateChange}
+    //             value={datePickup}
+    //             className="form-control border-0 border-bottom rounded-0"
+    //             disabledDate={(current) =>
+    //               current && current < moment(today).startOf("day")
+    //             }
+    //           />
+    //         </Form.Item>
+    //       </div>
+    //       <div className="col-md-3 col-12">
+    //         <label htmlFor="inputEmail4" className="form-label fw-bold">
+    //           PICK UP AT
+    //         </label>
+    //         <Form.Item
+    //           name="timeRange"
+    //           rules={[
+    //             {
+    //               required: true,
+    //               message: "required",
+    //             },
+    //           ]}
+    //         >
+    //           <Select
+    //             className="form-control border-0 rounded-0"
+    //             placeholder="Pick up time"
+    //             defaultValue={props.selectedTime}
+    //             suffixIcon={<BiTime size={20} />}
+    //           >
+    //             {generateTimeOptions().map((timeOption) => (
+    //               <Option key={timeOption} value={timeOption}>
+    //                 {timeOption}
+    //               </Option>
+    //             ))}
+    //           </Select>
+    //         </Form.Item>
+    //       </div>
+    //     </div>
+    //     <div className="d-flex justify-content-center position-relative">
+    //       <Form.Item
+    //         style={{
+    //           width: "100%",
+    //           display: "flex",
+    //           justifyContent: "center",
+    //           position: "absolute",
+    //         }}
+    //       >
+    //         <Button
+    //           style={{
+    //             position: "absolute",
+    //             top: "0px",
+    //             left: "50%", // Center the button
+    //             transform: "translateX(-50%)", // Center the button
+    //             backgroundColor: "#198754",
+    //             color: "#ffff",
+    //             width: "200px",
+    //             height: "40px",
+    //             outline: "none",
+    //             border: "none",
+    //             fontWeight: "bold",
+    //           }}
+    //           htmlType="submit"
+    //         >
+    //           Search Cabs
+    //         </Button>
+    //       </Form.Item>
+    //     </div>
+    //   </Form>
+    // </div>
     <div className="mt-3">
       <Form form={form} onFinish={onFinish}>
         <div className="rental-container mx-0 gy-3 row">
-          <div className="col-md-3 col-12">
+          <div className="col-lg-4 col-md-6 col-12 mb-3">
             <label htmlFor="inputEmail4" className="form-label fw-bold">
               FROM
             </label>
@@ -285,7 +404,7 @@ export default function Rentals(props: any) {
               />
             </Form.Item>
           </div>
-          <div className="col-md-3 col-12">
+          <div className="col-lg-4 col-md-6 col-12 mb-3">
             <label htmlFor="inputEmail4" className="form-label fw-bold">
               PICK UP
             </label>
@@ -310,7 +429,7 @@ export default function Rentals(props: any) {
               />
             </Form.Item>
           </div>
-          <div className="col-md-3 col-12">
+          <div className="col-lg-4 col-md-6 col-12 mb-3">
             <label htmlFor="inputEmail4" className="form-label fw-bold">
               PICK UP AT
             </label>
@@ -349,10 +468,6 @@ export default function Rentals(props: any) {
           >
             <Button
               style={{
-                position: "absolute",
-                top: "0px",
-                left: "50%", // Center the button
-                transform: "translateX(-50%)", // Center the button
                 backgroundColor: "#198754",
                 color: "#ffff",
                 width: "200px",
