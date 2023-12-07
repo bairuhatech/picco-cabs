@@ -31,7 +31,6 @@
 //   height: 55%;
 //   display: flex;
 //   font-family: "Montserrat", "Poppins", sans-serif;
-
 //   justify-content: end;
 // }
 // .bookingbutton-Div {
@@ -46,7 +45,6 @@
 //   display: flex;
 //   justify-content: end;
 //   font-family: "Montserrat", "Poppins", sans-serif;
-
 //   align-items: center;
 // }
 // .button-Div {
@@ -69,7 +67,7 @@
 //   height: 25%;
 //   display: flex;
 //   justify-content: end;
-//   border-top: solid 1px #c8c8c8;
+//   border-top: solid 1px #C8C8C8;
 // }
 // .seatcontent-Div {
 //   height: 100%;
@@ -102,26 +100,21 @@
 //   height: 57%;
 //   padding: 10px;
 //   display: flex;
-
 //   justify-content: space-between;
 //   flex-direction: column;
 //   //   background-color: cadetblue;
 // }
-
 // @media screen and (max-width: 576px) {
 //   .booking-Div {
 //     width: 100%;
 //   }
 // }
-
-
-
-
 .booking-Div {
-  width: 550px;
+  width: 500px;
   border-radius: 12px;
   // height: 400px;
   padding: 20px;
+  background-color: #fff;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; // background-color: grey;
 }
 .BookingDivMain {
@@ -129,6 +122,8 @@
   height: 100%;
   padding: 20px;
   display: flex;
+  background-image: url(../../assets/images/taxidriver.jpg);
+  background-size: cover;
   // background-color: lightgray;
   // background-color: #fff;
 }
@@ -172,7 +167,7 @@
 }
 .nameinput {
   height: 60% !important;
-  width: 395px !important;
+  width: 450px !important;
   border-left: none;
   border-right: none;
   border-top: none;
@@ -195,7 +190,7 @@
 }
 .Emailinput {
   height: 60%;
-  width: 393px !important;
+  width: 450px !important;
   border-left: none;
   border-right: none;
   border-top: none;
@@ -216,7 +211,7 @@
 }
 .Mobileinput {
   height: 60%;
-  width: 393px !important;
+  width: 450px !important;
   border-left: none;
   border-right: none;
   border-top: none;
@@ -235,7 +230,7 @@
 .button {
   width: 100% !important;
   height: 40px !important;
-  background-color: aqua;
+  background-color: #68af44;
 }
 .Commentinput-Div {
   width: 100%;
@@ -243,10 +238,9 @@
   display: flex;
   align-items: center;
 }
-
 .Commentinput {
   height: 60%;
-  width: 393px !important;
+  width: 450px !important;
   border-left: none;
   // margin: 10px;
   border-right: none;
@@ -256,7 +250,6 @@
 // .label {
 //   width: 68px !important;
 // }
-
 .css-dev-only-do-not-override-txh9fw.ant-form-item
   .ant-form-item-label
   > label {
@@ -270,25 +263,13 @@
   width: 65px;
 }
 .SecondCard-Div {
-  width: 50%;
-  height: 70%;
+  width: 62%;
+  height: 100%;
   display: flex;
-
   justify-content: center;
-
   align-items: center;
-  // background-color: #68af44;
+  // background-color: #68AF44;
 }
-// .Secondcard {
-//   width: 900px;
-//   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-//   border-top-left-radius: 10px;
-//   border-top-right-radius: 10px;
-//   // background-color: aqua;
-//   border-radius: 8px;
-//   height: 400px;
-// }
-
 .Bookingdetail-Div {
   width: 100%;
   height: 71%;
@@ -297,7 +278,6 @@
   color: white;
   font-weight: 600;
   align-items: center;
-
   // border-radius: 5px;
 }
 .PickUp-Div {
@@ -351,14 +331,53 @@
 .secondcard {
   width: 50%;
   height: 50%;
-  background-color: aqua;
+  // background-color: aqua;
 }
-.exclusion-Div {
-  display: flex;
-  justify-content: center;
-}
+// .exclusion-Div {
+//   display: flex;
+//   justify-content: center;
+// }
 .Secondcard {
-  height: 90%;
-  width: 900px;
+  height: 70%;
+  width: 477px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   border-radius: 15px;
+}
+.SecondCard-BOx {
+  width: 80%;
+  height: 100vh;
+}
+.Secondcard-Main {
+  width: 60%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // background-color: aqua;
+}
+// .form-raw {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   width: 100%;
+//   background-color: aqua;
+// }
+// .form-col1 {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   background-color: #68AF44;
+// }
+// .form-col2 {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   background-color: aqua;
+//   // background-color: aliceblue;
+// }
+@media screen and (max-width: 576px) {
+  .BookingDivMain {
+    display: flex;
+    flex-direction: column;
+  }
 }

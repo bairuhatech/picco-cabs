@@ -13,8 +13,7 @@ import { NavLink } from "react-router-dom";
 import "./navbar.scss";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { FaCar } from 'react-icons/fa';
-
+import { FaCar } from "react-icons/fa";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -51,13 +50,13 @@ const SidebarNavigation = () => {
   };
   const setNavOngoing = () => {
     dispatch(setNavOngoings());
-  }
+  };
   const setNavCompletedTrip = () => {
     dispatch(setNavCompletedTrips());
-  }
+  };
   const setNavCancelledTrip = () => {
     dispatch(setNavCancelledTrips());
-  }
+  };
   const setNavOffer = () => {
     dispatch(setNavOffers());
   };
@@ -112,11 +111,6 @@ const SidebarNavigation = () => {
                 icon="address-book"
                 iconSize="lg"
                 className="nav-link nav-link-hover"
-                // suffix={
-                //   <CDBBadge className="rounded-pill p-0 m-0 px-3 bg-light text-dark fw-bold">
-                //     6
-                //   </CDBBadge>
-                // }
               >
                 Bookings
               </CDBSidebarMenuItem>
@@ -169,7 +163,7 @@ const SidebarNavigation = () => {
                 iconSize="lg"
                 className="nav-link"
               >
-                Cancelled Trips
+                Cancelled Trips34os
               </CDBSidebarMenuItem>
             </NavLink>
             <NavLink
@@ -203,7 +197,7 @@ const SidebarNavigation = () => {
                 className="nav-link"
                 iconSize="lg"
               >
-                Locations
+                Locations1234567
               </CDBSidebarMenuItem>
             </NavLink>
             <NavLink
@@ -236,11 +230,6 @@ const SidebarNavigation = () => {
                 icon="chart-line"
                 className="nav-link"
                 iconSize="lg"
-                // suffix={
-                //   <CDBBadge className="rounded-pill p-0 m-0 px-3 bg-light text-dark fw-bold">
-                //     4
-                //   </CDBBadge>
-                // }
               >
                 Booking Attempts
               </CDBSidebarMenuItem>
@@ -258,11 +247,6 @@ const SidebarNavigation = () => {
                 icon=" fa-street-view "
                 className="nav-link"
                 iconSize="lg"
-                // suffix={
-                //   <CDBBadge className="rounded-pill p-0 m-0 px-3 bg-light text-dark fw-bold">
-                //     2
-                //   </CDBBadge>
-                // }
               >
                 Login Attempts
               </CDBSidebarMenuItem>
@@ -320,11 +304,6 @@ const SidebarNavigation = () => {
           </CDBSidebarMenu>
         </CDBSidebarContent>
 
-        {/* <CDBSidebarFooter className='text-center'>
-          <div className="sidebar-btn-wrapper" style={{ padding: "20px 5px" }}>
-            Sidebar Footer
-          </div>
-        </CDBSidebarFooter> */}
         <CDBSidebarHeader>
           <div className="container align-items-end ">
             <p className="text-wrap fw-normal" style={{ fontSize: "12px" }}>
