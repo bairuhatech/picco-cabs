@@ -66,7 +66,7 @@ const BookingAttempts = () => {
               <Loading3QuartersOutlined
                 style={{
                   fontSize: 20,
-                  color: "rgb(107, 181, 70)",
+                  color: "#6BB546",
                   marginRight: 4,
                 }}
                 spin

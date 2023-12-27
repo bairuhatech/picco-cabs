@@ -177,19 +177,6 @@ const CustomModal = (props: any) => {
                       OTP send to {phoneNumber}
                     </p>
                   </div>
-                  {/* <InputGroup style={{ width: "70%" }}>
-                    <InputGroup.Text className="piccocabsinputfield">
-                      OTP
-                    </InputGroup.Text>
-                    <Form.Control
-                      className="input-otpfield"
-                      placeholder="Enter OTP"
-                      type="number"
-                      style={{ backgroundColor: "#e9ecef" }}
-                      onChange={(e: any) => setOtp(e.target.value)}
-                      
-                    />
-                  </InputGroup> */}
                   <InputGroup style={{ width: "70%" }}>
                     <InputGroup.Text className="piccocabsinputfield">
                       OTP
@@ -210,21 +197,6 @@ const CustomModal = (props: any) => {
                 </div>
               ) : step === "number" ? (
                 <div className="piccocab-inputfield-Div">
-                  {/* <InputGroup style={{ width: "70%" }}>
-                    <InputGroup.Text className="piccocabsinputfield">
-                      +91
-                    </InputGroup.Text>
-                    <Input
-                      className="form-control"
-                      type="number"
-                      defaultValue={phoneNumber}
-                      placeholder="Enter your mobile number"
-                      style={{ backgroundColor: "#e9ecef" }}
-                      onChange={(e: any) =>
-                        setPhoneNumber(`+91 ${e.target.value}`)
-                      }
-                    />
-                  </InputGroup> */}
                   <InputGroup style={{ width: "70%" }}>
                     <InputGroup.Text className="piccocabsinputfield">
                       +91

@@ -5,35 +5,18 @@
   justify-content: center;
   padding: 12px;
   background-size: cover;
-  // background-image: url("../../assets/images/book_bg.jpg");
 }
 .cardMain-div2 {
   width: 100%;
   height: 100vh;
   display: flex;
-  // justify-content: end;
-  // padding: 12px;
   background-size: cover;
-  // background-image: url("../../assets/images/book_bg.jpg");
 }
-// .subHeader {
-//   background-color: hsl(0, 0%, 100%);
-//   width: 100%;
-//   border-radius: 7px;
-//   padding: 20px;
-//   margin-bottom: -28px;
-//   display: flex;
-//   flex-wrap: wrap;
-//   margin-top: 15px;
-//   box-shadow: #92ca92 0px 0px 10px 0px;
-//   border: 0px solid #92ca92;
-// }
 .subHeader {
   background-color: hsl(0, 0%, 100%);
   width: 96%;
   border-radius: 7px;
   padding: 20px;
-  // margin-bottom: -28px;
   display: flex;
   flex-wrap: wrap;
   margin-top: 15px;
@@ -41,20 +24,11 @@
   border: 0px solid #92ca92;
   margin-left: 20px;
 }
-// .innerHead {
-//   // background-color: red;
-//   // height: 100%;
-//   width: 50%;
-//   display: flex;
-
-//   align-items: flex-end;
-// }
 .card-Div {
   width: 30%;
   height: fit-content;
   padding: 20px;
   padding-bottom: 100px;
-  // background-color: #fff;
   border-radius: 5px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px;
 }
@@ -85,7 +59,6 @@
   display: flex;
   font-family: "Montserrat", "Poppins", sans-serif;
   background-color: "pink";
-
   justify-content: end;
 }
 .seats-Div {
@@ -137,7 +110,7 @@
   border: none;
   border-radius: 5px;
   color: #fff;
-  background-color: rgb(107, 181, 70);
+  background-color: #6BB546;
 }
 .selectcar-Div {
   width: 100%;
@@ -150,7 +123,6 @@
 .piccocartext-font {
   font-weight: 500;
 }
-
 .innerHead {
   height: 100%;
   width: 50%;
@@ -165,7 +137,6 @@
   display: flex;
   align-items: flex-end;
 }
-
 .ModifyButton-Div {
   width: 49%;
   height: 100%;
@@ -174,7 +145,6 @@
   align-items: flex-end;
   background-color: #f7fff9;
 }
-
 .PickpDate-Div {
   width: 50%;
   height: 100%;
@@ -184,7 +154,6 @@
   font-weight: 600;
   font-size: 13px;
 }
-
 .PickupTime-Div {
   height: 100%;
   width: 50%;
@@ -193,7 +162,6 @@
   align-items: flex-end;
   font-size: 13px;
 }
-
 .modifyButton {
   width: 45%;
   height: 50%;
@@ -203,22 +171,17 @@
   color: rgb(107, 181, 70);
   background-color: #ffff;
 }
-
 .Container-Card {
   width: 100%;
-  // height: 540px;
   padding: 20px;
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  // padding-bottom: 100px;button-Div
   border-radius: 5px;
-  // box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px;
 }
 .inner-Card {
   height: 120px !important;
-  // box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px;
   background-color: #ffff;
   padding: 15px;
   border: 1px solid #198754;
@@ -232,13 +195,11 @@
   border: 0px solid #92ca92;
   width: 100%;
 }
-
 .nameContainer {
   display: flex;
   flex-direction: column;
   padding-top: 17px;
 }
-
 .cardnew {
   width: 100%;
   max-width: 70%;
@@ -255,47 +216,39 @@
   box-shadow: #92ca92 0px 0px 10px 0px;
   margin-bottom: 17px;
 }
-
 .cardnew:hover {
   cursor: pointer;
   transform: scale(1.05);
 }
-
 .img {
   width: 100px;
   height: 70px;
   margin-left: 10px;
   border-radius: 10px;
 }
-
 .cardnew:hover > .img {
   transition: 0.5s ease-in-out;
   background: linear-gradient(#9198e5, #712020);
 }
-
 .textBox {
   width: calc(100% - 90px);
   margin-left: 10px;
   color: white;
   font-family: "Poppins" sans-serif;
 }
-
 .textContent {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-
 .span {
   font-size: 10px;
 }
-
 .h1 {
   font-size: 16px;
   color: #000;
   font-weight: bold;
 }
-
 .p {
   font-size: 12px;
   color: #000;
@@ -317,7 +270,6 @@
   width: 100%;
   height: 60px;
   display: flex;
-  // background-color: aqua;
 }
 .pay-DIV {
   width: 32%;
@@ -326,7 +278,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  // background-color: #9198e5;
 }
 .MultiptlPickup-Div {
   width: 32%;
@@ -335,7 +286,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  // background-color: aqua;
 }
 .parking-Div {
   width: 36%;
@@ -344,13 +294,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  // background-color: azure;
 }
 .facilities-DIV {
   width: 100%;
   height: 60px;
   display: flex;
-  // background-color: #9198e5;
 }
 .seates-Div {
   width: 32%;
@@ -359,7 +307,6 @@
   display: flex;
   justify-content: end;
   align-items: center;
-  // background-color: aqua;
 }
 .bags-Div {
   width: 32%;
@@ -368,7 +315,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  // background-color: beige;
 }
 .AC_Div {
   width: 36%;
@@ -377,13 +323,11 @@
   justify-content: start;
   align-items: center;
   height: 38px;
-  // background-color: burlywood;
 }
 .inclusion-DIV {
   width: 100%;
   height: 40px;
   display: flex;
-  // background-color: aqua;
 }
 .Basefare-DIV {
   width: 25%;
@@ -392,7 +336,6 @@
   justify-content: center;
   align-items: center;
   height: 40px;
-  // background-color: #9198e5;
 }
 .Driver-Div {
   width: 30%;
@@ -401,7 +344,6 @@
   justify-content: center;
   align-items: center;
   height: 40px;
-  // background-color: bisque;
 }
 .StateTax-Div {
   width: 30%;
@@ -410,7 +352,6 @@
   justify-content: center;
   align-items: center;
   height: 40px;
-  // background-color: yellow;
 }
 .GST-Div {
   width: 30%;
@@ -419,7 +360,6 @@
   justify-content: center;
   align-items: center;
   height: 40px;
-  // background-color: red;
 }
 .car-img {
   width: 35px !important;
@@ -437,32 +377,12 @@
   width: 100%;
   height: 68px;
   font-size: 13px;
-  // background-color: #9198e5;
 }
-// @media (max-width: 568px) {
-//   .inner-Card {
-//     width: 100% !important;
-//   }
-// }
-
-// @media (max-width: 567px) and (min-width: 768px) {
-//   .inner-Card {
-//     width: 100% !important;
-//   }
-// }
-
-// @media (max-width: 769px) and (min-width: 991px) {
-// }
-// .inner-Card {
-//   width: 100% !important;
-// }
-
 @media screen and (max-width: 768px) {
   .innerHead {
     width: 50%;
     font-size: 10px !important;
   }
-
   .ModifyButton-Div {
     width: 100%;
   }
@@ -470,7 +390,6 @@
     font-size: 10px !important;
   }
 }
-
 @media screen and (max-width: 576px) {
   .card-Div {
     width: 100%;
@@ -529,21 +448,17 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  // height: 80px;
-  // box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
 .bkngscndStp-innrDiv {
   width: 420px;
   height: 45px;
   display: flex;
   align-items: center;
-  // border: 1px solid #6bb546;
   background-color: #bfbfbf;
 }
 .bkngScndStp-innerDiv1 {
   height: 45px;
   width: 140px;
-  // background-color: yellow;
   border-radius: 8px 0px 0px 8px;
   display: flex;
   justify-content: center;
@@ -556,8 +471,7 @@
 .bkngScndStp-innerDiv1-chng {
   height: 45px;
   width: 140px;
-  background-color: rgb(25, 135, 84);
-  // border-radius: 8px 0px 0px 8px;
+  background-color: #6BB546;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -569,7 +483,6 @@
 .bkngScndStp-innerDiv2 {
   height: 45px;
   width: 140px;
-  // background-color: rgb(107, 181, 70);
   border-right: 2px solid rgb(0 0 0);
   border-left: 2px solid rgb(0 0 0);
   display: flex;
@@ -583,7 +496,7 @@
 .bkngScndStp-innerDiv2-chng {
   height: 45px;
   width: 140px;
-  background-color: rgb(25, 135, 84);
+  background-color: #6BB546;
   border-right: 2px solid rgb(179, 179, 179);
   border-left: 2px solid rgb(179, 179, 179);
   display: flex;
@@ -597,8 +510,6 @@
 .bkngScndStp-innerDiv3 {
   height: 45px;
   width: 140px;
-  // background-color: yellow;
-  // border-radius: 0px 8px 8px 0px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -610,8 +521,7 @@
 .bkngScndStp-innerDiv3-chng {
   height: 45px;
   width: 140px;
-  background-color: rgb(25, 135, 84);
-  // border-radius: 0px 8px 8px 0px;
+  background-color: #6BB546;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -629,7 +539,7 @@
 .bkngscndStp-curveDivSub {
   width: 60px;
   height: 45px;
-  background-color: rgb(25, 135, 84);
+  background-color: #6BB546;
   border-radius: 0% 0% 0% 100%;
 }
 .bkngscndStp-curveDiv2 {
@@ -641,7 +551,7 @@
 .bkngscndStp-curveDiv2Sub {
   width: 60px;
   height: 45px;
-  background-color: rgb(25, 135, 84);
+  background-color: #6BB546;
   border-radius: 0% 0% 100% 0%;
 }
 .DetailModal-Main {
@@ -650,17 +560,14 @@
   background-color: #fff;
   box-shadow: gray -1px 5px 8px 1px;
   background-color: #fff;
-
   border-radius: 10px;
   margin-top: -23px;
-
   margin-bottom: 23px;
 }
 .Exclusion-item-Div {
   width: 100%;
   height: 60px;
   display: flex;
-  // background-color: aqua;
 }
 .pay-DIV {
   width: 32%;
@@ -669,7 +576,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  // background-color: #9198e5;
 }
 .MultiptlPickup-Div {
   width: 32%;
@@ -678,7 +584,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  // background-color: aqua;
 }
 .parking-Div {
   width: 36%;
@@ -687,13 +592,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  // background-color: azure;
 }
 .facilities-DIV {
   width: 100%;
   height: 60px;
   display: flex;
-  // background-color: #9198e5;
 }
 .seates-Div {
   width: 32%;
@@ -702,7 +605,6 @@
   display: flex;
   justify-content: end;
   align-items: center;
-  // background-color: aqua;
 }
 .bags-Div {
   width: 32%;
@@ -711,7 +613,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  // background-color: beige;
 }
 .AC_Div {
   width: 36%;
@@ -720,13 +621,11 @@
   justify-content: start;
   align-items: center;
   height: 38px;
-  // background-color: burlywood;
 }
 .inclusion-DIV {
   width: 100%;
   height: 40px;
   display: flex;
-  // background-color: aqua;
 }
 .Basefare-DIV {
   width: 25%;
@@ -735,7 +634,6 @@
   justify-content: center;
   align-items: center;
   height: 40px;
-  // background-color: #9198e5;
 }
 .Driver-Div {
   width: 30%;
@@ -744,7 +642,6 @@
   justify-content: center;
   align-items: center;
   height: 40px;
-  // background-color: bisque;
 }
 .StateTax-Div {
   width: 30%;
@@ -753,7 +650,6 @@
   justify-content: center;
   align-items: center;
   height: 40px;
-  // background-color: yellow;
 }
 .GST-Div {
   width: 30%;
@@ -762,7 +658,6 @@
   justify-content: center;
   align-items: center;
   height: 40px;
-  // background-color: red;
 }
 .car-img {
   width: 35px !important;
@@ -780,7 +675,4 @@
   width: 100%;
   height: 68px;
   font-size: 13px;
-  // background-color: #9198e5;
-  // display: flex;
-  // align-items: center;
 }

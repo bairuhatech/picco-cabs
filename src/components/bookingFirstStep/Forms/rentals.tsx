@@ -353,7 +353,7 @@ export default function Rentals(props: any) {
                 top: "0px",
                 left: "50%", // Center the button
                 transform: "translateX(-50%)", // Center the button
-                backgroundColor: "#198754",
+                backgroundColor: "#6BB546",
                 color: "#ffff",
                 width: "200px",
                 height: "40px",

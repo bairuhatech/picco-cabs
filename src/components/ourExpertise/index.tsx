@@ -55,7 +55,7 @@ const OurExpertise = (props: any) => {
         <Row>
           <Col lg={12} md={12} className="py-3">
             <div className="center-heading">
-              <h2 className="text-center" style={{ color: "#6bb546" }}>
+              <h2 className="text-center" style={{ color: "#6BB546" }}>
                 Our Expertise
               </h2>
               <h3 className="my-3">Our record and achievements since 2015</h3>

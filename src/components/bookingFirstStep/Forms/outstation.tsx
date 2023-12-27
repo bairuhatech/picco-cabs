@@ -39,7 +39,6 @@ export default function OutStation(props: any) {
   const [datePickup, setDatePickup] = useState<any>(new Date);
   const [pickupDateString, setpickupDateString] = useState<any>("");
 
-
   // const [onClose, setOnclose] = useState(false)
 
   const onFinish = async (val: any) => {
@@ -66,7 +65,6 @@ export default function OutStation(props: any) {
       props.onClose();
     }
   };
-
   useEffect(() => {
     fetchData();
   }, []);
@@ -142,14 +140,10 @@ export default function OutStation(props: any) {
   
     return timeOptions;
   };
-
   const handleDateChange = (date:any,d:any) => {
     setDatePickup(date)
     setpickupDateString(d)
   }
-
-  
-
   return (
     <div className="mt-3">
       <Form form={form} onFinish={onFinish}>
@@ -327,7 +321,7 @@ export default function OutStation(props: any) {
                 top: "0px",
                 // right: -50,
                 left: -100,
-                backgroundColor: "#198754",
+                backgroundColor: "#6BB546",
                 color: "#ffff",
                 width: "200px",
                 height: "40px",
