@@ -18,7 +18,8 @@ const CancelledTrips = () => {
   async function fetchData() {
     try {
       const response = await axios.get(
-        "https://piccocabs-server-46642b82a774.herokuapp.com/Booking/cancelledTrips"
+        API.BASE_URL + API.GET_BOOKING_CANCELLEDTRIPS,
+        // "https://piccocabs-server-46642b82a774.herokuapp.com/Booking/cancelledTrips"
       );
       setIsLoading(false);
 

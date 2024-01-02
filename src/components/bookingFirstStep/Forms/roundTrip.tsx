@@ -76,7 +76,8 @@ export default function Roundtrip(props: any) {
   async function fetchData() {
     try {
       const response = await axios.get(
-        "https://piccocabs-server-46642b82a774.herokuapp.com/Pickuplocation/location"
+        API.BASE_URL + API.GET_PICKUP_LOCATION
+        // "https://piccocabs-server-46642b82a774.herokuapp.com/Pickuplocation/location"
       );
       setData(response.data);
       let listingData = filterUniqueNames(response.data, "place");

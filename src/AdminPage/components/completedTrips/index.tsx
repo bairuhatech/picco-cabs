@@ -18,7 +18,8 @@ const CompletedTrips = () => {
   async function fetchData() {
     try {
       const response = await axios.get(
-        "https://piccocabs-server-46642b82a774.herokuapp.com/Booking/tripCompleted"
+        API.BASE_URL + API.GET_BOOKING_TRIPCOMPLETED,
+        // "https://piccocabs-server-46642b82a774.herokuapp.com/Booking/tripCompleted"
       );
       setIsLoading(false);
 

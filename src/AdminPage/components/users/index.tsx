@@ -20,7 +20,8 @@ const Users = () => {
   async function fetchData() {
     try {
       const response = await axios.get(
-        "https://piccocabs-server-46642b82a774.herokuapp.com/User/get"
+        API.BASE_URL + API.GET_USER
+        // "https://piccocabs-server-46642b82a774.herokuapp.com/User/get"
       );
       setIsLoading(false);
 

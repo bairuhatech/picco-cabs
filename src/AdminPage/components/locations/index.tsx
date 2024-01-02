@@ -8,6 +8,7 @@ import AddLocationModal from "../modals/addNewLocation";
 import "font-awesome/css/font-awesome.min.css";
 import { Loading3QuartersOutlined } from "@ant-design/icons";
 import { Spin, Popconfirm } from "antd";
+import API from "../../../config/api";
 
 const LocationsTable = () => {
   const [selected, setSelected] = useState<any>({});
@@ -26,7 +27,8 @@ const LocationsTable = () => {
 
     try {
       const response = await axios.get(
-        "https://piccocabs-server-46642b82a774.herokuapp.com/Pickuplocation/location"
+        API.BASE_URL + API.GET_PICKUP_LOCATION,
+        // "https://piccocabs-server-46642b82a774.herokuapp.com/Pickuplocation/location"
       );
       setData(response.data);
       setIsLoading(false);
@@ -42,7 +44,8 @@ const LocationsTable = () => {
   async function deleteData(id: any) {
     try {
       const response = await axios.delete(
-        `https://piccocabs-server-46642b82a774.herokuapp.com/Pickuplocation/${id}`
+        API.BASE_URL + API.DELETE_PICKUP_LOCATION + `${id}`,
+        // `https://piccocabs-server-46642b82a774.herokuapp.com/Pickuplocation/${id}`
       );
       // setIsLoading(false);
 

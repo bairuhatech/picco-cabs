@@ -3,6 +3,7 @@ import { Modal, Button, Form } from "react-bootstrap";
 import axios from "axios";
 import { Spin } from "antd";
 import { Loading3QuartersOutlined } from "@ant-design/icons";
+import API from "../../../config/api";
 
 function AddLocationModal(props: any) {
   const [from, setFrom] = useState(props.from || "");
@@ -42,12 +43,14 @@ function AddLocationModal(props: any) {
     try {
       if (props.purpose === "Edit") {
         await axios.put(
-          `https://piccocabs-server-46642b82a774.herokuapp.com/Pickuplocation/${props.locationId}`,
+          API.BASE_URL + API.UPDATE_PICKUP_LOCATION + `${props.locationId}`,
+          // `https://piccocabs-server-46642b82a774.herokuapp.com/Pickuplocation/${props.locationId}`,
           newData
         );
       } else {
         await axios.post(
-          "https://piccocabs-server-46642b82a774.herokuapp.com/Pickuplocation",
+          API.BASE_URL + API.CREATE_PICKUP_LOCATION,
+          // "https://piccocabs-server-46642b82a774.herokuapp.com/Pickuplocation",
           newData
         );
       }

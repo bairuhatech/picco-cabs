@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons/faTrash";
 import { Loading3QuartersOutlined } from "@ant-design/icons";
 import { Spin, Popconfirm } from "antd";
+import API from "../../../config/api";
 
 const BookingAttempts = () => {
   const [data, setData] = useState<any>([]);
@@ -19,7 +20,8 @@ const BookingAttempts = () => {
   async function fetchData() {
     try {
       const response = await axios.get(
-        "https://piccocabs-server-46642b82a774.herokuapp.com/booking-attempt/BookingAttempt"
+        API.BASE_URL + API.GET_BOOKING_ATTEMPT,
+        // "https://piccocabs-server-46642b82a774.herokuapp.com/booking-attempt/BookingAttempt"
       );
       setIsLoading(false);
 
@@ -34,7 +36,8 @@ const BookingAttempts = () => {
   async function deleteData(id: any) {
     try {
       const response = await axios.delete(
-        `https://piccocabs-server-46642b82a774.herokuapp.com/booking-attempt/${id}`
+        API.BASE_URL + API.DELETE_BOOKING_ATTEMPT,
+        // `https://piccocabs-server-46642b82a774.herokuapp.com/booking-attempt/${id}`
       );
       setData((prevData: any) =>
         prevData.filter((item: any) => item.id !== id)

@@ -11,6 +11,7 @@ import "font-awesome/css/font-awesome.min.css";
 import AddDriverModal from "../modals/addNewDriver";
 import Item from "antd/es/list/Item";
 import { Loading3QuartersOutlined } from "@ant-design/icons";
+import API from "../../../config/api";
 
 const DriversTable = () => {
   const [selected, setSelected] = useState<any>({});
@@ -32,7 +33,8 @@ const DriversTable = () => {
   async function fetchData() {
     try {
       const response = await axios.get(
-        "https://piccocabs-server-46642b82a774.herokuapp.com/Driver/location"
+        API.BASE_URL + API.GET_DRIVER_LOCATION
+        // "https://piccocabs-server-46642b82a774.herokuapp.com/Driver/location"
       );
       setIsLoading(false);
 
@@ -50,7 +52,8 @@ const DriversTable = () => {
   async function deleteData(id: any) {
     try {
       const response = await axios.delete(
-        `https://piccocabs-server-46642b82a774.herokuapp.com/Driver/${id}`
+        API.BASE_URL + API.DELETE_DRIVER + `${id}`,
+        // `https://piccocabs-server-46642b82a774.herokuapp.com/Driver/${id}`
       );
       setData((prevData: any) =>
         prevData.filter((item: any) => item.id !== id)
@@ -96,7 +99,9 @@ const DriversTable = () => {
     if (value) {
       try {
         const response = await axios.put(
-          "https://piccocabs-server-46642b82a774.herokuapp.com/Driver/" +
+          API.BASE_URL + API.UPDATE_DRIVER,
+          // "https://piccocabs-server-46642b82a774.herokuapp.com/Driver/" 
+          +
             updatingStatus.id +
             "",
           reqBody

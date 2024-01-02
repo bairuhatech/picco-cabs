@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import axios from "axios";
 import { Spin, message } from "antd";
+import API from "../../../config/api";
 
 function AddDriverModal(props: any) {
 	const [carType, setCarType] = useState(props.CarType || "");
@@ -33,12 +34,14 @@ function AddDriverModal(props: any) {
 		try {
 			if (props.purpose === "Edit") {
 				await axios.put(
-					`https://piccocabs-server-46642b82a774.herokuapp.com/Driver/${props.locationId}`,
+					API.BASE_URL + API.UPDATE_DRIVER + `${props.locationId}`,
+					// `https://piccocabs-server-46642b82a774.herokuapp.com/Driver/${props.locationId}`,
 					newData
 				);
 			} else {
 				await axios.post(
-					"https://piccocabs-server-46642b82a774.herokuapp.com/Driver",
+					API.BASE_URL + API.CREATE_DRIVER,
+					// "https://piccocabs-server-46642b82a774.herokuapp.com/Driver",
 					newData
 				);
 			}

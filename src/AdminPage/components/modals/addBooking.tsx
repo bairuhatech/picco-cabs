@@ -3,6 +3,7 @@ import { Modal, Button, Form } from "react-bootstrap";
 import axios from "axios";
 import { Spin } from "antd";
 import { Loading3QuartersOutlined } from "@ant-design/icons";
+import API from "../../../config/api";
 
 function AddBookingModal(props: any) {
   const [bookType, setBookType] = useState(props.CarType || "");
@@ -60,7 +61,8 @@ function AddBookingModal(props: any) {
 
     try {
       await axios.post(
-        "https://piccocabs-server-46642b82a774.herokuapp.com/Booking",
+        API.BASE_URL + API.CREATE_BOOKING,
+        // "https://piccocabs-server-46642b82a774.herokuapp.com/Booking",
         newData
       );
 

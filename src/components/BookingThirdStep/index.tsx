@@ -10,6 +10,8 @@ import piccologo from "../../assets/images/logo.png";
 import { Loading3QuartersOutlined } from "@ant-design/icons";
 import FormItem from "antd/es/form/FormItem";
 import { Col, Container } from "react-bootstrap";
+import API from "../../config/api";
+
 
 const BookingThird = (props: any) => {
   const [show, setShow] = useState(true);
@@ -82,7 +84,8 @@ const BookingThird = (props: any) => {
         status: "Trip Created",
       };
       const response = await fetch(
-        "https://piccocabs-server-46642b82a774.herokuapp.com/Booking",
+        API.BASE_URL + API.CREATE_BOOKING,
+        // "https://piccocabs-server-46642b82a774.herokuapp.com/Booking",
         {
           method: "POST",
           headers: {
@@ -131,7 +134,8 @@ const BookingThird = (props: any) => {
         };
 
         const errorResponse = await fetch(
-          "https://piccocabs-server-46642b82a774.herokuapp.com/booking-attempt",
+          API.BASE_URL + API.CREATE_BOOKINGATTEMPT,
+          // "https://piccocabs-server-46642b82a774.herokuapp.com/booking-attempt",
           {
             method: "POST",
             headers: {

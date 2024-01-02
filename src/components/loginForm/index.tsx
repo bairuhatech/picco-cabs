@@ -14,6 +14,7 @@ import {
   signOut,
 } from "firebase/auth";
 import { Loading3QuartersOutlined } from "@ant-design/icons";
+import API from "../../config/api";
 
 const CustomModal = (props: any) => {
   const [otp, setOtp] = useState("");
@@ -85,7 +86,8 @@ const CustomModal = (props: any) => {
         };
 
         const errorResponse = await fetch(
-          "https://piccocabs-server-46642b82a774.herokuapp.com/Loginattempts",
+          API.BASE_URL + API.CREATE_LOGINATTEMPTS,
+          // "https://piccocabs-server-46642b82a774.herokuapp.com/Loginattempts",
           {
             method: "POST",
             headers: {
@@ -123,7 +125,7 @@ const CustomModal = (props: any) => {
       console.log("Request Body:", reqBody);
 
       const response = await fetch(
-        "https://piccocabs-server-46642b82a774.herokuapp.com/User/find-by-number",
+       API.BASE_URL + API.CREATE_USER_FIND,
         {
           method: "POST",
           headers: {

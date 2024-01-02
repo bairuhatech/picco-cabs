@@ -86,7 +86,8 @@ const Bookings = () => {
   async function fetchData() {
     try {
       const response = await axios.get(
-        "https://piccocabs-server-46642b82a774.herokuapp.com/Driver/location"
+        API.BASE_URL + API.GET_DRIVER_LOCATION,
+        // "https://piccocabs-server-46642b82a774.herokuapp.com/Driver/location"
       );
       setData(response.data);
     } catch (error) {
@@ -96,7 +97,8 @@ const Bookings = () => {
   async function fetchCars() {
     try {
       const response = await axios.get(
-        "https://piccocabs-server-46642b82a774.herokuapp.com/Cars/Details"
+        API.BASE_URL + API.GET_CARS_DETAILS,
+        // "https://piccocabs-server-46642b82a774.herokuapp.com/Cars/Details"
       );
       setCars(response.data);
     } catch (error) {
@@ -112,7 +114,9 @@ const Bookings = () => {
     if (value) {
       try {
         const response = await axios.put(
-          "https://piccocabs-server-46642b82a774.herokuapp.com/Booking/" +
+          API.BASE_URL + API.UPDATE_ALL_BOOKING
+          // "https://piccocabs-server-46642b82a774.herokuapp.com/Booking/"
+           +
             updatingStatus.id +
             "",
           reqBody
@@ -128,7 +132,8 @@ const Bookings = () => {
    async function deleteData(id: any) {
      try {
        const response = await axios.delete(
-         `https://piccocabs-server-46642b82a774.herokuapp.com/Booking/${id}`
+         API.BASE_URL + API.DELETE_ALL_BOOKING
+         //  `https://piccocabs-server-46642b82a774.herokuapp.com/Booking/${id}`
        ); 
        // setIsLoading(false);
 
