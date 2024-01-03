@@ -1,6 +1,6 @@
 const API = {
-  // BASE_URL: "https://piccocabs-server-46642b82a774.herokuapp.com",
-  BASE_URL: "http://localhost:8080",
+  BASE_URL: "https://piccocabs-server-46642b82a774.herokuapp.com",
+  // BASE_URL: "http://localhost:8080",
 
   // GET_ALL_BOOKINGS: "/Booking/booking",
   GET_ALL_BOOKINGS: "/Booking/",
@@ -21,15 +21,17 @@ const API = {
   CREATE_BOOKING: "/Booking",
   CREATE_CARS: "/Cars",
   DELETE_CARS: "/Cars/",
-  CREATE_DRIVER: "/Driver",
-  CREATE_PICKUP_LOCATION: "/Pickuplocation",
-  CREATE_OFFERS: "/Offers",
   DELETE_OFFERS: "/Offers/",
   GET_BOOKING_ONGOING: "/Booking/ongoing",
   GET_USER: "/User/get",
+
   CREATE_BOOKINGATTEMPT: "/booking-attempt",
   CREATE_LOGINATTEMPTS: "/Loginattempts",
   CREATE_USER_FIND: "/User/find-by-number",
+  CREATE_IMAGE_UPLODER: "/img_compress/compress",
+  CREATE_OFFERS: "/Offers",
+  CREATE_DRIVER: "/Driver",
+  CREATE_PICKUP_LOCATION: "/Pickuplocation",
 
   UPDATE_ALL_BOOKING: "/Booking/",
   UPDATE_DRIVER: "/Driver/",
