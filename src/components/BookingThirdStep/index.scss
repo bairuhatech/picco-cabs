@@ -1,131 +1,14 @@
-// .booking-Div {
-//   width: 450px;
-//   height: 90%;
-//   padding: 20px;
-//   background-color: #fff;
-//   border-radius: 5px;
-//   margin: 20px;
-//   box-shadow: rgba(160, 160, 189, 0.25) 0px 2px 5px -1px;
-// }
-// .booking-sub {
-//   width: 100%;
-//   height: 90%;
-//   padding: 20px;
-//   background-color: #fff;
-//   border-radius: 5px;
-//   margin: 20px;
-//   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px;
-// }
-// .card {
-//   width: 100%;
-//   height: 31%;
-//   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px;
-//   padding: 15px;
-// }
-// .picco-mini {
-//   width: 100%;
-//   height: 20%;
-// }
-// .piccoimg-Div {
-//   width: 100%;
-//   height: 55%;
-//   display: flex;
-//   font-family: "Montserrat", "Poppins", sans-serif;
-//   justify-content: end;
-// }
-// .bookingbutton-Div {
-//   width: 68%;
-//   height: 100%;
-//   display: flex;
-//   flex-direction: column;
-// }
-// .faredetail-Div {
-//   height: 100%;
-//   width: 100%;
-//   display: flex;
-//   justify-content: end;
-//   font-family: "Montserrat", "Poppins", sans-serif;
-//   align-items: center;
-// }
-// .button-Div {
-//   height: 100%;
-//   width: 100%;
-//   display: flex;
-//   justify-content: end;
-//   border-radius: 8px;
-// }
-// .button {
-//   height: 75%;
-//   width: 34%;
-//   border: none;
-//   border-radius: 5px;
-//   color: #fff;
-//   background-color: rgb(107, 181, 70);
-// }
-// .seats-Div {
-//   width: 100%;
-//   height: 25%;
-//   display: flex;
-//   justify-content: end;
-//   border-top: solid 1px #C8C8C8;
-// }
-// .seatcontent-Div {
-//   height: 100%;
-//   width: 50%;
-//   display: flex;
-//   justify-content: space-between;
-//   align-items: center;
-// }
-// .price-Div {
-//   height: 100%;
-//   width: 50%;
-// }
-// .price-Div {
-//   height: 100%;
-//   width: 50%;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-// }
-// .TravallersDetail-Div {
-//   width: 100%;
-//   height: 15%;
-//   display: flex;
-//   justify-content: center;
-//   align-items: end;
-//   //   background-color: lightgray;
-// }
-// .input-Div {
-//   width: 100%;
-//   height: 57%;
-//   padding: 10px;
-//   display: flex;
-//   justify-content: space-between;
-//   flex-direction: column;
-//   //   background-color: cadetblue;
-// }
-// @media screen and (max-width: 576px) {
-//   .booking-Div {
-//     width: 100%;
-//   }
-// }
 .booking-Div {
   width: 500px;
   border-radius: 12px;
-  // height: 400px;
   padding: 20px;
-  background-color: #fff;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; // background-color: grey;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; 
 }
 .BookingDivMain {
   width: 100%;
   height: 100%;
   padding: 20px;
   display: flex;
-  background-image: url(../../assets/images/taxidriver.jpg);
-  background-size: cover;
-  // background-color: lightgray;
-  // background-color: #fff;
 }
 .ContactPickUp-Div {
   width: 100%;
@@ -134,28 +17,21 @@
   justify-content: center;
   align-items: center;
   margin-bottom: 10px;
-  // background-color: aqua;
 }
 .pickup-Div {
   width: 50%;
   height: 85%;
-  // display: flex;
-  // justify-content: center;
-  // align-items: center;
   text-align: center;
-  border-bottom: solid 1px #68af44;
-  border-top: solid 1px #68af44;
+  border-bottom: solid 1px #6BB546;
+  border-top: solid 1px #6BB546;
   border-left: none;
   border-right: none;
-  // background-color: beige;
 }
 .NameInput-Div {
   width: 100%;
   height: 15%;
   display: flex;
   align-items: center;
-  // background-color: red;
-  // justify-content: center;
 }
 .Name-Div {
   height: 100%;
@@ -163,7 +39,6 @@
   display: flex;
   font-size: 15px;
   align-items: center;
-  // background-color: black;
 }
 .nameinput {
   height: 60% !important;
@@ -171,15 +46,13 @@
   border-left: none;
   border-right: none;
   border-top: none;
-  // background-color: blue;
-  border-bottom: solid 1px #68af44;
+  border-bottom: solid 1px #6BB546;
 }
 .EmailInput-Div {
   width: 100%;
   height: 15%;
   display: flex;
   align-items: center;
-  // background-color: aqua;
 }
 .Email-Div {
   height: 100%;
@@ -194,7 +67,7 @@
   border-left: none;
   border-right: none;
   border-top: none;
-  border-bottom: solid 1px #68af44;
+  border-bottom: solid 1px #6BB546;
 }
 .MobileInput-Div {
   width: 100%;
@@ -215,17 +88,12 @@
   border-left: none;
   border-right: none;
   border-top: none;
-  border-bottom: solid 1px #68af44;
+  border-bottom: solid 1px #6BB546;
 }
 .button-Div {
   width: 100% !important;
   height: 50px !important;
   font-size: 18px;
-  // display: flex;
-  // background-color: aqua;
-  // justify-content: center;
-  // align-items: center;
-  // background-color: aqua;
 }
 .button {
   width: 100% !important;
@@ -242,14 +110,10 @@
   height: 60%;
   width: 450px !important;
   border-left: none;
-  // margin: 10px;
   border-right: none;
   border-top: none;
-  border-bottom: solid 1px #68af44;
+  border-bottom: solid 1px #6BB546;
 }
-// .label {
-//   width: 68px !important;
-// }
 .css-dev-only-do-not-override-txh9fw.ant-form-item
   .ant-form-item-label
   > label {
@@ -268,7 +132,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  // background-color: #68AF44;
 }
 .Bookingdetail-Div {
   width: 100%;
@@ -278,20 +141,17 @@
   color: white;
   font-weight: 600;
   align-items: center;
-  // border-radius: 5px;
 }
 .PickUp-Div {
   width: 100%;
   height: 25%;
   display: flex;
   align-items: center;
-  // background-color: aqua;
 }
 .Cartype-Div {
   width: 100%;
   align-items: center;
   height: 25%;
-  // background-color: yellow;
 }
 .TotelFare-Div {
   width: 100%;
@@ -302,7 +162,6 @@
   width: 100%;
   height: 25%;
   align-items: center;
-  // background-color: aqua;
 }
 .bookingdetail-Div {
   width: 100%;
@@ -315,18 +174,13 @@
   align-items: center;
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
-  background-color: #68af44;
+  background-color: #6BB546;
 }
 .content-Div {
   width: 100%;
   height: 10%;
   font-weight: 500;
-  // background-color: aqua;
-  // display: flex;
-  // align-items: center;
-  // justify-content: center;
   padding: 5px;
-  // background-color: aqua;
 }
 .secondcard {
   width: 50%;

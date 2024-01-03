@@ -9,7 +9,7 @@ const TestimonalSection = () => (
     <section>
       <div className="text-center my-3">
         <h2 className="font-weight-bold display-4 ">
-          What Our <span style={{ color: "#6bb546" }}>Clients</span> Say?
+          What Our <span style={{ color: "#6BB546" }}>Clients</span> Say?
         </h2>
       </div>
       <div className="row">
@@ -17,7 +17,7 @@ const TestimonalSection = () => (
           <div className="bg-light position-relative px-3 mt-5 text-center py-5">
             <div
               className="my-2"
-              style={{ fontSize: "30px", color: "#6bb546" }}
+              style={{ fontSize: "30px", color: "#6BB546" }}
             >
               <FontAwesomeIcon icon={faQuoteRight} />
             </div>
@@ -32,10 +32,9 @@ const TestimonalSection = () => (
             <div
               className="font-weight-bold circle text-white rounded-circle d-flex align-items-center justify-content-center mx-auto position-relative border border-white mt-4"
               style={{
-                backgroundColor: "#6bb546",
+                backgroundColor: "#6BB546",
                 width: "60px",
                 backgroundSize: "cover",
-                // height: "60px",
                 backgroundImage: `url(${ManImg})`,
               }}
             >
@@ -56,7 +55,7 @@ const TestimonalSection = () => (
         </div>
         <div className="col-md-4">
           <div
-            style={{ backgroundColor: "#6bb546" }}
+            style={{ backgroundColor: "#6BB546" }}
             className="position-relative px-3 mt-5 text-center py-5"
           >
             <div className="my-2 text-white" style={{ fontSize: "30px" }}>
@@ -75,7 +74,7 @@ const TestimonalSection = () => (
               style={{
                 width: "60px",
                 height: "60px",
-                backgroundColor: "#6bb546",
+                backgroundColor: "#6BB546",
               }}
             >
               <img
@@ -97,7 +96,7 @@ const TestimonalSection = () => (
           <div className="bg-light position-relative px-3 mt-5 text-center py-5">
             <div
               className="my-2"
-              style={{ fontSize: "30px", color: "#6bb546" }}
+              style={{ fontSize: "30px", color: "#6BB546" }}
             >
               <FontAwesomeIcon icon={faQuoteRight} />
             </div>
@@ -114,7 +113,7 @@ const TestimonalSection = () => (
               style={{
                 width: "60px",
                 height: "60px",
-                backgroundColor: "#6bb546",
+                backgroundColor: "#6BB546",
               }}
             >
               <img

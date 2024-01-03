@@ -45,7 +45,7 @@ const PopularDestination = () => {
       <Row>
         <Col lg={12} sm={12}>
           <div className="center-heading">
-            <h2 className="text-center" style={{ color: "#6bb546" }}>
+            <h2 className="text-center" style={{ color: "#6BB546" }}>
               Popular Destinations
             </h2>
           </div>

@@ -8,6 +8,7 @@ import "./index.scss";
 import AddDriverModal from "./addNewDriver";
 import CarModal from "./carModal";
 import { Loading3QuartersOutlined } from "@ant-design/icons";
+import API from "../../../config/api";
 
 function DriverModal(props: any) {
   const [selected, setSelected] = useState<any>({});
@@ -28,8 +29,9 @@ function DriverModal(props: any) {
 		setIsLoading(true);
 		try {
 			const response = await axios.get(
-				"https://piccocabs-server-46642b82a774.herokuapp.com/Driver/location"
-			);
+        API.BASE_URL + API.GET_DRIVER_LOCATION
+        // "https://piccocabs-server-46642b82a774.herokuapp.com/Driver/location"
+      );
 			setSelectedStatus(response.data);
 			setData(response.data);
 			setIsLoading(false);
@@ -46,7 +48,9 @@ function DriverModal(props: any) {
 		if (value) {
 			try {
 				const response = await axios.put(
-					"https://piccocabs-server-46642b82a774.herokuapp.com/Driver/" +
+					API.BASE_URL + API.UPDATE_DRIVER
+					// "https://piccocabs-server-46642b82a774.herokuapp.com/Driver/"
+					 +
 						updatingStatus.id +
 						"",
 					reqBody

@@ -6,6 +6,7 @@ import axios from "axios";
 import { Select, Popconfirm, message } from "antd";
 import "font-awesome/css/font-awesome.min.css";
 import AddCarsModal from "../modals/addCars";
+import API from "../../../config/api";
 
 const CarsTable = () => {
 	const [selected, setSelected] = useState<any>({});
@@ -22,8 +23,9 @@ const CarsTable = () => {
 	async function fetchData() {
 		try {
 			const response = await axios.get(
-				"https://piccocabs-server-46642b82a774.herokuapp.com/Cars/Details"
-			);
+              API.BASE_URL + API.GET_CARS_DETAILS,
+        // "https://piccocabs-server-46642b82a774.herokuapp.com/Cars/Details"
+      );
 			setSelectedStatus(response.data);
 			setData(response.data);
 		} catch (error) {
@@ -34,8 +36,9 @@ const CarsTable = () => {
 	async function deleteData(id: any) {
 		try {
 			const response = await axios.delete(
-				`https://piccocabs-server-46642b82a774.herokuapp.com/Cars/${id}`
-			);
+             API.BASE_URL + API.DELETE_CARS +`${id}`, 
+        // `https://piccocabs-server-46642b82a774.herokuapp.com/Cars/${id}`
+      );
 			setData((prevData: any) => prevData.filter((item: any) => item.id !== id));
 			console.log("Delete Response:", response);
 			message.success("Deleted successfully!");
@@ -77,7 +80,9 @@ const CarsTable = () => {
 		if (value) {
 			try {
 				const response = await axios.put(
-					"https://piccocabs-server-46642b82a774.herokuapp.com/Cars/" +
+					API.BASE_URL + API.CREATE_CARS,
+					// "https://piccocabs-server-46642b82a774.herokuapp.com/Cars/" 
+					+
 						updatingStatus.id +
 						"",
 					reqBody

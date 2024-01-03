@@ -30,7 +30,8 @@ const OfferSectionManagement = () => {
   async function fetchData() {
     try {
       const response = await axios.get(
-        "https://piccocabs-server-46642b82a774.herokuapp.com/Offers/Offer"
+        API.BASE_URL + API.GET_OFFERS
+        // "https://piccocabs-server-46642b82a774.herokuapp.com/Offers/Offer"
       );
       setIsLoading(false);
 
@@ -45,7 +46,8 @@ const OfferSectionManagement = () => {
   async function deleteData(id: any) {
     try {
       const response = await axios.delete(
-        `https://piccocabs-server-46642b82a774.herokuapp.com/Offers/${id}`
+        API.BASE_URL + API.DELETE_OFFERS
+        // `https://piccocabs-server-46642b82a774.herokuapp.com/Offers/${id}`
       );
       setData((prevData: any) =>
         prevData.filter((item: any) => item.id !== id)

@@ -2,12 +2,11 @@
 .sliderDiv {
     display: flex;
 }
-
 .arrow {
     position: absolute;
     top: 50%;
     border-radius: 50%;
-    background-color: #6bb644;
+    background-color: #6BB546;
     color: white;
     padding: 3px 8px 1px 8px;
     text-align: center;
@@ -16,35 +15,28 @@
     font-size: 20px;
     box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
 }
-
 .arrowRight {
     right: -12px;
 }
-
 .arrowLeft {
     left: -12px;
 }
-
 .card {
     border: 0;
     /* padding: 10px;
     box-shadow: rgb(0 0 0 / 10%) 0px 4px 6px -1px, rgb(0 0 0 / 6%) 0px 2px 4px -1px; */
 }
-
 .card img {
     width: 100%;
 }
-
 .cardTitle {
     text-align: center;
     margin-top: 15px;
     font-family: 'Ubuntu', sans-serif;
 }
-
 .cardText {
     text-align: justify;
 }
-
 .section {
     margin-top: 15px;
     margin-bottom: 50px;
@@ -54,9 +46,8 @@
     border-radius: 4px;
     margin-bottom: 5px;
     padding: 30px 5px;
-    background: #6bb644;
+    background: #6BB546;
 }
-
 .fleet_title {
     font-size: 18px;
     font-weight: 500;
@@ -68,15 +59,12 @@
     text-align: center;
     display: block;
 }
-
 .offer {
     padding: 0 100px;
 }
-
 .padX10 {
     padding: 20px 30px;
 }
-
 .offerTitle {
     font-size: 21px;
     font-weight: 500;
@@ -84,19 +72,15 @@
 .fleetArrow>.slick-list {
     margin: 0 0px 0 35px;
 }
-
 .commonSlider>.slick-list>.slick-track>.slick-slide {
     transition: padding .3s linear;
     padding: 15px;
 }
-
 .commonSlider>.slick-list>.slick-track>.slick-slide:not(.slick-active) {
     padding: 25px;
 }
-
-
 .carTag {
-    background-color: #0fa94c;
+    background-color: #6BB546;
     color: #fff;
     display: inline-block;
     padding-left: 8px;
@@ -106,63 +90,53 @@
     border-radius: 7px;
     font-weight: 500;
 }
-
 .hoverEffect {
     background: linear-gradient( 61deg, #4d9b26, #6bb546)!important;
     transition: all .3s ease-in-out!important;
 }
-
 .hoverEffect:hover {
     transform: translateY(-3px);
     box-shadow: 0 2px 20px 0 #ccc;
 }
-
 .sliderDiv {
     display: flex!important;
     flex-wrap: wrap;
     justify-content: space-between;
 }
-
 .leftArrow {
     order: 2;
     margin-top: 20px;
-    background: #0fa94c;
+    background: #6BB546;
     border-radius: 50%;
     padding: 1px 5px 1px 5px;
     color: white;
 }
-
 .rightArrow {
     order: 3;
     margin-top: 20px;
-    background: #0fa94c;
+    background: #6BB546;
     border-radius: 50%;
     padding: 1px 5px 1px 5px;
     color: white;
 }
-
 .slick-list {
     order: 1;
 }
-
 .sliderItem {
     display: flex!important;
     flex-wrap: wrap;
     height: 267px!important;
 }
-
 .sliderItem-img {
     flex-grow: 1;
     /* max-width: 50%; */
 }
-
 .sliderItem-text {
     flex-grow: 1;
     /* max-width: 50%; */
     padding: 10px;
     align-self: center;
 }
-
 .row {
     display: flex!important;
 }

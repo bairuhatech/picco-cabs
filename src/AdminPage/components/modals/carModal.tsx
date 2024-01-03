@@ -6,6 +6,7 @@ import { FaPlus } from "react-icons/fa";
 import axios from "axios";
 import AddCarsModal from "./addCars";
 import { useNavigate } from "react-router-dom";
+import API from "../../../config/api";
 
 function CarModal(props: any) {
 	const [data, setData] = useState<any>([]);
@@ -35,7 +36,9 @@ function CarModal(props: any) {
 				car: `${carData.brand}, ${carData.model}`,
 			};
 			const response = await axios.put(
-				"https://piccocabs-server-46642b82a774.herokuapp.com/Booking/" +
+				API.BASE_URL + API.UPDATE_ALL_BOOKING
+				// "/Booking/" 
+				+
 					props.booking.id,
 				reqBody
 			);
@@ -52,8 +55,9 @@ function CarModal(props: any) {
 		setIsLoading(true);
 		try {
 			const response = await axios.get(
-				"https://piccocabs-server-46642b82a774.herokuapp.com/Cars/Details"
-			);
+              API.BASE_URL + API.GET_CARS_DETAILS,
+        // "/Cars/Details"
+      );
 			setSelectedStatus(response.data);
 			setData(response.data);
 			setIsLoading(false);
@@ -70,7 +74,9 @@ function CarModal(props: any) {
 		if (value) {
 			try {
 				const response = await axios.put(
-					"https://piccocabs-server-46642b82a774.herokuapp.com/Cars/" +
+					API.BASE_URL + API.UPDATE_CARS
+					// "/Cars/" 
+					+
 						updatingStatus.id +
 						"",
 					reqBody

@@ -17,7 +17,8 @@ const LoginAttempts = () => {
   async function getAllBookings() {
     try {
       const response = await axios.get(
-        "https://piccocabs-server-46642b82a774.herokuapp.com/Loginattempts/get"
+        API.BASE_URL + API.GET_LOGIN_ATTEMPTS,
+        // "https://piccocabs-server-46642b82a774.herokuapp.com/Loginattempts/get"
       );
       setIsLoading(false);
 

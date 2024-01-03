@@ -6,6 +6,8 @@ import { Row, Col } from "react-bootstrap";
 import axios from "axios";
 import { Spin, message } from "antd"; // Import Spin and message components
 import { Loading3QuartersOutlined } from "@ant-design/icons";
+import API from "../../../config/api";
+
 
 function AddNewOffersModal(props: any) {
   const [title, setTitle] = useState("");
@@ -27,7 +29,8 @@ function AddNewOffersModal(props: any) {
 
     try {
       await axios.post(
-        "https://piccocabs-server-46642b82a774.herokuapp.com/Offers",
+        API.BASE_URL + API.CREATE_OFFERS,
+        // "https://piccocabs-server-46642b82a774.herokuapp.com/Offers",
         newData
       );
       message.success("Offer added successfully!"); // Display success message

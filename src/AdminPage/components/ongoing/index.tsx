@@ -18,7 +18,8 @@ const OnGoing = () => {
   async function fetchData() {
     try {
       const response = await axios.get(
-        "https://piccocabs-server-46642b82a774.herokuapp.com/Booking/ongoing"
+        API.BASE_URL + API.GET_BOOKING_ONGOING
+        // "https://piccocabs-server-46642b82a774.herokuapp.com/Booking/ongoing"
       );
       setIsLoading(false);
 
@@ -40,7 +41,9 @@ const OnGoing = () => {
     if (value) {
       try {
         const response = await axios.put(
-          "https://piccocabs-server-46642b82a774.herokuapp.com/Booking/" +
+          API.BASE_URL + API.UPDATE_ALL_BOOKING
+          // "https://piccocabs-server-46642b82a774.herokuapp.com/Booking/" 
+          +
             updatingStatus.id +
             "",
           reqBody
