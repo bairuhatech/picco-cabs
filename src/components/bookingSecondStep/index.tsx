@@ -37,7 +37,7 @@ import { HiCurrencyRupee } from "react-icons/hi";
 import "./index.scss";
 import { ImFileText } from "react-icons/im";
 import { BiPackage } from "react-icons/bi";
-import ModifyModal from "../../AdminPage/components/modals/modifyModal";
+import ModifyModal from "../../AdminPage/components/modals/modifyModal";  
 
 function BookingForm(props: any) {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -161,32 +161,32 @@ function BookingForm(props: any) {
         tripType === "roundTrip"
           ? selectedRoute?.miniPrice * 2 + 300
           : tripType === "rentals" && Package.kilometer === "80 Km"
-          ? 3000
-          : Package.kilometer === "120 Km"
-          ? 6000
-          : Package.kilometer === " 40 Km"
-          ? 1500
-          : selectedRoute?.miniPrice,
+            ? 3000
+            : Package.kilometer === "120 Km"
+              ? 6000
+              : Package.kilometer === " 40 Km"
+                ? 1500
+                : selectedRoute?.miniPrice,
       hours:
         tripType === "roundTrip"
           ? selectedRoute?.hours * 2
           : tripType === "rentals" && Package.kilometer === "80 Km"
-          ? 8
-          : Package.kilometer === "120 Km"
-          ? 12
-          : Package.kilometer === " 40 Km"
-          ? 4
-          : selectedRoute?.hours,
+            ? 8
+            : Package.kilometer === "120 Km"
+              ? 12
+              : Package.kilometer === " 40 Km"
+                ? 4
+                : selectedRoute?.hours,
       distance:
         tripType === "roundTrip"
           ? selectedRoute?.kilometer * 2
           : tripType === "rentals" && Package.kilometer === "80 Km"
-          ? 80
-          : Package.kilometer === "120 Km"
-          ? 120
-          : Package.kilometer === " 40 Km"
-          ? 40
-          : selectedRoute?.kilometer,
+            ? 80
+            : Package.kilometer === "120 Km"
+              ? 120
+              : Package.kilometer === " 40 Km"
+                ? 40
+                : selectedRoute?.kilometer,
       tooltip: "Compact mini: Small and portable.",
     },
     {
@@ -198,32 +198,32 @@ function BookingForm(props: any) {
         tripType === "roundTrip"
           ? selectedRoute?.sedanPrice * 2 + 300
           : tripType === "rentals" && Package.kilometer === "80 Km"
-          ? 5000
-          : Package.kilometer === "120 Km"
-          ? 7000
-          : Package.kilometer === " 40 Km"
-          ? 3500
-          : selectedRoute?.sedanPrice + 300,
+            ? 5000
+            : Package.kilometer === "120 Km"
+              ? 7000
+              : Package.kilometer === " 40 Km"
+                ? 3500
+                : selectedRoute?.sedanPrice + 300,
       hours:
         tripType === "roundTrip"
           ? selectedRoute?.hours * 2
           : tripType === "rentals" && Package.kilometer === "80 Km"
-          ? 8
-          : Package.kilometer === "120 Km"
-          ? 12
-          : Package.kilometer === " 40 Km"
-          ? 4
-          : selectedRoute?.hours,
+            ? 8
+            : Package.kilometer === "120 Km"
+              ? 12
+              : Package.kilometer === " 40 Km"
+                ? 4
+                : selectedRoute?.hours,
       distance:
         tripType === "roundTrip"
           ? selectedRoute?.kilometer * 2
           : tripType === "rentals" && Package.kilometer === "80 Km"
-          ? 80
-          : Package.kilometer === "120 Km"
-          ? 120
-          : Package.kilometer === " 40 Km"
-          ? 40
-          : selectedRoute?.kilometer,
+            ? 80
+            : Package.kilometer === "120 Km"
+              ? 120
+              : Package.kilometer === " 40 Km"
+                ? 40
+                : selectedRoute?.kilometer,
       tooltip: "Four-door, enclosed passenger car style.",
     },
     {
@@ -235,32 +235,32 @@ function BookingForm(props: any) {
         tripType === "roundTrip"
           ? selectedRoute?.suvPrice * 2 + 300
           : tripType === "rentals" && Package.kilometer === "80 Km"
-          ? 6000
-          : Package.kilometer === "120 Km"
-          ? 8000
-          : Package.kilometer === " 40 Km"
-          ? 3500
-          : selectedRoute?.suvPrice + 300,
+            ? 6000
+            : Package.kilometer === "120 Km"
+              ? 8000
+              : Package.kilometer === " 40 Km"
+                ? 3500
+                : selectedRoute?.suvPrice + 300,
       hours:
         tripType === "roundTrip"
           ? selectedRoute?.hours * 2
           : tripType === "rentals" && Package.kilometer === "80 Km"
-          ? 8
-          : Package.kilometer === "120 Km"
-          ? 12
-          : Package.kilometer === " 40 Km"
-          ? 4
-          : selectedRoute?.hours,
+            ? 8
+            : Package.kilometer === "120 Km"
+              ? 12
+              : Package.kilometer === " 40 Km"
+                ? 4
+                : selectedRoute?.hours,
       distance:
         tripType === "roundTrip"
           ? selectedRoute?.kilometer * 2
           : tripType === "rentals" && Package.kilometer === "80 Km"
-          ? 80
-          : Package.kilometer === "120 Km"
-          ? 120
-          : Package.kilometer === " 40 Km"
-          ? 40
-          : selectedRoute?.kilometer,
+            ? 80
+            : Package.kilometer === "120 Km"
+              ? 120
+              : Package.kilometer === " 40 Km"
+                ? 40
+                : selectedRoute?.kilometer,
       tooltip: "Sport Utility Vehicle for versatility.",
     },
     {
@@ -272,32 +272,32 @@ function BookingForm(props: any) {
         tripType === "roundTrip"
           ? selectedRoute?.innovaPrice * 2 + 300
           : tripType === "rentals" && Package.kilometer === "80 Km"
-          ? 7000
-          : Package.kilometer === "120 Km"
-          ? 9000
-          : Package.kilometer === " 40 Km"
-          ? 4500
-          : selectedRoute?.innovaPrice + 300,
+            ? 7000
+            : Package.kilometer === "120 Km"
+              ? 9000
+              : Package.kilometer === " 40 Km"
+                ? 4500
+                : selectedRoute?.innovaPrice + 300,
       hours:
         tripType === "roundTrip"
           ? selectedRoute?.hours * 2
           : tripType === "rentals" && Package.kilometer === "80 Km"
-          ? 8
-          : Package.kilometer === "120 Km"
-          ? 12
-          : Package.kilometer === " 40 Km"
-          ? 4
-          : selectedRoute?.hours,
+            ? 8
+            : Package.kilometer === "120 Km"
+              ? 12
+              : Package.kilometer === " 40 Km"
+                ? 4
+                : selectedRoute?.hours,
       distance:
         tripType === "roundTrip"
           ? selectedRoute?.kilometer * 2
           : tripType === "rentals" && Package.kilometer === "80 Km"
-          ? 80
-          : Package.kilometer === "120 Km"
-          ? 120
-          : Package.kilometer === " 40 Km"
-          ? 40
-          : selectedRoute?.kilometer,
+            ? 80
+            : Package.kilometer === "120 Km"
+              ? 120
+              : Package.kilometer === " 40 Km"
+                ? 40
+                : selectedRoute?.kilometer,
       tooltip: "Toyota's versatile MPV (Multi-Purpose Vehicle).",
     },
     {
@@ -309,32 +309,32 @@ function BookingForm(props: any) {
         tripType === "roundTrip"
           ? selectedRoute?.crystaPrice * 2 + 300
           : tripType === "rentals" && Package.kilometer === "80 Km"
-          ? 8000
-          : Package.kilometer === "120 Km"
-          ? 11000
-          : Package.kilometer === " 40 Km"
-          ? 5500
-          : selectedRoute?.crystaPrice + 300,
+            ? 8000
+            : Package.kilometer === "120 Km"
+              ? 11000
+              : Package.kilometer === " 40 Km"
+                ? 5500
+                : selectedRoute?.crystaPrice + 300,
       hours:
         tripType === "roundTrip"
           ? selectedRoute?.hours * 2
           : tripType === "rentals" && Package.kilometer === "80 Km"
-          ? 8
-          : Package.kilometer === "120 Km"
-          ? 12
-          : Package.kilometer === " 40 Km"
-          ? 4
-          : selectedRoute?.hours,
+            ? 8
+            : Package.kilometer === "120 Km"
+              ? 12
+              : Package.kilometer === " 40 Km"
+                ? 4
+                : selectedRoute?.hours,
       distance:
         tripType === "roundTrip"
           ? selectedRoute?.kilometer * 2
           : tripType === "rentals" && Package.kilometer === "80 Km"
-          ? 80
-          : Package.kilometer === "120 Km"
-          ? 120
-          : Package.kilometer === " 40 Km"
-          ? 40
-          : selectedRoute?.kilometer,
+            ? 80
+            : Package.kilometer === "120 Km"
+              ? 120
+              : Package.kilometer === " 40 Km"
+                ? 40
+                : selectedRoute?.kilometer,
       tooltip: "Toyota Innova Crysta: An upgraded version.",
     },
     {
@@ -346,32 +346,32 @@ function BookingForm(props: any) {
         tripType === "roundTrip"
           ? selectedRoute?.TempoTravellerPrice * 2 + 300
           : tripType === "rentals" && Package.kilometer === "80 Km"
-          ? 9000
-          : Package.kilometer === "120 Km"
-          ? 12000
-          : Package.kilometer === " 40 Km"
-          ? 6500
-          : selectedRoute?.TempoTravellerPrice + 300,
+            ? 9000
+            : Package.kilometer === "120 Km"
+              ? 12000
+              : Package.kilometer === " 40 Km"
+                ? 6500
+                : selectedRoute?.TempoTravellerPrice + 300,
       hours:
         tripType === "roundTrip"
           ? selectedRoute?.hours * 2
           : tripType === "rentals" && Package.kilometer === "80 Km"
-          ? 8
-          : Package.kilometer === "120 Km"
-          ? 12
-          : Package.kilometer === " 40 Km"
-          ? 4
-          : selectedRoute?.hours,
+            ? 8
+            : Package.kilometer === "120 Km"
+              ? 12
+              : Package.kilometer === " 40 Km"
+                ? 4
+                : selectedRoute?.hours,
       distance:
         tripType === "roundTrip"
           ? selectedRoute?.kilometer * 2
           : tripType === "rentals" && Package.kilometer === "80 Km"
-          ? 80
-          : Package.kilometer === "120 Km"
-          ? 120
-          : Package.kilometer === " 40 Km"
-          ? 40
-          : selectedRoute?.kilometer,
+            ? 80
+            : Package.kilometer === "120 Km"
+              ? 120
+              : Package.kilometer === " 40 Km"
+                ? 40
+                : selectedRoute?.kilometer,
       tooltip: "Tempo: Commercial passenger-carrying vehicle.",
     },
     {
@@ -383,32 +383,32 @@ function BookingForm(props: any) {
         tripType === "roundTrip"
           ? selectedRoute?.traveller18Price * 2 + 300
           : tripType === "rentals" && Package.kilometer === "80 Km"
-          ? 11000
-          : Package.kilometer === "120 Km"
-          ? 14000
-          : Package.kilometer === " 40 Km"
-          ? 8000
-          : selectedRoute?.traveller18Price + 300,
+            ? 11000
+            : Package.kilometer === "120 Km"
+              ? 14000
+              : Package.kilometer === " 40 Km"
+                ? 8000
+                : selectedRoute?.traveller18Price + 300,
       hours:
         tripType === "roundTrip"
           ? selectedRoute?.hours * 2
           : tripType === "rentals" && Package.kilometer === "80 Km"
-          ? 8
-          : Package.kilometer === "120 Km"
-          ? 12
-          : Package.kilometer === " 40 Km"
-          ? 4
-          : selectedRoute?.hours,
+            ? 8
+            : Package.kilometer === "120 Km"
+              ? 12
+              : Package.kilometer === " 40 Km"
+                ? 4
+                : selectedRoute?.hours,
       distance:
         tripType === "roundTrip"
           ? selectedRoute?.kilometer * 2
           : tripType === "rentals" && Package.kilometer === "80 Km"
-          ? 80
-          : Package.kilometer === "120 Km"
-          ? 120
-          : Package.kilometer === " 40 Km"
-          ? 40
-          : selectedRoute?.kilometer,
+            ? 80
+            : Package.kilometer === "120 Km"
+              ? 120
+              : Package.kilometer === " 40 Km"
+                ? 40
+                : selectedRoute?.kilometer,
       tooltip: "Tempo with 18 seats: Large passenger vehicle.",
     },
   ];
@@ -511,84 +511,161 @@ function BookingForm(props: any) {
       </div>
       {Package ? (
         <div className="cardMain-div">
-          {showBooking != true ? (
-            <div>
-              <div className="subHeader">
-                <div className="innerHead">
-                  <div style={{ fontWeight: 700, fontSize: "20px" }}>
-                    TRIP DETAILS
-                  </div>
-                  <div style={{ fontSize: "12px" }}>
-                    {tripType === "airports"
-                      ? airport === "Pickup"
-                        ? "Cab From " + (selectedRoute?.place + " Airport")
-                        : "Cab To " + (selectedRoute?.place + " Airport")
-                      : tripType === "oneWay"
+          <div className="cardMain-div1 ">
+            <Row className="card1">
+              <Col xs={6} sm={4}>
+                <div style={{ fontWeight: 700, fontSize: "17px" }}>
+                  TRIP DETAILS
+                </div>
+                <div style={{ fontSize: "12px" }}>
+                  {tripType === "airports"
+                    ? airport === "Pickup"
+                      ? "Cab From " + (selectedRoute?.place + " Airport")
+                      : "Cab To " + (selectedRoute?.place + " Airport")
+                    : tripType === "oneWay"
                       ? "One Way"
                       : tripType === "roundTrip"
-                      ? "Round Trip"
-                      : tripType === "rentals"
-                      ? "Rental"
-                      : tripType === "airports"
-                      ? "Airport"
-                      : null}
-                  </div>
-                  <div>
-                    {RentPlace || selectedRoute?.place}{" "}
-                    {RentPlace ? "" : <b>to</b>}
-                    &nbsp; {RentPlace ? "" : selectedRoute?.location}
-                  </div>
+                        ? "Round Trip"
+                        : tripType === "rentals"
+                          ? "Rental"
+                          : tripType === "airports"
+                            ? "Airport"
+                            : null}
                 </div>
-                <div
-                  style={{ backgroundColor: "#f7fff9", height: "71px" }}
-                  className="innerHead2"
-                >
-                  <div className="PickpDate-Div">
-                    Pick Up Date: <br />
+                <div>
+                  {RentPlace || selectedRoute?.place}{" "}
+                  {RentPlace ? "" : <b>to</b>}
+                  &nbsp; {RentPlace ? "" : selectedRoute?.location}
+                </div>
+              </Col>
+              <Col xs={6} sm={4}>
+                <div className="PickpDate-Div1">
+                  <div>
+                    Pick Up Date:
+                    <br />
                     {tripType === "rentals"
                       ? rentalFormatDate
                       : formattedDate}{" "}
-                    <div className="PickupTime-Div">
-                      Pickup Time: <br />
-                      {/* {Package?.label ? "" : "Pickup Time:"} <br /> */}
-                      {tripType === "rentals" ? RentalTime : timeOfPickup || ""}
-                    </div>
-                    {tripType === "roundTrip" ? (
-                      <div className="PickpDate-Div">
-                        Drop Date: <br />
-                        {returnFrormat}{" "}
-                      </div>
-                    ) : null}
                   </div>
-                  <div className="ModifyButton-Div">
-                    <button
-                      className="modifyButton"
-                      onClick={() => {
-                        setModify(true);
+                  <div>
+                    Pickup Time:
+                    <br />
+                    {tripType === "rentals" ? RentalTime : timeOfPickup || ""}
+                  </div>
+                </div>
+                {tripType === "roundTrip" ? (
+                  <div className="PickpDate-Div">
+                    Drop Date: <br />
+                    {returnFrormat}{" "}
+                  </div>
+                ) : null}
+              </Col>
+              <Col xs={12} sm={4}>
+                <div className="ModifyButton-Div1">
+                  <button className="modifyButton"
+                    onClick={() => {
+                      setModify(true);
+                    }}>
+                    Modify
+                  </button>
+                  {modify ? (
+                    <ModifyModal
+                      show={modify}
+                      selectedRoute={selectedRoute}
+                      pickUpDate={pickUpDate}
+                      timeOfPickup={timeOfPickup}
+                      dropOffDate={dropOffDate}
+                      onHide={() => {
+                        setModify(false);
                       }}
-                    >
-                      Modify
-                    </button>
-                    {modify ? (
-                      <ModifyModal
-                        show={modify}
-                        selectedRoute={selectedRoute}
-                        pickUpDate={pickUpDate}
-                        timeOfPickup={timeOfPickup}
-                        dropOffDate={dropOffDate}
-                        onHide={() => {
-                          setModify(false);
+                    />
+                  ) : null}
+                </div>
+              </Col>
+            </Row>
+          </div>
+          {showBooking != true ? (
+
+            <div className="card-div">
+              <div className="subHeader1">
+                <div className="subHeader">
+                  <div className="innerHead">
+                    <div style={{ fontWeight: 700, fontSize: "20px" }}>
+                      TRIP DETAILS
+                    </div>
+                    <div style={{ fontSize: "12px" }}>
+                      {tripType === "airports"
+                        ? airport === "Pickup"
+                          ? "Cab From " + (selectedRoute?.place + " Airport")
+                          : "Cab To " + (selectedRoute?.place + " Airport")
+                        : tripType === "oneWay"
+                          ? "One Way"
+                          : tripType === "roundTrip"
+                            ? "Round Trip"
+                            : tripType === "rentals"
+                              ? "Rental"
+                              : tripType === "airports"
+                                ? "Airport"
+                                : null}
+                    </div>
+                    <div>
+                      {RentPlace || selectedRoute?.place}{" "}
+                      {RentPlace ? "" : <b>to</b>}
+                      &nbsp; {RentPlace ? "" : selectedRoute?.location}
+                    </div>
+                  </div>
+                  <div
+                    style={{ backgroundColor: "#f7fff9", height: "71px" }}
+                    className="innerHead2"
+                  >
+                    <div className="PickpDate-Div">
+                      Pick Up Date: <br />
+                      {tripType === "rentals"
+                        ? rentalFormatDate
+                        : formattedDate}{" "}
+                      <div className="PickupTime-Div">
+                        Pickup Time: <br />
+                        {/* {Package?.label ? "" : "Pickup Time:"} <br /> */}
+                        {tripType === "rentals" ? RentalTime : timeOfPickup || ""}
+                      </div>
+                      {tripType === "roundTrip" ? (
+                        <div className="PickpDate-Div">
+                          Drop Date: <br />
+                          {returnFrormat}{" "}
+                        </div>
+                      ) : null}
+                    </div>
+                    <div className="ModifyButton-Div">
+                      <button
+                        className="modifyButton"
+                        onClick={() => {
+                          setModify(true);
                         }}
-                      />
-                    ) : null}
+                      >
+                        Modify
+                      </button>
+                      {modify ? (
+                        <ModifyModal
+                          show={modify}
+                          selectedRoute={selectedRoute}
+                          pickUpDate={pickUpDate}
+                          timeOfPickup={timeOfPickup}
+                          dropOffDate={dropOffDate}
+                          onHide={() => {
+                            setModify(false);
+                          }}
+                        />
+                      ) : null}
+                    </div>
                   </div>
                 </div>
               </div>
-              <div className="Container-Card">
+              <div  className="Container-Card">
                 {newData.map((item: any, index: any) => {
                   return (
                     <>
                       <div className="inner-Card" key={index}>
+                      <div className="inner-Card1">
                         <div style={{ display: "flex" }}>
                           <img
                             className="piccominiImg"
@@ -602,9 +679,9 @@ function BookingForm(props: any) {
                               {/* info */}
                               <Popover
                                 placement="rightTop"
-                                // title={text}
-                                // content={minicontent}
-                                // arrow={mergedArrow}
+                              // title={text}
+                              // content={minicontent}
+                              // arrow={mergedArrow}
                               >
                                 <Tooltip
                                   placement="bottom"
@@ -616,22 +693,9 @@ function BookingForm(props: any) {
                             </div>
                           </div>
                         </div>
-                        <div
-                          style={{
-                            height: "100%",
-                            width: "60%",
-                            display: "flex",
-                          }}
+                        <div className="picco-textDiv"
                         >
-                          <div
-                            style={{
-                              height: "100%",
-                              width: "200px",
-                              display: "flex",
-                              flexDirection: "column",
-                              alignItems: "center",
-                              justifyContent: "center",
-                            }}
+                          <div className="picco-div"
                           >
                             <div className="piccocartext-font">
                               AC{" "}
@@ -662,7 +726,7 @@ function BookingForm(props: any) {
                               />
                             </div>
                           </div>
-                          <div
+                          <div className="Details-div1"
                             style={{
                               height: "100%",
                               width: "200px",
@@ -672,7 +736,7 @@ function BookingForm(props: any) {
                               flexDirection: "column",
                             }}
                           >
-                            <div>
+                            <div style={{width:"125px"}}>
                               <b>Includes {item?.distance} Km</b>
                             </div>
                             <div>
@@ -683,7 +747,7 @@ function BookingForm(props: any) {
                               style={{
                                 cursor: "pointer",
                                 color: "#0056b3",
-                                marginTop: "10px",
+                                marginBottom: "0px",
                               }}
                               onClick={() => handleClick(item)}
                             >
@@ -691,13 +755,7 @@ function BookingForm(props: any) {
                               <BiChevronDown size={25} />
                             </p>
                           </div>
-                          <div
-                            style={{
-                              height: "100%",
-                              width: "200px",
-                              display: "flex",
-                              justifyContent: "center",
-                            }}
+                          <div className="price-div1"
                           >
                             <div
                               style={{ display: "flex", alignItems: "center" }}
@@ -722,8 +780,82 @@ function BookingForm(props: any) {
                             handleCancel={Cancel}
                           />
                         )}
-                        <div>
+                        <div className="button-Div1">
                           <div className="button-Div">
+                            <button
+                              style={{
+                                height: "40px",
+                                width: "150px",
+                                fontWeight: "700",
+                                fontSize: "18px",
+                              }}
+                              onClick={() =>
+                                // handleBookNow({
+                                //   name: "Compact Mini",
+                                //   type: "Mini",
+                                // })
+                                handleBookNow(item)
+                              }
+                              className="button"
+                            >
+                              Book now
+                            </button>
+                          </div>
+                        </div>
+                        </div>
+                        <div className="Details-div2"
+                            style={{
+                              height: "100%",
+                              width: "200px",
+                              display: "flex",
+                              justifyContent: "center",
+                              alignItems: "center",
+                              flexDirection: "column",
+                            }}
+                          >
+                            <div style={{width:"125px"}}>
+                              <b>Includes {item?.distance} Km</b>
+                            </div>
+                            <div>
+                              <b>{item?.hours}</b> hours to reach
+                            </div>
+                            <p
+                              key={item.id}
+                              style={{
+                                cursor: "pointer",
+                                color: "#0056b3",
+                                marginBottom: "0px",
+                              }}
+                              onClick={() => handleClick(item)}
+                            >
+
+
+
+                            
+                              Details
+                              <BiChevronDown size={25} />
+                            </p>
+                          </div>
+                        {/* <div className="price-div2"
+                          >
+                            <div
+                              style={{ display: "flex", alignItems: "center" }}
+                            >
+                              <p>
+                                {" "}
+                                ₹ <b key={index}>{item?.price}</b>
+                              </p>
+                            </div>
+                            {showfare && (
+                              <FareModal
+                                open={openfare}
+                                close={closefare}
+                                selectedVeh={selectedVeh}
+                              />
+                            )}
+                          </div> */}
+                          <div className="button-Div2">
+                          <div className="button-Div3">
                             <button
                               style={{
                                 height: "40px",
@@ -749,7 +881,7 @@ function BookingForm(props: any) {
                         <>
                           {isCheckVisible.id === item.id ? (
                             <div className="DetailModal-Main" key={index}>
-                              <div
+                              {/* <div
                                 style={{
                                   width: "50%",
                                   height: "50%",
@@ -759,7 +891,7 @@ function BookingForm(props: any) {
                                   alignItems: "center",
                                   justifyContent: "space-between",
                                 }}
-                              >
+                              > 
                                 <input
                                   type="radio"
                                   className="btn-check"
@@ -786,7 +918,7 @@ function BookingForm(props: any) {
                                 >
                                   <p style={{ fontSize: "13px" }}>INCLUSION</p>
                                 </label>
-                                {/* /* //*** */}
+                                
 
                                 <input
                                   type="radio"
@@ -861,8 +993,13 @@ function BookingForm(props: any) {
                                 >
                                   <p style={{ fontSize: "13px" }}>T&C</p>
                                 </label>
+                              </div> */}
+                              <div className="DetailModal-div1" >
+                                <div className="DetailModal-div2">INCLUSION</div>
+                                <div className="DetailModal-div2">EXCLUSION</div>
+                                <div className="DetailModal-div2">FACILITIES</div>
+                                <div className="DetailModal-div2">T&C</div>
                               </div>
-
                               {/* Render fields based on the selected section */}
                               {selectedSection === "inclusion" && (
                                 <div>
@@ -968,6 +1105,7 @@ function BookingForm(props: any) {
                                   </div>
                                 </div>
                               )}
+                              
                             </div>
                           ) : null}
                         </>

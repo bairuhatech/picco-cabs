@@ -6,12 +6,36 @@
   padding: 12px;
   background-size: cover;
 }
+
+.cardMain-div1 {
+  display: none;
+}
+
+@media screen and (min-width:768px) and (max-width:992px) {
+
+  .card-div {
+    width: 700px;
+  }
+
+  .subHeader1 {
+    width: 100%;
+
+  }
+
+  .subHeader {
+    width: 100%;
+
+  }
+}
+
 .cardMain-div2 {
   width: 100%;
   height: 100vh;
   display: flex;
   background-size: cover;
+
 }
+
 .subHeader {
   background-color: hsl(0, 0%, 100%);
   width: 96%;
@@ -22,8 +46,24 @@
   margin-top: 15px;
   box-shadow: #92ca92 0px 0px 10px 0px;
   border: 0px solid #92ca92;
-  margin-left: 20px;
+  display: flex;
+  justify-content: center;
+
 }
+
+.subHeader1 {
+  display: flex;
+  justify-content: center;
+}
+
+// .innerHead {
+//   // background-color: red;
+//   // height: 100%;
+//   width: 50%;
+//   display: flex;
+
+//   align-items: flex-end;
+// }
 .card-Div {
   width: 30%;
   height: fit-content;
@@ -32,18 +72,41 @@
   border-radius: 5px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px;
 }
+
 .card {
   width: 100%;
   height: 50%;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px;
   padding: 15px;
 }
+
+.picco-textDiv {
+  height: 100%;
+  width: 55%;
+  display: flex;
+  align-items: center;
+}
+
+.picco-div {
+  height: 100%;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.price-div2 {
+  display: none;
+}
+
 .picco-mini {
   width: 100%;
   height: 20%;
   margin-bottom: 9px;
   font-weight: 700;
 }
+
 .piccomini-info {
   width: 75%;
   height: 41%;
@@ -53,6 +116,7 @@
   justify-content: space-between;
   align-items: center;
 }
+
 .piccoimg-Div {
   width: 100%;
   height: 55%;
@@ -61,6 +125,7 @@
   background-color: "pink";
   justify-content: end;
 }
+
 .seats-Div {
   width: 100%;
   height: 25%;
@@ -68,12 +133,25 @@
   justify-content: end;
   border-top: solid 1px #c8c8c8;
 }
+
 .bookingbutton-Div {
   width: 50%;
   height: 100%;
   display: flex;
   flex-direction: column;
 }
+
+.price-div1 {
+  height: 100%;
+  width: 200px;
+  display: flex;
+  justify-Content: center;
+}
+
+p {
+  margin-bottom: 0%;
+}
+
 .price-Div {
   height: 100%;
   width: 50%;
@@ -82,6 +160,7 @@
   align-items: center;
   flex-direction: row;
 }
+
 .seatcontent-Div {
   height: 100%;
   width: 50%;
@@ -89,6 +168,7 @@
   justify-content: space-between;
   align-items: center;
 }
+
 .faredetail-Div {
   height: 100%;
   width: 100%;
@@ -97,13 +177,17 @@
   font-family: "Montserrat", "Poppins", sans-serif;
   align-items: center;
 }
+
+.button-Div2 {
+  display: none;
+}
+
 .button-Div {
-  height: 10%;
-  width: 90%;
   display: flex;
-  justify-content: end;
+  align-items: center;
   border-radius: 8px;
 }
+
 .button {
   height: 75%;
   width: 34%;
@@ -112,14 +196,17 @@
   color: #fff;
   background-color: #6BB546;
 }
+
 .selectcar-Div {
   width: 100%;
   height: 20%;
 }
+
 .Back-arrow {
   width: 9%;
   height: 5%;
 }
+
 .piccocartext-font {
   font-weight: 500;
 }
@@ -131,6 +218,7 @@
   background-color: #f7fff9;
   height: 71px;
 }
+
 .innerHead2 {
   height: 100%;
   width: 50%;
@@ -180,16 +268,18 @@
   align-items: center;
   border-radius: 5px;
 }
-.inner-Card {
-  height: 120px !important;
-  background-color: #ffff;
-  padding: 15px;
-  border: 1px solid #198754;
-  border-radius: 10px;
+
+.inner-Card1 {
   display: flex;
-  align-items: flex-start;
   justify-content: space-between;
   align-items: center;
+}
+
+.inner-Card {
+  // height: 120px !important;
+  background-color: #ffff;
+  padding: 15px;
+  border-radius: 10px;
   margin-bottom: 25px;
   box-shadow: gray -1px 5px 8px 1px;
   border: 0px solid #92ca92;
@@ -226,7 +316,8 @@
   margin-left: 10px;
   border-radius: 10px;
 }
-.cardnew:hover > .img {
+
+.cardnew:hover>.img {
   transition: 0.5s ease-in-out;
   background: linear-gradient(#9198e5, #712020);
 }
@@ -254,23 +345,24 @@
   color: #000;
   font-weight: lighter;
 }
+
 .DetailModal-Main {
   width: 900px;
-  height: 120px;
+  // height: 100%;
   background-color: #fff;
   box-shadow: gray -1px 5px 8px 1px;
   background-color: #fff;
-
   border-radius: 10px;
   margin-top: -23px;
-
   margin-bottom: 23px;
 }
+
 .Exclusion-item-Div {
   width: 100%;
   height: 60px;
   display: flex;
 }
+
 .pay-DIV {
   width: 32%;
   height: 40px;
@@ -279,6 +371,7 @@
   justify-content: center;
   align-items: center;
 }
+
 .MultiptlPickup-Div {
   width: 32%;
   height: 40px;
@@ -287,6 +380,7 @@
   justify-content: center;
   align-items: center;
 }
+
 .parking-Div {
   width: 36%;
   height: 40px;
@@ -295,11 +389,13 @@
   justify-content: center;
   align-items: center;
 }
+
 .facilities-DIV {
   width: 100%;
   height: 60px;
   display: flex;
 }
+
 .seates-Div {
   width: 32%;
   height: 38px;
@@ -308,6 +404,7 @@
   justify-content: end;
   align-items: center;
 }
+
 .bags-Div {
   width: 32%;
   height: 38px;
@@ -316,6 +413,7 @@
   justify-content: center;
   align-items: center;
 }
+
 .AC_Div {
   width: 36%;
   display: flex;
@@ -324,131 +422,327 @@
   align-items: center;
   height: 38px;
 }
-.inclusion-DIV {
-  width: 100%;
-  height: 40px;
-  display: flex;
-}
+
+// .inclusion-DIV {
+//   width: 100%;
+//   height: 40px;
+//   display: flex;
+//   background-color: aqua;
+// }
+
 .Basefare-DIV {
-  width: 25%;
+  // width: 25%;
   display: flex;
   font-weight: 500;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   height: 40px;
 }
+
 .Driver-Div {
-  width: 30%;
+  // width: 30%;
   display: flex;
   font-weight: 500;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   height: 40px;
 }
+
 .StateTax-Div {
-  width: 30%;
+  // width: 30%;
   display: flex;
   font-weight: 500;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   height: 40px;
 }
+
 .GST-Div {
-  width: 30%;
+  // width: 30%;
   display: flex;
   font-weight: 500;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   height: 40px;
 }
+
 .car-img {
   width: 35px !important;
   height: 23px !important;
 }
+
 .currency-img {
   width: 35px !important;
   height: 23px !important;
 }
+
 .GSTimg {
   width: 35px !important;
   height: 23px !important;
 }
+
 .TandCtext-Div {
   width: 100%;
   height: 68px;
   font-size: 13px;
 }
+
+.DetailModal-div1 {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  padding: 0px 20px 0px 20px;
+
+}
+
+.DetailModal-div2 {
+  border: solid 1px #198754;
+  width: 25%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-Weight: 500;
+  font-Size: 13px;
+  height: 35px;
+  color: #198754;
+  // border-radius: 7px;
+
+}
+
+// @media (max-width: 568px) {
+//   .inner-Card {
+//     width: 100% !important;
+//   }
+// }
+
+// @media (max-width: 567px) and (min-width: 768px) {
+//   .inner-Card {
+//     width: 100% !important;
+//   }
+// }
+
+// @media (max-width: 769px) and (min-width: 991px) {center
+// }
+// .inner-Card {
+//   width: 100% !important;
+// }
+.nopadding {
+  padding-left: 0;
+  padding-right: 0;
+
+}
+
+.Details-div2 {
+  display: none !important;
+}
+
+
 @media screen and (max-width: 768px) {
+  .Details-div1 {
+    display: none !IMPORTANT;
+  }
+
+  .Details-div2 {
+    display: flex !important;
+    width: auto !important;
+    margin: 20px;
+  }
+
+  .button-Div3 {
+    display: flex;
+    align-items: center;
+    border-radius: 8px;
+
+  }
+
+  .price-div2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px;
+  }
+
+  .inner-Card1 {
+    display: flex;
+    justify-content: center;
+    border: solid 1px rgb(107, 181, 70);
+  }
+
+  .picco-textDiv {
+    width: auto;
+  }
+
+  .button-Div1 {
+    display: none;
+  }
+
+  .button-Div2 {
+    display: block;
+  }
+
+  .price-div1 {
+    width: auto;
+  }
+
+  .cardMain-div1 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .cardMain-div {
+    padding: 20px 15px 15px 15px;
+    display: block;
+  }
+
+  .card1 {
+    width: 100%;
+    text-align: center;
+    border: 0px solid #92ca92;
+    background-color: hsl(0, 0%, 100%);
+    box-shadow: #92ca92 0px 0px 10px 0px;
+    border-radius: 7px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+  }
+
   .innerHead {
     width: 50%;
     font-size: 10px !important;
+
   }
-  .ModifyButton-Div {
+
+  .subHeader1 {
+    display: none;
+  }
+
+  .modifyButton {
+    height: 90%;
+    width: 85%;
+  }
+
+  .ModifyButton-Div1 {
     width: 100%;
+    height: 50px;
   }
+
   .PickpDate-Div {
     font-size: 10px !important;
   }
+
+  .PickpDate-Div1 {
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  .bkngscndStp-innrDiv {
+    width: 350px !important;
+    height: 40px !important;
+
+  }
 }
+
+
 @media screen and (max-width: 576px) {
+  .DetailModal-div1{
+    padding: 0px 10px 0px 10px;
+
+  }
+  .DetailModal-div2{
+    font-size: 11px;
+  }
+  .Container-Card {
+    padding: 20px 0px 0px 0px;
+  }
+
+  .inner-Card1 {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .picco-div {
+    display: none;
+  }
+
+  .bkngscndStp-innrDiv {
+    width: 270px !important;
+    height: 35px !important;
+
+  }
+
   .card-Div {
     width: 100%;
     height: 100%;
     padding: 5px;
   }
-  .cardMain-div {
-    padding: 0px;
-  }
+
   .card {
     padding: 10px;
     height: 30% !important;
   }
+
   .seatcontent-Div {
     width: 63%;
   }
+
   .price-Div {
     justify-content: end;
   }
+
   .button {
     height: 90%;
     width: 50%;
   }
+
   .piccoImg {
     width: 35%;
   }
+
   .selectcar-Div {
     height: 7%;
   }
-  .piccominiImg {
-    width: 38% !important;
-  }
+
+  // .piccominiImg {
+  //   width: 38% !important;
+  // }
+
   .piccosuvImg {
     width: 38% !important;
   }
+
   .piccosedanImg {
     width: 38% !important;
   }
-  .modifyButton {
-    width: 55% !important;
-    height: 40% !important;
-  }
+
+  // .modifyButton {
+  //   width: 55% !important;
+  //   height: 40% !important;
+  // }
 }
+
 @media screen and (min-width: 577px) and (max-width: 768px) {
   .cardMain-div {
     background-image: none;
     justify-content: center;
   }
+
 }
-@media (min-width: 760px) {
-  .inner-Card {
-    width: 100% !important;
-  }
-}
+
+// @media (min-width: 760px) {
+//   .inner-Card {
+//     width: 100% !important;
+//   }
+// }
 .bkngscndStp-kmCard {
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 .bkngscndStp-innrDiv {
   width: 420px;
   height: 45px;
@@ -456,6 +750,7 @@
   align-items: center;
   background-color: #bfbfbf;
 }
+
 .bkngScndStp-innerDiv1 {
   height: 45px;
   width: 140px;
@@ -468,6 +763,7 @@
   color: #888;
   cursor: pointer;
 }
+
 .bkngScndStp-innerDiv1-chng {
   height: 45px;
   width: 140px;
@@ -480,6 +776,7 @@
   color: #ffffff;
   cursor: pointer;
 }
+
 .bkngScndStp-innerDiv2 {
   height: 45px;
   width: 140px;
@@ -493,6 +790,7 @@
   color: #969696;
   cursor: pointer;
 }
+
 .bkngScndStp-innerDiv2-chng {
   height: 45px;
   width: 140px;
@@ -507,6 +805,7 @@
   color: #ffffff;
   cursor: pointer;
 }
+
 .bkngScndStp-innerDiv3 {
   height: 45px;
   width: 140px;
@@ -518,6 +817,7 @@
   color: #888;
   cursor: pointer;
 }
+
 .bkngScndStp-innerDiv3-chng {
   height: 45px;
   width: 140px;
@@ -530,33 +830,38 @@
   color: #ffffff;
   cursor: pointer;
 }
+
 .bkngscndStp-curveDiv {
   width: 60px;
   height: 45px;
   background-color: #f8f9fa;
   border-radius: 0% 0% 0% 100%;
 }
+
 .bkngscndStp-curveDivSub {
   width: 60px;
   height: 45px;
   background-color: #6BB546;
   border-radius: 0% 0% 0% 100%;
 }
+
 .bkngscndStp-curveDiv2 {
   width: 60px;
   height: 45px;
   background-color: #f8f9fa;
   border-radius: 0% 0% 100% 0%;
 }
+
 .bkngscndStp-curveDiv2Sub {
   width: 60px;
   height: 45px;
   background-color: #6BB546;
   border-radius: 0% 0% 100% 0%;
 }
+
 .DetailModal-Main {
-  width: 900px;
-  height: 150px;
+  width: 100%;
+  // height: 100%;
   background-color: #fff;
   box-shadow: gray -1px 5px 8px 1px;
   background-color: #fff;
@@ -564,11 +869,13 @@
   margin-top: -23px;
   margin-bottom: 23px;
 }
+
 .Exclusion-item-Div {
   width: 100%;
   height: 60px;
   display: flex;
 }
+
 .pay-DIV {
   width: 32%;
   height: 40px;
@@ -577,6 +884,7 @@
   justify-content: center;
   align-items: center;
 }
+
 .MultiptlPickup-Div {
   width: 32%;
   height: 40px;
@@ -585,6 +893,7 @@
   justify-content: center;
   align-items: center;
 }
+
 .parking-Div {
   width: 36%;
   height: 40px;
@@ -593,11 +902,13 @@
   justify-content: center;
   align-items: center;
 }
+
 .facilities-DIV {
   width: 100%;
   height: 60px;
   display: flex;
 }
+
 .seates-Div {
   width: 32%;
   height: 38px;
@@ -606,6 +917,7 @@
   justify-content: end;
   align-items: center;
 }
+
 .bags-Div {
   width: 32%;
   height: 38px;
@@ -614,6 +926,7 @@
   justify-content: center;
   align-items: center;
 }
+
 .AC_Div {
   width: 36%;
   display: flex;
@@ -628,52 +941,61 @@
   display: flex;
 }
 .Basefare-DIV {
-  width: 25%;
+  // width: 25%;
   display: flex;
   font-weight: 500;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   height: 40px;
 }
+
 .Driver-Div {
-  width: 30%;
+  // width: 30%;
   display: flex;
   font-weight: 500;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   height: 40px;
 }
+
 .StateTax-Div {
-  width: 30%;
+  // width: 30%;
   display: flex;
   font-weight: 500;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   height: 40px;
 }
+
 .GST-Div {
-  width: 30%;
+  // width: 30%;
   display: flex;
   font-weight: 500;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   height: 40px;
 }
+
 .car-img {
   width: 35px !important;
   height: 23px !important;
 }
+
 .currency-img {
   width: 35px !important;
   height: 23px !important;
 }
+
 .GSTimg {
   width: 35px !important;
   height: 23px !important;
 }
+
 .TandCtext-Div {
   width: 100%;
   height: 68px;
   font-size: 13px;
-  padding-left: 15px;
+  // background-color: #9198e5;
+  // display: flex;
+  // align-items: center;
 }
