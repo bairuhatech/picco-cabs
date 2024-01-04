@@ -132,7 +132,7 @@ const Bookings = () => {
    async function deleteData(id: any) {
      try {
        const response = await axios.delete(
-         API.BASE_URL + API.DELETE_ALL_BOOKING
+         API.BASE_URL + API.DELETE_ALL_BOOKING + id
          //  `https://piccocabs-server-46642b82a774.herokuapp.com/Booking/${id}`
        ); 
        // setIsLoading(false);

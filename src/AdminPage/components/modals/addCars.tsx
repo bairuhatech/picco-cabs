@@ -34,7 +34,7 @@ function AddCarsModal(props: any) {
 		try {
 			if (props.purpose === "Edit") {
 				await axios.put(
-					API.BASE_URL + API.UPDATE_CARS + `${props.locationId}`,
+					API.BASE_URL + API.UPDATE_CARS + props.locationId ,
 					// `https://piccocabs-server-46642b82a774.herokuapp.com/Cars/${props.locationId}`,
 					newData
 				);

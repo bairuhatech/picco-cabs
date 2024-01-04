@@ -197,7 +197,7 @@ const SidebarNavigation = () => {
                 className="nav-link"
                 iconSize="lg"
               >
-                Locations1234567
+                Locations
               </CDBSidebarMenuItem>
             </NavLink>
             <NavLink

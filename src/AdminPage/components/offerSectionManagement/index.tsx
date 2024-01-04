@@ -46,7 +46,7 @@ const OfferSectionManagement = () => {
   async function deleteData(id: any) {
     try {
       const response = await axios.delete(
-        API.BASE_URL + API.DELETE_OFFERS
+        API.BASE_URL + API.DELETE_OFFERS + id
         // `https://piccocabs-server-46642b82a774.herokuapp.com/Offers/${id}`
       );
       setData((prevData: any) =>

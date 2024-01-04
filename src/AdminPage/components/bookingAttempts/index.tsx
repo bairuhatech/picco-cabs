@@ -36,7 +36,7 @@ const BookingAttempts = () => {
   async function deleteData(id: any) {
     try {
       const response = await axios.delete(
-        API.BASE_URL + API.DELETE_BOOKING_ATTEMPT,
+        API.BASE_URL + API.DELETE_BOOKING_ATTEMPT + id,
         // `https://piccocabs-server-46642b82a774.herokuapp.com/booking-attempt/${id}`
       );
       setData((prevData: any) =>

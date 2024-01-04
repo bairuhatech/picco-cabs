@@ -44,7 +44,7 @@ const LocationsTable = () => {
   async function deleteData(id: any) {
     try {
       const response = await axios.delete(
-        API.BASE_URL + API.DELETE_PICKUP_LOCATION + `${id}`,
+        API.BASE_URL + API.DELETE_PICKUP_LOCATION + id
         // `https://piccocabs-server-46642b82a774.herokuapp.com/Pickuplocation/${id}`
       );
       // setIsLoading(false);
@@ -87,7 +87,7 @@ const LocationsTable = () => {
   return (
     <div className="table-responsive w-100" style={{ height: "100%" }}>
       <div className="d-flex justify-content-between">
-        <h2 className="py-3 ps-2">Locations1234567</h2>
+        <h2 className="py-3 ps-2">Locations</h2>
         <button
           style={{ border: "1px solid green", color: "green" }}
           className="btn btn-picco align-self-center me-3 text-light"
@@ -175,7 +175,6 @@ const LocationsTable = () => {
                       cancelText="No"
                     >
                       <button className="btn btn-danger">
-                        dfghjk
                         <FontAwesomeIcon icon={faTrash} />
                       </button>
                     </Popconfirm>

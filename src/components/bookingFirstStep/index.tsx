@@ -180,7 +180,16 @@ const FirstStep = () => {
             </Row>
           </div>
         </div>
-        <CurrentView />
+    
+        {formType === "outstations" ? (
+          <OneWay types={formType} />
+        ) : formType === "rentals" ? (
+          <Rentals types={formType} />
+        ) : formType === "roundTrip" ? (
+          <Roundtrip types={formType} />
+        ) : formType === "airports" ? (
+          <Airports types={formType} />
+        ) : null}
         {/* Render the corresponding form based on the selected formType */}
       </div>
     </Container>

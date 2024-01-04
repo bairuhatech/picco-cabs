@@ -52,7 +52,7 @@ const DriversTable = () => {
   async function deleteData(id: any) {
     try {
       const response = await axios.delete(
-        API.BASE_URL + API.DELETE_DRIVER + `${id}`,
+        API.BASE_URL + API.DELETE_DRIVER + id
         // `https://piccocabs-server-46642b82a774.herokuapp.com/Driver/${id}`
       );
       setData((prevData: any) =>

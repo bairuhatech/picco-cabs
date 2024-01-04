@@ -10,7 +10,7 @@ import moment from "moment";
 import piccologo from "../../assets/images/logo.png";
 import { Loading3QuartersOutlined } from "@ant-design/icons";
 import FormItem from "antd/es/form/FormItem";
-import { Col, Container,Row } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import API from "../../config/api";
 
 
@@ -39,6 +39,7 @@ const BookingThird = (props: any) => {
     RentalDate,
     airport,
   } = location.state;
+  console.log(location)
 
   const handleOk = () => {
     setIsModalOpen(false);
@@ -74,33 +75,33 @@ const BookingThird = (props: any) => {
         estimatedAmt:
           props.selectedCar.name === "Compact Mini"
             ? selectedRoute?.miniPrice +
-                (tripType === "roundTrip" ? selectedRoute.miniPrice : null) ||
-              props.selectedCar.price
+            (tripType === "roundTrip" ? selectedRoute.miniPrice : null) ||
+            props.selectedCar.price
             : props.selectedCar.name === "Executive Sedan"
-            ? selectedRoute?.sedanPrice +
-                (tripType === "roundTrip" ? selectedRoute.sedanPrice : null) ||
+              ? selectedRoute?.sedanPrice +
+              (tripType === "roundTrip" ? selectedRoute.sedanPrice : null) ||
               props.selectedCar.price
-            : props.selectedCar.name === "Spacious SUV"
-            ? selectedRoute?.suvPrice +
+              : props.selectedCar.name === "Spacious SUV"
+                ? selectedRoute?.suvPrice +
                 (tripType === "roundTrip" ? selectedRoute.suvPrice : null) ||
-              props.selectedCar.price
-            : props.selectedCar.name === "Innova SUV"
-            ? selectedRoute?.innovaPrice +
-                (tripType === "roundTrip" ? selectedRoute.innovaPrice : null) ||
-              props.selectedCar.price
-            : props.selectedCar.name === "Innova Crysta"
-            ? selectedRoute?.crystaPrice +
-                (tripType === "roundTrip" ? selectedRoute.crystaPrice : null) ||
-              props.selectedCar.price
-            : props.selectedCar.name === "Tempo Traveller"
-            ? selectedRoute?.TempoTravellerPrice +
-                (tripType === "roundTrip"
-                  ? selectedRoute.TempoTravellerPrice
-                  : null) || props.selectedCar.price
-            : selectedRoute?.traveller18Price +
-                (tripType === "roundTrip"
-                  ? selectedRoute.traveller18Price
-                  : null) || props.selectedCar.price,
+                props.selectedCar.price
+                : props.selectedCar.name === "Innova SUV"
+                  ? selectedRoute?.innovaPrice +
+                  (tripType === "roundTrip" ? selectedRoute.innovaPrice : null) ||
+                  props.selectedCar.price
+                  : props.selectedCar.name === "Innova Crysta"
+                    ? selectedRoute?.crystaPrice +
+                    (tripType === "roundTrip" ? selectedRoute.crystaPrice : null) ||
+                    props.selectedCar.price
+                    : props.selectedCar.name === "Tempo Traveller"
+                      ? selectedRoute?.TempoTravellerPrice +
+                      (tripType === "roundTrip"
+                        ? selectedRoute.TempoTravellerPrice
+                        : null) || props.selectedCar.price
+                      : selectedRoute?.traveller18Price +
+                      (tripType === "roundTrip"
+                        ? selectedRoute.traveller18Price
+                        : null) || props.selectedCar.price,
         // ? props.selectedCar.price
         // : null,
         returnDate: "2023-08-02T12:00:00Z",
@@ -159,25 +160,25 @@ const BookingThird = (props: any) => {
           estimatedAmt:
             props.selectedCar.name === "Compact Mini"
               ? selectedRoute?.miniPrice +
-                (tripType === "roundTrip" ? selectedRoute.miniPrice : null)
+              (tripType === "roundTrip" ? selectedRoute.miniPrice : null)
               : props.selectedCar.name === "Executive Sedan"
-              ? selectedRoute?.sedanPrice +
+                ? selectedRoute?.sedanPrice +
                 (tripType === "roundTrip" ? selectedRoute.sedanPrice : null)
-              : props.selectedCar.name === "Spacious SUV"
-              ? selectedRoute?.suvPrice +
-                (tripType === "roundTrip" ? selectedRoute.suvPrice : null)
-              : props.selectedCar.name === "Innova SUV"
-              ? selectedRoute?.innovaPrice +
-                (tripType === "roundTrip" ? selectedRoute.innovaPrice : null)
-              : props.selectedCar.name === "Innova Crysta"
-              ? selectedRoute?.crystaPrice +
-                (tripType === "roundTrip" ? selectedRoute.crystaPrice : null)
-              : props.selectedCar.name === "Tempo Traveller"
-              ? selectedRoute?.TempoTravellerPrice +
-                (tripType === "roundTrip"
-                  ? selectedRoute.TempoTravellerPrice
-                  : null)
-              : selectedRoute?.traveller18Price,
+                : props.selectedCar.name === "Spacious SUV"
+                  ? selectedRoute?.suvPrice +
+                  (tripType === "roundTrip" ? selectedRoute.suvPrice : null)
+                  : props.selectedCar.name === "Innova SUV"
+                    ? selectedRoute?.innovaPrice +
+                    (tripType === "roundTrip" ? selectedRoute.innovaPrice : null)
+                    : props.selectedCar.name === "Innova Crysta"
+                      ? selectedRoute?.crystaPrice +
+                      (tripType === "roundTrip" ? selectedRoute.crystaPrice : null)
+                      : props.selectedCar.name === "Tempo Traveller"
+                        ? selectedRoute?.TempoTravellerPrice +
+                        (tripType === "roundTrip"
+                          ? selectedRoute.TempoTravellerPrice
+                          : null)
+                        : selectedRoute?.traveller18Price,
           rentallPack: 1,
           car: 1,
           comments: values.Comments,
@@ -210,170 +211,89 @@ const BookingThird = (props: any) => {
   const Data = {
     labelCol: { span: 4 },
   };
-  // let pack =
-  //   Package?.value === "custom_package" ? (
-  //     <div>
-  //       {Package?.hours}Hr&nbsp;{Package?.kms}kms
-  //     </div>
-  //   ) : (
-  //     <div>{Package?.label}</div>
-  //   );
   return (
     <>
-      <div className="BookingDivMain">
-        <div className="SecondCard-Div">
-          {/* /// */}
-          <div className="SecondCard-Div">
-            <div className="booking-Div">
-              <div className="ContactPickUp-Div">
-                <div className="pickup-Div">
-                  <p
-                    style={{
-                      fontWeight: "600",
-                      fontSize: "20px",
-                      color: " #6BB546",
-                    }}
-                  >
-                    ᴄᴏɴᴛᴀᴄᴛ & ᴘɪᴄᴋᴜᴘ ᴅᴇᴛᴀɪʟs
-                  </p>
-                </div>
-              </div>
-              <Form onFinish={onFinish}>
-                <div className="NameInput-Div">
-                  <Form.Item
-                    name="name"
-                    className="label"
-                    // label={"ɴᴀᴍᴇ"}
-                    rules={[
-                      { required: true, message: "Please Enter Your Name" },
-                    ]}
-                  >
+      <div style={{ display: "flex", justifyContent: "center", width: "100%", }}>
+        <Container>
+          
+            <div style={{ width: "100%", textAlign: "center" }}><p className="contactBox-tex1">Let's Get a Safe Ride</p></div>
+            <Row className="g-0">
+              <Col md={6}>
+                <div className="contact-box3">
+                  <label className="formLabel">ITINERARY</label>
                     <Input
-                      placeholder="ᴇɴᴛᴇʀ ʏᴏᴜʀ ɴᴀᴍᴇ ʜᴇʀᴇ"
-                      className="nameinput"
-                      size="large"
+                      readOnly
+                      value={
+                        RentPlace
+                          ? `${RentPlace} ${selectedRoute?.place}`
+                          : `${selectedRoute?.place} to ${selectedRoute?.location}`
+                      }
                     />
-                  </Form.Item>
+                    <br/>
+                  <label className="formLabel">PICKUP DATE</label>
+                    <Input
+                      readOnly
+                      value={`${moment(formattedDate).format("Do MMMM YYYY")} at ${timeOfPickup}`}
+                    />
+                    <br/>
+
+                  <label className="formLabel">CAR TYPE</label>
+                    <Input readOnly value={props.selectedCar.name} />
+                    <br/>
+
+                  <label className="formLabel">KM</label>
+                    <Input readOnly value={props?.selectedCar?.distance} />
+                    <br/>
+
+                  <label className="formLabel">TOTAL FARE</label>
+                    <Input readOnly value={` ₹ ${props?.selectedCar?.price}`} />
+                    <br/>
+
                 </div>
 
-                <div className="EmailInput-Div">
-                  <Form.Item
-                    name="email"
-                    className="label"
-                    // label={"ᴇᴍᴀɪʟ"}
-                    rules={[
-                      {
-                        required: true,
-                        message: "Please Enter Your Email Address",
-                      },
-                      {
-                        type: "email",
-                        message: "Please enter a valid email address",
-                      },
-                    ]}
-                  >
-                    <Input
-                      placeholder="ᴇɴᴛᴇʀ ʏᴏᴜʀ ᴇᴍᴀɪʟ ʜᴇʀᴇ"
-                      className="Emailinput"
-                      size="large"
-                    />
+              </Col>
+              <Col md={6}>
+                <div className="contact-box3">
+                <Form onFinish={onFinish}>
+                  <Form.Item name="name">
+                    <Input placeholder="Name"></Input>
                   </Form.Item>
-                </div>
-                <div className="MobileInput-Div">
-                  <Form.Item
-                    name="Phone"
-                    className="label"
-                    // label={"ᴍᴏʙɪʟᴇ"}
-                    rules={[
-                      {
-                        required: true,
-                        message: "Please Enter Your Phone Number",
-                      },
-                    ]}
-                  >
-                    <Input
-                      type="number"
-                      placeholder="ᴇɴᴛᴇʀ ʏᴏᴜʀ ᴍᴏʙɪʟᴇ ɴᴜᴍʙᴇʀ ʜᴇʀᴇ"
-                      className="Mobileinput"
-                      size="large"
-                    />
+                  <Form.Item name="email">
+                    <Input placeholder="Email"/>
                   </Form.Item>
+                  <Form.Item name="Phone">
+                    <Input placeholder="Phone"></Input>
+                  </Form.Item>
+                  <Form.Item name="PickupAddress">
+                    <Input placeholder="PICKUP ADDRESS"></Input>
+                  </Form.Item>
+                  <Form.Item name="DropAddress">
+                    <Input placeholder="DROP ADDRESS"></Input>
+                  </Form.Item>
+                  <Form.Item name="Comments">
+                    <Input.TextArea
+                      style={{ width: "100%" }}
+                      rows={3}
+                      placeholder="MESSAGE"
+                    ></Input.TextArea>
+                  </Form.Item>
+                  <Button
+                    htmlType="submit"
+                    className="contactBox-btn"
+                        
+                  >
+                    Book Now
+                  </Button>
+                  </Form>
                 </div>
-                {/* <div className="MobileInput-Div"> */}
-                <Form.Item
-                  name="Comments"
-                  // label={"ᴄᴏᴍᴍᴇɴᴛ"}
-                  rules={[{ required: true, message: "Please Add a Comment" }]}
-                >
-                  <Input
-                    placeholder="ᴇɴᴛᴇʀ ʏᴏᴜʀ ᴄᴏᴍᴍᴇɴᴛ ʜᴇʀᴇ"
-                    className="Commentinput"
-                    size="large"
-                  />
-                </Form.Item>
-                <Form.Item
-                  name="PickupAddress"
-                  // label={"ᴘɪᴄᴋᴜᴘ ᴀᴅᴅʀᴇss"}
-                  rules={[
-                    {
-                      required: true,
-                      message: "Please Enter Your Pickup Address",
-                    },
-                  ]}
-                >
-                  <Input
-                    placeholder="ᴇɴᴛᴇʀ ʏᴏᴜʀ ᴘɪᴄᴋᴜᴘ ᴀᴅᴅʀᴇss"
-                    className="Commentinput"
-                    size="large"
-                  />
-                </Form.Item>
-                <Form.Item
-                  name="DropAddress"
-                  // label={"ᴅʀᴏᴘ ᴀᴅᴅʀᴇss"}
-                  rules={[
-                    {
-                      required: true,
-                      message: "Please Enter Your Drop Address",
-                    },
-                  ]}
-                >
-                  <Input
-                    placeholder="ᴇɴᴛᴇʀ ʏᴏᴜʀ ᴅʀᴏᴘ ᴀᴅᴅʀᴇss"
-                    className="Commentinput"
-                    size="large"
-                  />
-                </Form.Item>
-                <Spin
-                  spinning={loading}
-                  indicator={
-                    <Loading3QuartersOutlined spin style={{ color: "green" }} />
-                  }
-                  tip="Booking in progress..."
-                >
-                  {/* </div> */}
-                  <Col md={12}>
-                    <Form.Item>
-                      <Button
-                        // size="large"
-                        className="button"
-                        htmlType="submit"
-                        disabled={loading}
-                        type="primary"
-                      >
-                        PROCEED
-                      </Button>
-                    </Form.Item>
-                  </Col>
-                </Spin>
-              </Form>
-
-              {isModalOpen ? (
+              </Col>
+                {isModalOpen ? (
                 <Modal
                   title="Basic Modal"
                   open={isModalOpen}
                   onOk={handleOk}
                   closable={false}
-                  style={{ maxWidth: "25%" }}
+                  width={300}
                 >
                   <div
                     style={{
@@ -394,53 +314,8 @@ const BookingThird = (props: any) => {
                   </div>
                 </Modal>
               ) : null}
-            </div>
-          </div>
-          {/* /// */}
-        </div>
-
-        {/* /// */}
-
-        <div className="Secondcard-Main">
-          <div className="Secondcard">
-            <div className="bookingdetail-Div">YOUR BOOKING DETAIL HERE</div>
-            <Form {...Data}>
-              <FormItem
-                // style={{ height: "5%" }}
-                wrapperCol={{ offset: 1 }}
-                label={" ɪᴛᴇɴᴇʀᴀʀʏ:"}
-              >
-                <div style={{ borderRadius: "5px" }} className="content-Div">
-                  {RentPlace || selectedRoute?.place}
-                  &nbsp;<b>{RentPlace ? "" : "to"}</b> &nbsp;
-                  {RentPlace ? "" : selectedRoute?.location}
-                </div>
-              </FormItem>
-              <FormItem wrapperCol={{ offset: 1 }} label={"ᴘɪᴄᴋ ᴜᴘ ᴅᴀᴛᴇ:"}>
-                <div style={{ borderRadius: "5px" }} className="content-Div">
-                  {moment(formattedDate).format("Do MMMM YYYY")} at{" "}
-                  {timeOfPickup}
-                </div>
-              </FormItem>
-              <FormItem wrapperCol={{ offset: 1 }} label={"ᴄᴀʀ ᴛʏᴘᴇ:"}>
-                <div style={{ borderRadius: "5px" }} className="content-Div">
-                  {props.selectedCar.name}
-                </div>
-              </FormItem>
-              <FormItem wrapperCol={{ offset: 1 }} label={"ᴋᴍ:"}>
-                <div style={{ borderRadius: "5px" }} className="content-Div">
-                  {props?.selectedCar?.distance}
-                </div>
-              </FormItem>
-              <FormItem wrapperCol={{ offset: 1 }} label={"ᴛᴏᴛᴇʟ ғᴀʀᴇ:"}>
-                <div style={{ borderRadius: "5px" }} className="content-Div">
-                  {" "}
-                  ₹ {props?.selectedCar?.price}
-                </div>
-              </FormItem>
-            </Form>
-          </div>
-        </div>
+            </Row>
+        </Container>
       </div>
     </>
   );

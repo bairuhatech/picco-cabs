@@ -36,7 +36,7 @@ const CarsTable = () => {
 	async function deleteData(id: any) {
 		try {
 			const response = await axios.delete(
-             API.BASE_URL + API.DELETE_CARS +`${id}`, 
+             API.BASE_URL + API.DELETE_CARS + id
         // `https://piccocabs-server-46642b82a774.herokuapp.com/Cars/${id}`
       );
 			setData((prevData: any) => prevData.filter((item: any) => item.id !== id));
