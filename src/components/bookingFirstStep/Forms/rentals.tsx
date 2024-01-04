@@ -381,6 +381,7 @@ export default function Rentals(props: any) {
             <Form.Item
               name="rentalPlace"
               className="fw-bold"
+              initialValue={props?.selectedProps?.place}
               rules={[
                 {
                   required: true,
@@ -393,7 +394,6 @@ export default function Rentals(props: any) {
                 showSearch
                 defaultActiveFirstOption={false}
                 placeholder={"Start Place"}
-                defaultValue={props?.selectedProps?.place}
                 suffixIcon={null}
                 filterOption={false}
                 onSearch={handleSearch}
@@ -412,6 +412,7 @@ export default function Rentals(props: any) {
             </label>
             <Form.Item
               name="dateRange"
+              initialValue={dayjs(props?.selectedDate)}
               rules={[
                 {
                   required: true,
@@ -437,6 +438,7 @@ export default function Rentals(props: any) {
             </label>
             <Form.Item
               name="timeRange"
+              initialValue={props?.selectedTime}
               rules={[
                 {
                   required: true,
@@ -447,7 +449,6 @@ export default function Rentals(props: any) {
               <Select
                 className="form-control border-0 rounded-0"
                 placeholder="Pick up time"
-                defaultValue={props.selectedTime}
                 suffixIcon={<BiTime size={20} />}
               >
                 {generateTimeOptions().map((timeOption) => (

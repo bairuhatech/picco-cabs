@@ -560,28 +560,7 @@ function BookingForm(props: any) {
                   </div>
                 ) : null}
               </Col>
-              <Col xs={12} sm={4}>
-                <div className="ModifyButton-Div1">
-                  <button className="modifyButton"
-                    onClick={() => {
-                      setModify(true);
-                    }}>
-                    Modify
-                  </button>
-                  {modify ? (
-                    <ModifyModal
-                      show={modify}
-                      selectedRoute={selectedRoute}
-                      pickUpDate={pickUpDate}
-                      timeOfPickup={timeOfPickup}
-                      dropOffDate={dropOffDate}
-                      onHide={() => {
-                        setModify(false);
-                      }}
-                    />
-                  ) : null}
-                </div>
-              </Col>
+              
             </Row>
           </div>
           {showBooking != true ? (
