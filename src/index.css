@@ -49,10 +49,10 @@ code {
   outline: none !important;
 }
 .ant-checkbox-checked .ant-checkbox-inner {
-  background-color: #198754;
-  border-color: #198754;
+  background-color: #6BB546;
+  border-color: #6BB546;
 }
 .ant-checkbox-checked .ant-checkbox-inner:hover {
-  background-color: #198754 !important;
-  border-color: #198754 !important;
+  background-color: #6BB546 !important;
+  border-color: #6BB546 !important;
 }

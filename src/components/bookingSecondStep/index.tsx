@@ -1,8 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { IoMdArrowRoundBack } from "react-icons/io";
-import { IoNewspaperOutline } from "react-icons/io5";
-import { MdOutlineSevereCold } from "react-icons/md";
-// import { PiFanFill } from "react-icons/lu";
 import { MdAirlineSeatReclineNormal } from "react-icons/md"
 import smallcarimg from "../../assets/images/car_mini_small.png";
 import sedanimg from "../../assets/images/car_sedan_small.png";
@@ -24,7 +20,6 @@ import { MdOutlineAirlineSeatReclineExtra } from "react-icons/md";
 import { useSelector } from "react-redux";
 import BookingThird from "../BookingThirdStep";
 import moment from "moment";
-// import { BsFuelPumpDieselFill } from "react-icons/bs";
 import NavigationBar from "../navBar";
 import {
   BsFuelPumpDieselFill,
@@ -35,9 +30,7 @@ import { AiFillCar } from "react-icons/ai";
 import { Popover, Tooltip } from "antd";
 import { HiCurrencyRupee } from "react-icons/hi";
 import "./index.scss";
-import { ImFileText } from "react-icons/im";
-import { BiPackage } from "react-icons/bi";
-import ModifyModal from "../../AdminPage/components/modals/modifyModal";  
+import ModifyModal from "../../AdminPage/components/modals/modifyModal";
 
 function BookingForm(props: any) {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -91,7 +84,6 @@ function BookingForm(props: any) {
   };
 
   const handleBookNow = (item: any) => {
-    // setSelectedCar(carData);
     setSelectedCar(item);
 
     if (isLoggedIn) {
@@ -133,9 +125,7 @@ function BookingForm(props: any) {
     setShowFare(false);
   };
 
-  // const toggleDetailVisibility = () => {
-  //   setIsDetailVisible(!isDetailVisible);
-  // };
+
 
   const kilometerRental = {
     kilometer1: {
@@ -560,7 +550,7 @@ function BookingForm(props: any) {
                   </div>
                 ) : null}
               </Col>
-              
+
             </Row>
           </div>
           {showBooking != true ? (
@@ -604,7 +594,6 @@ function BookingForm(props: any) {
                         : formattedDate}{" "}
                       <div className="PickupTime-Div">
                         Pickup Time: <br />
-                        {/* {Package?.label ? "" : "Pickup Time:"} <br /> */}
                         {tripType === "rentals" ? RentalTime : timeOfPickup || ""}
                       </div>
                       {tripType === "roundTrip" ? (
@@ -639,201 +628,179 @@ function BookingForm(props: any) {
                   </div>
                 </div>
               </div>
-              <div  className="Container-Card">
+              <div className="Container-Card">
                 {newData.map((item: any, index: any) => {
                   return (
                     <>
                       <div className="inner-Card" key={index}>
-                      <div className="inner-Card1">
-                        <div style={{ display: "flex" }}>
-                          <img
-                            className="piccominiImg"
-                            style={{ height: "70px", marginTop: "8px" }}
-                            src={item?.Image}
-                            alt="Compact Mini"
-                          />
-                          <div className="nameContainer">
-                            <div className="picco-mini">{item?.name}</div>
-                            <div className="piccomini-info">
-                              {/* info */}
-                              <Popover
-                                placement="rightTop"
-                              // title={text}
-                              // content={minicontent}
-                              // arrow={mergedArrow}
-                              >
-                                <Tooltip
-                                  placement="bottom"
-                                  title={item.tooltip}
+                        <div className="inner-Card1">
+                          <div style={{ display: "flex" }}>
+                            <img
+                              className="piccominiImg"
+                              style={{ height: "70px", marginTop: "8px" }}
+                              src={item?.Image}
+                              alt="Compact Mini"
+                            />
+                            <div className="nameContainer">
+                              <div className="picco-mini">{item?.name}</div>
+                              <div className="piccomini-info">
+                                <Popover
+                                  placement="rightTop"
                                 >
-                                  <BsInfoCircle size={18} color="#d3d3d3" />
-                                </Tooltip>
-                              </Popover>
+                                  <Tooltip
+                                    placement="bottom"
+                                    title={item.tooltip}
+                                  >
+                                    <BsInfoCircle size={18} color="#d3d3d3" />
+                                  </Tooltip>
+                                </Popover>
+                              </div>
                             </div>
                           </div>
-                        </div>
-                        <div className="picco-textDiv"
-                        >
-                          <div className="picco-div"
+                          <div className="picco-textDiv"
                           >
-                            <div className="piccocartext-font">
-                              AC{" "}
-                              <PiFanFill
-                                style={{
-                                  width: "20px",
-                                  height: "15",
-                                }}
-                              />
-                              <img src="FaSnowflake" alt="" />
+                            <div className="picco-div"
+                            >
+                              <div className="piccocartext-font">
+                                AC{" "}
+                                <PiFanFill
+                                  style={{
+                                    width: "20px",
+                                    height: "15",
+                                  }}
+                                />
+                                <img src="FaSnowflake" alt="" />
+                              </div>
+                              <div className="piccocartext-font">
+                                {item?.seat}Seat
+                                <MdAirlineSeatReclineNormal
+                                  style={{
+                                    width: "20px",
+                                    height: "15",
+                                  }}
+                                />
+                              </div>
+                              <div className="piccocartext-font">
+                                2 Bag
+                                <BiSolidBalloon
+                                  style={{
+                                    width: "20px",
+                                    height: "15px",
+                                  }}
+                                />
+                              </div>
                             </div>
-                            <div className="piccocartext-font">
-                              {item?.seat}Seat
-                              <MdAirlineSeatReclineNormal
-                                style={{
-                                  width: "20px",
-                                  height: "15",
-                                }}
-                              />
-                            </div>
-                            <div className="piccocartext-font">
-                              2 Bag
-                              <BiSolidBalloon
-                                style={{
-                                  width: "20px",
-                                  height: "15px",
-                                }}
-                              />
-                            </div>
-                          </div>
-                          <div className="Details-div1"
-                            style={{
-                              height: "100%",
-                              width: "200px",
-                              display: "flex",
-                              justifyContent: "center",
-                              alignItems: "center",
-                              flexDirection: "column",
-                            }}
-                          >
-                            <div style={{width:"125px"}}>
-                              <b>Includes {item?.distance} Km</b>
-                            </div>
-                            <div>
-                              <b>{item?.hours}</b> hours to reach
-                            </div>
-                            <p
-                              key={item.id}
+                            <div className="Details-div1"
                               style={{
-                                cursor: "pointer",
-                                color: "#0056b3",
-                                marginBottom: "0px",
+                                height: "100%",
+                                width: "200px",
+                                display: "flex",
+                                justifyContent: "center",
+                                alignItems: "center",
+                                flexDirection: "column",
                               }}
-                              onClick={() => handleClick(item)}
                             >
-                              Details
-                              <BiChevronDown size={25} />
-                            </p>
-                          </div>
-                          <div className="price-div1"
-                          >
-                            <div
-                              style={{ display: "flex", alignItems: "center" }}
-                            >
-                              <p>
-                                {" "}
-                                ₹ <b key={index}>{item?.price}</b>
+                              <div style={{ width: "125px" }}>
+                                <b>Includes {item?.distance} Km</b>
+                              </div>
+                              <div>
+                                <b>{item?.hours}</b> hours to reach
+                              </div>
+                              <p
+                                key={item.id}
+                                style={{
+                                  cursor: "pointer",
+                                  color: "#0056b3",
+                                  marginBottom: "0px",
+                                }}
+                                onClick={() => handleClick(item)}
+                              >
+                                Details
+                                <BiChevronDown size={25} />
                               </p>
                             </div>
-                            {showfare && (
-                              <FareModal
-                                open={openfare}
-                                close={closefare}
-                                selectedVeh={selectedVeh}
-                              />
-                            )}
-                          </div>
-                        </div>
-                        {formModal && (
-                          <CustomModal
-                            isModalOpen={show}
-                            handleCancel={Cancel}
-                          />
-                        )}
-                        <div className="button-Div1">
-                          <div className="button-Div">
-                            <button
-                              style={{
-                                height: "40px",
-                                width: "150px",
-                                fontWeight: "700",
-                                fontSize: "18px",
-                              }}
-                              onClick={() =>
-                                // handleBookNow({
-                                //   name: "Compact Mini",
-                                //   type: "Mini",
-                                // })
-                                handleBookNow(item)
-                              }
-                              className="button"
+                            <div className="price-div1"
                             >
-                              Book now
-                            </button>
+                              <div
+                                style={{ display: "flex", alignItems: "center" }}
+                              >
+                                <p>
+                                  {" "}
+                                  ₹ <b key={index}>{item?.price}</b>
+                                </p>
+                              </div>
+                              {showfare && (
+                                <FareModal
+                                  open={openfare}
+                                  close={closefare}
+                                  selectedVeh={selectedVeh}
+                                />
+                              )}
+                            </div>
                           </div>
-                        </div>
+                          {formModal && (
+                            <CustomModal
+                              isModalOpen={show}
+                              handleCancel={Cancel}
+                            />
+                          )}
+                          <div className="button-Div1">
+                            <div className="button-Div">
+                              <button
+                                style={{
+                                  height: "40px",
+                                  width: "150px",
+                                  fontWeight: "700",
+                                  fontSize: "18px",
+                                }}
+                                onClick={() =>
+                                  // handleBookNow({
+                                  //   name: "Compact Mini",
+                                  //   type: "Mini",
+                                  // })
+                                  handleBookNow(item)
+                                }
+                                className="button"
+                              >
+                                Book now
+                              </button>
+                            </div>
+                          </div>
                         </div>
                         <div className="Details-div2"
-                            style={{
-                              height: "100%",
-                              width: "200px",
-                              display: "flex",
-                              justifyContent: "center",
-                              alignItems: "center",
-                              flexDirection: "column",
-                            }}
-                          >
-                            <div style={{width:"125px"}}>
-                              <b>Includes {item?.distance} Km</b>
-                            </div>
-                            <div>
-                              <b>{item?.hours}</b> hours to reach
-                            </div>
-                            <p
-                              key={item.id}
-                              style={{
-                                cursor: "pointer",
-                                color: "#0056b3",
-                                marginBottom: "0px",
-                              }}
-                              onClick={() => handleClick(item)}
-                            >
-
-
-
-                            
-                              Details
-                              <BiChevronDown size={25} />
-                            </p>
+                          style={{
+                            height: "100%",
+                            // width: "200px",
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            flexDirection: "column",
+                          }}
+                        >
+                          {/* <div style={{ width: "125px" }}> */}
+                          <b>Includes {item?.distance} Km</b>
+                          {/* </div> */}
+                          <div>
+                            <b>{item?.hours}</b> hours to reach
                           </div>
-                        {/* <div className="price-div2"
+                          <p
+                            key={item.id}
+                            style={{
+                              cursor: "pointer",
+                              color: "#0056b3",
+                              marginBottom: "0px",
+                            }}
+                            onClick={() => handleClick(item)}
                           >
-                            <div
-                              style={{ display: "flex", alignItems: "center" }}
-                            >
-                              <p>
-                                {" "}
-                                ₹ <b key={index}>{item?.price}</b>
-                              </p>
-                            </div>
-                            {showfare && (
-                              <FareModal
-                                open={openfare}
-                                close={closefare}
-                                selectedVeh={selectedVeh}
-                              />
-                            )}
-                          </div> */}
-                          <div className="button-Div2">
+
+
+
+
+                            Details
+                            <BiChevronDown size={25} />
+                          </p>
+                        </div>
+                        <div className="button-Div2">
                           <div className="button-Div3">
                             <button
                               style={{
@@ -843,10 +810,6 @@ function BookingForm(props: any) {
                                 fontSize: "18px",
                               }}
                               onClick={() =>
-                                // handleBookNow({
-                                //   name: "Compact Mini",
-                                //   type: "Mini",
-                                // })
                                 handleBookNow(item)
                               }
                               className="button"
@@ -856,239 +819,150 @@ function BookingForm(props: any) {
                           </div>
                         </div>
                       </div>
-                      {isDetailVisible && (
-                        <>
-                          {isCheckVisible.id === item.id ? (
-                            <div className="DetailModal-Main" key={index}>
-                              {/* <div
-                                style={{
-                                  width: "50%",
-                                  height: "50%",
-                                  padding: "5px",
-                                  // backgroundColor: "blue",
-                                  display: "flex",
-                                  alignItems: "center",
-                                  justifyContent: "space-between",
-                                }}
-                              > 
-                                <input
-                                  type="radio"
-                                  className="btn-check"
-                                  name="btnradio"
-                                  id="btnradio10"
-                                  autoComplete="off"
-                                  defaultChecked={
-                                    selectedSection === "inclusion"
-                                  }
-                                  onClick={() =>
-                                    handleSectionClick("inclusion")
-                                  }
-                                />
-                                <label
-                                  style={{
-                                    width: "100px",
-                                    fontWeight: 500,
-                                    fontSize: "15px",
-                                    height: "35px",
-                                    // backgroundColor: "red",
-                                  }}
-                                  className={`btn btn-outline-success border border-2 border-success`}
-                                  htmlFor="btnradio10"
-                                >
-                                  <p style={{ fontSize: "13px" }}>INCLUSION</p>
-                                </label>
-                                
+                      <>
+                        {isDetailVisible && (
+                          <>
+                            {isCheckVisible.id === item.id ? (
+                              <div className="DetailModal-Main" key={index}>
+                                <Row>
+                                  <Col md={12}>
+                                    <div className="DetailModal-div1">
+                                      <div
+                                        className={selectedSection === 'inclusion' ? 'DetailModal-div3' : 'DetailModal-div2'}
+                                        onClick={() => handleSectionClick('inclusion')}
+                                      >
+                                        INCLUSION
+                                      </div>
+                                      <div
+                                        className={selectedSection === 'exclusions' ? 'DetailModal-div3' : 'DetailModal-div2'}
+                                        onClick={() => handleSectionClick('exclusions')}
+                                      >
+                                        EXCLUSION
+                                      </div>
+                                      <div
+                                        className={selectedSection === 'facilities' ? 'DetailModal-div3' : 'DetailModal-div2'}
+                                        onClick={() => handleSectionClick('facilities')}
+                                      >
+                                        FACILITIES
+                                      </div>
+                                      <div
+                                        className={selectedSection === 'T&C' ? 'DetailModal-div3' : 'DetailModal-div2'}
+                                        onClick={() => handleSectionClick('T&C')}
+                                      >
+                                        T&C
+                                      </div>
+                                    </div>
+                                  </Col>
+                                  <Row>
+                                    {selectedSection === "inclusion" && (
+                                      // <div className="inclusion-DIV">
+                                      <>
+                                        <Col md={3} sm={6} xs={6} style={{ textAlign: "center", height: "50px" }}>
+                                          <BsFuelPumpDieselFill />
+                                          Base Fare
+                                        </Col>
+                                        <Col md={3} sm={6} xs={6} style={{ textAlign: "center", height: "50px" }}>
+                                          <AiFillCar className="car-img" />
+                                          Driver Allowance
+                                        </Col>
+                                        <Col md={3} sm={6} xs={6} style={{ textAlign: "center", height: "50px" }}>
+                                          <HiCurrencyRupee className="currency-img" />
+                                          State Tax & Toll
+                                        </Col>
+                                        <Col md={3} sm={6} xs={6} style={{ textAlign: "center", height: "50px" }}>
+                                          <CgNotes className="GSTimg" />
+                                          GST (5%)
+                                        </Col>
+                                      </>
+                                      // </div>
+                                    )}
+                                    {selectedSection === "exclusions" && (
+                                      // <div className="Exclusion-item-Div">
+                                      <>
+                                        <Col md={4} sm={12} xs={12} style={{ textAlign: "center", height: "50px" }}>
+                                          <HiCurrencyRupee
+                                            style={{
+                                              width: "25px",
+                                              height: "35px",
+                                            }}
+                                          />
+                                          Pay ₹14/km after 2142 km
+                                        </Col>
+                                        <Col md={4} sm={12} xs={12} style={{ textAlign: "center", height: "50px" }}>
+                                          <BsCarFrontFill
+                                            style={{
+                                              width: "25px",
+                                              height: "35px",
+                                            }}
+                                          />{" "}
+                                          Multiple pickups/drops
+                                        </Col>
+                                        <Col md={4} sm={12} xs={12} style={{ textAlign: "center", height: "50px" }}>
+                                          <LuParkingCircle
+                                            style={{
+                                              width: "34px",
+                                              height: "25px",
+                                            }}
+                                          />{" "}
+                                          Parking
+                                        </Col>
+                                      </>
+                                      // </div>
+                                    )}
+                                    {selectedSection === "facilities" && (
+                                      <>
+                                        <Col md={4} sm={4} xs={4} style={{ textAlign: "center", height: "50px" }}>
+                                          <MdOutlineAirlineSeatReclineExtra
+                                            style={{
+                                              width: "30px",
+                                              height: "25px",
+                                            }}
+                                          />
+                                          4 seater
+                                        </Col>
+                                        <Col md={4} sm={4} xs={4} style={{ textAlign: "center", height: "50px" }}>
+                                          <BiSolidBalloon
+                                            style={{
+                                              width: "30px",
+                                              height: "25px",
+                                            }}
+                                          />
+                                          2 bags
+                                        </Col>
+                                        <Col md={4} sm={4} xs={4} style={{ textAlign: "center", height: "50px" }}>
+                                          <PiFanFill
+                                            style={{
+                                              width: "30px",
+                                              height: "25px",
+                                            }}
+                                          />
+                                          AC
+                                        </Col>
+                                      </>
 
-                                <input
-                                  type="radio"
-                                  className="btn-check"
-                                  name="btnradio"
-                                  id="btnradio30"
-                                  autoComplete="off"
-                                  defaultChecked={
-                                    selectedSection === "exclusions"
-                                  }
-                                  onClick={() =>
-                                    handleSectionClick("exclusions")
-                                  }
-                                />
-                                <label
-                                  style={{
-                                    width: "100px",
-                                    fontWeight: 500,
-                                    fontSize: "15px",
-                                    height: "35px",
-                                  }}
-                                  className="btn btn-outline-success border border-2 border-success  "
-                                  htmlFor="btnradio30"
-                                >
-                                  <p style={{ fontSize: "13px" }}>EXCLUSION</p>
-                                </label>
-
-                                <input
-                                  type="radio"
-                                  className="btn-check"
-                                  name="btnradio"
-                                  id="btnradio90"
-                                  autoComplete="off"
-                                  defaultChecked={
-                                    selectedSection === "facilities"
-                                  }
-                                  onClick={() =>
-                                    handleSectionClick("facilities")
-                                  }
-                                />
-                                <label
-                                  style={{
-                                    width: "100px",
-                                    fontWeight: 500,
-                                    fontSize: "15px",
-                                    height: "35px",
-                                  }}
-                                  className="btn btn-outline-success border border-2 border-success "
-                                  htmlFor="btnradio90"
-                                >
-                                  <p style={{ fontSize: "13px" }}>FACILITIES</p>
-                                </label>
-
-                                <input
-                                  type="radio"
-                                  className="btn-check"
-                                  name="btnradio"
-                                  id="btnradio98"
-                                  autoComplete="off"
-                                  defaultChecked={selectedSection === "T&C"}
-                                  onClick={() => handleSectionClick("T&C")}
-                                />
-                                <label
-                                  style={{
-                                    width: "100px",
-                                    fontWeight: 500,
-                                    fontSize: "15px",
-                                    height: "35px",
-                                  }}
-                                  className="btn btn-outline-success border border-2 border-success "
-                                  htmlFor="btnradio98"
-                                >
-                                  <p style={{ fontSize: "13px" }}>T&C</p>
-                                </label>
-                              </div> */}
-                              <div className="DetailModal-div1" >
-                                <div className="DetailModal-div2">INCLUSION</div>
-                                <div className="DetailModal-div2">EXCLUSION</div>
-                                <div className="DetailModal-div2">FACILITIES</div>
-                                <div className="DetailModal-div2">T&C</div>
+                                    )}
+                                    {selectedSection === "T&C" && (
+                                      <div className="TandCtext-Div">
+                                        • Your Trip has a KM limit as well as an
+                                        Hours limit. If your usage exceeds these
+                                        limits, you will be charged for the excess
+                                        KM and/or hours used. <br />• The KM and
+                                        Hour(s) usage will be calculated starting
+                                        from your pick-up point and back to the
+                                        pick-up point.
+                                        <br /> • The Airport entry charge, if
+                                        applicable, is not included in the fare and
+                                        will be charged extra.
+                                      </div>
+                                    )}
+                                  </Row>
+                                </Row>
                               </div>
-                              {/* Render fields based on the selected section */}
-                              {selectedSection === "inclusion" && (
-                                <div>
-                                  <div className="inclusion-DIV">
-                                    <div className="Basefare-DIV">
-                                      <BsFuelPumpDieselFill />
-                                      Base Fare
-                                    </div>
-                                    <div className="Driver-Div">
-                                      <AiFillCar className="car-img" />
-                                      Driver Allowance
-                                    </div>
-                                    <div className="StateTax-Div">
-                                      <HiCurrencyRupee className="currency-img" />
-                                      State Tax & Toll
-                                    </div>
-                                    <div className="GST-Div">
-                                      <CgNotes className="GSTimg" />
-                                      GST (5%)
-                                    </div>
-                                  </div>{" "}
-                                </div>
-                              )}
-                              {selectedSection === "exclusions" && (
-                                <div>
-                                  <div className="Exclusion-item-Div">
-                                    <div className="pay-DIV">
-                                      <HiCurrencyRupee
-                                        style={{
-                                          width: "25px",
-                                          height: "35px",
-                                        }}
-                                      />
-                                      Pay ₹14/km after 2142 km
-                                    </div>
-                                    <div className="MultiptlPickup-Div">
-                                      <BsCarFrontFill
-                                        style={{
-                                          width: "25px",
-                                          height: "35px",
-                                        }}
-                                      />{" "}
-                                      Multiple pickups/drops
-                                    </div>
-                                    <div className="parking-Div">
-                                      <LuParkingCircle
-                                        style={{
-                                          width: "34px",
-                                          height: "25px",
-                                        }}
-                                      />{" "}
-                                      Parking
-                                    </div>
-                                  </div>
-                                </div>
-                              )}
-                              {selectedSection === "facilities" && (
-                                <div>
-                                  <div className="facilities-DIV">
-                                    <div className="seates-Div">
-                                      <MdOutlineAirlineSeatReclineExtra
-                                        style={{
-                                          width: "30px",
-                                          height: "25px",
-                                        }}
-                                      />
-                                      4 seater
-                                    </div>
-                                    <div className="bags-Div">
-                                      <BiSolidBalloon
-                                        style={{
-                                          width: "30px",
-                                          height: "25px",
-                                        }}
-                                      />
-                                      2 bags
-                                    </div>
-                                    <div className="AC_Div">
-                                      <PiFanFill
-                                        style={{
-                                          width: "30px",
-                                          height: "25px",
-                                        }}
-                                      />
-                                      AC
-                                    </div>
-                                  </div>
-                                </div>
-                              )}
-                              {selectedSection === "T&C" && (
-                                <div>
-                                  <div className="TandCtext-Div">
-                                    • Your Trip has a KM limit as well as an
-                                    Hours limit. If your usage exceeds these
-                                    limits, you will be charged for the excess
-                                    KM and/or hours used. <br />• The KM and
-                                    Hour(s) usage will be calculated starting
-                                    from your pick-up point and back to the
-                                    pick-up point.
-                                    <br /> • The Airport entry charge, if
-                                    applicable, is not included in the fare and
-                                    will be charged extra.
-                                  </div>
-                                </div>
-                              )}
-                              
-                            </div>
-                          ) : null}
-                        </>
-                      )}
+                            ) : null}
+                          </>
+                        )}
+
+                      </>
                     </>
                   );
                 })}

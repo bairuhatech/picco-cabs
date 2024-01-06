@@ -329,7 +329,7 @@ function Rentals(props) {
                             top: "0px",
                             left: "50%",
                             transform: "translateX(-50%)",
-                            backgroundColor: "#198754",
+                            backgroundColor: "#6BB546",
                             color: "#ffff",
                             width: "200px",
                             height: "40px",

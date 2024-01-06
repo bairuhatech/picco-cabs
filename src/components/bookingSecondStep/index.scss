@@ -301,7 +301,7 @@ p {
   justify-content: left;
   backdrop-filter: blur(10px);
   transition: 0.5s ease-in-out;
-  border: 0px solid #198754;
+  border: 0px solid #6BB546;
   border-radius: 10px;
   box-shadow: #92ca92 0px 0px 10px 0px;
   margin-bottom: 17px;
@@ -498,7 +498,7 @@ p {
 }
 
 .DetailModal-div2 {
-  border: solid 1px #198754;
+  border: solid 1px #6BB546;
   width: 25%;
   display: flex;
   align-items: center;
@@ -506,9 +506,21 @@ p {
   font-Weight: 500;
   font-Size: 13px;
   height: 35px;
-  color: #198754;
+  color: #6BB546;
   // border-radius: 7px;
 
+}
+.DetailModal-div3{
+  background-color: #6BB546;
+  color: #fff;
+  border: solid 1px #6BB546;
+  width: 25%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-Weight: 500;
+  font-Size: 13px;
+  height: 35px;
 }
 
 // @media (max-width: 568px) {
@@ -553,6 +565,7 @@ p {
   .button-Div3 {
     display: flex;
     align-items: center;
+    justify-content: center;
     border-radius: 8px;
 
   }
@@ -939,6 +952,9 @@ p {
   width: 100%;
   height: 40px;
   display: flex;
+  justify-content: space-between;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 .Basefare-DIV {
   // width: 25%;
@@ -993,8 +1009,9 @@ p {
 
 .TandCtext-Div {
   width: 100%;
-  height: 68px;
+  height: fit-content;
   font-size: 13px;
+  padding-left: 20px;
   // background-color: #9198e5;
   // display: flex;
   // align-items: center;

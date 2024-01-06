@@ -226,7 +226,7 @@ export default function Airports(props: any) {
             style={{ position: "absolute", top: 10 }}
           ></div>
           <div className="col-md-2 col-sm-6 col-12">
-            <div className="form-label fw-bold">Ride Type</div>
+            <div className="form-label fw-bold">RIDE TYPE</div>
             <Form.Item
               name="Trip"
               className="fw-bold"
