@@ -225,7 +225,7 @@ const BookingThird = (props: any) => {
                       readOnly
                       value={
                         RentPlace
-                          ? `${RentPlace} ${selectedRoute?.place}`
+                          ? `${RentPlace}`
                           : `${selectedRoute?.place} to ${selectedRoute?.location}`
                       }
                     />

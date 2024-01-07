@@ -226,7 +226,7 @@ export default function Airports(props: any) {
             style={{ position: "absolute", top: 10 }}
           ></div>
           <div className="col-md-2 col-sm-6 col-12">
-            <div className="form-label fw-bold">Ride Type</div>
+            <div className="form-label fw-bold">RIDE TYPE</div>
             <Form.Item
               name="Trip"
               className="fw-bold"
@@ -267,6 +267,7 @@ export default function Airports(props: any) {
             <Form.Item
               name="user_from"
               className="fw-bold"
+              initialValue={props?.selectedProps?.place}
               rules={[
                 {
                   required: true,
@@ -278,7 +279,6 @@ export default function Airports(props: any) {
                 className="CustomSelect"
                 showSearch
                 // value={value}
-                defaultValue={props?.selectedProps?.place}
                 placeholder={"Start Place"}
                 defaultActiveFirstOption={false}
                 suffixIcon={null}
@@ -322,6 +322,7 @@ export default function Airports(props: any) {
             </label>
             <Form.Item
               name="dateRange"
+              initialValue={dayjs(props?.selectedDate)}
               rules={[
                 {
                   required: true,
@@ -366,6 +367,7 @@ export default function Airports(props: any) {
             </label>
             <Form.Item
               name="timeRange"
+              initialValue={props?.selectedTime}
               rules={[
                 {
                   required: true,
@@ -376,7 +378,6 @@ export default function Airports(props: any) {
               <Select
                 className="form-control border-0 rounded-0"
                 placeholder="Pick up time"
-                defaultValue={props?.selectedTime}
                 allowClear
                 suffixIcon={<BiTime size={20} />}
               >

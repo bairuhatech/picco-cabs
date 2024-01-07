@@ -25,7 +25,7 @@ moment.locale('en');
 const { Option } = Select;
 
 export default function OutStation(props: any) {
-  const [form] = Form.useForm();
+    const [form] = Form.useForm();
   const navigate = useNavigate();
   const currTime = new Date();
   const [value, setValue] = useState<string>();
@@ -38,8 +38,6 @@ export default function OutStation(props: any) {
   const [toPlace, setToPlace] = useState<any>([]);
   const [datePickup, setDatePickup] = useState<any>(new Date);
   const [pickupDateString, setpickupDateString] = useState<any>("");
-
-  // const [onClose, setOnclose] = useState(false)
 
   const onFinish = async (val: any) => {
     const { user_from, user_to, dateRange, returnRange, timeRange } = val;
@@ -159,6 +157,7 @@ export default function OutStation(props: any) {
             <Form.Item
               name="user_from"
               className="fw-bold"
+              initialValue={props?.selectedProps?.place}
               rules={[
                 {
                   required: true,
@@ -172,7 +171,6 @@ export default function OutStation(props: any) {
                 defaultActiveFirstOption={false}
                 placeholder={"Start Place"}
                 suffixIcon={null}
-                defaultValue={props?.selectedProps?.place}
                 filterOption={false}
                 onSearch={handleSearch}
                 onChange={handleFromChange}
@@ -191,6 +189,7 @@ export default function OutStation(props: any) {
             <Form.Item
               name="user_to"
               className="fw-bold"
+              initialValue={props?.selectedProps?.location}
               rules={[
                 {
                   required: true,
@@ -204,7 +203,6 @@ export default function OutStation(props: any) {
                 defaultActiveFirstOption={false}
                 suffixIcon={null}
                 filterOption={false}
-                defaultValue={props?.selectedProps?.location}
                 onSearch={handleToSearch}
                 onChange={handleToChange}
                 notFoundContent={null}
@@ -225,6 +223,7 @@ export default function OutStation(props: any) {
             </label>
             <Form.Item
               name="dateRange"
+              initialValue={dayjs(props?.selectedDate)}
               rules={[
                 {
                   required: true,
@@ -237,7 +236,6 @@ export default function OutStation(props: any) {
                 placeholder="Pick up date"
                 onChange={handleDateChange}
                 value={datePickup}
-                // defaultValue={dayjs(props?.selectedDate)}
                 className="form-control border-0 border-bottom rounded-0"
                 disabledDate={(current) => {
                   let customDate = moment().format("YYYY-MM-DD");
@@ -282,6 +280,7 @@ export default function OutStation(props: any) {
             </label>
             <Form.Item
               name="timeRange"
+              initialValue={props.selectedTime}
               rules={[
                 {
                   required: true,
@@ -292,7 +291,6 @@ export default function OutStation(props: any) {
               <Select
                 className="form-control border-0 rounded-0"
                 placeholder="Pick up time"
-                defaultValue={props?.selectedTime}
                 suffixIcon={<BiTime size={20} />}
               >
                 <MdTimerOff color="red" />

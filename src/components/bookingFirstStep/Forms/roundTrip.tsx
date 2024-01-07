@@ -24,7 +24,7 @@ const { RangePicker } = DatePicker;
 const { Option } = Select;
 
 export default function Roundtrip(props: any) {
-
+  
   const [form] = Form.useForm();
   const navigate = useNavigate();
   const currTime = new Date();
@@ -211,7 +211,7 @@ export default function Roundtrip(props: any) {
               TO
             </label>
             <Form.Item
-              // name={`user_to${index}`}
+              initialValue={props?.selectedProps?.location}
               name={"user_to"}
               className="fw-bold"
               rules={[
@@ -227,7 +227,6 @@ export default function Roundtrip(props: any) {
                 defaultActiveFirstOption={false}
                 suffixIcon={null}
                 filterOption={false}
-                defaultValue={props?.selectedProps?.location}
                 onSearch={handleToSearch}
                 onChange={handleToChange}
                 notFoundContent={null}
@@ -251,6 +250,7 @@ export default function Roundtrip(props: any) {
             </label>
             <Form.Item
               name="dateRange"
+              initialValue={dayjs(props?.selectedDate)}
               rules={[
                 {
                   required: true,
@@ -278,6 +278,7 @@ export default function Roundtrip(props: any) {
             </label>
             <Form.Item
               name="returnRange"
+              initialValue={dayjs(props?.dropDate)}
               rules={[
                 {
                   required: true,
